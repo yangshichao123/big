@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.data.big.mapper.CamerainfoMapper">
+    <resultMap id="BaseResultMap" type="com.data.big.model.Camerainfo">
+        <id column="device_id" jdbcType="VARCHAR" property="deviceId"/>
+        <result column="device_name" jdbcType="VARCHAR" property="deviceName"/>
+        <result column="node_id" jdbcType="VARCHAR" property="nodeId"/>
+        <result column="device_type" jdbcType="VARCHAR" property="deviceType"/>
+        <result column="manufacturer" jdbcType="VARCHAR" property="manufacturer"/>
+        <result column="ip_addr" jdbcType="VARCHAR" property="ipAddr"/>
+        <result column="ip_port" jdbcType="VARCHAR" property="ipPort"/>
+        <result column="username" jdbcType="VARCHAR" property="username"/>
+        <result column="password" jdbcType="VARCHAR" property="password"/>
+        <result column="install_time" jdbcType="VARCHAR" property="installTime"/>
+        <result column="affiliation" jdbcType="VARCHAR" property="affiliation"/>
+        <result column="up_down" jdbcType="VARCHAR" property="upDown"/>
+        <result column="associated_line" jdbcType="VARCHAR" property="associatedLine"/>
+        <result column="k_mark" jdbcType="VARCHAR" property="kMark"/>
+        <result column="longitude" jdbcType="VARCHAR" property="longitude"/>
+        <result column="latitude" jdbcType="VARCHAR" property="latitude"/>
+        <result column="region" jdbcType="VARCHAR" property="region"/>
+        <result column="Location_type" jdbcType="VARCHAR" property="locationType"/>
+        <result column="Location_num" jdbcType="VARCHAR" property="locationNum"/>
+        <result column="area" jdbcType="VARCHAR" property="area"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        device_id, device_name, node_id, device_type, manufacturer, ip_addr, ip_port, username,
+        `password`, install_time, affiliation, up_down, associated_line, k_mark, longitude,
+        latitude, region, Location_type, Location_num, area
+    </sql>
+    <select id="selectByPrimaryId" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from camerainfo
+        where device_id = #{deviceId,jdbcType=VARCHAR}
+    </select>
+    <insert id="insert" parameterType="com.data.big.model.Camerainfo">
+        insert into camerainfo (device_id, device_name, node_id,
+        device_type, manufacturer, ip_addr,
+        ip_port, username, `password`,
+        install_time, affiliation, up_down,
+        associated_line, k_mark, longitude,
+        latitude, region, Location_type,
+        Location_num, area)
+        values (#{deviceId,jdbcType=VARCHAR}, #{deviceName,jdbcType=VARCHAR}, #{nodeId,jdbcType=VARCHAR},
+        #{deviceType,jdbcType=VARCHAR}, #{manufacturer,jdbcType=VARCHAR}, #{ipAddr,jdbcType=VARCHAR},
+        #{ipPort,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
+        #{installTime,jdbcType=VARCHAR}, #{affiliation,jdbcType=VARCHAR}, #{upDown,jdbcType=VARCHAR},
+        #{associatedLine,jdbcType=VARCHAR}, #{kMark,jdbcType=VARCHAR}, #{longitude,jdbcType=VARCHAR},
+        #{latitude,jdbcType=VARCHAR}, #{region,jdbcType=VARCHAR}, #{locationType,jdbcType=VARCHAR},
+        #{locationNum,jdbcType=VARCHAR}, #{area,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" parameterType="com.data.big.model.Camerainfo">
+        insert into camerainfo
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="deviceId != null">
+                device_id,
+            </if>
+            <if test="deviceName != null">
+                device_name,
+            </if>
+            <if test="nodeId != null">
+                node_id,
+            </if>
+            <if test="deviceType != null">
+                device_type,
+            </if>
+            <if test="manufacturer != null">
+                manufacturer,
+            </if>
+            <if test="ipAddr != null">
+                ip_addr,
+            </if>
+            <if test="ipPort != null">
+                ip_port,
+            </if>
+            <if test="username != null">
+                username,
+            </if>
+            <if test="password != null">
+                `password`,
+            </if>
+            <if test="installTime != null">
+                install_time,
+            </if>
+            <if test="affiliation != null">
+                affiliation,
+            </if>
+            <if test="upDown != null">
+                up_down,
+            </if>
+            <if test="associatedLine != null">
+                associated_line,
+            </if>
+            <if test="kMark != null">
+                k_mark,
+            </if>
+            <if test="longitude != null">
+                longitude,
+            </if>
+            <if test="latitude != null">
+                latitude,
+            </if>
+            <if test="region != null">
+                region,
+            </if>
+            <if test="locationType != null">
+                Location_type,
+            </if>
+            <if test="locationNum != null">
+                Location_num,
+            </if>
+            <if test="area != null">
+                area,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="deviceId != null">
+                #{deviceId,jdbcType=VARCHAR},
+            </if>
+            <if test="deviceName != null">
+                #{deviceName,jdbcType=VARCHAR},
+            </if>
+            <if test="nodeId != null">
+                #{nodeId,jdbcType=VARCHAR},
+            </if>
+            <if test="deviceType != null">
+                #{deviceType,jdbcType=VARCHAR},
+            </if>
+            <if test="manufacturer != null">
+                #{manufacturer,jdbcType=VARCHAR},
+            </if>
+            <if test="ipAddr != null">
+                #{ipAddr,jdbcType=VARCHAR},
+            </if>
+            <if test="ipPort != null">
+                #{ipPort,jdbcType=VARCHAR},
+            </if>
+            <if test="username != null">
+                #{username,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="installTime != null">
+                #{installTime,jdbcType=VARCHAR},
+            </if>
+            <if test="affiliation != null">
+                #{affiliation,jdbcType=VARCHAR},
+            </if>
+            <if test="upDown != null">
+                #{upDown,jdbcType=VARCHAR},
+            </if>
+            <if test="associatedLine != null">
+                #{associatedLine,jdbcType=VARCHAR},
+            </if>
+            <if test="kMark != null">
+                #{kMark,jdbcType=VARCHAR},
+            </if>
+            <if test="longitude != null">
+                #{longitude,jdbcType=VARCHAR},
+            </if>
+            <if test="latitude != null">
+                #{latitude,jdbcType=VARCHAR},
+            </if>
+            <if test="region != null">
+                #{region,jdbcType=VARCHAR},
+            </if>
+            <if test="locationType != null">
+                #{locationType,jdbcType=VARCHAR},
+            </if>
+            <if test="locationNum != null">
+                #{locationNum,jdbcType=VARCHAR},
+            </if>
+            <if test="area != null">
+                #{area,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+</mapper>

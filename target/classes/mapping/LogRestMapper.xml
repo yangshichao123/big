@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.data.big.mapper.LogRestMapper">
+    <resultMap id="BaseResultMap" type="com.data.big.model.LogRest">
+        <result column="lrsj" jdbcType="TIMESTAMP" property="lrsj"/>
+        <result column="ip" jdbcType="VARCHAR" property="ip"/>
+        <result column="paramin" jdbcType="VARCHAR" property="paramin"/>
+        <result column="type" jdbcType="VARCHAR" property="type"/>
+        <result column="funname" jdbcType="VARCHAR" property="funname"/>
+    </resultMap>
+    <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.data.big.model.LogRest">
+        <result column="redata" jdbcType="LONGVARCHAR" property="redata"/>
+    </resultMap>
+    <sql id="Blob_Column_List">
+        redata
+    </sql>
+    <insert id="insert" parameterType="com.data.big.model.LogRest">
+        insert into log_rest (lrsj, ip, paramin,
+        `type`, funname, redata
+        )
+        values (#{lrsj,jdbcType=TIMESTAMP}, #{ip,jdbcType=VARCHAR}, #{paramin,jdbcType=VARCHAR},
+        #{type,jdbcType=VARCHAR}, #{funname,jdbcType=VARCHAR}, #{redata,jdbcType=LONGVARCHAR}
+        )
+    </insert>
+    <insert id="insertSelective" parameterType="com.data.big.model.LogRest">
+        insert into log_rest
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="lrsj != null">
+                lrsj,
+            </if>
+            <if test="ip != null">
+                ip,
+            </if>
+            <if test="paramin != null">
+                paramin,
+            </if>
+            <if test="type != null">
+                `type`,
+            </if>
+            <if test="funname != null">
+                funname,
+            </if>
+            <if test="redata != null">
+                redata,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="lrsj != null">
+                #{lrsj,jdbcType=TIMESTAMP},
+            </if>
+            <if test="ip != null">
+                #{ip,jdbcType=VARCHAR},
+            </if>
+            <if test="paramin != null">
+                #{paramin,jdbcType=VARCHAR},
+            </if>
+            <if test="type != null">
+                #{type,jdbcType=VARCHAR},
+            </if>
+            <if test="funname != null">
+                #{funname,jdbcType=VARCHAR},
+            </if>
+            <if test="redata != null">
+                #{redata,jdbcType=LONGVARCHAR},
+            </if>
+        </trim>
+    </insert>
+</mapper>

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.data.big.mapper.ServerstatusMapper">
+    <resultMap id="BaseResultMap" type="com.data.big.model.Serverstatus">
+        <id column="id" jdbcType="VARCHAR" property="id"/>
+        <result column="device_id" jdbcType="VARCHAR" property="deviceId"/>
+        <result column="status_time" jdbcType="VARCHAR" property="statusTime"/>
+        <result column="online_status" jdbcType="VARCHAR" property="onlineStatus"/>
+        <result column="cpu_usage" jdbcType="VARCHAR" property="cpuUsage"/>
+        <result column="cpu_temp" jdbcType="VARCHAR" property="cpuTemp"/>
+        <result column="memory_usage" jdbcType="VARCHAR" property="memoryUsage"/>
+        <result column="port_status" jdbcType="VARCHAR" property="portStatus"/>
+        <result column="disk_status" jdbcType="VARCHAR" property="diskStatus"/>
+        <result column="disk_partition_usage" jdbcType="VARCHAR" property="diskPartitionUsage"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, device_id, status_time, online_status, cpu_usage, cpu_temp, memory_usage, port_status,
+        disk_status, disk_partition_usage
+    </sql>
+    <select id="selectByPrimaryId" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from serverstatus
+        where id = #{id,jdbcType=VARCHAR}
+    </select>
+    <insert id="insert" parameterType="com.data.big.model.Serverstatus">
+        insert into serverstatus (id, device_id, status_time,
+        online_status, cpu_usage, cpu_temp,
+        memory_usage, port_status, disk_status,
+        disk_partition_usage)
+        values (#{id,jdbcType=VARCHAR}, #{deviceId,jdbcType=VARCHAR}, #{statusTime,jdbcType=VARCHAR},
+        #{onlineStatus,jdbcType=VARCHAR}, #{cpuUsage,jdbcType=VARCHAR}, #{cpuTemp,jdbcType=VARCHAR},
+        #{memoryUsage,jdbcType=VARCHAR}, #{portStatus,jdbcType=VARCHAR}, #{diskStatus,jdbcType=VARCHAR},
+        #{diskPartitionUsage,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" parameterType="com.data.big.model.Serverstatus">
+        insert into serverstatus
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="deviceId != null">
+                device_id,
+            </if>
+            <if test="statusTime != null">
+                status_time,
+            </if>
+            <if test="onlineStatus != null">
+                online_status,
+            </if>
+            <if test="cpuUsage != null">
+                cpu_usage,
+            </if>
+            <if test="cpuTemp != null">
+                cpu_temp,
+            </if>
+            <if test="memoryUsage != null">
+                memory_usage,
+            </if>
+            <if test="portStatus != null">
+                port_status,
+            </if>
+            <if test="diskStatus != null">
+                disk_status,
+            </if>
+            <if test="diskPartitionUsage != null">
+                disk_partition_usage,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="deviceId != null">
+                #{deviceId,jdbcType=VARCHAR},
+            </if>
+            <if test="statusTime != null">
+                #{statusTime,jdbcType=VARCHAR},
+            </if>
+            <if test="onlineStatus != null">
+                #{onlineStatus,jdbcType=VARCHAR},
+            </if>
+            <if test="cpuUsage != null">
+                #{cpuUsage,jdbcType=VARCHAR},
+            </if>
+            <if test="cpuTemp != null">
+                #{cpuTemp,jdbcType=VARCHAR},
+            </if>
+            <if test="memoryUsage != null">
+                #{memoryUsage,jdbcType=VARCHAR},
+            </if>
+            <if test="portStatus != null">
+                #{portStatus,jdbcType=VARCHAR},
+            </if>
+            <if test="diskStatus != null">
+                #{diskStatus,jdbcType=VARCHAR},
+            </if>
+            <if test="diskPartitionUsage != null">
+                #{diskPartitionUsage,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+</mapper>

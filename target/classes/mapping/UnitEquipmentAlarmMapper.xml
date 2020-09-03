@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.data.big.mapper.UnitEquipmentAlarmMapper">
+  <resultMap id="BaseResultMap" type="com.data.big.model.UnitEquipmentAlarm">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="check_locale_code" jdbcType="VARCHAR" property="checkLocaleCode" />
+    <result column="a_host_status" jdbcType="VARCHAR" property="aHostStatus" />
+    <result column="b_host_status" jdbcType="VARCHAR" property="bHostStatus" />
+    <result column="card_data_length" jdbcType="VARCHAR" property="cardDataLength" />
+    <result column="card_status" jdbcType="VARCHAR" property="cardStatus" />
+    <result column="source_a_status" jdbcType="VARCHAR" property="sourceAStatus" />
+    <result column="source_b_status" jdbcType="VARCHAR" property="sourceBStatus" />
+    <result column="source_a_in_voltage_value" jdbcType="VARCHAR" property="sourceAInVoltageValue" />
+    <result column="source_b_in_voltage_value" jdbcType="VARCHAR" property="sourceBInVoltageValue" />
+    <result column="source_a_out_voltage_value" jdbcType="VARCHAR" property="sourceAOutVoltageValue" />
+    <result column="source_b_out_voltage_value" jdbcType="VARCHAR" property="sourceBOutVoltageValue" />
+    <result column="source_a_remaining_electricity" jdbcType="VARCHAR" property="sourceARemainingElectricity" />
+    <result column="source_b_remaining_electricity" jdbcType="VARCHAR" property="sourceBRemainingElectricity" />
+    <result column="run_data_length" jdbcType="VARCHAR" property="runDataLength" />
+    <result column="source_run_status" jdbcType="VARCHAR" property="sourceRunStatus" />
+    <result column="fault_type" jdbcType="VARCHAR" property="faultType" />
+    <result column="reserve1" jdbcType="VARCHAR" property="reserve1" />
+    <result column="reserve2" jdbcType="VARCHAR" property="reserve2" />
+    <result column="date" jdbcType="TIMESTAMP" property="date" />
+    <result column="alarm_status" jdbcType="VARCHAR" property="alarmStatus" />
+    <result column="relieve_time" jdbcType="TIMESTAMP" property="relieveTime" />
+    <result column="video_up_status" jdbcType="VARCHAR" property="videoUpStatus" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.data.big.model.UnitEquipmentAlarm">
+    <result column="data" jdbcType="LONGVARCHAR" property="data" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, check_locale_code, a_host_status, b_host_status, card_data_length, card_status, 
+    source_a_status, source_b_status, source_a_in_voltage_value, source_b_in_voltage_value, 
+    source_a_out_voltage_value, source_b_out_voltage_value, source_a_remaining_electricity, 
+    source_b_remaining_electricity, run_data_length, source_run_status, fault_type, reserve1, 
+    reserve2, `date`, alarm_status, relieve_time, video_up_status
+  </sql>
+  <sql id="Blob_Column_List">
+    `data`
+  </sql>
+  <select id="selectByPrimaryId" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from unit_equipment_alarm
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <insert id="insert" parameterType="com.data.big.model.UnitEquipmentAlarm">
+    insert into unit_equipment_alarm (id, check_locale_code, a_host_status, 
+      b_host_status, card_data_length, card_status, 
+      source_a_status, source_b_status, source_a_in_voltage_value, 
+      source_b_in_voltage_value, source_a_out_voltage_value, 
+      source_b_out_voltage_value, source_a_remaining_electricity, 
+      source_b_remaining_electricity, run_data_length, 
+      source_run_status, fault_type, reserve1, 
+      reserve2, `date`, alarm_status, 
+      relieve_time, video_up_status, `data`
+      )
+    values (#{id,jdbcType=VARCHAR}, #{checkLocaleCode,jdbcType=VARCHAR}, #{aHostStatus,jdbcType=VARCHAR}, 
+      #{bHostStatus,jdbcType=VARCHAR}, #{cardDataLength,jdbcType=VARCHAR}, #{cardStatus,jdbcType=VARCHAR}, 
+      #{sourceAStatus,jdbcType=VARCHAR}, #{sourceBStatus,jdbcType=VARCHAR}, #{sourceAInVoltageValue,jdbcType=VARCHAR}, 
+      #{sourceBInVoltageValue,jdbcType=VARCHAR}, #{sourceAOutVoltageValue,jdbcType=VARCHAR}, 
+      #{sourceBOutVoltageValue,jdbcType=VARCHAR}, #{sourceARemainingElectricity,jdbcType=VARCHAR}, 
+      #{sourceBRemainingElectricity,jdbcType=VARCHAR}, #{runDataLength,jdbcType=VARCHAR}, 
+      #{sourceRunStatus,jdbcType=VARCHAR}, #{faultType,jdbcType=VARCHAR}, #{reserve1,jdbcType=VARCHAR}, 
+      #{reserve2,jdbcType=VARCHAR}, #{date,jdbcType=TIMESTAMP}, #{alarmStatus,jdbcType=VARCHAR}, 
+      #{relieveTime,jdbcType=TIMESTAMP}, #{videoUpStatus,jdbcType=VARCHAR}, #{data,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.data.big.model.UnitEquipmentAlarm">
+    insert into unit_equipment_alarm
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="checkLocaleCode != null">
+        check_locale_code,
+      </if>
+      <if test="aHostStatus != null">
+        a_host_status,
+      </if>
+      <if test="bHostStatus != null">
+        b_host_status,
+      </if>
+      <if test="cardDataLength != null">
+        card_data_length,
+      </if>
+      <if test="cardStatus != null">
+        card_status,
+      </if>
+      <if test="sourceAStatus != null">
+        source_a_status,
+      </if>
+      <if test="sourceBStatus != null">
+        source_b_status,
+      </if>
+      <if test="sourceAInVoltageValue != null">
+        source_a_in_voltage_value,
+      </if>
+      <if test="sourceBInVoltageValue != null">
+        source_b_in_voltage_value,
+      </if>
+      <if test="sourceAOutVoltageValue != null">
+        source_a_out_voltage_value,
+      </if>
+      <if test="sourceBOutVoltageValue != null">
+        source_b_out_voltage_value,
+      </if>
+      <if test="sourceARemainingElectricity != null">
+        source_a_remaining_electricity,
+      </if>
+      <if test="sourceBRemainingElectricity != null">
+        source_b_remaining_electricity,
+      </if>
+      <if test="runDataLength != null">
+        run_data_length,
+      </if>
+      <if test="sourceRunStatus != null">
+        source_run_status,
+      </if>
+      <if test="faultType != null">
+        fault_type,
+      </if>
+      <if test="reserve1 != null">
+        reserve1,
+      </if>
+      <if test="reserve2 != null">
+        reserve2,
+      </if>
+      <if test="date != null">
+        `date`,
+      </if>
+      <if test="alarmStatus != null">
+        alarm_status,
+      </if>
+      <if test="relieveTime != null">
+        relieve_time,
+      </if>
+      <if test="videoUpStatus != null">
+        video_up_status,
+      </if>
+      <if test="data != null">
+        `data`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="checkLocaleCode != null">
+        #{checkLocaleCode,jdbcType=VARCHAR},
+      </if>
+      <if test="aHostStatus != null">
+        #{aHostStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="bHostStatus != null">
+        #{bHostStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="cardDataLength != null">
+        #{cardDataLength,jdbcType=VARCHAR},
+      </if>
+      <if test="cardStatus != null">
+        #{cardStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="sourceAStatus != null">
+        #{sourceAStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="sourceBStatus != null">
+        #{sourceBStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="sourceAInVoltageValue != null">
+        #{sourceAInVoltageValue,jdbcType=VARCHAR},
+      </if>
+      <if test="sourceBInVoltageValue != null">
+        #{sourceBInVoltageValue,jdbcType=VARCHAR},
+      </if>
+      <if test="sourceAOutVoltageValue != null">
+        #{sourceAOutVoltageValue,jdbcType=VARCHAR},
+      </if>
+      <if test="sourceBOutVoltageValue != null">
+        #{sourceBOutVoltageValue,jdbcType=VARCHAR},
+      </if>
+      <if test="sourceARemainingElectricity != null">
+        #{sourceARemainingElectricity,jdbcType=VARCHAR},
+      </if>
+      <if test="sourceBRemainingElectricity != null">
+        #{sourceBRemainingElectricity,jdbcType=VARCHAR},
+      </if>
+      <if test="runDataLength != null">
+        #{runDataLength,jdbcType=VARCHAR},
+      </if>
+      <if test="sourceRunStatus != null">
+        #{sourceRunStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="faultType != null">
+        #{faultType,jdbcType=VARCHAR},
+      </if>
+      <if test="reserve1 != null">
+        #{reserve1,jdbcType=VARCHAR},
+      </if>
+      <if test="reserve2 != null">
+        #{reserve2,jdbcType=VARCHAR},
+      </if>
+      <if test="date != null">
+        #{date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="alarmStatus != null">
+        #{alarmStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="relieveTime != null">
+        #{relieveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="videoUpStatus != null">
+        #{videoUpStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="data != null">
+        #{data,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

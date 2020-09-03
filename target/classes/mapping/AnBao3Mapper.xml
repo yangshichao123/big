@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.data.big.mapper.AnBao3Mapper">
+    <resultMap id="BaseResultMap" type="com.data.big.model.AnBao3">
+        <id column="an_bao_id" jdbcType="VARCHAR" property="anBaoId"/>
+        <result column="JTSG_GKB_ID" jdbcType="VARCHAR" property="jtsgGkbId"/>
+        <result column="JTSG_GKB_SGBH" jdbcType="VARCHAR" property="jtsgGkbSgbh"/>
+        <result column="JTSG_GKB_J" jdbcType="VARCHAR" property="jtsgGkbJ"/>
+        <result column="JTSG_GKB_X" jdbcType="VARCHAR" property="jtsgGkbX"/>
+        <result column="JTSG_GKB_XB" jdbcType="VARCHAR" property="jtsgGkbXb"/>
+        <result column="JTSG_GKB_FSSJ" jdbcType="VARCHAR" property="jtsgGkbFssj"/>
+        <result column="JTSG_GKB_FSSJ_SXX" jdbcType="VARCHAR" property="jtsgGkbFssjSxx"/>
+        <result column="JTSG_GKB_KTSJ" jdbcType="VARCHAR" property="jtsgGkbKtsj"/>
+        <result column="JTSG_GKB_KTSJ_SXX" jdbcType="VARCHAR" property="jtsgGkbKtsjSxx"/>
+        <result column="JTSG_GKB_ZDSJ" jdbcType="VARCHAR" property="jtsgGkbZdsj"/>
+        <result column="JTSG_GKB_ZDSJ_XX" jdbcType="VARCHAR" property="jtsgGkbZdsjXx"/>
+        <result column="JTSG_GKB_SXX" jdbcType="VARCHAR" property="jtsgGkbSxx"/>
+        <result column="JTSG_GKB_GL" jdbcType="VARCHAR" property="jtsgGkbGl"/>
+        <result column="JTSG_GKB_GLGD" jdbcType="VARCHAR" property="jtsgGkbGlgd"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        an_bao_id, JTSG_GKB_ID, JTSG_GKB_SGBH, JTSG_GKB_J, JTSG_GKB_X, JTSG_GKB_XB, JTSG_GKB_FSSJ,
+        JTSG_GKB_FSSJ_SXX, JTSG_GKB_KTSJ, JTSG_GKB_KTSJ_SXX, JTSG_GKB_ZDSJ, JTSG_GKB_ZDSJ_XX,
+        JTSG_GKB_SXX, JTSG_GKB_GL, JTSG_GKB_GLGD
+    </sql>
+    <select id="selectByPrimaryId" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from an_bao3
+        where an_bao_id = #{anBaoId,jdbcType=VARCHAR}
+    </select>
+    <insert id="insert" parameterType="com.data.big.model.AnBao3">
+        insert into an_bao3 (an_bao_id, JTSG_GKB_ID, JTSG_GKB_SGBH,
+        JTSG_GKB_J, JTSG_GKB_X, JTSG_GKB_XB,
+        JTSG_GKB_FSSJ, JTSG_GKB_FSSJ_SXX, JTSG_GKB_KTSJ,
+        JTSG_GKB_KTSJ_SXX, JTSG_GKB_ZDSJ, JTSG_GKB_ZDSJ_XX,
+        JTSG_GKB_SXX, JTSG_GKB_GL, JTSG_GKB_GLGD
+        )
+        values (#{anBaoId,jdbcType=VARCHAR}, #{jtsgGkbId,jdbcType=VARCHAR}, #{jtsgGkbSgbh,jdbcType=VARCHAR},
+        #{jtsgGkbJ,jdbcType=VARCHAR}, #{jtsgGkbX,jdbcType=VARCHAR}, #{jtsgGkbXb,jdbcType=VARCHAR},
+        #{jtsgGkbFssj,jdbcType=VARCHAR}, #{jtsgGkbFssjSxx,jdbcType=VARCHAR}, #{jtsgGkbKtsj,jdbcType=VARCHAR},
+        #{jtsgGkbKtsjSxx,jdbcType=VARCHAR}, #{jtsgGkbZdsj,jdbcType=VARCHAR}, #{jtsgGkbZdsjXx,jdbcType=VARCHAR},
+        #{jtsgGkbSxx,jdbcType=VARCHAR}, #{jtsgGkbGl,jdbcType=VARCHAR}, #{jtsgGkbGlgd,jdbcType=VARCHAR}
+        )
+    </insert>
+    <insert id="insertSelective" parameterType="com.data.big.model.AnBao3">
+        insert into an_bao3
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="anBaoId != null">
+                an_bao_id,
+            </if>
+            <if test="jtsgGkbId != null">
+                JTSG_GKB_ID,
+            </if>
+            <if test="jtsgGkbSgbh != null">
+                JTSG_GKB_SGBH,
+            </if>
+            <if test="jtsgGkbJ != null">
+                JTSG_GKB_J,
+            </if>
+            <if test="jtsgGkbX != null">
+                JTSG_GKB_X,
+            </if>
+            <if test="jtsgGkbXb != null">
+                JTSG_GKB_XB,
+            </if>
+            <if test="jtsgGkbFssj != null">
+                JTSG_GKB_FSSJ,
+            </if>
+            <if test="jtsgGkbFssjSxx != null">
+                JTSG_GKB_FSSJ_SXX,
+            </if>
+            <if test="jtsgGkbKtsj != null">
+                JTSG_GKB_KTSJ,
+            </if>
+            <if test="jtsgGkbKtsjSxx != null">
+                JTSG_GKB_KTSJ_SXX,
+            </if>
+            <if test="jtsgGkbZdsj != null">
+                JTSG_GKB_ZDSJ,
+            </if>
+            <if test="jtsgGkbZdsjXx != null">
+                JTSG_GKB_ZDSJ_XX,
+            </if>
+            <if test="jtsgGkbSxx != null">
+                JTSG_GKB_SXX,
+            </if>
+            <if test="jtsgGkbGl != null">
+                JTSG_GKB_GL,
+            </if>
+            <if test="jtsgGkbGlgd != null">
+                JTSG_GKB_GLGD,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="anBaoId != null">
+                #{anBaoId,jdbcType=VARCHAR},
+            </if>
+            <if test="jtsgGkbId != null">
+                #{jtsgGkbId,jdbcType=VARCHAR},
+            </if>
+            <if test="jtsgGkbSgbh != null">
+                #{jtsgGkbSgbh,jdbcType=VARCHAR},
+            </if>
+            <if test="jtsgGkbJ != null">
+                #{jtsgGkbJ,jdbcType=VARCHAR},
+            </if>
+            <if test="jtsgGkbX != null">
+                #{jtsgGkbX,jdbcType=VARCHAR},
+            </if>
+            <if test="jtsgGkbXb != null">
+                #{jtsgGkbXb,jdbcType=VARCHAR},
+            </if>
+            <if test="jtsgGkbFssj != null">
+                #{jtsgGkbFssj,jdbcType=VARCHAR},
+            </if>
+            <if test="jtsgGkbFssjSxx != null">
+                #{jtsgGkbFssjSxx,jdbcType=VARCHAR},
+            </if>
+            <if test="jtsgGkbKtsj != null">
+                #{jtsgGkbKtsj,jdbcType=VARCHAR},
+            </if>
+            <if test="jtsgGkbKtsjSxx != null">
+                #{jtsgGkbKtsjSxx,jdbcType=VARCHAR},
+            </if>
+            <if test="jtsgGkbZdsj != null">
+                #{jtsgGkbZdsj,jdbcType=VARCHAR},
+            </if>
+            <if test="jtsgGkbZdsjXx != null">
+                #{jtsgGkbZdsjXx,jdbcType=VARCHAR},
+            </if>
+            <if test="jtsgGkbSxx != null">
+                #{jtsgGkbSxx,jdbcType=VARCHAR},
+            </if>
+            <if test="jtsgGkbGl != null">
+                #{jtsgGkbGl,jdbcType=VARCHAR},
+            </if>
+            <if test="jtsgGkbGlgd != null">
+                #{jtsgGkbGlgd,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+</mapper>

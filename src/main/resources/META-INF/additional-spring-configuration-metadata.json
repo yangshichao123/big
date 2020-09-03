@@ -1,0 +1,69 @@
+{
+  "properties": [
+    {
+      "name": "dmuCode",
+      "type": "java.lang.String",
+      "description": "Description for dmuCode."
+    },
+    {
+      "name": "sip.port",
+      "type": "java.lang.String",
+      "description": "Description for sip.port."
+    },
+    {
+      "name": "sip.name",
+      "type": "java.lang.String",
+      "description": "Description for sip.name."
+    },
+    {
+      "name": "sip.ip",
+      "type": "java.lang.String",
+      "description": "Description for sip.ip."
+    },
+    {
+      "name": "keepAlivePeriod",
+      "type": "java.lang.String",
+      "description": "Description for keepAlivePeriod."
+    },
+    {
+      "name": "node.type",
+      "type": "java.lang.String",
+      "description": "Description for node.type."
+    },
+    {
+      "name": "videoPTZCtlOutTime",
+      "type": "java.lang.String",
+      "description": "Description for videoPTZCtlOutTime."
+    },
+    {
+      "name": "VCN_SERVER_CODE",
+      "type": "java.lang.String",
+      "description": "Description for VCN_SERVER_CODE."
+    },
+    {
+      "name": "mu.code",
+      "type": "java.lang.String",
+      "description": "Description for mu.code."
+    },
+    {
+      "name": "mu.port",
+      "type": "java.lang.String",
+      "description": "Description for mu.port."
+    },
+    {
+      "name": "mu.isExist",
+      "type": "java.lang.String",
+      "description": "Description for mu.isExist."
+    },
+    {
+      "name": "node.code",
+      "type": "java.lang.String",
+      "description": "Description for node.code."
+    },
+    {
+      "name": "node.name",
+      "type": "java.lang.String",
+      "description": "Description for node.name."
+    }
+  ]
+}

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.data.big.mapper.IvsalarmMapper">
+    <resultMap id="BaseResultMap" type="com.data.big.model.Ivsalarm">
+        <id column="id" jdbcType="VARCHAR" property="id"/>
+        <result column="alarm_id" jdbcType="VARCHAR" property="alarmId"/>
+        <result column="device_id" jdbcType="VARCHAR" property="deviceId"/>
+        <result column="alarm_time" jdbcType="VARCHAR" property="alarmTime"/>
+        <result column="alarm_level" jdbcType="VARCHAR" property="alarmLevel"/>
+        <result column="alarm_type" jdbcType="VARCHAR" property="alarmType"/>
+        <result column="alarm_status" jdbcType="VARCHAR" property="alarmStatus"/>
+        <result column="description" jdbcType="VARCHAR" property="description"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, alarm_id, device_id, alarm_time, alarm_level, alarm_type, alarm_status, description
+    </sql>
+    <select id="selectByPrimaryId" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from ivsalarm
+        where id = #{id,jdbcType=VARCHAR}
+    </select>
+    <insert id="insert" parameterType="com.data.big.model.Ivsalarm">
+        insert into ivsalarm (id, alarm_id, device_id,
+        alarm_time, alarm_level, alarm_type,
+        alarm_status, description)
+        values (#{id,jdbcType=VARCHAR}, #{alarmId,jdbcType=VARCHAR}, #{deviceId,jdbcType=VARCHAR},
+        #{alarmTime,jdbcType=VARCHAR}, #{alarmLevel,jdbcType=VARCHAR}, #{alarmType,jdbcType=VARCHAR},
+        #{alarmStatus,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" parameterType="com.data.big.model.Ivsalarm">
+        insert into ivsalarm
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="alarmId != null">
+                alarm_id,
+            </if>
+            <if test="deviceId != null">
+                device_id,
+            </if>
+            <if test="alarmTime != null">
+                alarm_time,
+            </if>
+            <if test="alarmLevel != null">
+                alarm_level,
+            </if>
+            <if test="alarmType != null">
+                alarm_type,
+            </if>
+            <if test="alarmStatus != null">
+                alarm_status,
+            </if>
+            <if test="description != null">
+                description,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="alarmId != null">
+                #{alarmId,jdbcType=VARCHAR},
+            </if>
+            <if test="deviceId != null">
+                #{deviceId,jdbcType=VARCHAR},
+            </if>
+            <if test="alarmTime != null">
+                #{alarmTime,jdbcType=VARCHAR},
+            </if>
+            <if test="alarmLevel != null">
+                #{alarmLevel,jdbcType=VARCHAR},
+            </if>
+            <if test="alarmType != null">
+                #{alarmType,jdbcType=VARCHAR},
+            </if>
+            <if test="alarmStatus != null">
+                #{alarmStatus,jdbcType=VARCHAR},
+            </if>
+            <if test="description != null">
+                #{description,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+</mapper>

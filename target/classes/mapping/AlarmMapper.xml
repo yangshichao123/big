@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.data.big.mapper.AlarmMapper">
+    <resultMap id="BaseResultMap" type="com.data.big.model.Alarm">
+        <result column="ID" jdbcType="VARCHAR" property="id"/>
+        <result column="ALARM_STATE" jdbcType="INTEGER" property="alarmState"/>
+        <result column="END_TIME" jdbcType="TIMESTAMP" property="endTime"/>
+        <result column="BEGIN_TIME" jdbcType="TIMESTAMP" property="beginTime"/>
+        <result column="ALARM_LEVEL" jdbcType="INTEGER" property="alarmLevel"/>
+        <result column="ALARM_TYPE" jdbcType="VARCHAR" property="alarmType"/>
+        <result column="NAME" jdbcType="VARCHAR" property="name"/>
+        <result column="ALARM_RES_ID" jdbcType="VARCHAR" property="alarmResId"/>
+        <result column="BELONG_TYPE" jdbcType="INTEGER" property="belongType"/>
+        <result column="ACCESS_SERVER_CODE" jdbcType="VARCHAR" property="accessServerCode"/>
+        <result column="PRO_STATE" jdbcType="INTEGER" property="proState"/>
+    </resultMap>
+    <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.data.big.model.Alarm">
+        <result column="TARGET_INFO" jdbcType="LONGVARCHAR" property="targetInfo"/>
+        <result column="DESCS" jdbcType="LONGVARCHAR" property="descs"/>
+    </resultMap>
+    <sql id="Blob_Column_List">
+        TARGET_INFO, DESCS
+    </sql>
+    <insert id="insert" parameterType="com.data.big.model.Alarm">
+        insert into alarm (ID, ALARM_STATE, END_TIME,
+        BEGIN_TIME, ALARM_LEVEL, ALARM_TYPE,
+        `NAME`, ALARM_RES_ID, BELONG_TYPE,
+        ACCESS_SERVER_CODE, PRO_STATE, TARGET_INFO,
+        DESCS)
+        values (#{id,jdbcType=VARCHAR}, #{alarmState,jdbcType=INTEGER}, #{endTime,jdbcType=TIMESTAMP},
+        #{beginTime,jdbcType=TIMESTAMP}, #{alarmLevel,jdbcType=INTEGER}, #{alarmType,jdbcType=VARCHAR},
+        #{name,jdbcType=VARCHAR}, #{alarmResId,jdbcType=VARCHAR}, #{belongType,jdbcType=INTEGER},
+        #{accessServerCode,jdbcType=VARCHAR}, #{proState,jdbcType=INTEGER}, #{targetInfo,jdbcType=LONGVARCHAR},
+        #{descs,jdbcType=LONGVARCHAR})
+    </insert>
+
+
+    <insert id="insertSelective" parameterType="com.data.big.model.Alarm">
+        insert into alarm
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                ID,
+            </if>
+            <if test="alarmState != null">
+                ALARM_STATE,
+            </if>
+            <if test="endTime != null">
+                END_TIME,
+            </if>
+            <if test="beginTime != null">
+                BEGIN_TIME,
+            </if>
+            <if test="alarmLevel != null">
+                ALARM_LEVEL,
+            </if>
+            <if test="alarmType != null">
+                ALARM_TYPE,
+            </if>
+            <if test="name != null">
+                `NAME`,
+            </if>
+            <if test="alarmResId != null">
+                ALARM_RES_ID,
+            </if>
+            <if test="belongType != null">
+                BELONG_TYPE,
+            </if>
+            <if test="accessServerCode != null">
+                ACCESS_SERVER_CODE,
+            </if>
+            <if test="proState != null">
+                PRO_STATE,
+            </if>
+            <if test="targetInfo != null">
+                TARGET_INFO,
+            </if>
+            <if test="descs != null">
+                DESCS,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="alarmState != null">
+                #{alarmState,jdbcType=INTEGER},
+            </if>
+            <if test="endTime != null">
+                #{endTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="beginTime != null">
+                #{beginTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="alarmLevel != null">
+                #{alarmLevel,jdbcType=INTEGER},
+            </if>
+            <if test="alarmType != null">
+                #{alarmType,jdbcType=VARCHAR},
+            </if>
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="alarmResId != null">
+                #{alarmResId,jdbcType=VARCHAR},
+            </if>
+            <if test="belongType != null">
+                #{belongType,jdbcType=INTEGER},
+            </if>
+            <if test="accessServerCode != null">
+                #{accessServerCode,jdbcType=VARCHAR},
+            </if>
+            <if test="proState != null">
+                #{proState,jdbcType=INTEGER},
+            </if>
+            <if test="targetInfo != null">
+                #{targetInfo,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="descs != null">
+                #{descs,jdbcType=LONGVARCHAR},
+            </if>
+        </trim>
+    </insert>
+</mapper>

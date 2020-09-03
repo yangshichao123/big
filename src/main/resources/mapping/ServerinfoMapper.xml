@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.data.big.mapper.ServerinfoMapper">
+    <resultMap id="BaseResultMap" type="com.data.big.model.Serverinfo">
+        <id column="device_id" jdbcType="VARCHAR" property="deviceId"/>
+        <result column="device_name" jdbcType="VARCHAR" property="deviceName"/>
+        <result column="ip_addr" jdbcType="VARCHAR" property="ipAddr"/>
+        <result column="device_type" jdbcType="VARCHAR" property="deviceType"/>
+        <result column="device_model" jdbcType="VARCHAR" property="deviceModel"/>
+        <result column="location" jdbcType="VARCHAR" property="location"/>
+        <result column="manufacturer" jdbcType="VARCHAR" property="manufacturer"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        device_id, device_name, ip_addr, device_type, device_model, `location`, manufacturer
+    </sql>
+    <select id="selectByPrimaryId" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from serverinfo
+        where device_id = #{deviceId,jdbcType=VARCHAR}
+    </select>
+    <insert id="insert" parameterType="com.data.big.model.Serverinfo">
+        insert into serverinfo (device_id, device_name, ip_addr,
+        device_type, device_model, `location`,
+        manufacturer)
+        values (#{deviceId,jdbcType=VARCHAR}, #{deviceName,jdbcType=VARCHAR}, #{ipAddr,jdbcType=VARCHAR},
+        #{deviceType,jdbcType=VARCHAR}, #{deviceModel,jdbcType=VARCHAR}, #{location,jdbcType=VARCHAR},
+        #{manufacturer,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" parameterType="com.data.big.model.Serverinfo">
+        insert into serverinfo
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="deviceId != null">
+                device_id,
+            </if>
+            <if test="deviceName != null">
+                device_name,
+            </if>
+            <if test="ipAddr != null">
+                ip_addr,
+            </if>
+            <if test="deviceType != null">
+                device_type,
+            </if>
+            <if test="deviceModel != null">
+                device_model,
+            </if>
+            <if test="location != null">
+                `location`,
+            </if>
+            <if test="manufacturer != null">
+                manufacturer,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="deviceId != null">
+                #{deviceId,jdbcType=VARCHAR},
+            </if>
+            <if test="deviceName != null">
+                #{deviceName,jdbcType=VARCHAR},
+            </if>
+            <if test="ipAddr != null">
+                #{ipAddr,jdbcType=VARCHAR},
+            </if>
+            <if test="deviceType != null">
+                #{deviceType,jdbcType=VARCHAR},
+            </if>
+            <if test="deviceModel != null">
+                #{deviceModel,jdbcType=VARCHAR},
+            </if>
+            <if test="location != null">
+                #{location,jdbcType=VARCHAR},
+            </if>
+            <if test="manufacturer != null">
+                #{manufacturer,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+</mapper>

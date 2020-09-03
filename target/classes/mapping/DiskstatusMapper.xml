@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.data.big.mapper.DiskstatusMapper">
+    <resultMap id="BaseResultMap" type="com.data.big.model.Diskstatus">
+        <id column="id" jdbcType="VARCHAR" property="id"/>
+        <result column="device_id" jdbcType="VARCHAR" property="deviceId"/>
+        <result column="status_time" jdbcType="VARCHAR" property="statusTime"/>
+        <result column="online_status" jdbcType="VARCHAR" property="onlineStatus"/>
+        <result column="cpu_usage" jdbcType="VARCHAR" property="cpuUsage"/>
+        <result column="fan_disk" jdbcType="VARCHAR" property="fanDisk"/>
+        <result column="disk_status" jdbcType="VARCHAR" property="diskStatus"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, device_id, status_time, online_status, cpu_usage, fan_disk, disk_status
+    </sql>
+    <select id="selectByPrimaryId" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from diskstatus
+        where id = #{id,jdbcType=VARCHAR}
+    </select>
+    <insert id="insert" parameterType="com.data.big.model.Diskstatus">
+        insert into diskstatus (id, device_id, status_time,
+        online_status, cpu_usage, fan_disk,
+        disk_status)
+        values (#{id,jdbcType=VARCHAR}, #{deviceId,jdbcType=VARCHAR}, #{statusTime,jdbcType=VARCHAR},
+        #{onlineStatus,jdbcType=VARCHAR}, #{cpuUsage,jdbcType=VARCHAR}, #{fanDisk,jdbcType=VARCHAR},
+        #{diskStatus,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" parameterType="com.data.big.model.Diskstatus">
+        insert into diskstatus
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="deviceId != null">
+                device_id,
+            </if>
+            <if test="statusTime != null">
+                status_time,
+            </if>
+            <if test="onlineStatus != null">
+                online_status,
+            </if>
+            <if test="cpuUsage != null">
+                cpu_usage,
+            </if>
+            <if test="fanDisk != null">
+                fan_disk,
+            </if>
+            <if test="diskStatus != null">
+                disk_status,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="deviceId != null">
+                #{deviceId,jdbcType=VARCHAR},
+            </if>
+            <if test="statusTime != null">
+                #{statusTime,jdbcType=VARCHAR},
+            </if>
+            <if test="onlineStatus != null">
+                #{onlineStatus,jdbcType=VARCHAR},
+            </if>
+            <if test="cpuUsage != null">
+                #{cpuUsage,jdbcType=VARCHAR},
+            </if>
+            <if test="fanDisk != null">
+                #{fanDisk,jdbcType=VARCHAR},
+            </if>
+            <if test="diskStatus != null">
+                #{diskStatus,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+</mapper>

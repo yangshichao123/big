@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.data.big.mapper.VideoFileMapper">
+    <resultMap id="BaseResultMap" type="com.data.big.model.VideoFile">
+        <id column="ID" jdbcType="VARCHAR" property="id"/>
+        <result column="IPCID" jdbcType="VARCHAR" property="ipcid"/>
+        <result column="kssj" jdbcType="VARCHAR" property="kssj"/>
+        <result column="jssj" jdbcType="VARCHAR" property="jssj"/>
+        <result column="status" jdbcType="VARCHAR" property="status"/>
+        <result column="loadtime" jdbcType="VARCHAR" property="loadtime"/>
+        <result column="path" jdbcType="VARCHAR" property="path"/>
+        <result column="filename" jdbcType="VARCHAR" property="filename"/>
+        <result column="FileID" jdbcType="VARCHAR" property="fileid"/>
+        <result column="uptime" jdbcType="VARCHAR" property="uptime"/>
+        <result column="bz" jdbcType="VARCHAR" property="bz"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        ID, IPCID, kssj, jssj, `status`, loadtime, `path`, filename, FileID, uptime, bz
+    </sql>
+    <select id="selectByPrimaryId" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from video_file
+        where ID = #{id,jdbcType=VARCHAR}
+    </select>
+    <insert id="insert" parameterType="com.data.big.model.VideoFile">
+        insert into video_file (ID, IPCID, kssj,
+        jssj, `status`, loadtime,
+        `path`, filename, FileID,
+        uptime, bz)
+        values (#{id,jdbcType=VARCHAR}, #{ipcid,jdbcType=VARCHAR}, #{kssj,jdbcType=VARCHAR},
+        #{jssj,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{loadtime,jdbcType=VARCHAR},
+        #{path,jdbcType=VARCHAR}, #{filename,jdbcType=VARCHAR}, #{fileid,jdbcType=VARCHAR},
+        #{uptime,jdbcType=VARCHAR}, #{bz,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" parameterType="com.data.big.model.VideoFile">
+        insert into video_file
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                ID,
+            </if>
+            <if test="ipcid != null">
+                IPCID,
+            </if>
+            <if test="kssj != null">
+                kssj,
+            </if>
+            <if test="jssj != null">
+                jssj,
+            </if>
+            <if test="status != null">
+                `status`,
+            </if>
+            <if test="loadtime != null">
+                loadtime,
+            </if>
+            <if test="path != null">
+                `path`,
+            </if>
+            <if test="filename != null">
+                filename,
+            </if>
+            <if test="fileid != null">
+                FileID,
+            </if>
+            <if test="uptime != null">
+                uptime,
+            </if>
+            <if test="bz != null">
+                bz,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="ipcid != null">
+                #{ipcid,jdbcType=VARCHAR},
+            </if>
+            <if test="kssj != null">
+                #{kssj,jdbcType=VARCHAR},
+            </if>
+            <if test="jssj != null">
+                #{jssj,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=VARCHAR},
+            </if>
+            <if test="loadtime != null">
+                #{loadtime,jdbcType=VARCHAR},
+            </if>
+            <if test="path != null">
+                #{path,jdbcType=VARCHAR},
+            </if>
+            <if test="filename != null">
+                #{filename,jdbcType=VARCHAR},
+            </if>
+            <if test="fileid != null">
+                #{fileid,jdbcType=VARCHAR},
+            </if>
+            <if test="uptime != null">
+                #{uptime,jdbcType=VARCHAR},
+            </if>
+            <if test="bz != null">
+                #{bz,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+</mapper>

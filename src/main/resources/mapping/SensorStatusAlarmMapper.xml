@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.data.big.mapper.SensorStatusAlarmMapper">
+  <resultMap id="BaseResultMap" type="com.data.big.model.SensorStatusAlarm">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="control_unit_code" jdbcType="VARCHAR" property="controlUnitCode" />
+    <result column="check_locale_code" jdbcType="VARCHAR" property="checkLocaleCode" />
+    <result column="check_locale_type" jdbcType="VARCHAR" property="checkLocaleType" />
+    <result column="sensor_communication_status" jdbcType="VARCHAR" property="sensorCommunicationStatus" />
+    <result column="fault_type" jdbcType="VARCHAR" property="faultType" />
+    <result column="sensor_power_supply_status" jdbcType="VARCHAR" property="sensorPowerSupplyStatus" />
+    <result column="reserve1" jdbcType="VARCHAR" property="reserve1" />
+    <result column="reserve2" jdbcType="VARCHAR" property="reserve2" />
+    <result column="date" jdbcType="TIMESTAMP" property="date" />
+    <result column="alarm_status" jdbcType="VARCHAR" property="alarmStatus" />
+    <result column="relieve_time" jdbcType="TIMESTAMP" property="relieveTime" />
+    <result column="video_up_status" jdbcType="VARCHAR" property="videoUpStatus" />
+    <result column="check_locale_kilometre" jdbcType="VARCHAR" property="checkLocaleKilometre" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.data.big.model.SensorStatusAlarm">
+    <result column="data" jdbcType="LONGVARCHAR" property="data" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, control_unit_code, check_locale_code, check_locale_type, sensor_communication_status, 
+    fault_type, sensor_power_supply_status, reserve1, reserve2, `date`, alarm_status, 
+    relieve_time, video_up_status, check_locale_kilometre
+  </sql>
+  <sql id="Blob_Column_List">
+    `data`
+  </sql>
+  <select id="selectByPrimaryId" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from sensor_status_alarm
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <insert id="insert" parameterType="com.data.big.model.SensorStatusAlarm">
+    insert into sensor_status_alarm (id, control_unit_code, check_locale_code, 
+      check_locale_type, sensor_communication_status, 
+      fault_type, sensor_power_supply_status, reserve1, 
+      reserve2, `date`, alarm_status, 
+      relieve_time, video_up_status, check_locale_kilometre, 
+      `data`)
+    values (#{id,jdbcType=VARCHAR}, #{controlUnitCode,jdbcType=VARCHAR}, #{checkLocaleCode,jdbcType=VARCHAR}, 
+      #{checkLocaleType,jdbcType=VARCHAR}, #{sensorCommunicationStatus,jdbcType=VARCHAR}, 
+      #{faultType,jdbcType=VARCHAR}, #{sensorPowerSupplyStatus,jdbcType=VARCHAR}, #{reserve1,jdbcType=VARCHAR}, 
+      #{reserve2,jdbcType=VARCHAR}, #{date,jdbcType=TIMESTAMP}, #{alarmStatus,jdbcType=VARCHAR}, 
+      #{relieveTime,jdbcType=TIMESTAMP}, #{videoUpStatus,jdbcType=VARCHAR}, #{checkLocaleKilometre,jdbcType=VARCHAR}, 
+      #{data,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.data.big.model.SensorStatusAlarm">
+    insert into sensor_status_alarm
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="controlUnitCode != null">
+        control_unit_code,
+      </if>
+      <if test="checkLocaleCode != null">
+        check_locale_code,
+      </if>
+      <if test="checkLocaleType != null">
+        check_locale_type,
+      </if>
+      <if test="sensorCommunicationStatus != null">
+        sensor_communication_status,
+      </if>
+      <if test="faultType != null">
+        fault_type,
+      </if>
+      <if test="sensorPowerSupplyStatus != null">
+        sensor_power_supply_status,
+      </if>
+      <if test="reserve1 != null">
+        reserve1,
+      </if>
+      <if test="reserve2 != null">
+        reserve2,
+      </if>
+      <if test="date != null">
+        `date`,
+      </if>
+      <if test="alarmStatus != null">
+        alarm_status,
+      </if>
+      <if test="relieveTime != null">
+        relieve_time,
+      </if>
+      <if test="videoUpStatus != null">
+        video_up_status,
+      </if>
+      <if test="checkLocaleKilometre != null">
+        check_locale_kilometre,
+      </if>
+      <if test="data != null">
+        `data`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="controlUnitCode != null">
+        #{controlUnitCode,jdbcType=VARCHAR},
+      </if>
+      <if test="checkLocaleCode != null">
+        #{checkLocaleCode,jdbcType=VARCHAR},
+      </if>
+      <if test="checkLocaleType != null">
+        #{checkLocaleType,jdbcType=VARCHAR},
+      </if>
+      <if test="sensorCommunicationStatus != null">
+        #{sensorCommunicationStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="faultType != null">
+        #{faultType,jdbcType=VARCHAR},
+      </if>
+      <if test="sensorPowerSupplyStatus != null">
+        #{sensorPowerSupplyStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="reserve1 != null">
+        #{reserve1,jdbcType=VARCHAR},
+      </if>
+      <if test="reserve2 != null">
+        #{reserve2,jdbcType=VARCHAR},
+      </if>
+      <if test="date != null">
+        #{date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="alarmStatus != null">
+        #{alarmStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="relieveTime != null">
+        #{relieveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="videoUpStatus != null">
+        #{videoUpStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="checkLocaleKilometre != null">
+        #{checkLocaleKilometre,jdbcType=VARCHAR},
+      </if>
+      <if test="data != null">
+        #{data,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+</mapper>
