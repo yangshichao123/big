@@ -232,7 +232,7 @@ public class TimingTask {
         service.queryTask();
 
     }
-    @Scheduled(fixedRate=500)
+    @Scheduled(fixedRate=50000)
     private void sendKeepAlive() {
 
         serviceNetty.sendKeepAlive();

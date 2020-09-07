@@ -191,7 +191,7 @@ public class AsciiStringToHex {
 
     //504F533838383834  POS88884
     public static void main(String[] args) {
-        String test = "E9989CE696B0E7AB997EE696B0E6B091E58C97E7AB99";
+        String test = "3c4a494e475745495f4a494e475a48414e475849414e2c4a494e475745495f4a494e475a48414e475849414e3e";
 
         System.out.println("\n-----ASCII码转换为16进制 -----");
         String str = "32";

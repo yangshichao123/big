@@ -230,8 +230,17 @@ public class CRCUtil {
     }
 
     public static void main(String[] args) {
-        String test = "000031303001004B00430075BE000570730005746B0100A0016400A0016400A00164012C0100054D9C00059548000941E7AB997E42E7AB9901000000003230323030393031313735383030";
-        byte[] bytes = hexToByteArray("0000312e306600273c7a68616e6773616e2c3132333435363e3230323030383331303932373139");
+        String test = "00 00 31 30";
+        String test1 = "00003130";
+
+        byte[] bytes3 = toByteArray(test);
+        byte[] bytes4 = toByteArray(test1);
+        System.out.println(bytes3.toString());
+        System.out.println(bytes4.toString());
+
+
+
+        byte[] bytes = hexToByteArray("3c4a494e475745495f4a494e475a48414e475849414e2c4a494e475745495f4a494e475a48414e475849414e3e");
         //byte[] bytes = hexToByteArray(test);
         for (byte aByte : bytes) {
             System.out.println(aByte);
@@ -253,16 +262,13 @@ public class CRCUtil {
         byte[] bytes1 = hexStrToBinaryStr("c0 c0");
         System.out.println(bytes1);
 
-        String s1 = BinaryToHexString(bytes1);
 
-        System.out.println(s1);
+
        /* String s2 = strTo16(s1);
         System.out.println(s2);*/
 
 
-        long l = 333444;
-        l = l % 1000;
-        System.out.println(l);
+
 
     }
 
@@ -359,41 +365,7 @@ public class CRCUtil {
         return bytes;
     }
 
-    /**
-     * 将字节数组转换成十六进制的字符串
-     *
-     * @return
-     */
-    public static String BinaryToHexString(byte[] bytes) {
-        String hexStr = "0123456789ABCDEF";
-        String result = "";
-        String hex = "";
-        for (byte b : bytes) {
-            hex = String.valueOf(hexStr.charAt((b & 0xF0) >> 4));
-            hex += String.valueOf(hexStr.charAt(b & 0x0F));
-            result += hex + " ";
-        }
-        return result;
-    }
 
-    public static byte[] ObjectToByte(java.lang.Object obj) {
-        byte[] bytes = new byte[1];
-        try {
-            //object to bytearray
-            ByteArrayOutputStream bo = new ByteArrayOutputStream();
-            ObjectOutputStream oo = new ObjectOutputStream(bo);
-            oo.writeObject(obj);
-
-            bytes = bo.toByteArray();
-
-            bo.close();
-            oo.close();
-        } catch (Exception e) {
-            System.out.println("translation" + e.getMessage());
-            e.printStackTrace();
-        }
-        return bytes;
-    }
 
     /**
      * 把原始字符串分割成指定长度的字符串

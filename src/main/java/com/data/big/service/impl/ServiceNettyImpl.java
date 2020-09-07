@@ -1,5 +1,6 @@
 package com.data.big.service.impl;
 
+import com.alibaba.fastjson.JSONObject;
 import com.data.big.mapper.*;
 import com.data.big.model.*;
 import com.data.big.netty.BootNettyChannelInboundHandlerAdapter;
@@ -41,6 +42,8 @@ public class ServiceNettyImpl implements ServiceNetty {
     private SensorStatusAlarmMapper sensorStatusAlarmMapper;
     @Autowired
     private UnitEquipmentAlarmMapper unitEquipmentAlarmMapper;
+    @Autowired
+    private LogRestMapper logRestMapper;
 
     // 日志记录器
     private static final Logger logger = LogManager.getLogger(ServiceNettyImpl.class);
@@ -69,7 +72,9 @@ public class ServiceNettyImpl implements ServiceNetty {
                 if (crc1021 == i1) {//比度验证码  一致表示数据正确 不一致 不处理
                     String type = CRCUtil.byteToHex(ver[5]);
                     String result = CRCUtil.byteToHex(ver[8]);
+
                     switch (type) {
+
                         case "67"://注册回执
                             if ("01".equals(result)) {//成功
                                 BootNettyChannelInboundHandlerAdapter.boo = true;
@@ -103,6 +108,7 @@ public class ServiceNettyImpl implements ServiceNetty {
 
                                 default:
                                     logger.error("收到未知得报警命令 ：" + result);
+                                    addLog(new Date(),"收到未知得报警命令："+result,ms);
                                     break;
                             }
                             break;
@@ -127,33 +133,57 @@ public class ServiceNettyImpl implements ServiceNetty {
 
                                 default:
                                     logger.error("收到未知得解除报警命令 ：" + alarmType);
+                                    addLog(new Date(),"收到未知得解除报警命令 ："+alarmType,ms);
                                     break;
                             }
                             break;
                         }
                         case "65"://心跳回执
-                            logger.info("接收到心跳回执 数据为："+ms);
+                           // logger.info("接收到心跳回执 数据为："+ms);
+                            if(Integer.parseInt(keepAliveNum,16)%1000==0){
+                                String s4 = CRCUtil.Bytes2HexString(getByets(ver, ver.length - 14, ver.length));
+                                String s = AsciiStringToHex.convertHexToString(s4);
+                                Date yyyyMMddHHmmss = DateUtils.parseDate(s, "yyyyMMddHHmmss");
+                                addLog(DateUtils.parseDate(yyyyMMddHHmmss,"yyyyMMddHHmmss"),"发送心跳",ms);
+                            }
                             break;
                         case "64"://心跳
                             sendKeepAliveReceipt();
                             break;
                         default:
                             logger.error("收到未知得检测类型命令 ：" + result);
+                            addLog(new Date(),"收到未知得检测类型命令："+result,ms);
                             break;
                     }
 
                 } else {
                     logger.error("验证码没有匹配 不处理数据：数据为" + ms);
+                    addLog(new Date(),"验证码没有匹配 不处理数据",ms);
                 }
             }else{
                 logger.error("数据错误 数据不完整：数据为" + ms);
+                addLog(new Date(),"数据错误 数据不完整",ms);
             }
 
         } else {
             logger.error("数据错误：数据为" + ms);
+            addLog(new Date(),"收到数据错误",ms);
         }
 
 
+    }
+    private  void addLog(Date date,String ms,String data){
+        LogRest log = new LogRest();
+        log.setFunname("gitData");
+        log.setIp(Properties.getNettyHost()+":"+Properties.getNettyPost());
+        log.setLrsj(new Date());
+        log.setParamin("");
+        JSONObject jsonParam = new JSONObject();
+        jsonParam.put("data",data);
+
+        log.setRedata(jsonParam.toJSONString());
+        log.setType(1 + "");
+        logRestMapper.insert(log);
     }
 
     private void foreignBodyAlarmEnd(byte[] dataByets, String ms, String result) {
@@ -171,7 +201,7 @@ public class ServiceNettyImpl implements ServiceNetty {
             wsa.setData(select.get(0).getData()+";"+ms);
             Example example = new Example(ForeignBodyAlarm.class);
             Example.Criteria criteria = example.createCriteria();
-            criteria.andEqualTo("checkLocaleCode", foreignBodyAlarm.getCheckLocaleCode());
+            criteria.andEqualTo("id", select.get(0).getId());
             int i = foreignBodyAlarmMapper.updateByExampleSelective(wsa, example);
             if (i > 0) {
                 logger.info("保存异物解除告警数据成功");
@@ -198,7 +228,7 @@ public class ServiceNettyImpl implements ServiceNetty {
             wsa.setData(select.get(0).getData()+";"+ms);
             Example example = new Example(SnowAlarm.class);
             Example.Criteria criteria = example.createCriteria();
-            criteria.andEqualTo("checkLocaleCode", snowAlarm.getCheckLocaleCode());
+            criteria.andEqualTo("id", select.get(0).getId());
             int i = snowAlarmMapper.updateByExampleSelective(wsa, example);
             if (i > 0) {
                 logger.info("保存雪深解除告警数据成功");
@@ -225,7 +255,7 @@ public class ServiceNettyImpl implements ServiceNetty {
             wsa.setData(select.get(0).getData()+";"+ms);
             Example example = new Example(RainAlarm.class);
             Example.Criteria criteria = example.createCriteria();
-            criteria.andEqualTo("checkLocaleCode", rainAlarm.getCheckLocaleCode());
+            criteria.andEqualTo("id", select.get(0).getId());
             int i = rainAlarmMapper.updateByExampleSelective(wsa, example);
             if (i > 0) {
                 logger.info("保存雨量解除告警数据成功");
@@ -253,7 +283,7 @@ public class ServiceNettyImpl implements ServiceNetty {
             wsa.setData(select.get(0).getData()+";"+ms);
             Example example = new Example(WindSpeedAlarm.class);
             Example.Criteria criteria = example.createCriteria();
-            criteria.andEqualTo("checkLocaleCode", windSpeedAlarm.getCheckLocaleCode());
+            criteria.andEqualTo("id", select.get(0).getId());
             int i = windSpeedAlarmMapper.updateByExampleSelective(wsa, example);
             if (i > 0) {
                 logger.info("保存风速解除告警数据成功");
@@ -421,7 +451,7 @@ public class ServiceNettyImpl implements ServiceNetty {
 
                 Example example = new Example(SnowAlarm.class);
                 Example.Criteria criteria = example.createCriteria();
-                criteria.andEqualTo("checkLocaleCode", sensorStatusAlarm.getCheckLocaleCode());
+                criteria.andEqualTo("id", sensorStatusAlarm.getId());
                 snowAlarmMapper.updateByExampleSelective(sa,example);
             }else{
                 return;
@@ -476,7 +506,7 @@ public class ServiceNettyImpl implements ServiceNetty {
 
                 Example example = new Example(RainAlarm.class);
                 Example.Criteria criteria = example.createCriteria();
-                criteria.andEqualTo("checkLocaleCode", sensorStatusAlarm.getCheckLocaleCode());
+                criteria.andEqualTo("id", sensorStatusAlarm.getId());
                 rainAlarmMapper.updateByExampleSelective(sa,example);
             }else{
                 return;
@@ -536,7 +566,7 @@ public class ServiceNettyImpl implements ServiceNetty {
 
                 Example example = new Example(WindSpeedAlarm.class);
                 Example.Criteria criteria = example.createCriteria();
-                criteria.andEqualTo("checkLocaleCode", sensorStatusAlarm.getCheckLocaleCode());
+                criteria.andEqualTo("id", sensorStatusAlarm.getId());
                 windSpeedAlarmMapper.updateByExampleSelective(sa,example);
             }else{
                 return;
@@ -618,20 +648,32 @@ public class ServiceNettyImpl implements ServiceNetty {
             fb.append(ymd);
             byte[] bytes3 = CRCUtil.toByteArray(fb.toString());
             int crc1021 = CRCUtil.getCRC1021(bytes3, 23);
-            fb.append(Integer.toHexString(crc1021));
+            String hexStr = Integer.toHexString(crc1021);
+            if(hexStr.length()<4){
+                if(hexStr.length()==1){
+                    hexStr="000"+hexStr;
+                }else if(hexStr.length()==2){
+                    hexStr="00"+hexStr;
+                }else if(hexStr.length()==3){
+                    hexStr="0"+hexStr;
+                }
+            }
+            fb.append(hexStr);
+          /*  logger.info("10校验码 ："+crc1021);
+            logger.info("16校验码 ："+Integer.toHexString(crc1021));*/
             byte[] bytes = CRCUtil.DecodeData(CRCUtil.toByteArray(fb.toString()));
             String s = CRCUtil.Bytes2HexString(bytes);
             StringBuffer fber = new StringBuffer();
             fber.append("c0c0");
             fber.append(s);
             fber.append("c0c0");
+            if(Integer.parseInt(keepAliveNum,16)%1000==0){
+                addLog(DateUtils.parseDate(yyyyMMddHHmmss,"yyyyMMddHHmmss"),"发送心跳",fber.toString());
+            }
 
-            logger.info("心跳包命令" + fber.toString());
-            String strList = CRCUtil.getStrList(fber.toString(), 2);
+          //  logger.info("心跳包命令" + fber.toString());
 
-            //String ss="c0 c0 08 77 01 01 01 64 00 17 00 32 30 31 39 31 32 30 32 31 30 30 39 31 39 c6 60 c0 c0";
-
-            BootNettyChannelInboundHandlerAdapter.ctx.writeAndFlush(Unpooled.copiedBuffer(CRCUtil.toByteArray(strList)));
+            BootNettyChannelInboundHandlerAdapter.ctx.writeAndFlush(Unpooled.copiedBuffer(CRCUtil.toByteArray(fber.toString())));
         }
     }
     private void sendKeepAliveReceipt() {
@@ -650,7 +692,17 @@ public class ServiceNettyImpl implements ServiceNetty {
             fb.append(ymd);
             byte[] bytes3 = CRCUtil.toByteArray(fb.toString());
             int crc1021 = CRCUtil.getCRC1021(bytes3, 23);
-            fb.append(Integer.toHexString(crc1021));
+            String hexStr = Integer.toHexString(crc1021);
+            if(hexStr.length()<4){
+                if(hexStr.length()==1){
+                    hexStr="000"+hexStr;
+                }else if(hexStr.length()==2){
+                    hexStr="00"+hexStr;
+                }else if(hexStr.length()==3){
+                    hexStr="0"+hexStr;
+                }
+            }
+            fb.append(hexStr);
             byte[] bytes = CRCUtil.DecodeData(CRCUtil.toByteArray(fb.toString()));
             String s = CRCUtil.Bytes2HexString(bytes);
             StringBuffer fber = new StringBuffer();
@@ -658,10 +710,7 @@ public class ServiceNettyImpl implements ServiceNetty {
             fber.append(s);
             fber.append("c0c0");
 
-            logger.info("心跳回执命令 " + fber.toString());
-           // String ss="c0 c0 08 77 01 01 01 64 00 17 00 32 30 31 39 31 32 30 32 31 30 30 39 31 39 c6 60 c0 c0";
-            String strList = CRCUtil.getStrList(fber.toString(), 2);
-            BootNettyChannelInboundHandlerAdapter.ctx.writeAndFlush(Unpooled.copiedBuffer(CRCUtil.toByteArray(strList)));
+              BootNettyChannelInboundHandlerAdapter.ctx.writeAndFlush(Unpooled.copiedBuffer(CRCUtil.toByteArray(fber.toString())));
         }
     }
 
@@ -694,7 +743,17 @@ public class ServiceNettyImpl implements ServiceNetty {
         fb.append(ymd);
         byte[] bytes3 = CRCUtil.toByteArray(fb.toString());
         int crc1021 = CRCUtil.getCRC1021(bytes3, 22 + bytes1.length);
-        fb.append(Integer.toHexString(crc1021));
+        String hexStr = Integer.toHexString(crc1021);
+        if(hexStr.length()<4){
+            if(hexStr.length()==1){
+                hexStr="000"+hexStr;
+            }else if(hexStr.length()==2){
+                hexStr="00"+hexStr;
+            }else if(hexStr.length()==3){
+                hexStr="0"+hexStr;
+            }
+        }
+        fb.append(hexStr);
         byte[] bytes = CRCUtil.DecodeData(CRCUtil.toByteArray(fb.toString()));
         String s = CRCUtil.Bytes2HexString(bytes);
         StringBuffer fber = new StringBuffer();
@@ -702,14 +761,10 @@ public class ServiceNettyImpl implements ServiceNetty {
         fber.append(s);
         fber.append("c0c0");
 
-        logger.info("注册命令；" + fber.toString());
-
         String strList = CRCUtil.getStrList(fber.toString(), 2);
+        logger.info("注册命令；" + strList);
 
-       //String str="c0 c0 00 01 01 01 01 66 00 43 3c 4a 49 4e 47 57 45 49 5f 4a 49 4e 47 5a 48 41 4e 47 58 49 41 4e 2c 4a 49 4e 47 57 45 49 5f 4a 49 4e 47 5a 48 41 4e 47 58 49 41 4e 3e 32 30 32 30 30 39 30 31 31 34 35 30 34 32 12 f6 c0 c0";
-
-
-        BootNettyChannelInboundHandlerAdapter.ctx.writeAndFlush(Unpooled.copiedBuffer(CRCUtil.toByteArray(strList)));
+        BootNettyChannelInboundHandlerAdapter.ctx.writeAndFlush(Unpooled.copiedBuffer(CRCUtil.toByteArray(fber.toString())));
         return true;
     }
 
@@ -730,18 +785,27 @@ public class ServiceNettyImpl implements ServiceNetty {
             fb.append(ymd);
             byte[] bytes1 = CRCUtil.toByteArray(fb.toString());
             int crc1021 = CRCUtil.getCRC1021(bytes1, 23);
-            fb.append(Integer.toHexString(crc1021));
+            String hexStr = Integer.toHexString(crc1021);
+            if(hexStr.length()<4){
+                if(hexStr.length()==1){
+                    hexStr="000"+hexStr;
+                }else if(hexStr.length()==2){
+                    hexStr="00"+hexStr;
+                }else if(hexStr.length()==3){
+                    hexStr="0"+hexStr;
+                }
+            }
+            fb.append(hexStr);
             byte[] bytes = CRCUtil.DecodeData(CRCUtil.toByteArray(fb.toString()));
             String s = CRCUtil.Bytes2HexString(bytes);
             StringBuffer fber = new StringBuffer();
             fber.append("c0c0");
             fber.append(s);
             fber.append("c0c0");
-            String strList = CRCUtil.getStrList(fber.toString(), 2);
             logger.info("告警类回执 帧类型" + type+" 告警类型："+alarmType+"回执结果： "+res);
             logger.info("告警回执命令："+fber.toString());
 
-            BootNettyChannelInboundHandlerAdapter.ctx.writeAndFlush(Unpooled.copiedBuffer(CRCUtil.toByteArray(strList)));
+            BootNettyChannelInboundHandlerAdapter.ctx.writeAndFlush(Unpooled.copiedBuffer(CRCUtil.toByteArray(fber.toString())));
         }
     }
 

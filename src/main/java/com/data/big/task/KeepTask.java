@@ -22,7 +22,7 @@ public class KeepTask implements SchedulingConfigurer {
      */
     @Override
     public void configureTasks(ScheduledTaskRegistrar taskRegistrar) {
-
+/*
         taskRegistrar.addTriggerTask(
                 //1.添加任务内容(Runnable)
                 () -> {
@@ -32,7 +32,7 @@ public class KeepTask implements SchedulingConfigurer {
                 triggerContext -> {
                     return new Date(new Date().getTime() + saKeepAlivePeriod * 1000);
                 }
-        );
+        );*/
     }
 
     public Integer getSaKeepAlivePeriod() {

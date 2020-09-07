@@ -5,7 +5,7 @@ server:
 spring:
   datasource:
     username: root
-    password: 123456
+    password: 1qaz!QAZ
     url: jdbc:mysql://127.0.0.1:3307/video_bigdata?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=GMT%2b8
     driver-class-name: com.mysql.cj.jdbc.Driver
 mybatis:
@@ -126,8 +126,8 @@ queryTaskTime: "0/20 * * * * ?"
 
 #防灾配置
 netty:
-  #host: "172.23.37.104"
+  #host: "39.103.130.69"
   host: "127.0.0.1"
   port: "11022"
 version: "010101"  #版本号v1.1.1 转成 010101
-nameAndPassword: "<JINGWEI_JINGZHANGXIAN,JINGWEI_JINGZHANGXIAN>"  #用户名密码
+nameAndPassword: "<JingWei_JingZhangXian,JingWei_JingZhangXian>"  #用户名密码

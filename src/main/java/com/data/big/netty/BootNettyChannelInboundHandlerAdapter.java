@@ -34,7 +34,7 @@ public class BootNettyChannelInboundHandlerAdapter extends ChannelInboundHandler
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception, IOException
     {
         serviceNetty.receiveData(ctx,msg);
-        System.out.println("channelRead:read msg:"+msg.toString());
+      //  System.out.println("channelRead:read msg:"+msg.toString());
         //回应服务端
 
     }
