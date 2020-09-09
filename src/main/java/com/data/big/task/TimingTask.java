@@ -225,17 +225,25 @@ public class TimingTask {
         service.GetIVSAlarm(tiemMap.get("beginTime"),tiemMap.get("endTime"));
 
     }
-
+    //定时查询任务
     @Scheduled(cron = "${queryTaskTime}")
     private void queryTaskTime() {
 
         service.queryTask();
 
     }
-    @Scheduled(fixedRate=50000)
+    //发送心跳 向防灾系统
+    @Scheduled(fixedRate=500)
     private void sendKeepAlive() {
 
         serviceNetty.sendKeepAlive();
+
+    }
+    //定时查询 防灾告警和安监告警 添加到任务表里
+    @Scheduled(cron = "0 0 0/1 * * ?")
+    private void addTask() {
+
+        serviceNetty.addTask();
 
     }
 

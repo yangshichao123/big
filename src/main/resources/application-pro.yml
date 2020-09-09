@@ -6,7 +6,7 @@ spring:
   datasource:
     username: admin
     password: 1qaz!QAZ
-    url: jdbc:mysql://172.23.37.85:3306/video_db?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=GMT%2b8
+    url: jdbc:mysql://10.3.78.209:13306/video_db?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=GMT%2b8
     driver-class-name: com.mysql.cj.jdbc.Driver
 mybatis:
   mapper-locations: classpath:mapping/*.xml
@@ -43,61 +43,61 @@ getANBAO3:
 
 #京张综合视频 摄像机资产信息 url
 sendGetCameraInfo:
-  url: "http://172.16.71.210:9811/nis/GetCameraInfo"
+  url: "http://10.3.114.8:16559/nis/GetCameraInfo"
   cron: "0 20 0 0/1 * ?"
 #京张综合视频 节点信息 url
 sendGetNodeInfo:
-  url: "http://172.16.71.210:9811/nis/GetNodeInfo"
+  url: "http://10.3.114.8:16559/nis/GetNodeInfo"
   cron: "0 30 0 0/1 * ?"
 #京张综合视频 服务器产信息 url
 sendGetServerInfo:
-  url: "http://172.16.71.210:9811/nis/GetServerInfo"
+  url: "http://10.3.114.8:16559/nis/GetServerInfo"
   cron: "0 40 0 0/1 * ?"
 #京张综合视频 磁盘资产信息 url
 sendGetDiskInfo:
-  url: "http://172.16.71.210:9811/nis/GetDiskInfo"
+  url: "http://10.3.114.8:16559/nis/GetDiskInfo"
   cron: "0 50 0 0/1 * ?"
 #京张综合视频 交换机资产信息 url
 sendGetSwitchInfo:
-  url: "http://172.16.71.210:9811/nis/GetSwitchInfo"
+  url: "http://10.3.114.8:16559/nis/GetSwitchInfo"
   cron: "0 0 1 0/1 * ?"
 
 
 #摄像机告警
 sendGetCameraAlarm:
-  url: "http://172.16.71.210:9811/nis/GetCameraAlarm"
+  url: "http://10.3.114.8:16559/nis/GetCameraAlarm"
   cron: "0 10 1 0/1 * ?"
 #摄像机状态
 sendGetCameraStatus:
-  url: "http://172.16.71.210:9811/nis/GetCameraStatus"
+  url: "http://10.3.114.8:16559/nis/GetCameraStatus"
   cron: "0 20 1 0/1 * ?"
 #视频服务器告警
 sendGetServerAlarm:
-  url: "http://172.16.71.210:9811/nis/GetServerAlarm"
+  url: "http://10.3.114.8:16559/nis/GetServerAlarm"
   cron: "0 30 1 0/1 * ?"
 #视频服务器状态
 sendGetServerStatus:
-  url: "http://172.16.71.210:9811/nis/GetServerStatus"
+  url: "http://10.3.114.8:16559/nis/GetServerStatus"
   cron: "0 40 1 0/1 * ?"
 #视频磁盘阵列告警
 sendGetDiskAlarm:
-  url: "http://172.16.71.210:9811/nis/GetDiskAlarm"
+  url: "http://10.3.114.8:16559/nis/GetDiskAlarm"
   cron: "0 50 1 0/1 * ?"
 #视频磁盘阵列状态
 sendGeDiskStatus:
-  url: "http://172.16.71.210:9811/nis/GeDiskStatus"
+  url: "http://10.3.114.8:16559/nis/GeDiskStatus"
   cron: "0 10 2 0/1 * ?"
 #交换机告警
 sendGetSwitchAlarm:
-  url: "http://172.16.71.210:9811/nis/GetSwitchAlarm"
+  url: "http://10.3.114.8:16559/nis/GetSwitchAlarm"
   cron: "0 20 2 0/1 * ?"
 #交换机状态
 sendGetSwitchStatus:
-  url: "http://172.16.71.210:9811/nis/GetSwitchStatus"
+  url: "http://10.3.114.8:16559/nis/GetSwitchStatus"
   cron: "0 30 2 0/1 * ?"
 #智能分析告警
 sendGetIVSAlarm:
-  url: "http://172.16.71.210:9811/nis/GetIVSAlarm"
+  url: "http://10.3.114.8:16559/nis/GetIVSAlarm"
   cron: "0 40 2 0/1 * ?"
 
 alarmSelectTime:
@@ -119,8 +119,10 @@ queryTaskTime: "0 0/5 * * * ?"
 
 #防灾配置
 netty:
+  #是否启动防灾客户端
+  startOrNot: "false"
   host: "39.103.130.69"
   #host: "127.0.0.1"
   port: "11022"
-version: "010101"  #版本号v1.1.1 转成 010101
-nameAndPassword: "<JingWei_JingZhangXian,JingWei_JingZhangXian>"  #用户名密码
+  version: "010101"  #版本号v1.1.1 转成 010101
+  nameAndPassword: "<JingWei_JingZhangXian,JingWei_JingZhangXian>"  #用户名密码

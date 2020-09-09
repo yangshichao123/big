@@ -1,5 +1,6 @@
 package com.data.big.service.impl;
 
+import com.alibaba.fastjson.JSONObject;
 import com.data.big.mapper.*;
 import com.data.big.service.Service;
 import com.data.big.task.KeepTask;
@@ -468,6 +469,7 @@ public class ServiceImpl implements Service {
         Map<String,String> mapStr = new HashMap<>();
         mapStr.put("starttime", startTime);
         mapStr.put("endtime", endTime);
+        logger.error("starttime " + startTime + "  endtime " + endTime);
 
         String data = HttpClientUt.doGetd(snedUrl, mapStr);
         if (data == null) {
@@ -1203,16 +1205,18 @@ public class ServiceImpl implements Service {
                 }
             }
         }
-        LogRest log = new LogRest();
+       /* LogRest log = new LogRest();
         log.setFunname("getANBAO3");
         log.setIp(Properties.getAnbao3Url());
         log.setLrsj(new Date());
         log.setParamin("查询安监数据 开始时间：" + beginTime + " 结束时间：" + endTime + " 线路：" + xm + " 路局：" + lj);
-        log.setRedata("" + anbao3s.toString());
+        JSONObject jsonParam = new JSONObject();
+        jsonParam.put("data",anbao3s.toString());
+        log.setRedata("" + jsonParam.toJSONString());
         log.setType(0 + "");
         logRestMapper.insert(log);
         logger.error("查询安监数据 开始时间：" + beginTime + " 结束时间：" + endTime + " 线路：" + xm + " 路局：" + lj + " 返回数据：" + anbao3s.toString());
-
+*/
         map.put("message", "添加成功");
         map.put("stateCode", "1");
         return map;

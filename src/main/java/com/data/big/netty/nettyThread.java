@@ -1,5 +1,6 @@
 package com.data.big.netty;
 
+import com.data.big.util.Properties;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.context.ApplicationContext;
@@ -17,6 +18,10 @@ public class nettyThread {
 
     private void execuid() {
 
+        String nettyStartOrNot = Properties.getNettyStartOrNot();
+        if("false".equals(nettyStartOrNot)){
+            return;
+        }
         new Thread(() -> {
             while (true) {
                 try {

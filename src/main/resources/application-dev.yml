@@ -8,6 +8,16 @@ spring:
     password: 1qaz!QAZ
     url: jdbc:mysql://127.0.0.1:3307/video_bigdata?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=GMT%2b8
     driver-class-name: com.mysql.cj.jdbc.Driver
+  freemarker:
+    request-context-attribute: req  #req访问request
+    suffix: .html  #后缀名
+    content-type: text/html
+    enabled: true
+    cache: false #缓存配置
+    template-loader-path: classpath:/templates/ #模板加载路径 按需配置
+    charset: UTF-8 #编码格式
+    settings:
+      number_format: '0.##'   #数字格式化，无小数点
 mybatis:
   mapper-locations: classpath:mapping/*.xml
   type-aliases-package: com.data.big.model
@@ -126,8 +136,10 @@ queryTaskTime: "0/20 * * * * ?"
 
 #防灾配置
 netty:
+  #是否启动防灾客户端
+  startOrNot: "false"
   #host: "39.103.130.69"
   host: "127.0.0.1"
   port: "11022"
-version: "010101"  #版本号v1.1.1 转成 010101
-nameAndPassword: "<JingWei_JingZhangXian,JingWei_JingZhangXian>"  #用户名密码
+  version: "010101"  #版本号v1.1.1 转成 010101
+  nameAndPassword: "<JingWei_JingZhangXian,JingWei_JingZhangXian>"  #用户名密码

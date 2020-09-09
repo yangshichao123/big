@@ -21,4 +21,5 @@ public interface ServiceNetty {
     Boolean sendRegister();
 
 
+    void addTask();
 }

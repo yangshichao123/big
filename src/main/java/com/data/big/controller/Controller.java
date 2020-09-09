@@ -52,7 +52,8 @@ public class Controller {
     @RequestMapping("/GetCameraStatus")
     @ResponseBody
     public Map GetCameraStatus(String startTime, String endTime) {
-        return service.GetCameraStatus(startTime, endTime);
+
+        return service.GetCameraStatus("2020-09-06 20:00:00", "2020-09-07 20:00:00");
     }
 
     @RequestMapping("/GetServerStatus")
@@ -125,7 +126,7 @@ public class Controller {
     @RequestMapping("/getANBAO3")
     @ResponseBody
     public Map<String,String> getANBAO3() {
-        return service.getANBAO3("20161010101010", "20200808010101", "京包客专", "03");
+        return service.getANBAO3("20161010101010", "20200808010101", "京包客专线", "03");
     }
 
 }

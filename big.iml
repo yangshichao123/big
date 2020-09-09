@@ -116,5 +116,8 @@
     <orderEntry type="library" name="Maven: org.apache.axis:axis-jaxrpc:1.4" level="project" />
     <orderEntry type="library" name="Maven: org.apache.axis:axis-saaj:1.4" level="project" />
     <orderEntry type="library" name="Maven: io.netty:netty-all:4.1.48.Final" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-freemarker:2.2.6.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: org.freemarker:freemarker:2.3.30" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-context-support:5.2.5.RELEASE" level="project" />
   </component>
 </module>

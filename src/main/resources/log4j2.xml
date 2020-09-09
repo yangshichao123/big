@@ -3,7 +3,7 @@
 <!-- 优先级从高到低依次为：OFF、FATAL、ERROR、WARN、INFO、DEBUG、TRACE、 ALL。 -->
 <configuration status="info" monitorInterval="1800">
     <properties>
-        <property name="LOG_HOME">D:\log</property>
+        <property name="LOG_HOME">D://log</property>
         <!-- 日志备份目录 -->
         <property name="BACKUP_HOME">${LOG_HOME}/backup</property>
         <property name="SERVER_NAME">big</property>

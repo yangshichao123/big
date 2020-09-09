@@ -182,10 +182,23 @@ public class Properties {
      */
     private static String nameAndPassword;
 
+    /**
+     * 是否启动防灾客户端
+     */
+    private static String nettyStartOrNot;
+
+    public static String getNettyStartOrNot() {
+        return nettyStartOrNot;
+    }
+    @Value("${netty.startOrNot}")
+    public  void setNettyStartOrNot(String nettyStartOrNot) {
+        Properties.nettyStartOrNot = nettyStartOrNot;
+    }
+
     public static String getVersion() {
         return version;
     }
-    @Value("${version}")
+    @Value("${netty.version}")
     public  void setVersion(String version) {
         Properties.version = version;
     }
@@ -193,7 +206,7 @@ public class Properties {
     public static String getNameAndPassword() {
         return nameAndPassword;
     }
-    @Value("${nameAndPassword}")
+    @Value("${netty.nameAndPassword}")
     public  void setNameAndPassword(String nameAndPassword) {
         Properties.nameAndPassword = nameAndPassword;
     }

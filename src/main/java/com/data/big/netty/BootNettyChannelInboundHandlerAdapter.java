@@ -4,9 +4,13 @@ import java.io.IOException;
 import java.net.InetSocketAddress;
 
 import com.data.big.service.ServiceNetty;
+import com.data.big.service.impl.ServiceNettyImpl;
+import com.data.big.util.Properties;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  *
@@ -19,6 +23,10 @@ public class BootNettyChannelInboundHandlerAdapter extends ChannelInboundHandler
     public static ChannelHandlerContext ctx;
     public static Boolean boo=false;
     private ByteBuf buf;
+
+    // 日志记录器
+    private static final Logger logger = LogManager.getLogger(BootNettyChannelInboundHandlerAdapter.class);
+
 
     public BootNettyChannelInboundHandlerAdapter() {
         serviceNetty=(ServiceNetty)nettyThread.applicationContext.getBean("ServiceNetty");
@@ -62,6 +70,7 @@ public class BootNettyChannelInboundHandlerAdapter extends ChannelInboundHandler
     {
         System.out.println("exceptionCaught");
         cause.printStackTrace();
+        logger.error( cause.getMessage());
         ctx.close();//抛出异常，断开与客户端的连接
     }
 
@@ -78,7 +87,7 @@ public class BootNettyChannelInboundHandlerAdapter extends ChannelInboundHandler
         BootNettyChannelInboundHandlerAdapter.ctx=ctx;
         InetSocketAddress insocket = (InetSocketAddress) ctx.channel().remoteAddress();
         String clientIp = insocket.getAddress().getHostAddress();
-        System.out.println("channelActive:"+clientIp+ctx.name());
+        logger.error("通道已经连接:"+clientIp+":"+ Properties.getNettyPost());
         /*ByteBuf message = null;
         byte[] req = ("I am client once").getBytes();
         for(int i = 0; i < 5; i++) {
@@ -88,7 +97,7 @@ public class BootNettyChannelInboundHandlerAdapter extends ChannelInboundHandler
             ctx.writeAndFlush(message);
         }
 */
-
+        Thread.sleep(500);
         serviceNetty.sendRegister();
     }
 
@@ -108,7 +117,7 @@ public class BootNettyChannelInboundHandlerAdapter extends ChannelInboundHandler
         ctx=null;
         BootNettyChannelInboundHandlerAdapter.ctx=null;
         BootNettyChannelInboundHandlerAdapter.boo=false;
-        System.out.println("channelInactive:"+clientIp);
+        logger.error("连接通道已断开："+clientIp+":"+ Properties.getNettyPost());
     }
 
 
