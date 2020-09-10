@@ -8,8 +8,8 @@
         <version>2.2.6.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.crcc</groupId>
-    <artifactId>mu</artifactId>
+    <groupId>com.data</groupId>
+    <artifactId>big</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>big</name>
     <description>Demo project for Spring Boot</description>
@@ -155,20 +155,30 @@
             <artifactId>spring-boot-starter-freemarker</artifactId>
         </dependency>
 
-     <!--   &lt;!&ndash; 前端页面通过thymeleaf渲染 &ndash;&gt;
+
+
+        <!-- rabbitmq -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+            <artifactId>spring-boot-starter-amqp</artifactId>
         </dependency>
+       <!-- get和set log 注解-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jpa</artifactId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.junit.vintage</groupId>
+                    <artifactId>junit-vintage-engine</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
-        <dependency>
-            <groupId>javax</groupId>
-            <artifactId>javaee-web-api</artifactId>
-            <version>7.0</version>
-        </dependency>-->
 
     </dependencies>
 

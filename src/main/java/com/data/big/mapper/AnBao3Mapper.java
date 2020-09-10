@@ -2,7 +2,9 @@ package com.data.big.mapper;
 
 import com.data.big.base.BaseMapper;
 import com.data.big.model.AnBao3;
+import org.apache.ibatis.annotations.Mapper;
 
+@Mapper
 public interface AnBao3Mapper extends BaseMapper<AnBao3> {
     int insert(AnBao3 record);
 

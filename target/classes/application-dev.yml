@@ -18,6 +18,12 @@ spring:
     charset: UTF-8 #编码格式
     settings:
       number_format: '0.##'   #数字格式化，无小数点
+  #MQ配置IP 端口
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: guest
+    password: guest
 mybatis:
   mapper-locations: classpath:mapping/*.xml
   type-aliases-package: com.data.big.model
