@@ -24,84 +24,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5ee4eaea-9987-4da7-90af-92f8d2734c6b" name="默认更改列表" comment="提交代码">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_jayway_jsonpath_json_path_2_4_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_rabbitmq_amqp_client_5_7_3.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_vaadin_external_google_android_json_0_0_20131108_vaadin1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__jakarta_activation_jakarta_activation_api_1_2_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__jakarta_xml_bind_jakarta_xml_bind_api_2_3_3.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__net_bytebuddy_byte_buddy_1_10_8.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__net_bytebuddy_byte_buddy_agent_1_10_8.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__net_minidev_accessors_smart_1_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__net_minidev_json_smart_2_3.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apiguardian_apiguardian_api_1_1_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_assertj_assertj_core_3_13_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_hamcrest_hamcrest_2_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_5_5_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_api_5_5_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_engine_5_5_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_params_5_5_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_platform_junit_platform_commons_1_5_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_platform_junit_platform_engine_1_5_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_mockito_mockito_core_3_1_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_mockito_mockito_junit_jupiter_3_1_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_objenesis_objenesis_2_6.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_opentest4j_opentest4j_1_2_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_projectlombok_lombok_1_18_12.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_skyscreamer_jsonassert_1_5_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_amqp_spring_amqp_2_2_5_RELEASE.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_amqp_spring_rabbit_2_2_5_RELEASE.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_amqp_2_2_6_RELEASE.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_test_2_2_6_RELEASE.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_test_2_2_6_RELEASE.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_test_autoconfigure_2_2_6_RELEASE.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_retry_spring_retry_1_2_5_RELEASE.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_messaging_5_2_5_RELEASE.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_test_5_2_5_RELEASE.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_xmlunit_xmlunit_core_2_6_4.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/controller/MqController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/model/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/mq/RabbitMQConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/mq/Receiver.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/mq/Sender.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/data/big/DemoApplicationTests.java" afterDir="false" />
+    <list default="true" id="5ee4eaea-9987-4da7-90af-92f8d2734c6b" name="默认更改列表" comment="增加rabbitMq">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/big.iml" beforeDir="false" afterPath="$PROJECT_DIR$/big.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/data/big/mapper/AlarmMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/data/big/mapper/AlarmMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/data/big/mapper/AnBao3Mapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/data/big/mapper/AnBao3Mapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/data/big/mapper/CameraalarmMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/data/big/mapper/CameraalarmMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/data/big/mapper/CamerainfoMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/data/big/mapper/CamerainfoMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/data/big/mapper/CamerastatusMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/data/big/mapper/CamerastatusMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/data/big/mapper/DiskalarmMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/data/big/mapper/DiskalarmMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/data/big/mapper/DiskinfoMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/data/big/mapper/DiskinfoMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/data/big/mapper/DiskstatusMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/data/big/mapper/DiskstatusMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/data/big/mapper/ForeignBodyAlarmMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/data/big/mapper/ForeignBodyAlarmMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/data/big/mapper/IvsalarmMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/data/big/mapper/IvsalarmMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/data/big/mapper/LogRestMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/data/big/mapper/LogRestMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/data/big/mapper/MethodTypeMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/data/big/mapper/MethodTypeMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/data/big/mapper/NodeinfoMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/data/big/mapper/NodeinfoMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/data/big/mapper/QueryTaskMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/data/big/mapper/QueryTaskMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/data/big/mapper/RainAlarmMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/data/big/mapper/RainAlarmMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/data/big/mapper/SensorStatusAlarmMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/data/big/mapper/SensorStatusAlarmMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/data/big/mapper/ServeralarmMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/data/big/mapper/ServeralarmMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/data/big/mapper/ServerinfoMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/data/big/mapper/ServerinfoMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/data/big/mapper/ServerstatusMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/data/big/mapper/ServerstatusMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/data/big/mapper/SnowAlarmMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/data/big/mapper/SnowAlarmMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/data/big/mapper/SwitchalarmMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/data/big/mapper/SwitchalarmMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/data/big/mapper/SwitchinfoMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/data/big/mapper/SwitchinfoMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/data/big/mapper/SwitchstatusMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/data/big/mapper/SwitchstatusMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/data/big/mapper/UnitEquipmentAlarmMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/data/big/mapper/UnitEquipmentAlarmMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/data/big/mapper/VideoFileMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/data/big/mapper/VideoFileMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/data/big/mapper/VideoKilometerMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/data/big/mapper/VideoKilometerMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/data/big/mapper/WindSpeedAlarmMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/data/big/mapper/WindSpeedAlarmMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application-dev.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application-dev.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application-dev.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application-dev.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/data/big/StartUp.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/data/big/StartUp.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/data/big/mapper/WindSpeedAlarmMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/data/big/mapper/WindSpeedAlarmMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/data/big/model/WindSpeedAlarm.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/data/big/model/WindSpeedAlarm.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/data/big/service/impl/ServiceNettyImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/data/big/service/impl/ServiceNettyImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mapping/WindSpeedAlarmMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapping/WindSpeedAlarmMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application-pro.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application-pro.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -315,7 +240,7 @@
       <workItem from="1599618565598" duration="10140000" />
       <workItem from="1599697558091" duration="11534000" />
       <workItem from="1599723770021" duration="229000" />
-      <workItem from="1599724047724" duration="6157000" />
+      <workItem from="1599724047724" duration="6253000" />
     </task>
     <task id="LOCAL-00001" summary="增加web页面请求接口">
       <created>1596526163038</created>
@@ -366,7 +291,14 @@
       <option name="project" value="LOCAL" />
       <updated>1599720905326</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="增加rabbitMq">
+      <created>1599730623809</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1599730623809</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -391,7 +323,8 @@
     <MESSAGE value="dd" />
     <MESSAGE value="增加web页面" />
     <MESSAGE value="提交代码" />
-    <option name="LAST_COMMIT_MESSAGE" value="提交代码" />
+    <MESSAGE value="增加rabbitMq" />
+    <option name="LAST_COMMIT_MESSAGE" value="增加rabbitMq" />
   </component>
   <component name="WindowStateProjectService">
     <state x="395" y="91" key="#Inspections" timestamp="1597282732345">
