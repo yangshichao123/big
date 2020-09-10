@@ -26,6 +26,10 @@
     <result column="relieve_time" jdbcType="TIMESTAMP" property="relieveTime" />
     <result column="video_up_status" jdbcType="VARCHAR" property="videoUpStatus" />
     <result column="check_locale_kilometre" jdbcType="VARCHAR" property="checkLocaleKilometre" />
+    <result column="startTime" jdbcType="VARCHAR" property="startTime" />
+    <result column="endTime" jdbcType="VARCHAR" property="endTime" />
+    <result column="tableName" jdbcType="VARCHAR" property="tableName" />
+    <result column="video_code" jdbcType="VARCHAR" property="videoCode" />
   </resultMap>
   <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.data.big.model.WindSpeedAlarm">
     <result column="data" jdbcType="LONGVARCHAR" property="data" />
@@ -47,6 +51,29 @@
     <include refid="Blob_Column_List" />
     from wind_speed_alarm
     where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAllByStatus" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+    SELECT v.video_code,ws.startTime,ws.endTime,ws.tableName,ws.id 
+    from (
+      SELECT w.id id,w.date startTime,w.relieve_time endTime,w.check_locale_code localeCode ,"wind" tableName
+      from wind_speed_alarm w where w.alarm_status='1' and w.video_up_status='0'
+      UNION ALL
+      SELECT r.id id,r.date startTime,r.relieve_time endTime,r.check_locale_code localeCode ,"rain" tableName
+      from rain_alarm r where r.alarm_status='1' and r.video_up_status='0'
+
+      UNION ALL
+      SELECT s.id id,s.date startTime,s.relieve_time endTime,s.check_locale_code localeCode ,"snow" tableName
+      from snow_alarm s where s.alarm_status='1' and s.video_up_status='0'
+      UNION ALL
+      SELECT f.id id,f.date startTime,f.relieve_time endTime,f.check_locale_code localeCode ,"foreign" tableName
+      from foreign_body_alarm f where f.alarm_status='1' and f.video_up_status='0'
+    ) ws
+    join
+    (
+    SELECT replace(replace(vk.startKilometer,'K',''),'+','') startK,replace(replace(vk.endKilometer,'K',''),'+','') endK ,vk.video_code
+    from video_kilometer vk
+    ) v
+    on  ws.localeCode >=v.startK and ws.localeCode &lt; =v.endK;
   </select>
   <insert id="insert" parameterType="com.data.big.model.WindSpeedAlarm">
     insert into wind_speed_alarm (id, control_unit_code, check_locale_code, 

@@ -46,6 +46,8 @@ public class ServiceNettyImpl implements ServiceNetty {
     private LogRestMapper logRestMapper;
     @Autowired
     private VideoFileMapper videoFileMapper;
+    @Autowired
+    private VideoKilometerMapper videoKilometerMapper;
 
     // 日志记录器
     private static final Logger logger = LogManager.getLogger(ServiceNettyImpl.class);
@@ -866,23 +868,64 @@ public class ServiceNettyImpl implements ServiceNetty {
 
     @Override
     public void addTask() {
+
+
         WindSpeedAlarm windSpeedAlarm = new WindSpeedAlarm();
-        windSpeedAlarm.setAlarmStatus("1");
-        windSpeedAlarm.setVideoUpStatus("0");
-        List<WindSpeedAlarm> select = windSpeedAlarmMapper.select(windSpeedAlarm);
+        //查询所有 告警状态是1 结束状态  添加任务表状态是0 没有添加的  风雨雪异物 告警信息
+        List<WindSpeedAlarm> select = windSpeedAlarmMapper.selectAllByStatus(windSpeedAlarm);
         if(select.size()>0){
             for (WindSpeedAlarm speedAlarm : select) {
                 VideoFile videoFile=new VideoFile();
+                videoFile.setIpcid(speedAlarm.getVideoCode());
                 videoFile.setKssj(DateUtils.getDate(speedAlarm.getDate(),"yyyy-MM-dd HH:mm:ss"));
                 videoFile.setJssj(DateUtils.getDate(speedAlarm.getRelieveTime(),"yyyy-MM-dd HH:mm:ss"));
-                int i = videoFileMapper.insertSelective(videoFile);
+                int i = videoFileMapper.insertSelective(videoFile);//添加到任务表里
                 if(i>0){
-                    WindSpeedAlarm sa = new WindSpeedAlarm();
-                    sa.setVideoUpStatus("1");
-                    Example example = new Example(WindSpeedAlarm.class);
-                    Example.Criteria criteria = example.createCriteria();
-                    criteria.andEqualTo("id", speedAlarm.getId());
-                    windSpeedAlarmMapper.updateByExampleSelective(sa,example);
+                    //根据表名更改表数据 为 已上传状态
+                    switch (speedAlarm.getTableName()){
+                        case "wind":{
+                            WindSpeedAlarm sa = new WindSpeedAlarm();
+                            sa.setVideoUpStatus("1");
+                            Example example = new Example(WindSpeedAlarm.class);
+                            Example.Criteria criteria = example.createCriteria();
+                            criteria.andEqualTo("id", speedAlarm.getId());
+                            windSpeedAlarmMapper.updateByExampleSelective(sa,example);
+                        }
+                            break;
+                        case "rain":{
+
+                            RainAlarm sa = new RainAlarm();
+                            sa.setVideoUpStatus("1");
+                            Example example = new Example(RainAlarm.class);
+                            Example.Criteria criteria = example.createCriteria();
+                            criteria.andEqualTo("id", speedAlarm.getId());
+                            rainAlarmMapper.updateByExampleSelective(sa,example);
+                        }
+                            break;
+                        case "foreign":{
+
+                            ForeignBodyAlarm sa = new ForeignBodyAlarm();
+                            sa.setVideoUpStatus("1");
+                            Example example = new Example(ForeignBodyAlarm.class);
+                            Example.Criteria criteria = example.createCriteria();
+                            criteria.andEqualTo("id", speedAlarm.getId());
+                            foreignBodyAlarmMapper.updateByExampleSelective(sa,example);
+                        }
+                            break;
+                        case "snow":{
+                            SnowAlarm sa = new SnowAlarm();
+                            sa.setVideoUpStatus("1");
+                            Example example = new Example(SnowAlarm.class);
+                            Example.Criteria criteria = example.createCriteria();
+                            criteria.andEqualTo("id", speedAlarm.getId());
+                            snowAlarmMapper.updateByExampleSelective(sa,example);
+                        }
+                            break;
+                        default:
+                            logger.error("查询没有添加到任务表里的数据出错");
+                            break;
+                    }
+
                 }
 
             }

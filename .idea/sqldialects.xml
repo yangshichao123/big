@@ -13,5 +13,6 @@
     <file url="file://$PROJECT_DIR$/src/main/resources/mapping/SwitchalarmMapper.xml" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/src/main/resources/mapping/SwitchinfoMapper.xml" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/src/main/resources/mapping/SwitchstatusMapper.xml" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/mapping/WindSpeedAlarmMapper.xml" dialect="GenericSQL" />
   </component>
 </project>

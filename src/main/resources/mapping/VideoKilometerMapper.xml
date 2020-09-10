@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.data.big.mapper.VideoKilometerMapper">
+  <resultMap id="BaseResultMap" type="com.data.big.model.VideoKilometer">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="video_code" jdbcType="VARCHAR" property="videoCode" />
+    <result column="installType" jdbcType="VARCHAR" property="installtype" />
+    <result column="startKilometer" jdbcType="VARCHAR" property="startkilometer" />
+    <result column="endKilometer" jdbcType="VARCHAR" property="endkilometer" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, video_code, installType, startKilometer, endKilometer
+  </sql>
+  <select id="selectByPrimaryId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from video_kilometer
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <insert id="insert" parameterType="com.data.big.model.VideoKilometer">
+    insert into video_kilometer (id, video_code, installType, 
+      startKilometer, endKilometer)
+    values (#{id,jdbcType=VARCHAR}, #{videoCode,jdbcType=VARCHAR}, #{installtype,jdbcType=VARCHAR}, 
+      #{startkilometer,jdbcType=VARCHAR}, #{endkilometer,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.data.big.model.VideoKilometer">
+    insert into video_kilometer
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="videoCode != null">
+        video_code,
+      </if>
+      <if test="installtype != null">
+        installType,
+      </if>
+      <if test="startkilometer != null">
+        startKilometer,
+      </if>
+      <if test="endkilometer != null">
+        endKilometer,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="videoCode != null">
+        #{videoCode,jdbcType=VARCHAR},
+      </if>
+      <if test="installtype != null">
+        #{installtype,jdbcType=VARCHAR},
+      </if>
+      <if test="startkilometer != null">
+        #{startkilometer,jdbcType=VARCHAR},
+      </if>
+      <if test="endkilometer != null">
+        #{endkilometer,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>
