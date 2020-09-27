@@ -1,28 +1,56 @@
 package com.data.big.controller;
 
+import com.data.big.model.Camerainfo;
+import com.data.big.model.MethodType;
+import com.data.big.model.VideoKilometer;
 import com.data.big.service.Service;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import org.apache.commons.io.FileUtils;
+
+import java.io.File;
+import java.net.URL;
 
 
 @RestController
 @RequestMapping("/controller")
+@CrossOrigin
 public class Controller {
 
 
     @Autowired
     private Service service;
 
+    @RequestMapping("/test")
+    @ResponseBody
+    public Map test(String startTime, String endTime) {
+        Map<String,String> map=new HashMap<>();
+        map.put("startTime",startTime);
+        map.put("endTime",endTime);
+        return map;
+    }
     @RequestMapping("/GetCameraInfo")
     @ResponseBody
     public Map GetCameraInfo() {
 
         return service.GetCameraInfo();
+    }
+    @RequestMapping("/GetCamera")
+    @ResponseBody
+    public Map GetCamera() {
+
+        return service.GetCamera();
     }
 
     @RequestMapping("/GetNodeInfo")
@@ -128,5 +156,63 @@ public class Controller {
     public Map<String,String> getANBAO3() {
         return service.getANBAO3("20161010101010", "20200808010101", "京包客专线", "03");
     }
+    @RequestMapping("/getMethodName")
+    @ResponseBody
+    public List<MethodType> getMethodName() {
+        return service.getMethodName();
+    }
 
+    @RequestMapping("/addTask")
+    @ResponseBody
+    public Map<String,String> addTask(String startTime,String endTime,String methodId) {
+        return service.addTask(startTime,endTime,methodId);
+    }
+
+
+    @RequestMapping("/getVideo")
+    @ResponseBody
+    public List<Camerainfo> getVideo() {
+        return service.getVideo();
+    }
+
+
+    @RequestMapping("/addVideoKilometer")
+    @ResponseBody
+    public Map<String,String> addVideoKilometer(VideoKilometer videoKilometer) {
+        return service.addVideoKilometer(videoKilometer);
+    }
+    @RequestMapping("/getHcsj")
+    @ResponseBody
+    public Map<String,String> getHcsj(String qsrq, String jsrq, String cxdj) {
+
+        return service.getHcsj(qsrq,jsrq,cxdj);
+    }
+    @RequestMapping("/getSgjh")
+    @ResponseBody
+    public Map<String,String> getSgjh(String qsrq, String jsrq) {
+
+        return service.getSgjh(qsrq,jsrq);
+    }
+    @RequestMapping("/getWxjh")
+    @ResponseBody
+    public Map<String,String> getWxjh(String qsrq, String jsrq) {
+
+        return service.getWxjh(qsrq,jsrq);
+    }
+    @RequestMapping("/queryCurrentDayWarningData")
+    @ResponseBody
+    public Map<String,Object> queryCurrentDayWarningData(String beginTime,String endTime) {
+        return service.queryCurrentDayWarningData(beginTime,endTime);
+    }
+    @RequestMapping("/download")
+    @ResponseBody
+    public String  download(String sourceUrl,String targetUrl) {
+        service.download(sourceUrl,targetUrl);
+        return "成功";
+    }
+    @RequestMapping("/addVideoTask")
+    @ResponseBody
+    public Map<String ,String >  addVideoTask(String videoCode,String benginTime,String endTime,String intervalTime,String timeRange) {
+        return service.addVideoTask(videoCode,benginTime,endTime,intervalTime,timeRange);
+    }
 }

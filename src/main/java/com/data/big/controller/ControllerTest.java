@@ -13,6 +13,39 @@ import java.util.*;
 @RequestMapping("/fdCon")
 public class ControllerTest {
 
+    @RequestMapping("/queryCurrentDayWarningData")
+    @ResponseBody
+    public Map<String,Object> queryCurrentDayWarningData(Map<String ,Object> map) {
+        Map<String ,Object> mm=new HashMap<>();
+        mm.put("status","200");
+        String  beginTime =(String)map.get("beginTime");
+        String  endTime =(String)map.get("endTime");
+        System.out.println("beginTime: "+beginTime+" endTime: "+endTime);
+        Map<String,Object> mO=new HashMap<>();
+        Map<String,Object> mO1=new HashMap<>();
+        mO1.put("STATUS","4");
+        mO1.put("DeptCode","00P000000000000000000000000000XiaHuaYuanBei006688");
+        mO1.put("createTime","1600838113000");
+        mO1.put("img_path","http://localhost/data/timg.jpg");
+        mO1.put("ip","10.234.61.10");
+        mO1.put("id","2");
+        mO1.put("cameraName","测试摄像机");
+        mO1.put("vid_path","http://localhost/data/2-5 Vuejs介绍.avi");
+
+        List list =new ArrayList();
+        List list1 =new ArrayList();
+        list.add(mO1);
+        mO.put("yxbj",list);
+        mO.put("pdcd",list1);
+        mO.put("dbrq",list1);
+        mO.put("rynx",list1);
+        mO.put("klmd",list1);
+        mO.put("cztdnx",list1);
+        mm.put("data",mO);
+
+        return mm;
+    }
+
     @RequestMapping("/GetCameraAlarm")
     @ResponseBody
     public Map<String,Object> GetCameraAlarm(String optUserCode, String id) {

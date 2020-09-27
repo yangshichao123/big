@@ -1,7 +1,10 @@
 package com.data.big.service;
 
 
+import com.data.big.model.Camerainfo;
+import com.data.big.model.MethodType;
 import com.data.big.model.VideoFile;
+import com.data.big.model.VideoKilometer;
 
 import java.util.List;
 import java.util.Map;
@@ -15,6 +18,12 @@ public interface Service {
      * @return map
      */
     Map GetCameraInfo();
+    /**
+     * 获取 摄像机资产信息
+     *
+     * @return map
+     */
+    Map GetCamera();
 
     /**
      * 获取节点信息
@@ -171,4 +180,83 @@ public interface Service {
      * 执行查询任务  根据任务时间和方法 去查询
      */
     void queryTask();
+
+    /**
+     * 返回所有的方法名称类型
+     * @return
+     */
+    List<MethodType> getMethodName();
+
+    /**
+     * 添加查询任务
+     * @param startTime 开始时间
+     * @param endTime  结束时间
+     * @param methodId  查询方法id
+     * @return
+     */
+    Map<String,String> addTask(String startTime, String endTime, String methodId);
+
+    /**
+     * 查询摄像机列表
+     *
+     * @return
+     */
+    List<Camerainfo> getVideo();
+
+    /**
+     * 添加摄像机对应的公里标
+     * @param videoKilometer  摄像机参数类
+     * @return
+     */
+    Map<String,String> addVideoKilometer(VideoKilometer videoKilometer);
+
+    /**
+     * 1、	晃车数据
+     * @param qsrq 检测起始日期 yyyy-MM-dd
+     * @param jsrq 检测终止日期yyyy-MM-dd
+     * @param cxdj 超限等级（1、2、3、4）
+     * @return
+     */
+    Map<String,String> getHcsj(String qsrq, String jsrq, String cxdj);
+
+    /**
+     * 2、	施工计划
+     * @param qsrq 检测起始日期 yyyy-MM-dd
+     * @param jsrq 检测终止日期yyyy-MM-dd
+     * @return
+     */
+    Map<String,String> getSgjh(String qsrq, String jsrq);
+    /**
+     * 3、	维修计划
+     * @param qsrq 检测起始日期 yyyy-MM-dd
+     * @param jsrq 检测终止日期yyyy-MM-dd
+     * @return
+     */
+    Map<String,String> getWxjh(String qsrq, String jsrq);
+
+    /**
+     * 旅服 预警信息
+     * @param beginTime 开始时间
+     * @param endTime  结束时间
+     * @return
+     */
+    Map<String,Object> queryCurrentDayWarningData(String beginTime, String endTime);
+
+    /**
+     * 旅服 下载文件
+     * @param sourceUrl 源文件
+     * @param targetUrl 保存位置
+     */
+    void download(String sourceUrl, String targetUrl);
+
+    /**
+     * 添加视频下载任务
+     * @param videoCode 摄像机code
+     * @param benginTime  下载开始时间
+     * @param endTime 下载结束时间
+     * @param intervalTime 添加任务间隔时间  单位为 天
+     * @param timeRange  任务执行 到几号结束
+     * @return
+     */
+    Map<String,String> addVideoTask(String videoCode, String benginTime, String endTime, String intervalTime, String timeRange);
 }

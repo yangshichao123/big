@@ -70,6 +70,7 @@ com\data\big\model\Switchinfo.class
 com\data\big\netty\BootNettyChannelInboundHandlerAdapter.class
 com\data\big\netty\nettyThread.class
 com\data\big\controller\MqController.class
+com\data\big\mapper\CameraMapper.class
 com\data\big\model\WindSpeedAlarm.class
 com\data\big\util\HashMapHelper.class
 com\data\big\util\webServiceUtils.class
@@ -90,6 +91,7 @@ com\data\big\service\ServiceNetty.class
 com\data\big\model\Ivsalarm.class
 com\data\big\service\Service.class
 com\data\big\task\KeepTask.class
+com\data\big\model\Camera.class
 com\data\big\task\TimingTask.class
 com\data\big\mapper\MethodTypeMapper.class
 com\data\big\model\Line.class

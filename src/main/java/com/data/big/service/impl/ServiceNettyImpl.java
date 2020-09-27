@@ -879,6 +879,7 @@ public class ServiceNettyImpl implements ServiceNetty {
                 videoFile.setIpcid(speedAlarm.getVideoCode());
                 videoFile.setKssj(DateUtils.getDate(speedAlarm.getDate(),"yyyy-MM-dd HH:mm:ss"));
                 videoFile.setJssj(DateUtils.getDate(speedAlarm.getRelieveTime(),"yyyy-MM-dd HH:mm:ss"));
+                videoFile.setStatus("0");
                 int i = videoFileMapper.insertSelective(videoFile);//添加到任务表里
                 if(i>0){
                     //根据表名更改表数据 为 已上传状态

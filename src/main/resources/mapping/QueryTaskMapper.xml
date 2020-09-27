@@ -20,7 +20,7 @@
     where id = #{id,jdbcType=VARCHAR}
   </select>
   <select id="selectByStatus" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    SELECT q.*,m.`NAME` methodName
+    SELECT q.*,m.method_name methodName
     from query_task q
     LEFT JOIN method_type m on m.id= q.type
     where q.`status`= #{id,jdbcType=INTEGER};

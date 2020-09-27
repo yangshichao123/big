@@ -225,7 +225,7 @@ public class TimingTask {
         service.GetIVSAlarm(tiemMap.get("beginTime"),tiemMap.get("endTime"));
 
     }
-    //定时查询任务
+    //定时查询任务  向通号查看接口
     @Scheduled(cron = "${queryTaskTime}")
     private void queryTaskTime() {
 
@@ -247,4 +247,13 @@ public class TimingTask {
 
     }
 
+
+    //定时 查询旅服 预警信息
+    @Scheduled(cron = "${lf.cron}")
+    private void queryCurrentDayWarningData() {
+       String beginTime = DateUtils.getBeforeDate(1, "yyyy-MM-dd") + " 00:00:00";
+       String endTime = DateUtils.getBeforeDate(1, "yyyy-MM-dd") + " 23:59:59";
+        service.queryCurrentDayWarningData(beginTime,endTime);
+
+    }
 }

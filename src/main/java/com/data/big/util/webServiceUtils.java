@@ -250,6 +250,7 @@ public class webServiceUtils {
             return "参数异常" + ex.getMessage();
 
         }
+        //String[] value = param.toArray(new String[0]);
 
         //返回调用结果
 
@@ -260,7 +261,8 @@ public class webServiceUtils {
 
 			return  json.toString();*/
 
-            return JSON.toJSONString(result[0]);
+            //return JSON.toJSONString(result[0]);
+            return (String)result[0];
 
         }
 

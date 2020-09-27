@@ -8,6 +8,16 @@ spring:
     password: 1qaz!QAZ
     url: jdbc:mysql://10.3.78.209:13306/video_db?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=GMT%2b8
     driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.zaxxer.hikari.HikariDataSource
+      hikari:
+        minimum-idle: 5
+        maximum-pool-size: 15
+        auto-commit: true
+        idle-timeout: 30000
+        pool-name: DatebookHikariCP
+        max-lifetime: 1800000
+        connection-timeout: 30000
+        connection-test-query: SELECT 1
   #MQ配置IP 端口
   rabbitmq:
     host: 127.0.0.1
@@ -142,3 +152,18 @@ netty:
   port: "11022"
   version: "010101"  #版本号v1.1.1 转成 010101
   nameAndPassword: "<JingWei_JingZhangXian,JingWei_JingZhangXian>"  #用户名密码
+
+#公务配置
+gw:
+  wsdlUrl: "http://localhost:8088/services/big?wsdl"
+  wsdlNamespace: "http://webService.big.data.com/"
+  wsdlName: "service"
+
+#旅服
+lf:
+  #url: "http://10.67.51.189/warningDataOperation/queryCurrentDayWarningData"
+  url: "http://127.0.0.1:8088/fdCon/queryCurrentDayWarningData"
+  #保存文件地址
+  saveAddress: "D://baocun"
+  cron: "0 09 0/1 * * ?"
+

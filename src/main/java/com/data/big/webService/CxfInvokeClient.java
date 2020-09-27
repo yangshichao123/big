@@ -75,7 +75,9 @@ public class CxfInvokeClient {
 		System.out.println(parseObject);*/
         ArrayList<Object> listO = new ArrayList<Object>();
         listO.add("411001");
-        String resU = dynamicCallWebServiceByCXF("http://localhost:8088/services/mu?wsdl", "getName", "http://webService.mu.crcc.com/", "service", listO);
+        listO.add("99999");
+
+        String resU = dynamicCallWebServiceByCXF("http://localhost:8088/services/big?wsdl", "getXml", "http://webService.big.data.com/", "service", listO);
         System.out.println(resU);
     }
 

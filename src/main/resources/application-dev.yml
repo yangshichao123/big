@@ -1,5 +1,5 @@
 server:
-  port: 8077
+  port: 8088
 
 
 spring:
@@ -8,6 +8,16 @@ spring:
     password: 1qaz!QAZ
     url: jdbc:mysql://127.0.0.1:3307/video_bigdata?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=GMT%2b8
     driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      minimum-idle: 5
+      maximum-pool-size: 15
+      auto-commit: true
+      idle-timeout: 30000
+      pool-name: DatebookHikariCP
+      max-lifetime: 1800000
+      connection-timeout: 30000
+      connection-test-query: SELECT 1
   freemarker:
     request-context-attribute: req  #req访问request
     suffix: .html  #后缀名
@@ -20,10 +30,15 @@ spring:
       number_format: '0.##'   #数字格式化，无小数点
   #MQ配置IP 端口
   rabbitmq:
-    host: 127.0.0.1
-    port: 5672
-    username: guest
-    password: guest
+    host: 47.92.100.23
+    port: 5673
+    username: admin
+    password: 1qaz!QAZ
+    listener:
+      direct:
+        acknowledge-mode: manual
+      simple:
+       acknowledge-mode: manual
 mybatis:
   mapper-locations: classpath:mapping/*.xml
   type-aliases-package: com.data.big.model
@@ -143,9 +158,24 @@ queryTaskTime: "0/20 * * * * ?"
 #防灾配置
 netty:
   #是否启动防灾客户端
-  startOrNot: "false"
+  startOrNot: "true"
   #host: "39.103.130.69"
   host: "127.0.0.1"
   port: "11022"
   version: "010101"  #版本号v1.1.1 转成 010101
   nameAndPassword: "<JingWei_JingZhangXian,JingWei_JingZhangXian>"  #用户名密码
+
+
+#公务配置
+gw:
+  wsdlUrl: "http://localhost:8088/services/big?wsdl"
+  wsdlNamespace: "http://webService.big.data.com/"
+  wsdlName: "service"
+
+#旅服
+lf:
+  #url: "http://10.67.51.189/warningDataOperation/queryCurrentDayWarningData"
+  url: "http://127.0.0.1:8088/fdCon/queryCurrentDayWarningData"
+  #保存文件地址
+  saveAddress: "D://baocun"
+  cron: "0 09 0/1 * * ?"

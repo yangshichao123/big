@@ -7,15 +7,18 @@ import java.net.URISyntaxException;
 import java.rmi.RemoteException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import com.data.big.util.ANBAO3;
+import com.data.big.util.DateUtils;
 import org.apache.axis.client.Call;
 import org.apache.axis.client.Service;
 import org.apache.axis.encoding.ser.BeanDeserializerFactory;
 import org.apache.axis.encoding.ser.BeanSerializerFactory;
 import org.apache.axis.message.SOAPHeaderElement;
 import org.apache.axis.utils.JavaUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.mybatis.generator.api.MyBatisGenerator;
 import org.mybatis.generator.config.Configuration;
 import org.mybatis.generator.config.xml.ConfigurationParser;
@@ -78,6 +81,22 @@ public class StartUp {
 		/*String method ="";
 		String json = "";
 		callWebserviceASMX(method,json);*/
+     /*   String s="555555C0C0";
+        int i1 = s.indexOf("C0C0", s.indexOf("C0C0")+1);
+        System.out.println(i1);
+        int i = StringUtils.indexOf(s, "C0C0", s.indexOf("C0C0") + 1);
+        System.out.println(i);*/
+        Date date2 = DateUtils.parseDate("2020-10-10", "yyyy-MM-dd");
+        long l = DateUtils.pastDays(date2);
+
+
+        int i1 = Integer.parseInt("3");
+        for (int i=0;i<l;i++) {
+            Date date = DateUtils.nextDay(i);
+            String date1 = DateUtils.getDate(date, "yyyy-MM-dd");
+            System.out.println(date1);
+            i=i+i1;
+        }
     }
 
     /**

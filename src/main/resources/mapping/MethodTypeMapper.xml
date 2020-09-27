@@ -3,11 +3,11 @@
 <mapper namespace="com.data.big.mapper.MethodTypeMapper">
   <resultMap id="BaseResultMap" type="com.data.big.model.MethodType">
     <id column="ID" jdbcType="INTEGER" property="id" />
-    <result column="NAME" jdbcType="VARCHAR" property="name" />
-    <result column="desc" jdbcType="VARCHAR" property="desc" />
+    <result column="method_name" jdbcType="VARCHAR" property="methodName" />
+    <result column="method_desc" jdbcType="VARCHAR" property="methodDesc" />
   </resultMap>
   <sql id="Base_Column_List">
-    ID, `NAME`, `desc`
+    ID, method_name, method_desc
   </sql>
   <select id="selectByPrimaryId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -16,9 +16,9 @@
     where ID = #{id,jdbcType=INTEGER}
   </select>
   <insert id="insert" parameterType="com.data.big.model.MethodType">
-    insert into method_type (ID, `NAME`, `desc`
+    insert into method_type (ID, method_name, method_desc
       )
-    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{desc,jdbcType=VARCHAR}
+    values (#{id,jdbcType=INTEGER}, #{methodName,jdbcType=VARCHAR}, #{methodDesc,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.data.big.model.MethodType">
@@ -27,23 +27,24 @@
       <if test="id != null">
         ID,
       </if>
-      <if test="name != null">
-        `NAME`,
+      <if test="methodName != null">
+        method_name,
       </if>
-      <if test="desc != null">
-        `desc`,
+      <if test="methodDesc != null">
+        method_desc,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
         #{id,jdbcType=INTEGER},
       </if>
-      <if test="name != null">
-        #{name,jdbcType=VARCHAR},
+      <if test="methodName != null">
+        #{methodName,jdbcType=VARCHAR},
       </if>
-      <if test="desc != null">
-        #{desc,jdbcType=VARCHAR},
+      <if test="methodDesc != null">
+        #{methodDesc,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
+
 </mapper>

@@ -186,6 +186,66 @@ public class Properties {
      * 是否启动防灾客户端
      */
     private static String nettyStartOrNot;
+    /**
+     * 公务webserivce接口 url
+     */
+    private static String wsdlUrl;
+    /**
+     *  命名空间
+     */
+    private static String wsdlNamespace;
+    /**
+     * 服务名称
+     */
+    private static String wsdlName;
+    /**
+     * 旅服 访问url
+     */
+    private static String lfUrl;
+    /**
+     * 旅服 图片 视频保存地址
+     */
+    private static String lfSaveAddress;
+
+    public static String getLfUrl() {
+        return lfUrl;
+    }
+    @Value("${lf.url}")
+    public  void setLfUrl(String lfUrl) {
+        Properties.lfUrl = lfUrl;
+    }
+
+    public static String getLfSaveAddress() {
+        return lfSaveAddress;
+    }
+    @Value("${lf.saveAddress}")
+    public  void setLfSaveAddress(String lfSaveAddress) {
+        Properties.lfSaveAddress = lfSaveAddress;
+    }
+
+    public static String getWsdlUrl() {
+        return wsdlUrl;
+    }
+    @Value("${gw.wsdlUrl}")
+    public  void setWsdlUrl(String wsdlUrl) {
+        Properties.wsdlUrl = wsdlUrl;
+    }
+
+    public static String getWsdlNamespace() {
+        return wsdlNamespace;
+    }
+    @Value("${gw.wsdlNamespace}")
+    public  void setWsdlNamespace(String wsdlNamespace) {
+        Properties.wsdlNamespace = wsdlNamespace;
+    }
+
+    public static String getWsdlName() {
+        return wsdlName;
+    }
+    @Value("${gw.wsdlName}")
+    public  void setWsdlName(String wsdlName) {
+        Properties.wsdlName = wsdlName;
+    }
 
     public static String getNettyStartOrNot() {
         return nettyStartOrNot;

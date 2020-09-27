@@ -14,18 +14,18 @@ public class MqController {
 
     @GetMapping("/sendDirectQueue")
     public Object sendDirectQueue() {
-        sender.sendDirectQueue();
+       // sender.sendDirectQueue();
         return "ok";
     }
     @GetMapping("/sendTopic")
     public Object sendTopic() {
-        sender.sendTopic();
+       // sender.sendTopic();
         return "ok";
     }
 
     @GetMapping("/sendFanout")
     public Object sendFanout() {
-        sender.sendFanout();
+       // sender.sendFanout();
         return "ok";
     }
 }

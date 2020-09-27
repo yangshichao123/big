@@ -14,7 +14,7 @@ public class Sender {
     @Autowired
     private AmqpTemplate amqpTemplate;
 
-    public void sendDirectQueue() {
+    /*public void sendDirectQueue() {
         User user = new User();
         user.setUserId("123456");
         user.setName("张三");
@@ -48,6 +48,6 @@ public class Sender {
         // 因为fanout 交换器不处理路由键，只是简单的将队列绑定到交换器上，
         // 每个发送到交换器的消息都会被转发到与该交换器绑定的所有队列上
         this.amqpTemplate.convertAndSend(RabbitMQConfig.FANOUT_EXCHANGE, "", user);
-    }
+    }*/
 
 }

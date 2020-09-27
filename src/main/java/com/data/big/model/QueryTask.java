@@ -32,7 +32,7 @@ public class QueryTask implements Serializable {
      */
     private Integer status;
     /**
-     * 状态 0 未执行 1已执行
+     * 方法名称
      */
     @Transient
     private String methodName;

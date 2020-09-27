@@ -202,18 +202,26 @@ public class DateUtils {
      * @since 1.0
      */
     public static long pastDays(Date date) {
-       /* // 将指定日期转换为yyyy-MM-dd格式
-        date = DateUtils.parseDate(DateUtils.formatDate(date, DateUtils.DATE_FORMAT));
+        String date1 = DateUtils.getDate(date, "yyyy-MM-dd");
+        // 将指定日期转换为yyyy-MM-dd格式
+        date = DateUtils.parseDate(DateUtils.formatDate(date, DateUtils.DATE_FORMAT), DateUtils.DATE_FORMAT);
         // 当前日期转换为yyyy-MM-dd格式
-        Date currentDate = DateUtils.parseDate(DateUtils.formatDate(new Date(), DateUtils.DATE_FORMAT));
+        Date currentDate = DateUtils.parseDate(DateUtils.formatDate(new Date(), DateUtils.DATE_FORMAT), DateUtils.DATE_FORMAT);
         long t=0;
         if(date!=null&&currentDate!=null){
-            t = (currentDate.getTime() - date.getTime()) / DateUtils.MILLISECONDS_PER_DAY;
+            t = (date.getTime() - currentDate.getTime()) / DateUtils.MILLISECONDS_PER_DAY;
         }
         return t;
+    }
 
-        */
-        return 1L;
+    private static Date parseDate(String formatDate,String format) {
+        Date date=null;
+        try {
+            date=new SimpleDateFormat(format).parse(formatDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return date;
     }
 
     /**

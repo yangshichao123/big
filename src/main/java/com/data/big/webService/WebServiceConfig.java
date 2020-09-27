@@ -29,7 +29,7 @@ public class WebServiceConfig {
     @Bean
     public Endpoint endpoint() {
         EndpointImpl endpoint = new EndpointImpl(springBus(), muWebServiceImpl);
-        endpoint.publish("/mu");
+        endpoint.publish("/big");
         return endpoint;
     }
 }
