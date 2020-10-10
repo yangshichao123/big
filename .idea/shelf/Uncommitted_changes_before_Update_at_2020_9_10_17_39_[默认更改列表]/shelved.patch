@@ -1,0 +1,544 @@
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ArtifactsWorkspaceSettings\">\r\n    <artifacts-to-build>\r\n      <artifact name=\"mu:jar\" />\r\n    </artifacts-to-build>\r\n  </component>\r\n  <component name=\"BranchesTreeState\">\r\n    <expand>\r\n      <path>\r\n        <item name=\"ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n        <item name=\"LOCAL_ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n      </path>\r\n      <path>\r\n        <item name=\"ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n        <item name=\"REMOTE_ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n      </path>\r\n      <path>\r\n        <item name=\"ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n        <item name=\"REMOTE_ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n        <item name=\"GROUP_NODE:origin\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n      </path>\r\n    </expand>\r\n    <select />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"5ee4eaea-9987-4da7-90af-92f8d2734c6b\" name=\"默认更改列表\" comment=\"增加web页面\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/com/data/big/controller/HtmlController.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/com/data/big/controller/HtmlController.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/resources/templates/login.html\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/resources/templates/login.html\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/target/classes/application-dev.yml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/target/classes/application-dev.yml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/target/classes/com/data/big/netty/nettyThread.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/target/classes/com/data/big/netty/nettyThread.class\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/target/classes/com/data/big/service/ServiceNetty.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/target/classes/com/data/big/service/ServiceNetty.class\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/target/classes/com/data/big/task/TimingTask.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/target/classes/com/data/big/task/TimingTask.class\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/target/classes/com/data/big/util/Properties.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/target/classes/com/data/big/util/Properties.class\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Interface\" />\r\n        <option value=\"HTML File\" />\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"PUSH_TAGS\">\r\n      <GitPushTagMode>\r\n        <option name=\"argument\" value=\"--tags\" />\r\n        <option name=\"title\" value=\"All\" />\r\n      </GitPushTagMode>\r\n    </option>\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"MavenImportPreferences\">\r\n    <option name=\"generalSettings\">\r\n      <MavenGeneralSettings>\r\n        <option name=\"userSettingsFile\" value=\"D:\\jarRepository\\settings.xml\" />\r\n      </MavenGeneralSettings>\r\n    </option>\r\n  </component>\r\n  <component name=\"ProjectId\" id=\"1fcrJohSCTJTxUSN6Gh356ycI1C\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\">\r\n    <ConfirmationsSetting value=\"2\" id=\"Add\" />\r\n  </component>\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">\r\n    <property name=\"ASKED_ADD_EXTERNAL_FILES\" value=\"true\" />\r\n    <property name=\"DefaultHtmlFileTemplate\" value=\"HTML File\" />\r\n    <property name=\"RequestMappingsPanelOrder0\" value=\"0\" />\r\n    <property name=\"RequestMappingsPanelOrder1\" value=\"1\" />\r\n    <property name=\"RequestMappingsPanelWidth0\" value=\"75\" />\r\n    <property name=\"RequestMappingsPanelWidth1\" value=\"75\" />\r\n    <property name=\"RunOnceActivity.OpenProjectViewOnStart\" value=\"true\" />\r\n    <property name=\"RunOnceActivity.ShowReadmeOnStart\" value=\"true\" />\r\n    <property name=\"SHARE_PROJECT_CONFIGURATION_FILES\" value=\"true\" />\r\n    <property name=\"WebServerToolWindowFactoryState\" value=\"false\" />\r\n    <property name=\"aspect.path.notification.shown\" value=\"true\" />\r\n    <property name=\"com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp\" value=\"1596526196648\" />\r\n    <property name=\"extract.method.default.visibility\" value=\"private\" />\r\n    <property name=\"last_opened_file_path\" value=\"$PROJECT_DIR$\" />\r\n    <property name=\"node.js.detected.package.eslint\" value=\"true\" />\r\n    <property name=\"node.js.detected.package.tslint\" value=\"true\" />\r\n    <property name=\"node.js.path.for.package.eslint\" value=\"project\" />\r\n    <property name=\"node.js.path.for.package.tslint\" value=\"project\" />\r\n    <property name=\"node.js.selected.package.eslint\" value=\"(autodetect)\" />\r\n    <property name=\"node.js.selected.package.tslint\" value=\"(autodetect)\" />\r\n    <property name=\"nodejs_interpreter_path.stuck_in_default_project\" value=\"undefined stuck path\" />\r\n    <property name=\"nodejs_npm_path_reset_for_default_project\" value=\"true\" />\r\n    <property name=\"nodejs_package_manager_path\" value=\"npm\" />\r\n    <property name=\"project.structure.last.edited\" value=\"Artifacts\" />\r\n    <property name=\"project.structure.proportion\" value=\"0.15\" />\r\n    <property name=\"project.structure.side.proportion\" value=\"0.45833334\" />\r\n    <property name=\"settings.editor.selected.configurable\" value=\"editor.preferences.fonts.default\" />\r\n  </component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"CreateClassDialog.RecentsKey\">\r\n      <recent name=\"com.crcc.mu.service\" />\r\n      <recent name=\"com.crcc.mu.netty\" />\r\n    </key>\r\n    <key name=\"MoveClassesOrPackagesDialog.RECENTS_KEY\">\r\n      <recent name=\"com.crcc.mu.util\" />\r\n    </key>\r\n    <key name=\"CopyFile.RECENT_KEYS\">\r\n      <recent name=\"D:\\workspace\\newIdeaWorkspace\\mu\\src\\main\\resources\\pro\" />\r\n      <recent name=\"D:\\workspace\\newIdeaWorkspace\\mu\\src\\main\\resources\\dev\" />\r\n      <recent name=\"D:\\workspace\\newIdeaWorkspace\\mu\\src\\main\\java\\com\\crcc\\mu\\util\" />\r\n      <recent name=\"D:\\workspace\\newIdeaWorkspace\\mu\\src\\main\\java\\com\\crcc\\mu\\model\" />\r\n      <recent name=\"D:\\workspace\\newIdeaWorkspace\\mu\\lib\" />\r\n    </key>\r\n    <key name=\"CopyClassDialog.RECENTS_KEY\">\r\n      <recent name=\"com.crcc.mu.service.impl\" />\r\n      <recent name=\"com.crcc.mu.controller\" />\r\n      <recent name=\"com.crcc.mu.service\" />\r\n    </key>\r\n    <key name=\"MoveFile.RECENT_KEYS\">\r\n      <recent name=\"D:\\workspace\\newIdeaWorkspace\\mu\\src\\main\\resources\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunManager\" selected=\"Spring Boot.MuApplication \">\r\n    <configuration name=\"AsciiStringToHex\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"com.data.big.util.AsciiStringToHex\" />\r\n      <module name=\"big\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"com.data.big.util.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"CRCUtil\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"com.data.big.util.CRCUtil\" />\r\n      <module name=\"big\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"com.data.big.util.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"MuApplication \" type=\"SpringBootApplicationConfigurationType\" factoryName=\"Spring Boot\">\r\n      <module name=\"big\" />\r\n      <option name=\"SPRING_BOOT_MAIN_CLASS\" value=\"com.data.big.MuApplication\" />\r\n      <option name=\"ALTERNATIVE_JRE_PATH\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <recent_temporary>\r\n      <list>\r\n        <item itemvalue=\"Application.AsciiStringToHex\" />\r\n        <item itemvalue=\"Application.CRCUtil\" />\r\n      </list>\r\n    </recent_temporary>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" BundledDictionaries=\"0\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" Dictionaries=\"0\" CorrectionsLimit=\"5\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" />\r\n  <component name=\"SvnConfiguration\">\r\n    <configuration />\r\n  </component>\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"5ee4eaea-9987-4da7-90af-92f8d2734c6b\" name=\"默认更改列表\" comment=\"\" />\r\n      <created>1596442338053</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1596442338053</updated>\r\n      <workItem from=\"1596442339324\" duration=\"7772000\" />\r\n      <workItem from=\"1596500547668\" duration=\"2057000\" />\r\n      <workItem from=\"1596502645616\" duration=\"14348000\" />\r\n      <workItem from=\"1596528160057\" duration=\"169000\" />\r\n      <workItem from=\"1596530278071\" duration=\"619000\" />\r\n      <workItem from=\"1596531812337\" duration=\"81000\" />\r\n      <workItem from=\"1596531918609\" duration=\"6606000\" />\r\n      <workItem from=\"1596587040555\" duration=\"11261000\" />\r\n      <workItem from=\"1596598342603\" duration=\"9375000\" />\r\n      <workItem from=\"1596619257347\" duration=\"50000\" />\r\n      <workItem from=\"1596619873787\" duration=\"1516000\" />\r\n      <workItem from=\"1596673128824\" duration=\"6348000\" />\r\n      <workItem from=\"1596693999608\" duration=\"16226000\" />\r\n      <workItem from=\"1596759816166\" duration=\"9371000\" />\r\n      <workItem from=\"1597019892890\" duration=\"3724000\" />\r\n      <workItem from=\"1597053741278\" duration=\"2780000\" />\r\n      <workItem from=\"1597105566570\" duration=\"27290000\" />\r\n      <workItem from=\"1597192135248\" duration=\"27376000\" />\r\n      <workItem from=\"1597276778391\" duration=\"10782000\" />\r\n      <workItem from=\"1597304915362\" duration=\"10832000\" />\r\n      <workItem from=\"1597365049654\" duration=\"17999000\" />\r\n      <workItem from=\"1597624173019\" duration=\"1079000\" />\r\n      <workItem from=\"1597710977907\" duration=\"10629000\" />\r\n      <workItem from=\"1597796505453\" duration=\"20490000\" />\r\n      <workItem from=\"1597883350303\" duration=\"5244000\" />\r\n      <workItem from=\"1597888668078\" duration=\"310000\" />\r\n      <workItem from=\"1597888985261\" duration=\"10515000\" />\r\n      <workItem from=\"1597907338711\" duration=\"883000\" />\r\n      <workItem from=\"1597909275484\" duration=\"8956000\" />\r\n      <workItem from=\"1597972799764\" duration=\"7739000\" />\r\n      <workItem from=\"1598229898576\" duration=\"11419000\" />\r\n      <workItem from=\"1598261408829\" duration=\"2459000\" />\r\n      <workItem from=\"1598319186387\" duration=\"12996000\" />\r\n      <workItem from=\"1598401727611\" duration=\"2524000\" />\r\n      <workItem from=\"1598408385385\" duration=\"1870000\" />\r\n      <workItem from=\"1598410325505\" duration=\"443000\" />\r\n      <workItem from=\"1598410789499\" duration=\"17000\" />\r\n      <workItem from=\"1598414972774\" duration=\"13693000\" />\r\n      <workItem from=\"1598487594591\" duration=\"22182000\" />\r\n      <workItem from=\"1598573280823\" duration=\"190000\" />\r\n      <workItem from=\"1598573537675\" duration=\"16713000\" />\r\n      <workItem from=\"1598833511394\" duration=\"28852000\" />\r\n      <workItem from=\"1598920003421\" duration=\"25959000\" />\r\n      <workItem from=\"1599006208921\" duration=\"11518000\" />\r\n      <workItem from=\"1599028169502\" duration=\"12412000\" />\r\n      <workItem from=\"1599092688812\" duration=\"10646000\" />\r\n      <workItem from=\"1599103913755\" duration=\"16432000\" />\r\n      <workItem from=\"1599179095880\" duration=\"13702000\" />\r\n      <workItem from=\"1599438586478\" duration=\"18808000\" />\r\n      <workItem from=\"1599611159121\" duration=\"5301000\" />\r\n      <workItem from=\"1599618565598\" duration=\"10140000\" />\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"增加web页面请求接口\">\r\n      <created>1596526163038</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1596526163038</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"默认更改列表\">\r\n      <created>1599029317436</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1599029317436</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"dd\">\r\n      <created>1599104206699</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1599104206699</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"dd\">\r\n      <created>1599438685330</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1599438685330</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00005\" summary=\"增加web页面\">\r\n      <created>1599643755229</created>\r\n      <option name=\"number\" value=\"00005\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1599643755229</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"6\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"2\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n    <option name=\"oldMeFiltersMigrated\" value=\"true\" />\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <option name=\"ADD_EXTERNAL_FILES_SILENTLY\" value=\"true\" />\r\n    <MESSAGE value=\"增加web页面请求接口\" />\r\n    <MESSAGE value=\"默认更改列表\" />\r\n    <MESSAGE value=\"dd\" />\r\n    <MESSAGE value=\"增加web页面\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"增加web页面\" />\r\n  </component>\r\n  <component name=\"WindowStateProjectService\">\r\n    <state x=\"395\" y=\"91\" key=\"#Inspections\" timestamp=\"1597282732345\">\r\n      <screen x=\"0\" y=\"0\" width=\"1536\" height=\"824\" />\r\n    </state>\r\n    <state x=\"395\" y=\"91\" key=\"#Inspections/0.0.1536.824@0.0.1536.824\" timestamp=\"1597282732345\" />\r\n    <state x=\"361\" y=\"0\" width=\"814\" height=\"824\" key=\"#Intentions\" timestamp=\"1596607381986\">\r\n      <screen x=\"0\" y=\"0\" width=\"1536\" height=\"824\" />\r\n    </state>\r\n    <state x=\"361\" y=\"0\" width=\"814\" height=\"824\" key=\"#Intentions/0.0.1536.824@0.0.1536.824\" timestamp=\"1596607381986\" />\r\n    <state x=\"502\" y=\"235\" key=\"#Notifications\" timestamp=\"1596531173269\">\r\n      <screen x=\"0\" y=\"0\" width=\"1536\" height=\"824\" />\r\n    </state>\r\n    <state x=\"502\" y=\"235\" key=\"#Notifications/0.0.1536.824@0.0.1536.824\" timestamp=\"1596531173269\" />\r\n    <state x=\"179\" y=\"254\" key=\"#SQL_Dialects\" timestamp=\"1597137255031\">\r\n      <screen x=\"0\" y=\"0\" width=\"1536\" height=\"824\" />\r\n    </state>\r\n    <state x=\"179\" y=\"254\" key=\"#SQL_Dialects/0.0.1536.824@0.0.1536.824\" timestamp=\"1597137255031\" />\r\n    <state x=\"223\" y=\"67\" key=\"#com.intellij.execution.impl.EditConfigurationsDialog\" timestamp=\"1599096827165\">\r\n      <screen x=\"0\" y=\"0\" width=\"1536\" height=\"824\" />\r\n    </state>\r\n    <state x=\"223\" y=\"67\" key=\"#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824\" timestamp=\"1599096827165\" />\r\n    <state x=\"619\" y=\"176\" key=\"#com.intellij.ide.util.MemberChooser\" timestamp=\"1599620376286\">\r\n      <screen x=\"0\" y=\"0\" width=\"1536\" height=\"824\" />\r\n    </state>\r\n    <state x=\"619\" y=\"176\" key=\"#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824\" timestamp=\"1599620376286\" />\r\n    <state x=\"806\" y=\"273\" key=\"#com.intellij.ide.util.TreeClassChooserDialog\" timestamp=\"1597220027340\">\r\n      <screen x=\"0\" y=\"0\" width=\"1536\" height=\"824\" />\r\n    </state>\r\n    <state x=\"806\" y=\"273\" key=\"#com.intellij.ide.util.TreeClassChooserDialog/0.0.1536.824@0.0.1536.824\" timestamp=\"1597220027340\" />\r\n    <state x=\"390\" y=\"335\" key=\"#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog\" timestamp=\"1599103228192\">\r\n      <screen x=\"0\" y=\"0\" width=\"1536\" height=\"824\" />\r\n    </state>\r\n    <state x=\"390\" y=\"335\" key=\"#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1536.824@0.0.1536.824\" timestamp=\"1599103228192\" />\r\n    <state x=\"546\" y=\"300\" width=\"448\" height=\"272\" key=\"#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes\" timestamp=\"1598490841892\">\r\n      <screen x=\"0\" y=\"0\" width=\"1536\" height=\"824\" />\r\n    </state>\r\n    <state x=\"546\" y=\"300\" width=\"448\" height=\"272\" key=\"#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1536.824@0.0.1536.824\" timestamp=\"1598490841892\" />\r\n    <state x=\"548\" y=\"292\" key=\"#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages\" timestamp=\"1597918029391\">\r\n      <screen x=\"0\" y=\"0\" width=\"1536\" height=\"824\" />\r\n    </state>\r\n    <state x=\"548\" y=\"292\" key=\"#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages/0.0.1536.824@0.0.1536.824\" timestamp=\"1597918029391\" />\r\n    <state x=\"477\" y=\"226\" key=\"#com.intellij.refactoring.move.moveMembers.MoveMembersDialog\" timestamp=\"1597109137948\">\r\n      <screen x=\"0\" y=\"0\" width=\"1536\" height=\"824\" />\r\n    </state>\r\n    <state x=\"477\" y=\"226\" key=\"#com.intellij.refactoring.move.moveMembers.MoveMembersDialog/0.0.1536.824@0.0.1536.824\" timestamp=\"1597109137948\" />\r\n    <state x=\"487\" y=\"181\" key=\"#com.intellij.refactoring.rename.AutomaticRenamingDialog\" timestamp=\"1597116191887\">\r\n      <screen x=\"0\" y=\"0\" width=\"1536\" height=\"824\" />\r\n    </state>\r\n    <state x=\"487\" y=\"181\" key=\"#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1536.824@0.0.1536.824\" timestamp=\"1597116191887\" />\r\n    <state x=\"499\" y=\"164\" key=\"#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog\" timestamp=\"1598600267830\">\r\n      <screen x=\"0\" y=\"0\" width=\"1536\" height=\"824\" />\r\n    </state>\r\n    <state x=\"499\" y=\"164\" key=\"#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824@0.0.1536.824\" timestamp=\"1598600267830\" />\r\n    <state x=\"499\" y=\"159\" key=\"#com.intellij.refactoring.typeMigration.ui.FailedConversionsDialog\" timestamp=\"1596607750599\">\r\n      <screen x=\"0\" y=\"0\" width=\"1536\" height=\"824\" />\r\n    </state>\r\n    <state x=\"499\" y=\"159\" key=\"#com.intellij.refactoring.typeMigration.ui.FailedConversionsDialog/0.0.1536.824@0.0.1536.824\" timestamp=\"1596607750599\" />\r\n    <state width=\"483\" height=\"466\" key=\"DebuggerActiveHint\" timestamp=\"1599210847169\">\r\n      <screen x=\"0\" y=\"0\" width=\"1536\" height=\"824\" />\r\n    </state>\r\n    <state width=\"483\" height=\"466\" key=\"DebuggerActiveHint/0.0.1536.824@0.0.1536.824\" timestamp=\"1599210847169\" />\r\n    <state x=\"549\" y=\"167\" key=\"FileChooserDialogImpl\" timestamp=\"1599103975535\">\r\n      <screen x=\"0\" y=\"0\" width=\"1536\" height=\"824\" />\r\n    </state>\r\n    <state x=\"549\" y=\"167\" key=\"FileChooserDialogImpl/0.0.1536.824@0.0.1536.824\" timestamp=\"1599103975535\" />\r\n    <state width=\"1493\" height=\"225\" key=\"GridCell.Tab.0.bottom\" timestamp=\"1599645315433\">\r\n      <screen x=\"0\" y=\"0\" width=\"1536\" height=\"824\" />\r\n    </state>\r\n    <state width=\"1493\" height=\"225\" key=\"GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824\" timestamp=\"1599645315433\" />\r\n    <state width=\"1493\" height=\"225\" key=\"GridCell.Tab.0.center\" timestamp=\"1599645315432\">\r\n      <screen x=\"0\" y=\"0\" width=\"1536\" height=\"824\" />\r\n    </state>\r\n    <state width=\"1493\" height=\"225\" key=\"GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824\" timestamp=\"1599645315432\" />\r\n    <state width=\"1493\" height=\"225\" key=\"GridCell.Tab.0.left\" timestamp=\"1599645315432\">\r\n      <screen x=\"0\" y=\"0\" width=\"1536\" height=\"824\" />\r\n    </state>\r\n    <state width=\"1493\" height=\"225\" key=\"GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824\" timestamp=\"1599645315432\" />\r\n    <state width=\"1493\" height=\"225\" key=\"GridCell.Tab.0.right\" timestamp=\"1599645315432\">\r\n      <screen x=\"0\" y=\"0\" width=\"1536\" height=\"824\" />\r\n    </state>\r\n    <state width=\"1493\" height=\"225\" key=\"GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824\" timestamp=\"1599645315432\" />\r\n    <state width=\"1493\" height=\"225\" key=\"GridCell.Tab.1.bottom\" timestamp=\"1599645600184\">\r\n      <screen x=\"0\" y=\"0\" width=\"1536\" height=\"824\" />\r\n    </state>\r\n    <state width=\"1493\" height=\"225\" key=\"GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824\" timestamp=\"1599645600184\" />\r\n    <state width=\"1493\" height=\"225\" key=\"GridCell.Tab.1.center\" timestamp=\"1599645600183\">\r\n      <screen x=\"0\" y=\"0\" width=\"1536\" height=\"824\" />\r\n    </state>\r\n    <state width=\"1493\" height=\"225\" key=\"GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824\" timestamp=\"1599645600183\" />\r\n    <state width=\"1493\" height=\"225\" key=\"GridCell.Tab.1.left\" timestamp=\"1599645600183\">\r\n      <screen x=\"0\" y=\"0\" width=\"1536\" height=\"824\" />\r\n    </state>\r\n    <state width=\"1493\" height=\"225\" key=\"GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824\" timestamp=\"1599645600183\" />\r\n    <state width=\"1493\" height=\"225\" key=\"GridCell.Tab.1.right\" timestamp=\"1599645600183\">\r\n      <screen x=\"0\" y=\"0\" width=\"1536\" height=\"824\" />\r\n    </state>\r\n    <state width=\"1493\" height=\"225\" key=\"GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824\" timestamp=\"1599645600183\" />\r\n    <state width=\"1493\" height=\"225\" key=\"GridCell.Tab.2.bottom\" timestamp=\"1599645315294\">\r\n      <screen x=\"0\" y=\"0\" width=\"1536\" height=\"824\" />\r\n    </state>\r\n    <state width=\"1493\" height=\"225\" key=\"GridCell.Tab.2.bottom/0.0.1536.824@0.0.1536.824\" timestamp=\"1599645315294\" />\r\n    <state width=\"1493\" height=\"225\" key=\"GridCell.Tab.2.center\" timestamp=\"1599645315294\">\r\n      <screen x=\"0\" y=\"0\" width=\"1536\" height=\"824\" />\r\n    </state>\r\n    <state width=\"1493\" height=\"225\" key=\"GridCell.Tab.2.center/0.0.1536.824@0.0.1536.824\" timestamp=\"1599645315294\" />\r\n    <state width=\"1493\" height=\"225\" key=\"GridCell.Tab.2.left\" timestamp=\"1599645315294\">\r\n      <screen x=\"0\" y=\"0\" width=\"1536\" height=\"824\" />\r\n    </state>\r\n    <state width=\"1493\" height=\"225\" key=\"GridCell.Tab.2.left/0.0.1536.824@0.0.1536.824\" timestamp=\"1599645315294\" />\r\n    <state width=\"1493\" height=\"225\" key=\"GridCell.Tab.2.right\" timestamp=\"1599645315294\">\r\n      <screen x=\"0\" y=\"0\" width=\"1536\" height=\"824\" />\r\n    </state>\r\n    <state width=\"1493\" height=\"225\" key=\"GridCell.Tab.2.right/0.0.1536.824@0.0.1536.824\" timestamp=\"1599645315294\" />\r\n    <state x=\"349\" y=\"155\" key=\"IDE.errors.dialog\" timestamp=\"1599029471219\">\r\n      <screen x=\"0\" y=\"0\" width=\"1536\" height=\"824\" />\r\n    </state>\r\n    <state x=\"349\" y=\"155\" key=\"IDE.errors.dialog/0.0.1536.824@0.0.1536.824\" timestamp=\"1599029471219\" />\r\n    <state x=\"583\" y=\"346\" key=\"ReplaceDuplicatesPrompt\" timestamp=\"1598344944665\">\r\n      <screen x=\"0\" y=\"0\" width=\"1536\" height=\"824\" />\r\n    </state>\r\n    <state x=\"583\" y=\"346\" key=\"ReplaceDuplicatesPrompt/0.0.1536.824@0.0.1536.824\" timestamp=\"1598344944665\" />\r\n    <state x=\"22\" y=\"0\" width=\"1457\" height=\"824\" key=\"SettingsEditor\" timestamp=\"1599633543652\">\r\n      <screen x=\"0\" y=\"0\" width=\"1536\" height=\"824\" />\r\n    </state>\r\n    <state x=\"22\" y=\"0\" width=\"1457\" height=\"824\" key=\"SettingsEditor/0.0.1536.824@0.0.1536.824\" timestamp=\"1599633543652\" />\r\n    <state x=\"361\" y=\"145\" key=\"Vcs.Push.Dialog.v2\" timestamp=\"1599643766775\">\r\n      <screen x=\"0\" y=\"0\" width=\"1536\" height=\"824\" />\r\n    </state>\r\n    <state x=\"361\" y=\"145\" key=\"Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824\" timestamp=\"1599643766775\" />\r\n    <state x=\"499\" y=\"172\" key=\"extract.method.dialog\" timestamp=\"1598344932059\">\r\n      <screen x=\"0\" y=\"0\" width=\"1536\" height=\"824\" />\r\n    </state>\r\n    <state x=\"499\" y=\"172\" key=\"extract.method.dialog/0.0.1536.824@0.0.1536.824\" timestamp=\"1598344932059\" />\r\n    <state x=\"375\" y=\"20\" width=\"781\" height=\"804\" key=\"find.popup\" timestamp=\"1598497638943\">\r\n      <screen x=\"0\" y=\"0\" width=\"1536\" height=\"824\" />\r\n    </state>\r\n    <state x=\"375\" y=\"20\" width=\"781\" height=\"804\" key=\"find.popup/0.0.1536.824@0.0.1536.824\" timestamp=\"1598497638943\" />\r\n    <state x=\"473\" y=\"199\" key=\"git4idea.merge.GitPullDialog\" timestamp=\"1596532668270\">\r\n      <screen x=\"0\" y=\"0\" width=\"1536\" height=\"824\" />\r\n    </state>\r\n    <state x=\"473\" y=\"199\" key=\"git4idea.merge.GitPullDialog/0.0.1536.824@0.0.1536.824\" timestamp=\"1596532668270\" />\r\n    <state x=\"561\" y=\"312\" key=\"git4idea.remote.GitConfigureRemotesDialog\" timestamp=\"1599103331153\">\r\n      <screen x=\"0\" y=\"0\" width=\"1536\" height=\"824\" />\r\n    </state>\r\n    <state x=\"561\" y=\"312\" key=\"git4idea.remote.GitConfigureRemotesDialog/0.0.1536.824@0.0.1536.824\" timestamp=\"1599103331153\" />\r\n    <state x=\"178\" y=\"22\" key=\"new project wizard\" timestamp=\"1599617392038\">\r\n      <screen x=\"0\" y=\"0\" width=\"1536\" height=\"824\" />\r\n    </state>\r\n    <state x=\"178\" y=\"22\" key=\"new project wizard/0.0.1536.824@0.0.1536.824\" timestamp=\"1599617392038\" />\r\n    <state x=\"470\" y=\"168\" key=\"refactoring.ChangeSignatureDialog\" timestamp=\"1598865471804\">\r\n      <screen x=\"0\" y=\"0\" width=\"1536\" height=\"824\" />\r\n    </state>\r\n    <state x=\"470\" y=\"168\" key=\"refactoring.ChangeSignatureDialog/0.0.1536.824@0.0.1536.824\" timestamp=\"1598865471804\" />\r\n    <state x=\"425\" y=\"187\" key=\"run.anything.popup\" timestamp=\"1598345447803\">\r\n      <screen x=\"0\" y=\"0\" width=\"1536\" height=\"824\" />\r\n    </state>\r\n    <state x=\"425\" y=\"187\" key=\"run.anything.popup/0.0.1536.824@0.0.1536.824\" timestamp=\"1598345447803\" />\r\n    <state x=\"431\" y=\"145\" width=\"672\" height=\"678\" key=\"search.everywhere.popup\" timestamp=\"1599643736685\">\r\n      <screen x=\"0\" y=\"0\" width=\"1536\" height=\"824\" />\r\n    </state>\r\n    <state x=\"431\" y=\"145\" width=\"672\" height=\"678\" key=\"search.everywhere.popup/0.0.1536.824@0.0.1536.824\" timestamp=\"1599643736685\" />\r\n  </component>\r\n  <component name=\"XDebuggerManager\">\r\n    <breakpoint-manager>\r\n      <breakpoints>\r\n        <line-breakpoint enabled=\"true\" type=\"java-line\">\r\n          <url>file://$PROJECT_DIR$/src/main/java/com/data/big/controller/ControllerTest.java</url>\r\n          <line>331</line>\r\n          <option name=\"timeStamp\" value=\"9\" />\r\n        </line-breakpoint>\r\n        <line-breakpoint enabled=\"true\" type=\"java-line\">\r\n          <url>file://$PROJECT_DIR$/src/main/java/com/data/big/service/impl/ServiceImpl.java</url>\r\n          <line>367</line>\r\n          <option name=\"timeStamp\" value=\"12\" />\r\n        </line-breakpoint>\r\n        <line-breakpoint enabled=\"true\" type=\"java-line\">\r\n          <url>file://$PROJECT_DIR$/src/main/java/com/data/big/service/impl/ServiceImpl.java</url>\r\n          <line>76</line>\r\n          <option name=\"timeStamp\" value=\"17\" />\r\n        </line-breakpoint>\r\n        <line-breakpoint enabled=\"true\" type=\"java-line\">\r\n          <url>file://$PROJECT_DIR$/src/main/java/com/data/big/service/impl/ServiceImpl.java</url>\r\n          <line>117</line>\r\n          <option name=\"timeStamp\" value=\"20\" />\r\n        </line-breakpoint>\r\n        <line-breakpoint enabled=\"true\" type=\"java-line\">\r\n          <url>file://$PROJECT_DIR$/src/main/java/com/data/big/service/impl/ServiceNettyImpl.java</url>\r\n          <line>120</line>\r\n          <option name=\"timeStamp\" value=\"117\" />\r\n        </line-breakpoint>\r\n        <line-breakpoint enabled=\"true\" type=\"java-line\">\r\n          <url>file://$PROJECT_DIR$/src/main/java/com/data/big/service/impl/ServiceNettyImpl.java</url>\r\n          <line>609</line>\r\n          <option name=\"timeStamp\" value=\"118\" />\r\n        </line-breakpoint>\r\n        <line-breakpoint enabled=\"true\" type=\"java-line\">\r\n          <url>file://$PROJECT_DIR$/src/main/java/com/data/big/service/impl/ServiceNettyImpl.java</url>\r\n          <line>90</line>\r\n          <option name=\"timeStamp\" value=\"121\" />\r\n        </line-breakpoint>\r\n      </breakpoints>\r\n    </breakpoint-manager>\r\n    <pin-to-top-manager>\r\n      <pinned-members>\r\n        <PinnedItemInfo typeName=\"java.lang.String\" fieldName=\"value\" />\r\n      </pinned-members>\r\n    </pin-to-top-manager>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/workspace.xml	(revision 49c6dfa66466154af617c68649d1be0ab384a520)
++++ .idea/workspace.xml	(date 1599724007861)
+@@ -25,14 +25,18 @@
+   </component>
+   <component name="ChangeListManager">
+     <list default="true" id="5ee4eaea-9987-4da7-90af-92f8d2734c6b" name="默认更改列表" comment="增加web页面">
++      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/mapper/VideoKilometerMapper.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/model/VideoKilometer.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/main/resources/mapping/VideoKilometerMapper.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/com/data/big/controller/HtmlController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/data/big/controller/HtmlController.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/login.html" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/target/classes/application-dev.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application-dev.yml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/target/classes/com/data/big/netty/nettyThread.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/data/big/netty/nettyThread.class" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/target/classes/com/data/big/service/ServiceNetty.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/data/big/service/ServiceNetty.class" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/target/classes/com/data/big/task/TimingTask.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/data/big/task/TimingTask.class" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/target/classes/com/data/big/util/Properties.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/data/big/util/Properties.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/com/data/big/mapper/WindSpeedAlarmMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/data/big/mapper/WindSpeedAlarmMapper.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/com/data/big/model/WindSpeedAlarm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/data/big/model/WindSpeedAlarm.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/com/data/big/service/impl/ServiceNettyImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/data/big/service/impl/ServiceNettyImpl.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/resources/generatorConfig/generator.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/generatorConfig/generator.properties" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/resources/mapping/WindSpeedAlarmMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapping/WindSpeedAlarmMapper.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/target/classes/com/data/big/StartUp.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/data/big/StartUp.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/target/classes/generatorConfig/generator.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/generatorConfig/generator.properties" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -86,7 +90,7 @@
+     <property name="aspect.path.notification.shown" value="true" />
+     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1596526196648" />
+     <property name="extract.method.default.visibility" value="private" />
+-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
++    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../ideaWorkspace/spring-boot-demo/Spring Boot：使用Rabbit MQ消息队列" />
+     <property name="node.js.detected.package.eslint" value="true" />
+     <property name="node.js.detected.package.tslint" value="true" />
+     <property name="node.js.path.for.package.eslint" value="project" />
+@@ -145,6 +149,19 @@
+       <extension name="coverage">
+         <pattern>
+           <option name="PATTERN" value="com.data.big.util.*" />
++          <option name="ENABLED" value="true" />
++        </pattern>
++      </extension>
++      <method v="2">
++        <option name="Make" enabled="true" />
++      </method>
++    </configuration>
++    <configuration name="StartUp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
++      <option name="MAIN_CLASS_NAME" value="com.data.big.StartUp" />
++      <module name="big" />
++      <extension name="coverage">
++        <pattern>
++          <option name="PATTERN" value="com.data.big.*" />
+           <option name="ENABLED" value="true" />
+         </pattern>
+       </extension>
+@@ -162,6 +179,7 @@
+     </configuration>
+     <recent_temporary>
+       <list>
++        <item itemvalue="Application.StartUp" />
+         <item itemvalue="Application.AsciiStringToHex" />
+         <item itemvalue="Application.CRCUtil" />
+       </list>
+@@ -229,6 +247,8 @@
+       <workItem from="1599438586478" duration="18808000" />
+       <workItem from="1599611159121" duration="5301000" />
+       <workItem from="1599618565598" duration="10140000" />
++      <workItem from="1599697558091" duration="9074000" />
++      <workItem from="1599723739674" duration="268000" />
+     </task>
+     <task id="LOCAL-00001" summary="增加web页面请求接口">
+       <created>1596526163038</created>
+@@ -265,7 +285,14 @@
+       <option name="project" value="LOCAL" />
+       <updated>1599643755229</updated>
+     </task>
+-    <option name="localTasksCounter" value="6" />
++    <task id="LOCAL-00006" summary="增加web页面">
++      <created>1599697596070</created>
++      <option name="number" value="00006" />
++      <option name="presentableId" value="LOCAL-00006" />
++      <option name="project" value="LOCAL" />
++      <updated>1599697596070</updated>
++    </task>
++    <option name="localTasksCounter" value="7" />
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+@@ -304,18 +331,18 @@
+       <screen x="0" y="0" width="1536" height="824" />
+     </state>
+     <state x="502" y="235" key="#Notifications/0.0.1536.824@0.0.1536.824" timestamp="1596531173269" />
+-    <state x="179" y="254" key="#SQL_Dialects" timestamp="1597137255031">
++    <state x="179" y="254" key="#SQL_Dialects" timestamp="1599705515002">
+       <screen x="0" y="0" width="1536" height="824" />
+     </state>
+-    <state x="179" y="254" key="#SQL_Dialects/0.0.1536.824@0.0.1536.824" timestamp="1597137255031" />
++    <state x="179" y="254" key="#SQL_Dialects/0.0.1536.824@0.0.1536.824" timestamp="1599705515002" />
+     <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1599096827165">
+       <screen x="0" y="0" width="1536" height="824" />
+     </state>
+     <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1599096827165" />
+-    <state x="619" y="176" key="#com.intellij.ide.util.MemberChooser" timestamp="1599620376286">
++    <state x="619" y="176" key="#com.intellij.ide.util.MemberChooser" timestamp="1599704867146">
+       <screen x="0" y="0" width="1536" height="824" />
+     </state>
+-    <state x="619" y="176" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1599620376286" />
++    <state x="619" y="176" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1599704867146" />
+     <state x="806" y="273" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1597220027340">
+       <screen x="0" y="0" width="1536" height="824" />
+     </state>
+@@ -352,10 +379,10 @@
+       <screen x="0" y="0" width="1536" height="824" />
+     </state>
+     <state width="483" height="466" key="DebuggerActiveHint/0.0.1536.824@0.0.1536.824" timestamp="1599210847169" />
+-    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1599103975535">
++    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1599719213637">
+       <screen x="0" y="0" width="1536" height="824" />
+     </state>
+-    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1599103975535" />
++    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1599719213637" />
+     <state width="1493" height="225" key="GridCell.Tab.0.bottom" timestamp="1599645315433">
+       <screen x="0" y="0" width="1536" height="824" />
+     </state>
+@@ -416,10 +443,10 @@
+       <screen x="0" y="0" width="1536" height="824" />
+     </state>
+     <state x="22" y="0" width="1457" height="824" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1599633543652" />
+-    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1599643766775">
++    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1599697604489">
+       <screen x="0" y="0" width="1536" height="824" />
+     </state>
+-    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1599643766775" />
++    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1599697604489" />
+     <state x="499" y="172" key="extract.method.dialog" timestamp="1598344932059">
+       <screen x="0" y="0" width="1536" height="824" />
+     </state>
+@@ -478,17 +505,17 @@
+         </line-breakpoint>
+         <line-breakpoint enabled="true" type="java-line">
+           <url>file://$PROJECT_DIR$/src/main/java/com/data/big/service/impl/ServiceNettyImpl.java</url>
+-          <line>120</line>
++          <line>122</line>
+           <option name="timeStamp" value="117" />
+         </line-breakpoint>
+         <line-breakpoint enabled="true" type="java-line">
+           <url>file://$PROJECT_DIR$/src/main/java/com/data/big/service/impl/ServiceNettyImpl.java</url>
+-          <line>609</line>
++          <line>611</line>
+           <option name="timeStamp" value="118" />
+         </line-breakpoint>
+         <line-breakpoint enabled="true" type="java-line">
+           <url>file://$PROJECT_DIR$/src/main/java/com/data/big/service/impl/ServiceNettyImpl.java</url>
+-          <line>90</line>
++          <line>92</line>
+           <option name="timeStamp" value="121" />
+         </line-breakpoint>
+       </breakpoints>
+Index: src/main/java/com/data/big/mapper/WindSpeedAlarmMapper.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.data.big.mapper;\r\n\r\nimport com.data.big.base.BaseMapper;\r\nimport com.data.big.model.WindSpeedAlarm;\r\n\r\npublic interface WindSpeedAlarmMapper extends BaseMapper<WindSpeedAlarm> {\r\n    int insert(WindSpeedAlarm record);\r\n\r\n    int insertSelective(WindSpeedAlarm record);\r\n\r\n    WindSpeedAlarm selectByPrimaryId(String id);\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/java/com/data/big/mapper/WindSpeedAlarmMapper.java	(revision 49c6dfa66466154af617c68649d1be0ab384a520)
++++ src/main/java/com/data/big/mapper/WindSpeedAlarmMapper.java	(date 1599705040458)
+@@ -3,10 +3,19 @@
+ import com.data.big.base.BaseMapper;
+ import com.data.big.model.WindSpeedAlarm;
+ 
++import java.util.List;
++
+ public interface WindSpeedAlarmMapper extends BaseMapper<WindSpeedAlarm> {
+     int insert(WindSpeedAlarm record);
+ 
+     int insertSelective(WindSpeedAlarm record);
+ 
+     WindSpeedAlarm selectByPrimaryId(String id);
++
++    /**
++     * 查询没有添加到任务表里得数据
++     * @param windSpeedAlarm
++     * @return
++     */
++    List<WindSpeedAlarm> selectAllByStatus(WindSpeedAlarm windSpeedAlarm);
+ }
+\ No newline at end of file
+Index: src/main/resources/generatorConfig/generator.properties
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+># jdbc\r\njdbc.driverClass=com.mysql.cj.jdbc.Driver\r\njdbc.url=jdbc:mysql://127.0.0.1:3307/video_bigdata?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&serverTimezone=UTC\r\njdbc.username=root\r\njdbc.password=123456\r\n#生成model包名\r\ntargetModelPackage=com.data.big.model\r\n#映射文件xml 文件夹名\r\ntargetXMLPackage=mapping\r\n#生成dao包名\r\ntargetMapperPackage=com.data.big.mapper\r\n#表名\r\ntableName=wind_speed_alarm\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/resources/generatorConfig/generator.properties	(revision 49c6dfa66466154af617c68649d1be0ab384a520)
++++ src/main/resources/generatorConfig/generator.properties	(date 1599700017448)
+@@ -10,4 +10,4 @@
+ #生成dao包名
+ targetMapperPackage=com.data.big.mapper
+ #表名
+-tableName=wind_speed_alarm
++tableName=video_kilometer
+Index: src/main/java/com/data/big/model/VideoKilometer.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/java/com/data/big/model/VideoKilometer.java	(date 1599700131019)
++++ src/main/java/com/data/big/model/VideoKilometer.java	(date 1599700131019)
+@@ -0,0 +1,98 @@
++package com.data.big.model;
++
++import javax.persistence.Id;
++import javax.persistence.Table;
++import javax.xml.soap.Name;
++import java.io.Serializable;
++@Table(name = "video_kilometer")
++public class VideoKilometer implements Serializable {
++    /**
++     * id
++     */
++    @Id
++    private String id;
++
++    /**
++     * 摄像机编号
++     */
++    private String videoCode;
++
++    /**
++     * 安装类型 1上行 2下行 3室内 4室外
++     */
++    private String installtype;
++
++    /**
++     * 起始公里标
++     */
++    private String startkilometer;
++
++    /**
++     * 结束公里标
++     */
++    private String endkilometer;
++
++    /**
++     * This field was generated by MyBatis Generator.
++     * This field corresponds to the database table video_kilometer
++     *
++     * @mbg.generated Thu Sep 10 09:07:19 CST 2020
++     */
++    private static final long serialVersionUID = 1L;
++
++    public String getId() {
++        return id;
++    }
++
++    public void setId(String id) {
++        this.id = id == null ? null : id.trim();
++    }
++
++    public String getVideoCode() {
++        return videoCode;
++    }
++
++    public void setVideoCode(String videoCode) {
++        this.videoCode = videoCode == null ? null : videoCode.trim();
++    }
++
++    public String getInstalltype() {
++        return installtype;
++    }
++
++    public void setInstalltype(String installtype) {
++        this.installtype = installtype == null ? null : installtype.trim();
++    }
++
++    public String getStartkilometer() {
++        return startkilometer;
++    }
++
++    public void setStartkilometer(String startkilometer) {
++        this.startkilometer = startkilometer == null ? null : startkilometer.trim();
++    }
++
++    public String getEndkilometer() {
++        return endkilometer;
++    }
++
++    public void setEndkilometer(String endkilometer) {
++        this.endkilometer = endkilometer == null ? null : endkilometer.trim();
++    }
++
++    @Override
++    public String toString() {
++        StringBuilder sb = new StringBuilder();
++        sb.append(getClass().getSimpleName());
++        sb.append(" [");
++        sb.append("Hash = ").append(hashCode());
++        sb.append(", id=").append(id);
++        sb.append(", videoCode=").append(videoCode);
++        sb.append(", installtype=").append(installtype);
++        sb.append(", startkilometer=").append(startkilometer);
++        sb.append(", endkilometer=").append(endkilometer);
++        sb.append(", serialVersionUID=").append(serialVersionUID);
++        sb.append("]");
++        return sb.toString();
++    }
++}
+\ No newline at end of file
+Index: src/main/java/com/data/big/model/WindSpeedAlarm.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.data.big.model;\r\n\r\nimport javax.persistence.Id;\r\nimport javax.persistence.Table;\r\nimport java.io.Serializable;\r\nimport java.util.Date;\r\n@Table(name = \"wind_speed_alarm\")\r\npublic class WindSpeedAlarm implements Serializable {\r\n    /**\r\n     * id\r\n     */\r\n    @Id\r\n    private String id;\r\n\r\n    /**\r\n     * 监控单元编码 监控单元公里标，单位m\r\n     */\r\n    private String controlUnitCode;\r\n\r\n    /**\r\n     * 监测点编码 监测点公里标，单位m\r\n     */\r\n    private String checkLocaleCode;\r\n\r\n    /**\r\n     * 报警等级  0x01：一级报警；0x02：二级报警；0x03：三级报警；0x04：四级报警\r\n     */\r\n    private String alarmLevel;\r\n\r\n    /**\r\n     * 报警风速 单位0.1m/s\r\n     */\r\n    private String alarmWindSpeed;\r\n\r\n    /**\r\n     * 报警风向 单位度\r\n     */\r\n    private String alarmWindDirection;\r\n\r\n    /**\r\n     * 风速1 单位0.1m/s\r\n     */\r\n    private String windSpeed1;\r\n\r\n    /**\r\n     * 风向1 单位度\r\n     */\r\n    private String windDirection1;\r\n\r\n    /**\r\n     * 风速2 单位0.1m/s\r\n     */\r\n    private String windSpeed2;\r\n\r\n    /**\r\n     * 风向2 单位度\r\n     */\r\n    private String windDirection2;\r\n\r\n    /**\r\n     * 限速值 单位km/h\r\n     */\r\n    private String speedLimit;\r\n\r\n    /**\r\n     * 限速区段个数 无符号整型\r\n     */\r\n    private String speedLimitSectionNumber;\r\n\r\n    /**\r\n     * 限速区段开始   公里标，单位m\r\n     */\r\n    private String speedLimitSectionBegin;\r\n\r\n    /**\r\n     * 限速区段结束   公里标，单位m\r\n     */\r\n    private String speedLimitSectionEnd;\r\n\r\n    /**\r\n     * 数据长度 影响区间字节长度\r\n     */\r\n    private String dataLength;\r\n\r\n    /**\r\n     * 影响区间  UTF-8编码格式，车站名称~车站名称\r\n     */\r\n    private String influenceInterval;\r\n\r\n    /**\r\n     * 支线编码   默认1代表主线，2…n代表支线\r\n     */\r\n    private String branchLineCode;\r\n\r\n    /**\r\n     * 预留1 精度转换倍率（0.1m/s的倍率），举例：精度为0.1m/s，赋值1，精度为0.01m/s，赋值10\r\n     */\r\n    private String reserve1;\r\n\r\n    /**\r\n     *  预留2 无符号整型，0-999（毫秒）\r\n     */\r\n    private String reserve2;\r\n\r\n    /**\r\n     * 创建时间\r\n     */\r\n    private Date date;\r\n\r\n    /**\r\n     * 报警状态\r\n     */\r\n    private String alarmStatus;\r\n\r\n    /**\r\n     * 报警解除时间\r\n     */\r\n    private Date relieveTime;\r\n\r\n    /**\r\n     * 视频上传状态\r\n     */\r\n    private String videoUpStatus;\r\n\r\n    /**\r\n     * 检测点公里标   k444x888 形式\r\n     */\r\n    private String checkLocaleKilometre;\r\n\r\n    /**\r\n     * 原始数据\r\n     */\r\n    private String data;\r\n\r\n    /**\r\n     * This field was generated by MyBatis Generator.\r\n     * This field corresponds to the database table wind_speed_alarm\r\n     *\r\n     * @mbg.generated Thu Sep 03 09:16:36 CST 2020\r\n     */\r\n    private static final long serialVersionUID = 1L;\r\n\r\n    public String getId() {\r\n        return id;\r\n    }\r\n\r\n    public void setId(String id) {\r\n        this.id = id == null ? null : id.trim();\r\n    }\r\n\r\n    public String getControlUnitCode() {\r\n        return controlUnitCode;\r\n    }\r\n\r\n    public void setControlUnitCode(String controlUnitCode) {\r\n        this.controlUnitCode = controlUnitCode == null ? null : controlUnitCode.trim();\r\n    }\r\n\r\n    public String getCheckLocaleCode() {\r\n        return checkLocaleCode;\r\n    }\r\n\r\n    public void setCheckLocaleCode(String checkLocaleCode) {\r\n        this.checkLocaleCode = checkLocaleCode == null ? null : checkLocaleCode.trim();\r\n    }\r\n\r\n    public String getAlarmLevel() {\r\n        return alarmLevel;\r\n    }\r\n\r\n    public void setAlarmLevel(String alarmLevel) {\r\n        this.alarmLevel = alarmLevel == null ? null : alarmLevel.trim();\r\n    }\r\n\r\n    public String getAlarmWindSpeed() {\r\n        return alarmWindSpeed;\r\n    }\r\n\r\n    public void setAlarmWindSpeed(String alarmWindSpeed) {\r\n        this.alarmWindSpeed = alarmWindSpeed == null ? null : alarmWindSpeed.trim();\r\n    }\r\n\r\n    public String getAlarmWindDirection() {\r\n        return alarmWindDirection;\r\n    }\r\n\r\n    public void setAlarmWindDirection(String alarmWindDirection) {\r\n        this.alarmWindDirection = alarmWindDirection == null ? null : alarmWindDirection.trim();\r\n    }\r\n\r\n    public String getWindSpeed1() {\r\n        return windSpeed1;\r\n    }\r\n\r\n    public void setWindSpeed1(String windSpeed1) {\r\n        this.windSpeed1 = windSpeed1 == null ? null : windSpeed1.trim();\r\n    }\r\n\r\n    public String getWindDirection1() {\r\n        return windDirection1;\r\n    }\r\n\r\n    public void setWindDirection1(String windDirection1) {\r\n        this.windDirection1 = windDirection1 == null ? null : windDirection1.trim();\r\n    }\r\n\r\n    public String getWindSpeed2() {\r\n        return windSpeed2;\r\n    }\r\n\r\n    public void setWindSpeed2(String windSpeed2) {\r\n        this.windSpeed2 = windSpeed2 == null ? null : windSpeed2.trim();\r\n    }\r\n\r\n    public String getWindDirection2() {\r\n        return windDirection2;\r\n    }\r\n\r\n    public void setWindDirection2(String windDirection2) {\r\n        this.windDirection2 = windDirection2 == null ? null : windDirection2.trim();\r\n    }\r\n\r\n    public String getSpeedLimit() {\r\n        return speedLimit;\r\n    }\r\n\r\n    public void setSpeedLimit(String speedLimit) {\r\n        this.speedLimit = speedLimit == null ? null : speedLimit.trim();\r\n    }\r\n\r\n    public String getSpeedLimitSectionNumber() {\r\n        return speedLimitSectionNumber;\r\n    }\r\n\r\n    public void setSpeedLimitSectionNumber(String speedLimitSectionNumber) {\r\n        this.speedLimitSectionNumber = speedLimitSectionNumber == null ? null : speedLimitSectionNumber.trim();\r\n    }\r\n\r\n    public String getSpeedLimitSectionBegin() {\r\n        return speedLimitSectionBegin;\r\n    }\r\n\r\n    public void setSpeedLimitSectionBegin(String speedLimitSectionBegin) {\r\n        this.speedLimitSectionBegin = speedLimitSectionBegin == null ? null : speedLimitSectionBegin.trim();\r\n    }\r\n\r\n    public String getSpeedLimitSectionEnd() {\r\n        return speedLimitSectionEnd;\r\n    }\r\n\r\n    public void setSpeedLimitSectionEnd(String speedLimitSectionEnd) {\r\n        this.speedLimitSectionEnd = speedLimitSectionEnd == null ? null : speedLimitSectionEnd.trim();\r\n    }\r\n\r\n    public String getDataLength() {\r\n        return dataLength;\r\n    }\r\n\r\n    public void setDataLength(String dataLength) {\r\n        this.dataLength = dataLength == null ? null : dataLength.trim();\r\n    }\r\n\r\n    public String getInfluenceInterval() {\r\n        return influenceInterval;\r\n    }\r\n\r\n    public void setInfluenceInterval(String influenceInterval) {\r\n        this.influenceInterval = influenceInterval == null ? null : influenceInterval.trim();\r\n    }\r\n\r\n    public String getBranchLineCode() {\r\n        return branchLineCode;\r\n    }\r\n\r\n    public void setBranchLineCode(String branchLineCode) {\r\n        this.branchLineCode = branchLineCode == null ? null : branchLineCode.trim();\r\n    }\r\n\r\n    public String getReserve1() {\r\n        return reserve1;\r\n    }\r\n\r\n    public void setReserve1(String reserve1) {\r\n        this.reserve1 = reserve1 == null ? null : reserve1.trim();\r\n    }\r\n\r\n    public String getReserve2() {\r\n        return reserve2;\r\n    }\r\n\r\n    public void setReserve2(String reserve2) {\r\n        this.reserve2 = reserve2 == null ? null : reserve2.trim();\r\n    }\r\n\r\n    public Date getDate() {\r\n        return date;\r\n    }\r\n\r\n    public void setDate(Date date) {\r\n        this.date = date;\r\n    }\r\n\r\n    public String getAlarmStatus() {\r\n        return alarmStatus;\r\n    }\r\n\r\n    public void setAlarmStatus(String alarmStatus) {\r\n        this.alarmStatus = alarmStatus == null ? null : alarmStatus.trim();\r\n    }\r\n\r\n    public Date getRelieveTime() {\r\n        return relieveTime;\r\n    }\r\n\r\n    public void setRelieveTime(Date relieveTime) {\r\n        this.relieveTime = relieveTime;\r\n    }\r\n\r\n    public String getVideoUpStatus() {\r\n        return videoUpStatus;\r\n    }\r\n\r\n    public void setVideoUpStatus(String videoUpStatus) {\r\n        this.videoUpStatus = videoUpStatus == null ? null : videoUpStatus.trim();\r\n    }\r\n\r\n    public String getCheckLocaleKilometre() {\r\n        return checkLocaleKilometre;\r\n    }\r\n\r\n    public void setCheckLocaleKilometre(String checkLocaleKilometre) {\r\n        this.checkLocaleKilometre = checkLocaleKilometre == null ? null : checkLocaleKilometre.trim();\r\n    }\r\n\r\n    public String getData() {\r\n        return data;\r\n    }\r\n\r\n    public void setData(String data) {\r\n        this.data = data == null ? null : data.trim();\r\n    }\r\n\r\n    @Override\r\n    public String toString() {\r\n        StringBuilder sb = new StringBuilder();\r\n        sb.append(getClass().getSimpleName());\r\n        sb.append(\" [\");\r\n        sb.append(\"Hash = \").append(hashCode());\r\n        sb.append(\", id=\").append(id);\r\n        sb.append(\", controlUnitCode=\").append(controlUnitCode);\r\n        sb.append(\", checkLocaleCode=\").append(checkLocaleCode);\r\n        sb.append(\", alarmLevel=\").append(alarmLevel);\r\n        sb.append(\", alarmWindSpeed=\").append(alarmWindSpeed);\r\n        sb.append(\", alarmWindDirection=\").append(alarmWindDirection);\r\n        sb.append(\", windSpeed1=\").append(windSpeed1);\r\n        sb.append(\", windDirection1=\").append(windDirection1);\r\n        sb.append(\", windSpeed2=\").append(windSpeed2);\r\n        sb.append(\", windDirection2=\").append(windDirection2);\r\n        sb.append(\", speedLimit=\").append(speedLimit);\r\n        sb.append(\", speedLimitSectionNumber=\").append(speedLimitSectionNumber);\r\n        sb.append(\", speedLimitSectionBegin=\").append(speedLimitSectionBegin);\r\n        sb.append(\", speedLimitSectionEnd=\").append(speedLimitSectionEnd);\r\n        sb.append(\", dataLength=\").append(dataLength);\r\n        sb.append(\", influenceInterval=\").append(influenceInterval);\r\n        sb.append(\", branchLineCode=\").append(branchLineCode);\r\n        sb.append(\", reserve1=\").append(reserve1);\r\n        sb.append(\", reserve2=\").append(reserve2);\r\n        sb.append(\", date=\").append(date);\r\n        sb.append(\", alarmStatus=\").append(alarmStatus);\r\n        sb.append(\", relieveTime=\").append(relieveTime);\r\n        sb.append(\", videoUpStatus=\").append(videoUpStatus);\r\n        sb.append(\", checkLocaleKilometre=\").append(checkLocaleKilometre);\r\n        sb.append(\", data=\").append(data);\r\n        sb.append(\", serialVersionUID=\").append(serialVersionUID);\r\n        sb.append(\"]\");\r\n        return sb.toString();\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/java/com/data/big/model/WindSpeedAlarm.java	(revision 49c6dfa66466154af617c68649d1be0ab384a520)
++++ src/main/java/com/data/big/model/WindSpeedAlarm.java	(date 1599704868933)
+@@ -2,6 +2,7 @@
+ 
+ import javax.persistence.Id;
+ import javax.persistence.Table;
++import javax.persistence.Transient;
+ import java.io.Serializable;
+ import java.util.Date;
+ @Table(name = "wind_speed_alarm")
+@@ -131,6 +132,27 @@
+      * 原始数据
+      */
+     private String data;
++    /**
++     * 开始时间
++     */
++    @Transient
++    private String startTime;
++    /**
++     * 结束时间
++     */
++    @Transient
++    private String endTime;
++    /**
++     * tableName
++     */
++    @Transient
++    private String tableName;
++    /**
++     * 摄像机code
++     */
++    @Transient
++    private String videoCode;
++
+ 
+     /**
+      * This field was generated by MyBatis Generator.
+@@ -140,6 +162,42 @@
+      */
+     private static final long serialVersionUID = 1L;
+ 
++    public String getStartTime() {
++        return startTime;
++    }
++
++    public void setStartTime(String startTime) {
++        this.startTime = startTime;
++    }
++
++    public String getEndTime() {
++        return endTime;
++    }
++
++    public void setEndTime(String endTime) {
++        this.endTime = endTime;
++    }
++
++    public String getTableName() {
++        return tableName;
++    }
++
++    public void setTableName(String tableName) {
++        this.tableName = tableName;
++    }
++
++    public String getVideoCode() {
++        return videoCode;
++    }
++
++    public void setVideoCode(String videoCode) {
++        this.videoCode = videoCode;
++    }
++
++    public static long getSerialVersionUID() {
++        return serialVersionUID;
++    }
++
+     public String getId() {
+         return id;
+     }
+Index: src/main/resources/mapping/VideoKilometerMapper.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/resources/mapping/VideoKilometerMapper.xml	(date 1599700154477)
++++ src/main/resources/mapping/VideoKilometerMapper.xml	(date 1599700154477)
+@@ -0,0 +1,63 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
++<mapper namespace="com.data.big.mapper.VideoKilometerMapper">
++  <resultMap id="BaseResultMap" type="com.data.big.model.VideoKilometer">
++    <id column="id" jdbcType="VARCHAR" property="id" />
++    <result column="video_code" jdbcType="VARCHAR" property="videoCode" />
++    <result column="installType" jdbcType="VARCHAR" property="installtype" />
++    <result column="startKilometer" jdbcType="VARCHAR" property="startkilometer" />
++    <result column="endKilometer" jdbcType="VARCHAR" property="endkilometer" />
++  </resultMap>
++  <sql id="Base_Column_List">
++    id, video_code, installType, startKilometer, endKilometer
++  </sql>
++  <select id="selectByPrimaryId" parameterType="java.lang.String" resultMap="BaseResultMap">
++    select 
++    <include refid="Base_Column_List" />
++    from video_kilometer
++    where id = #{id,jdbcType=VARCHAR}
++  </select>
++  <insert id="insert" parameterType="com.data.big.model.VideoKilometer">
++    insert into video_kilometer (id, video_code, installType, 
++      startKilometer, endKilometer)
++    values (#{id,jdbcType=VARCHAR}, #{videoCode,jdbcType=VARCHAR}, #{installtype,jdbcType=VARCHAR}, 
++      #{startkilometer,jdbcType=VARCHAR}, #{endkilometer,jdbcType=VARCHAR})
++  </insert>
++  <insert id="insertSelective" parameterType="com.data.big.model.VideoKilometer">
++    insert into video_kilometer
++    <trim prefix="(" suffix=")" suffixOverrides=",">
++      <if test="id != null">
++        id,
++      </if>
++      <if test="videoCode != null">
++        video_code,
++      </if>
++      <if test="installtype != null">
++        installType,
++      </if>
++      <if test="startkilometer != null">
++        startKilometer,
++      </if>
++      <if test="endkilometer != null">
++        endKilometer,
++      </if>
++    </trim>
++    <trim prefix="values (" suffix=")" suffixOverrides=",">
++      <if test="id != null">
++        #{id,jdbcType=VARCHAR},
++      </if>
++      <if test="videoCode != null">
++        #{videoCode,jdbcType=VARCHAR},
++      </if>
++      <if test="installtype != null">
++        #{installtype,jdbcType=VARCHAR},
++      </if>
++      <if test="startkilometer != null">
++        #{startkilometer,jdbcType=VARCHAR},
++      </if>
++      <if test="endkilometer != null">
++        #{endkilometer,jdbcType=VARCHAR},
++      </if>
++    </trim>
++  </insert>
++</mapper>
+\ No newline at end of file
+Index: target/classes/generatorConfig/generator.properties
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+># jdbc\r\njdbc.driverClass=com.mysql.cj.jdbc.Driver\r\njdbc.url=jdbc:mysql://127.0.0.1:3307/video_bigdata?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&serverTimezone=UTC\r\njdbc.username=root\r\njdbc.password=123456\r\n#生成model包名\r\ntargetModelPackage=com.data.big.model\r\n#映射文件xml 文件夹名\r\ntargetXMLPackage=mapping\r\n#生成dao包名\r\ntargetMapperPackage=com.data.big.mapper\r\n#表名\r\ntableName=wind_speed_alarm\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- target/classes/generatorConfig/generator.properties	(revision 49c6dfa66466154af617c68649d1be0ab384a520)
++++ target/classes/generatorConfig/generator.properties	(date 1599700017448)
+@@ -10,4 +10,4 @@
+ #生成dao包名
+ targetMapperPackage=com.data.big.mapper
+ #表名
+-tableName=wind_speed_alarm
++tableName=video_kilometer
+Index: src/main/resources/mapping/WindSpeedAlarmMapper.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<!DOCTYPE mapper PUBLIC \"-//mybatis.org//DTD Mapper 3.0//EN\" \"http://mybatis.org/dtd/mybatis-3-mapper.dtd\">\r\n<mapper namespace=\"com.data.big.mapper.WindSpeedAlarmMapper\">\r\n  <resultMap id=\"BaseResultMap\" type=\"com.data.big.model.WindSpeedAlarm\">\r\n    <id column=\"id\" jdbcType=\"VARCHAR\" property=\"id\" />\r\n    <result column=\"control_unit_code\" jdbcType=\"VARCHAR\" property=\"controlUnitCode\" />\r\n    <result column=\"check_locale_code\" jdbcType=\"VARCHAR\" property=\"checkLocaleCode\" />\r\n    <result column=\"alarm_level\" jdbcType=\"VARCHAR\" property=\"alarmLevel\" />\r\n    <result column=\"alarm_wind_speed\" jdbcType=\"VARCHAR\" property=\"alarmWindSpeed\" />\r\n    <result column=\"alarm_wind_direction\" jdbcType=\"VARCHAR\" property=\"alarmWindDirection\" />\r\n    <result column=\"wind_speed1\" jdbcType=\"VARCHAR\" property=\"windSpeed1\" />\r\n    <result column=\"wind_direction1\" jdbcType=\"VARCHAR\" property=\"windDirection1\" />\r\n    <result column=\"wind_speed2\" jdbcType=\"VARCHAR\" property=\"windSpeed2\" />\r\n    <result column=\"wind_direction2\" jdbcType=\"VARCHAR\" property=\"windDirection2\" />\r\n    <result column=\"speed_limit\" jdbcType=\"VARCHAR\" property=\"speedLimit\" />\r\n    <result column=\"speed_limit_section_number\" jdbcType=\"VARCHAR\" property=\"speedLimitSectionNumber\" />\r\n    <result column=\"speed_limit_section_begin\" jdbcType=\"VARCHAR\" property=\"speedLimitSectionBegin\" />\r\n    <result column=\"speed_limit_section_end\" jdbcType=\"VARCHAR\" property=\"speedLimitSectionEnd\" />\r\n    <result column=\"data_length\" jdbcType=\"VARCHAR\" property=\"dataLength\" />\r\n    <result column=\"Influence_interval\" jdbcType=\"VARCHAR\" property=\"influenceInterval\" />\r\n    <result column=\"branch_line_code\" jdbcType=\"VARCHAR\" property=\"branchLineCode\" />\r\n    <result column=\"reserve1\" jdbcType=\"VARCHAR\" property=\"reserve1\" />\r\n    <result column=\"reserve2\" jdbcType=\"VARCHAR\" property=\"reserve2\" />\r\n    <result column=\"date\" jdbcType=\"TIMESTAMP\" property=\"date\" />\r\n    <result column=\"alarm_status\" jdbcType=\"VARCHAR\" property=\"alarmStatus\" />\r\n    <result column=\"relieve_time\" jdbcType=\"TIMESTAMP\" property=\"relieveTime\" />\r\n    <result column=\"video_up_status\" jdbcType=\"VARCHAR\" property=\"videoUpStatus\" />\r\n    <result column=\"check_locale_kilometre\" jdbcType=\"VARCHAR\" property=\"checkLocaleKilometre\" />\r\n  </resultMap>\r\n  <resultMap extends=\"BaseResultMap\" id=\"ResultMapWithBLOBs\" type=\"com.data.big.model.WindSpeedAlarm\">\r\n    <result column=\"data\" jdbcType=\"LONGVARCHAR\" property=\"data\" />\r\n  </resultMap>\r\n  <sql id=\"Base_Column_List\">\r\n    id, control_unit_code, check_locale_code, alarm_level, alarm_wind_speed, alarm_wind_direction, \r\n    wind_speed1, wind_direction1, wind_speed2, wind_direction2, speed_limit, speed_limit_section_number, \r\n    speed_limit_section_begin, speed_limit_section_end, data_length, Influence_interval, \r\n    branch_line_code, reserve1, reserve2, `date`, alarm_status, relieve_time, video_up_status, \r\n    check_locale_kilometre\r\n  </sql>\r\n  <sql id=\"Blob_Column_List\">\r\n    `data`\r\n  </sql>\r\n  <select id=\"selectByPrimaryId\" parameterType=\"java.lang.String\" resultMap=\"ResultMapWithBLOBs\">\r\n    select \r\n    <include refid=\"Base_Column_List\" />\r\n    ,\r\n    <include refid=\"Blob_Column_List\" />\r\n    from wind_speed_alarm\r\n    where id = #{id,jdbcType=VARCHAR}\r\n  </select>\r\n  <insert id=\"insert\" parameterType=\"com.data.big.model.WindSpeedAlarm\">\r\n    insert into wind_speed_alarm (id, control_unit_code, check_locale_code, \r\n      alarm_level, alarm_wind_speed, alarm_wind_direction, \r\n      wind_speed1, wind_direction1, wind_speed2, \r\n      wind_direction2, speed_limit, speed_limit_section_number, \r\n      speed_limit_section_begin, speed_limit_section_end, \r\n      data_length, Influence_interval, branch_line_code, \r\n      reserve1, reserve2, `date`, \r\n      alarm_status, relieve_time, video_up_status, \r\n      check_locale_kilometre, `data`)\r\n    values (#{id,jdbcType=VARCHAR}, #{controlUnitCode,jdbcType=VARCHAR}, #{checkLocaleCode,jdbcType=VARCHAR}, \r\n      #{alarmLevel,jdbcType=VARCHAR}, #{alarmWindSpeed,jdbcType=VARCHAR}, #{alarmWindDirection,jdbcType=VARCHAR}, \r\n      #{windSpeed1,jdbcType=VARCHAR}, #{windDirection1,jdbcType=VARCHAR}, #{windSpeed2,jdbcType=VARCHAR}, \r\n      #{windDirection2,jdbcType=VARCHAR}, #{speedLimit,jdbcType=VARCHAR}, #{speedLimitSectionNumber,jdbcType=VARCHAR}, \r\n      #{speedLimitSectionBegin,jdbcType=VARCHAR}, #{speedLimitSectionEnd,jdbcType=VARCHAR}, \r\n      #{dataLength,jdbcType=VARCHAR}, #{influenceInterval,jdbcType=VARCHAR}, #{branchLineCode,jdbcType=VARCHAR}, \r\n      #{reserve1,jdbcType=VARCHAR}, #{reserve2,jdbcType=VARCHAR}, #{date,jdbcType=TIMESTAMP}, \r\n      #{alarmStatus,jdbcType=VARCHAR}, #{relieveTime,jdbcType=TIMESTAMP}, #{videoUpStatus,jdbcType=VARCHAR}, \r\n      #{checkLocaleKilometre,jdbcType=VARCHAR}, #{data,jdbcType=LONGVARCHAR})\r\n  </insert>\r\n  <insert id=\"insertSelective\" parameterType=\"com.data.big.model.WindSpeedAlarm\">\r\n    insert into wind_speed_alarm\r\n    <trim prefix=\"(\" suffix=\")\" suffixOverrides=\",\">\r\n      <if test=\"id != null\">\r\n        id,\r\n      </if>\r\n      <if test=\"controlUnitCode != null\">\r\n        control_unit_code,\r\n      </if>\r\n      <if test=\"checkLocaleCode != null\">\r\n        check_locale_code,\r\n      </if>\r\n      <if test=\"alarmLevel != null\">\r\n        alarm_level,\r\n      </if>\r\n      <if test=\"alarmWindSpeed != null\">\r\n        alarm_wind_speed,\r\n      </if>\r\n      <if test=\"alarmWindDirection != null\">\r\n        alarm_wind_direction,\r\n      </if>\r\n      <if test=\"windSpeed1 != null\">\r\n        wind_speed1,\r\n      </if>\r\n      <if test=\"windDirection1 != null\">\r\n        wind_direction1,\r\n      </if>\r\n      <if test=\"windSpeed2 != null\">\r\n        wind_speed2,\r\n      </if>\r\n      <if test=\"windDirection2 != null\">\r\n        wind_direction2,\r\n      </if>\r\n      <if test=\"speedLimit != null\">\r\n        speed_limit,\r\n      </if>\r\n      <if test=\"speedLimitSectionNumber != null\">\r\n        speed_limit_section_number,\r\n      </if>\r\n      <if test=\"speedLimitSectionBegin != null\">\r\n        speed_limit_section_begin,\r\n      </if>\r\n      <if test=\"speedLimitSectionEnd != null\">\r\n        speed_limit_section_end,\r\n      </if>\r\n      <if test=\"dataLength != null\">\r\n        data_length,\r\n      </if>\r\n      <if test=\"influenceInterval != null\">\r\n        Influence_interval,\r\n      </if>\r\n      <if test=\"branchLineCode != null\">\r\n        branch_line_code,\r\n      </if>\r\n      <if test=\"reserve1 != null\">\r\n        reserve1,\r\n      </if>\r\n      <if test=\"reserve2 != null\">\r\n        reserve2,\r\n      </if>\r\n      <if test=\"date != null\">\r\n        `date`,\r\n      </if>\r\n      <if test=\"alarmStatus != null\">\r\n        alarm_status,\r\n      </if>\r\n      <if test=\"relieveTime != null\">\r\n        relieve_time,\r\n      </if>\r\n      <if test=\"videoUpStatus != null\">\r\n        video_up_status,\r\n      </if>\r\n      <if test=\"checkLocaleKilometre != null\">\r\n        check_locale_kilometre,\r\n      </if>\r\n      <if test=\"data != null\">\r\n        `data`,\r\n      </if>\r\n    </trim>\r\n    <trim prefix=\"values (\" suffix=\")\" suffixOverrides=\",\">\r\n      <if test=\"id != null\">\r\n        #{id,jdbcType=VARCHAR},\r\n      </if>\r\n      <if test=\"controlUnitCode != null\">\r\n        #{controlUnitCode,jdbcType=VARCHAR},\r\n      </if>\r\n      <if test=\"checkLocaleCode != null\">\r\n        #{checkLocaleCode,jdbcType=VARCHAR},\r\n      </if>\r\n      <if test=\"alarmLevel != null\">\r\n        #{alarmLevel,jdbcType=VARCHAR},\r\n      </if>\r\n      <if test=\"alarmWindSpeed != null\">\r\n        #{alarmWindSpeed,jdbcType=VARCHAR},\r\n      </if>\r\n      <if test=\"alarmWindDirection != null\">\r\n        #{alarmWindDirection,jdbcType=VARCHAR},\r\n      </if>\r\n      <if test=\"windSpeed1 != null\">\r\n        #{windSpeed1,jdbcType=VARCHAR},\r\n      </if>\r\n      <if test=\"windDirection1 != null\">\r\n        #{windDirection1,jdbcType=VARCHAR},\r\n      </if>\r\n      <if test=\"windSpeed2 != null\">\r\n        #{windSpeed2,jdbcType=VARCHAR},\r\n      </if>\r\n      <if test=\"windDirection2 != null\">\r\n        #{windDirection2,jdbcType=VARCHAR},\r\n      </if>\r\n      <if test=\"speedLimit != null\">\r\n        #{speedLimit,jdbcType=VARCHAR},\r\n      </if>\r\n      <if test=\"speedLimitSectionNumber != null\">\r\n        #{speedLimitSectionNumber,jdbcType=VARCHAR},\r\n      </if>\r\n      <if test=\"speedLimitSectionBegin != null\">\r\n        #{speedLimitSectionBegin,jdbcType=VARCHAR},\r\n      </if>\r\n      <if test=\"speedLimitSectionEnd != null\">\r\n        #{speedLimitSectionEnd,jdbcType=VARCHAR},\r\n      </if>\r\n      <if test=\"dataLength != null\">\r\n        #{dataLength,jdbcType=VARCHAR},\r\n      </if>\r\n      <if test=\"influenceInterval != null\">\r\n        #{influenceInterval,jdbcType=VARCHAR},\r\n      </if>\r\n      <if test=\"branchLineCode != null\">\r\n        #{branchLineCode,jdbcType=VARCHAR},\r\n      </if>\r\n      <if test=\"reserve1 != null\">\r\n        #{reserve1,jdbcType=VARCHAR},\r\n      </if>\r\n      <if test=\"reserve2 != null\">\r\n        #{reserve2,jdbcType=VARCHAR},\r\n      </if>\r\n      <if test=\"date != null\">\r\n        #{date,jdbcType=TIMESTAMP},\r\n      </if>\r\n      <if test=\"alarmStatus != null\">\r\n        #{alarmStatus,jdbcType=VARCHAR},\r\n      </if>\r\n      <if test=\"relieveTime != null\">\r\n        #{relieveTime,jdbcType=TIMESTAMP},\r\n      </if>\r\n      <if test=\"videoUpStatus != null\">\r\n        #{videoUpStatus,jdbcType=VARCHAR},\r\n      </if>\r\n      <if test=\"checkLocaleKilometre != null\">\r\n        #{checkLocaleKilometre,jdbcType=VARCHAR},\r\n      </if>\r\n      <if test=\"data != null\">\r\n        #{data,jdbcType=LONGVARCHAR},\r\n      </if>\r\n    </trim>\r\n  </insert>\r\n\r\n</mapper>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/resources/mapping/WindSpeedAlarmMapper.xml	(revision 49c6dfa66466154af617c68649d1be0ab384a520)
++++ src/main/resources/mapping/WindSpeedAlarmMapper.xml	(date 1599706172222)
+@@ -26,6 +26,10 @@
+     <result column="relieve_time" jdbcType="TIMESTAMP" property="relieveTime" />
+     <result column="video_up_status" jdbcType="VARCHAR" property="videoUpStatus" />
+     <result column="check_locale_kilometre" jdbcType="VARCHAR" property="checkLocaleKilometre" />
++    <result column="startTime" jdbcType="VARCHAR" property="startTime" />
++    <result column="endTime" jdbcType="VARCHAR" property="endTime" />
++    <result column="tableName" jdbcType="VARCHAR" property="tableName" />
++    <result column="video_code" jdbcType="VARCHAR" property="videoCode" />
+   </resultMap>
+   <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.data.big.model.WindSpeedAlarm">
+     <result column="data" jdbcType="LONGVARCHAR" property="data" />
+@@ -47,6 +51,29 @@
+     <include refid="Blob_Column_List" />
+     from wind_speed_alarm
+     where id = #{id,jdbcType=VARCHAR}
++  </select>
++  <select id="selectAllByStatus" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
++    SELECT v.video_code,ws.startTime,ws.endTime,ws.tableName,ws.id 
++    from (
++      SELECT w.id id,w.date startTime,w.relieve_time endTime,w.check_locale_code localeCode ,"wind" tableName
++      from wind_speed_alarm w where w.alarm_status='1' and w.video_up_status='0'
++      UNION ALL
++      SELECT r.id id,r.date startTime,r.relieve_time endTime,r.check_locale_code localeCode ,"rain" tableName
++      from rain_alarm r where r.alarm_status='1' and r.video_up_status='0'
++
++      UNION ALL
++      SELECT s.id id,s.date startTime,s.relieve_time endTime,s.check_locale_code localeCode ,"snow" tableName
++      from snow_alarm s where s.alarm_status='1' and s.video_up_status='0'
++      UNION ALL
++      SELECT f.id id,f.date startTime,f.relieve_time endTime,f.check_locale_code localeCode ,"foreign" tableName
++      from foreign_body_alarm f where f.alarm_status='1' and f.video_up_status='0'
++    ) ws
++    join
++    (
++    SELECT replace(replace(vk.startKilometer,'K',''),'+','') startK,replace(replace(vk.endKilometer,'K',''),'+','') endK ,vk.video_code
++    from video_kilometer vk
++    ) v
++    on  ws.localeCode >=v.startK and ws.localeCode &lt; =v.endK;
+   </select>
+   <insert id="insert" parameterType="com.data.big.model.WindSpeedAlarm">
+     insert into wind_speed_alarm (id, control_unit_code, check_locale_code, 

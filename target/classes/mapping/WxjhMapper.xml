@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.data.big.mapper.WxjhMapper">
+  <resultMap id="BaseResultMap" type="com.data.big.model.Wxjh">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="bzdwmc" jdbcType="VARCHAR" property="bzdwmc" />
+    <result column="zylx" jdbcType="VARCHAR" property="zylx" />
+    <result column="zydj" jdbcType="VARCHAR" property="zydj" />
+    <result column="zyxm" jdbcType="VARCHAR" property="zyxm" />
+    <result column="zyrq" jdbcType="VARCHAR" property="zyrq" />
+    <result column="zysd" jdbcType="VARCHAR" property="zysd" />
+    <result column="xm" jdbcType="VARCHAR" property="xm" />
+    <result column="xb" jdbcType="VARCHAR" property="xb" />
+    <result column="qschzm" jdbcType="VARCHAR" property="qschzm" />
+    <result column="zzchzm" jdbcType="VARCHAR" property="zzchzm" />
+    <result column="zyqslc" jdbcType="VARCHAR" property="zyqslc" />
+    <result column="zyzzlc" jdbcType="VARCHAR" property="zyzzlc" />
+    <result column="banci" jdbcType="VARCHAR" property="banci" />
+    <result column="zzfhr" jdbcType="VARCHAR" property="zzfhr" />
+    <result column="gdfhr" jdbcType="VARCHAR" property="gdfhr" />
+    <result column="yffhr" jdbcType="VARCHAR" property="yffhr" />
+    <result column="dbr" jdbcType="VARCHAR" property="dbr" />
+    <result column="sbztw" jdbcType="VARCHAR" property="sbztw" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, bzdwmc, zylx, zydj, zyxm, zyrq, zysd, xm, xb, qschzm, zzchzm, zyqslc, zyzzlc, 
+    banci, zzfhr, gdfhr, yffhr, dbr, sbztw
+  </sql>
+  <select id="selectByPrimaryId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from wxjh
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <insert id="insert" parameterType="com.data.big.model.Wxjh">
+    insert into wxjh (id, bzdwmc, zylx, 
+      zydj, zyxm, zyrq, zysd, 
+      xm, xb, qschzm, zzchzm, 
+      zyqslc, zyzzlc, banci, 
+      zzfhr, gdfhr, yffhr, 
+      dbr, sbztw)
+    values (#{id,jdbcType=VARCHAR}, #{bzdwmc,jdbcType=VARCHAR}, #{zylx,jdbcType=VARCHAR}, 
+      #{zydj,jdbcType=VARCHAR}, #{zyxm,jdbcType=VARCHAR}, #{zyrq,jdbcType=VARCHAR}, #{zysd,jdbcType=VARCHAR}, 
+      #{xm,jdbcType=VARCHAR}, #{xb,jdbcType=VARCHAR}, #{qschzm,jdbcType=VARCHAR}, #{zzchzm,jdbcType=VARCHAR}, 
+      #{zyqslc,jdbcType=VARCHAR}, #{zyzzlc,jdbcType=VARCHAR}, #{banci,jdbcType=VARCHAR}, 
+      #{zzfhr,jdbcType=VARCHAR}, #{gdfhr,jdbcType=VARCHAR}, #{yffhr,jdbcType=VARCHAR}, 
+      #{dbr,jdbcType=VARCHAR}, #{sbztw,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.data.big.model.Wxjh">
+    insert into wxjh
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="bzdwmc != null">
+        bzdwmc,
+      </if>
+      <if test="zylx != null">
+        zylx,
+      </if>
+      <if test="zydj != null">
+        zydj,
+      </if>
+      <if test="zyxm != null">
+        zyxm,
+      </if>
+      <if test="zyrq != null">
+        zyrq,
+      </if>
+      <if test="zysd != null">
+        zysd,
+      </if>
+      <if test="xm != null">
+        xm,
+      </if>
+      <if test="xb != null">
+        xb,
+      </if>
+      <if test="qschzm != null">
+        qschzm,
+      </if>
+      <if test="zzchzm != null">
+        zzchzm,
+      </if>
+      <if test="zyqslc != null">
+        zyqslc,
+      </if>
+      <if test="zyzzlc != null">
+        zyzzlc,
+      </if>
+      <if test="banci != null">
+        banci,
+      </if>
+      <if test="zzfhr != null">
+        zzfhr,
+      </if>
+      <if test="gdfhr != null">
+        gdfhr,
+      </if>
+      <if test="yffhr != null">
+        yffhr,
+      </if>
+      <if test="dbr != null">
+        dbr,
+      </if>
+      <if test="sbztw != null">
+        sbztw,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="bzdwmc != null">
+        #{bzdwmc,jdbcType=VARCHAR},
+      </if>
+      <if test="zylx != null">
+        #{zylx,jdbcType=VARCHAR},
+      </if>
+      <if test="zydj != null">
+        #{zydj,jdbcType=VARCHAR},
+      </if>
+      <if test="zyxm != null">
+        #{zyxm,jdbcType=VARCHAR},
+      </if>
+      <if test="zyrq != null">
+        #{zyrq,jdbcType=VARCHAR},
+      </if>
+      <if test="zysd != null">
+        #{zysd,jdbcType=VARCHAR},
+      </if>
+      <if test="xm != null">
+        #{xm,jdbcType=VARCHAR},
+      </if>
+      <if test="xb != null">
+        #{xb,jdbcType=VARCHAR},
+      </if>
+      <if test="qschzm != null">
+        #{qschzm,jdbcType=VARCHAR},
+      </if>
+      <if test="zzchzm != null">
+        #{zzchzm,jdbcType=VARCHAR},
+      </if>
+      <if test="zyqslc != null">
+        #{zyqslc,jdbcType=VARCHAR},
+      </if>
+      <if test="zyzzlc != null">
+        #{zyzzlc,jdbcType=VARCHAR},
+      </if>
+      <if test="banci != null">
+        #{banci,jdbcType=VARCHAR},
+      </if>
+      <if test="zzfhr != null">
+        #{zzfhr,jdbcType=VARCHAR},
+      </if>
+      <if test="gdfhr != null">
+        #{gdfhr,jdbcType=VARCHAR},
+      </if>
+      <if test="yffhr != null">
+        #{yffhr,jdbcType=VARCHAR},
+      </if>
+      <if test="dbr != null">
+        #{dbr,jdbcType=VARCHAR},
+      </if>
+      <if test="sbztw != null">
+        #{sbztw,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

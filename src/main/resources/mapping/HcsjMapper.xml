@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.data.big.mapper.HcsjMapper">
+  <resultMap id="BaseResultMap" type="com.data.big.model.Hcsj">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="dwmc" jdbcType="VARCHAR" property="dwmc" />
+    <result column="xm" jdbcType="VARCHAR" property="xm" />
+    <result column="xbh" jdbcType="VARCHAR" property="xbh" />
+    <result column="xb" jdbcType="VARCHAR" property="xb" />
+    <result column="lc" jdbcType="VARCHAR" property="lc" />
+    <result column="jcsj" jdbcType="VARCHAR" property="jcsj" />
+    <result column="jssj" jdbcType="VARCHAR" property="jssj" />
+    <result column="czjsd" jdbcType="VARCHAR" property="czjsd" />
+    <result column="czjsdjb" jdbcType="VARCHAR" property="czjsdjb" />
+    <result column="spjsd" jdbcType="VARCHAR" property="spjsd" />
+    <result column="spjsdjb" jdbcType="VARCHAR" property="spjsdjb" />
+    <result column="sd" jdbcType="VARCHAR" property="sd" />
+    <result column="jcxh" jdbcType="VARCHAR" property="jcxh" />
+    <result column="jch" jdbcType="VARCHAR" property="jch" />
+    <result column="cc" jdbcType="VARCHAR" property="cc" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, dwmc, xm, xbh, xb, lc, jcsj, jssj, czjsd, czjsdjb, spjsd, spjsdjb, sd, jcxh, 
+    jch, cc
+  </sql>
+  <select id="selectByPrimaryId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from hcsj
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <insert id="insert" parameterType="com.data.big.model.Hcsj">
+    insert into hcsj (id, dwmc, xm, 
+      xbh, xb, lc, jcsj, 
+      jssj, czjsd, czjsdjb, 
+      spjsd, spjsdjb, sd, 
+      jcxh, jch, cc)
+    values (#{id,jdbcType=VARCHAR}, #{dwmc,jdbcType=VARCHAR}, #{xm,jdbcType=VARCHAR}, 
+      #{xbh,jdbcType=VARCHAR}, #{xb,jdbcType=VARCHAR}, #{lc,jdbcType=VARCHAR}, #{jcsj,jdbcType=VARCHAR}, 
+      #{jssj,jdbcType=VARCHAR}, #{czjsd,jdbcType=VARCHAR}, #{czjsdjb,jdbcType=VARCHAR}, 
+      #{spjsd,jdbcType=VARCHAR}, #{spjsdjb,jdbcType=VARCHAR}, #{sd,jdbcType=VARCHAR}, 
+      #{jcxh,jdbcType=VARCHAR}, #{jch,jdbcType=VARCHAR}, #{cc,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.data.big.model.Hcsj">
+    insert into hcsj
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="dwmc != null">
+        dwmc,
+      </if>
+      <if test="xm != null">
+        xm,
+      </if>
+      <if test="xbh != null">
+        xbh,
+      </if>
+      <if test="xb != null">
+        xb,
+      </if>
+      <if test="lc != null">
+        lc,
+      </if>
+      <if test="jcsj != null">
+        jcsj,
+      </if>
+      <if test="jssj != null">
+        jssj,
+      </if>
+      <if test="czjsd != null">
+        czjsd,
+      </if>
+      <if test="czjsdjb != null">
+        czjsdjb,
+      </if>
+      <if test="spjsd != null">
+        spjsd,
+      </if>
+      <if test="spjsdjb != null">
+        spjsdjb,
+      </if>
+      <if test="sd != null">
+        sd,
+      </if>
+      <if test="jcxh != null">
+        jcxh,
+      </if>
+      <if test="jch != null">
+        jch,
+      </if>
+      <if test="cc != null">
+        cc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="dwmc != null">
+        #{dwmc,jdbcType=VARCHAR},
+      </if>
+      <if test="xm != null">
+        #{xm,jdbcType=VARCHAR},
+      </if>
+      <if test="xbh != null">
+        #{xbh,jdbcType=VARCHAR},
+      </if>
+      <if test="xb != null">
+        #{xb,jdbcType=VARCHAR},
+      </if>
+      <if test="lc != null">
+        #{lc,jdbcType=VARCHAR},
+      </if>
+      <if test="jcsj != null">
+        #{jcsj,jdbcType=VARCHAR},
+      </if>
+      <if test="jssj != null">
+        #{jssj,jdbcType=VARCHAR},
+      </if>
+      <if test="czjsd != null">
+        #{czjsd,jdbcType=VARCHAR},
+      </if>
+      <if test="czjsdjb != null">
+        #{czjsdjb,jdbcType=VARCHAR},
+      </if>
+      <if test="spjsd != null">
+        #{spjsd,jdbcType=VARCHAR},
+      </if>
+      <if test="spjsdjb != null">
+        #{spjsdjb,jdbcType=VARCHAR},
+      </if>
+      <if test="sd != null">
+        #{sd,jdbcType=VARCHAR},
+      </if>
+      <if test="jcxh != null">
+        #{jcxh,jdbcType=VARCHAR},
+      </if>
+      <if test="jch != null">
+        #{jch,jdbcType=VARCHAR},
+      </if>
+      <if test="cc != null">
+        #{cc,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

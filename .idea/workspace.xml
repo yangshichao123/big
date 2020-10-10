@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="d4c6381f-f796-46ff-8027-3573d595aeec" name="Default Changelist" comment="增加旅服接口  公务接口  消息队列">
+      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/gw/AbstractNode.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/gw/Document.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/gw/DocumentFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/gw/DocumentType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/gw/Element.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/gw/EntityResolver.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/gw/GetBhdata.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/gw/GetBhdataResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/gw/GetCHZHdata.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/gw/GetCHZHdataResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/gw/GetGgssData.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/gw/GetGgssDataResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/gw/GetGjByZzjglx.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/gw/GetGjByZzjglxResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/gw/GetGwdLjwclByRq.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/gw/GetGwdLjwclByRqResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/gw/GetHQdata.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/gw/GetHQdataResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/gw/GetHcsj.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/gw/GetHcsjResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/gw/GetJcjh.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/gw/GetJcjhResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/gw/GetLjwclByGwdAndRq.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/gw/GetLjwclByGwdAndRqResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/gw/GetQLdata.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/gw/GetQLdataResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/gw/GetSDdata.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/gw/GetSDdataResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/gw/GetSdjhData.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/gw/GetSdjhDataResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/gw/GetSgjh.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/gw/GetSgjhResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/gw/GetTcjhData.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/gw/GetTcjhDataResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/gw/GetWxjh.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/gw/GetWxjhResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/gw/GetXcbhData.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/gw/GetXcbhDataResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/gw/GwaqscJxglService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/gw/GwaqscJxglServicePortType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/gw/GwaqscJxglServicePortType_GwaqscJxglServiceHttpSoap12Endpoint_Client.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/gw/List2Xml.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/gw/List2XmlResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/gw/Map.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/gw/Namespace.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/gw/ObjectFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/gw/QName.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/gw/main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/gw/package-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/log/big_error.log" beforeDir="false" afterPath="$PROJECT_DIR$/log/big_error.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/log/big_info.log" beforeDir="false" afterPath="$PROJECT_DIR$/log/big_info.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/data/big/controller/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/data/big/controller/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/data/big/netty/BootNettyChannelInboundHandlerAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/data/big/netty/BootNettyChannelInboundHandlerAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/data/big/service/impl/ServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/data/big/service/impl/ServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/data/big/service/impl/ServiceNettyImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/data/big/service/impl/ServiceNettyImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/data/big/task/TimingTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/data/big/task/TimingTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/data/big/util/webServiceUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/data/big/util/webServiceUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application-dev.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application-dev.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application-pro.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application-pro.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/log4j2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/log4j2.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application-dev.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application-dev.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application-pro.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application-pro.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/data/big/controller/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/data/big/controller/Controller.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/data/big/netty/BootNettyChannelInboundHandlerAdapter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/data/big/netty/BootNettyChannelInboundHandlerAdapter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/data/big/service/impl/ServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/data/big/service/impl/ServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/data/big/service/impl/ServiceNettyImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/data/big/service/impl/ServiceNettyImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/data/big/task/TimingTask.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/data/big/task/TimingTask.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/data/big/util/webServiceUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/data/big/util/webServiceUtils.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/log4j2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/log4j2.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mapping/QueryTaskMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapping/QueryTaskMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mapping/WindSpeedAlarmMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapping/WindSpeedAlarmMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1htvvVRsvZ9va4c8fXmt5aEVkEQ" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java/com/data/big/gw" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\workspace\bigWorkspace\big\src\main\java\com\data\big\gw" />
+      <recent name="D:\workspace\bigWorkspace\big\src\main\java\com\data\big\webService" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Spring Boot.MuApplication">
+    <configuration name="StartUp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.data.big.StartUp" />
+      <module name="big" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.data.big.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MuApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="big" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.data.big.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.data.big.MuApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Spring Boot.MuApplication" />
+        <item itemvalue="Application.StartUp" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d4c6381f-f796-46ff-8027-3573d595aeec" name="Default Changelist" comment="" />
+      <created>1600844857278</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1600844857278</updated>
+      <workItem from="1600844859929" duration="9579000" />
+      <workItem from="1600907814850" duration="17820000" />
+      <workItem from="1600993177224" duration="6729000" />
+      <workItem from="1601014622546" duration="11071000" />
+      <workItem from="1601166505756" duration="18527000" />
+      <workItem from="1601253187177" duration="25156000" />
+      <workItem from="1601424715547" duration="12521000" />
+    </task>
+    <task id="LOCAL-00001" summary="增加旅服接口  公务接口  消息队列">
+      <created>1601192018408</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1601192018408</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="增加旅服接口  公务接口  消息队列" />
+    <option name="LAST_COMMIT_MESSAGE" value="增加旅服接口  公务接口  消息队列" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="179" y="254" key="#SQL_Dialects" timestamp="1601450017370">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="179" y="254" key="#SQL_Dialects/0.0.1536.824@0.0.1536.824" timestamp="1601450017370" />
+    <state x="574" y="118" key="#com.intellij.ide.util.MemberChooser" timestamp="1601016276989">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="574" y="118" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1601016276989" />
+    <state x="544" y="275" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1601449951299">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="544" y="275" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1536.824@0.0.1536.824" timestamp="1601449951299" />
+    <state width="436" height="466" key="DebuggerActiveHint" timestamp="1600937881144">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="436" height="466" key="DebuggerActiveHint/0.0.1536.824@0.0.1536.824" timestamp="1600937881144" />
+    <state x="548" y="168" key="FileChooserDialogImpl" timestamp="1601450016382">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="548" y="168" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1601450016382" />
+    <state width="1493" height="261" key="GridCell.Tab.0.bottom" timestamp="1601452746128">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="261" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1601452746128" />
+    <state width="1493" height="261" key="GridCell.Tab.0.center" timestamp="1601452746128">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="261" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1601452746128" />
+    <state width="1493" height="261" key="GridCell.Tab.0.left" timestamp="1601452746127">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="261" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1601452746127" />
+    <state width="1493" height="261" key="GridCell.Tab.0.right" timestamp="1601452746128">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="261" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1601452746128" />
+    <state width="1493" height="261" key="GridCell.Tab.1.bottom" timestamp="1601452762379">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="261" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1601452762379" />
+    <state width="1493" height="261" key="GridCell.Tab.1.center" timestamp="1601452762379">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="261" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1601452762379" />
+    <state width="1493" height="261" key="GridCell.Tab.1.left" timestamp="1601452762379">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="261" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1601452762379" />
+    <state width="1493" height="261" key="GridCell.Tab.1.right" timestamp="1601452762379">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="261" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1601452762379" />
+    <state width="1493" height="261" key="GridCell.Tab.2.bottom" timestamp="1601452745859">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="261" key="GridCell.Tab.2.bottom/0.0.1536.824@0.0.1536.824" timestamp="1601452745859" />
+    <state width="1493" height="261" key="GridCell.Tab.2.center" timestamp="1601452745859">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="261" key="GridCell.Tab.2.center/0.0.1536.824@0.0.1536.824" timestamp="1601452745859" />
+    <state width="1493" height="261" key="GridCell.Tab.2.left" timestamp="1601452745859">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="261" key="GridCell.Tab.2.left/0.0.1536.824@0.0.1536.824" timestamp="1601452745859" />
+    <state width="1493" height="261" key="GridCell.Tab.2.right" timestamp="1601452745859">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="261" key="GridCell.Tab.2.right/0.0.1536.824@0.0.1536.824" timestamp="1601452745859" />
+    <state x="249" y="0" key="SettingsEditor" timestamp="1601195923267">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="249" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1601195923267" />
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1601192031186">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1601192031186" />
+    <state x="563" y="325" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1601191912749">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="563" y="325" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1601191912749" />
+    <state x="540" y="191" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1600931389286">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="540" y="191" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.0.1536.824@0.0.1536.824" timestamp="1600931389286" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/data/big/StartUp.java</url>
+          <line>92</line>
+          <option name="timeStamp" value="16" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/data/big/service/impl/ServiceImpl.java</url>
+          <line>1910</line>
+          <option name="timeStamp" value="19" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/data/big/service/impl/ServiceNettyImpl.java</url>
+          <line>642</line>
+          <option name="timeStamp" value="20" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo typeName="java.lang.String" fieldName="value" />
+      </pinned-members>
+    </pin-to-top-manager>
+  </component>
+</project>
