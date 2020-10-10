@@ -55,22 +55,22 @@
   <select id="selectAllByStatus" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
     SELECT v.video_code,ws.startTime,ws.endTime,ws.tableName,ws.id 
     from (
-      SELECT w.id id,w.date startTime,w.relieve_time endTime,w.check_locale_code localeCode ,"wind" tableName
+      SELECT w.id id,w.date startTime,w.relieve_time endTime,w.check_locale_code+0 localeCode ,"wind" tableName
       from wind_speed_alarm w where w.alarm_status='1' and w.video_up_status='0'
       UNION ALL
-      SELECT r.id id,r.date startTime,r.relieve_time endTime,r.check_locale_code localeCode ,"rain" tableName
+      SELECT r.id id,r.date startTime,r.relieve_time endTime,r.check_locale_code+0 localeCode ,"rain" tableName
       from rain_alarm r where r.alarm_status='1' and r.video_up_status='0'
 
       UNION ALL
-      SELECT s.id id,s.date startTime,s.relieve_time endTime,s.check_locale_code localeCode ,"snow" tableName
+      SELECT s.id id,s.date startTime,s.relieve_time endTime,s.check_locale_code+0 localeCode ,"snow" tableName
       from snow_alarm s where s.alarm_status='1' and s.video_up_status='0'
       UNION ALL
-      SELECT f.id id,f.date startTime,f.relieve_time endTime,f.check_locale_code localeCode ,"foreign" tableName
+      SELECT f.id id,f.date startTime,f.relieve_time endTime,f.check_locale_code+0 localeCode ,"foreign" tableName
       from foreign_body_alarm f where f.alarm_status='1' and f.video_up_status='0'
     ) ws
     join
     (
-    SELECT replace(replace(vk.startKilometer,'K',''),'+','') startK,replace(replace(vk.endKilometer,'K',''),'+','') endK ,vk.video_code
+    SELECT replace(replace(vk.startKilometer,'K',''),'+','')+0 startK,replace(replace(vk.endKilometer,'K',''),'+','')+0 endK ,vk.video_code
     from video_kilometer vk
     ) v
     on  ws.localeCode >=v.startK and ws.localeCode &lt; =v.endK;

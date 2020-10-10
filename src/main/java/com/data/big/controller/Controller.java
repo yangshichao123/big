@@ -1,5 +1,7 @@
 package com.data.big.controller;
 
+import com.data.big.gw.GwaqscJxglService;
+import com.data.big.gw.GwaqscJxglServicePortType;
 import com.data.big.model.Camerainfo;
 import com.data.big.model.MethodType;
 import com.data.big.model.VideoKilometer;
@@ -81,7 +83,7 @@ public class Controller {
     @ResponseBody
     public Map GetCameraStatus(String startTime, String endTime) {
 
-        return service.GetCameraStatus("2020-09-06 20:00:00", "2020-09-07 20:00:00");
+        return service.GetCameraStatus(startTime, endTime);
     }
 
     @RequestMapping("/GetServerStatus")
@@ -185,18 +187,18 @@ public class Controller {
     @ResponseBody
     public Map<String,String> getHcsj(String qsrq, String jsrq, String cxdj) {
 
-        return service.getHcsj(qsrq,jsrq,cxdj);
+       return service.getHcsj(qsrq,jsrq,cxdj);
     }
     @RequestMapping("/getSgjh")
     @ResponseBody
     public Map<String,String> getSgjh(String qsrq, String jsrq) {
+
 
         return service.getSgjh(qsrq,jsrq);
     }
     @RequestMapping("/getWxjh")
     @ResponseBody
     public Map<String,String> getWxjh(String qsrq, String jsrq) {
-
         return service.getWxjh(qsrq,jsrq);
     }
     @RequestMapping("/queryCurrentDayWarningData")

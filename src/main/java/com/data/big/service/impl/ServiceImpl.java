@@ -1,6 +1,8 @@
 package com.data.big.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
+import com.data.big.gw.GwaqscJxglService;
+import com.data.big.gw.GwaqscJxglServicePortType;
 import com.data.big.mapper.*;
 import com.data.big.service.Service;
 import com.data.big.task.KeepTask;
@@ -121,6 +123,7 @@ public class ServiceImpl implements Service {
                         }
                         if (deviceName.contains("[") && deviceName.contains("]")) {
                             String type = deviceName.substring(deviceName.indexOf("[") + 1, deviceName.indexOf("]"));
+                            type=type.replace("K","").replace("+","");
                             camer.setDeviceType(type);
                         }
 
@@ -1130,7 +1133,7 @@ public class ServiceImpl implements Service {
             }
             HashMap<String,Object> dataMapList = HttpClientUt.getDataMapList2flie(data);
 
-            if ("200".equals(dataMapList.get("stateCode"))) {
+            if ("200".equals(dataMapList.get("statusCode"))) {
 
                 String dataR = (String) dataMapList.get("data");
                 VideoFile vf = new VideoFile();
@@ -1142,14 +1145,14 @@ public class ServiceImpl implements Service {
                 Example.Criteria criteria1 = example1.createCriteria();
                 criteria1.andEqualTo("id", videoFile.getId());
                 videoFileMapper.updateByExampleSelective(vf, example1);
-                map.put("stateCode", dataMapList.get("stateCode"));
+                map.put("statusCode", dataMapList.get("statusCode"));
                 map.put("data", dataMapList.get("data"));
                 logger.error("上传视频文件成功返回数据为：" + data);
 
                 this.deleteFile(videoFile);
             } else {
-                map.put("stateCode", dataMapList.get("stateCode"));
-                logger.error("上传视频文件:失败 错误码 stateCode " + dataMapList.get("stateCode") + " message " + dataMapList.get("message"));
+                map.put("stateCode", dataMapList.get("statusCode"));
+                logger.error("上传视频文件:失败 错误码 stateCode " + dataMapList.get("statusCode") + " message " + dataMapList.get("message"));
             }
             map.put("message", dataMapList.get("message"));
             LogRest log = new LogRest();
@@ -1538,26 +1541,25 @@ public class ServiceImpl implements Service {
     @Override
     public Map<String,String> getHcsj(String qsrq, String jsrq, String cxdj) {
         Map<String ,String > map=new HashMap<>();
-        if(StringUtils.isEmpty(qsrq)||StringUtils.isEmpty(jsrq)||StringUtils.isEmpty(cxdj)){
+        if(StringUtils.isEmpty(qsrq)||StringUtils.isEmpty(jsrq)){
             map.put("status","参数错误");
             logger.info("参数错误");
             return map;
         }
-        ArrayList<Object> listO = new ArrayList<>();
-        listO.add(qsrq);
-        listO.add(jsrq);
-        listO.add(cxdj);
+
         String wsdlUrl=Properties.getWsdlUrl();
         String wsdlNamespace=Properties.getWsdlNamespace();
         String wsdlName=Properties.getWsdlName();
 
-        String resU = null;
-        try {
-           // resU = webServiceUtils.dynamicCallWebServiceByCXF("http://localhost:8088/services/big?wsdl", "getXml", "http://webService.big.data.com/", "service", listO);
-            resU = webServiceUtils.dynamicCallWebServiceByCXF(wsdlUrl, "getHcsj", wsdlNamespace, wsdlName, listO);
-        } catch (Exception e) {
-            e.printStackTrace();
+        GwaqscJxglService services = new GwaqscJxglService();//创建接口方法类
+        GwaqscJxglServicePortType portType = services. getGwaqscJxglServiceHttpSoap12Endpoint ();//获取接口对象
+        String resU= portType.getHcsj(qsrq, jsrq,cxdj);
+        if(resU==null){
+            map.put("data","接收的数据为null");
+            logger.info("请求错误 wsdlUrl "+wsdlUrl+" wsdlNamespace"+wsdlNamespace+" wsdlName"+wsdlName+" qsrq"+qsrq+" jsrq"+jsrq);
+            return map;
         }
+
         List<Map> data = Dom.getData(resU);
         List<Hcsj> hcsjList=new ArrayList<>();
         if(data.get(0).get("hcsj") instanceof Map){
@@ -1575,6 +1577,17 @@ public class ServiceImpl implements Service {
         map.put("status","成功");
         logger.info("公务晃车数据 查询开始时间："+qsrq+" 结束时间："+jsrq+" 返回数据："+resU);
         map.put("data",resU);
+
+        LogRest log = new LogRest();
+        log.setFunname("getHcsj");
+        log.setIp(wsdlUrl);
+        log.setLrsj(new Date());
+        log.setParamin("公务晃车数据 查询开始时间："+qsrq+" 结束时间："+jsrq);
+        JSONObject jsonParam = new JSONObject();
+        jsonParam.put("data",resU);
+        log.setRedata("" + jsonParam.toJSONString());
+        log.setType(0 + "");
+        logRestMapper.insert(log);
 
         return map;
     }
@@ -1614,12 +1627,13 @@ public class ServiceImpl implements Service {
         String wsdlNamespace=Properties.getWsdlNamespace();
         String wsdlName=Properties.getWsdlName();
 
-        String resU = null;
-        try {
-            // resU = webServiceUtils.dynamicCallWebServiceByCXF("http://localhost:8088/services/big?wsdl", "getXml", "http://webService.big.data.com/", "service", listO);
-            resU = webServiceUtils.dynamicCallWebServiceByCXF(wsdlUrl, "getSgjh", wsdlNamespace, wsdlName, listO);
-        } catch (Exception e) {
-            e.printStackTrace();
+        GwaqscJxglService services = new GwaqscJxglService();//创建接口方法类
+        GwaqscJxglServicePortType portType = services. getGwaqscJxglServiceHttpSoap12Endpoint ();//获取接口对象
+        String resU= portType.getSgjh(qsrq, jsrq);
+        if(resU==null){
+            map.put("data","接收的数据为null");
+            logger.info("请求错误 wsdlUrl "+wsdlUrl+" wsdlNamespace"+wsdlNamespace+" wsdlName"+wsdlName+" qsrq"+qsrq+" jsrq"+jsrq);
+            return map;
         }
         List<Map> data = Dom.getData(resU);
 
@@ -1640,33 +1654,44 @@ public class ServiceImpl implements Service {
         logger.info("公务施工计划 查询开始时间："+qsrq+" 结束时间："+jsrq+" 返回数据："+resU);
         map.put("data",resU);
 
+        LogRest log = new LogRest();
+        log.setFunname("getSgjh");
+        log.setIp(wsdlUrl);
+        log.setLrsj(new Date());
+        log.setParamin("公务施工计划 查询开始时间："+qsrq+" 结束时间："+jsrq);
+        JSONObject jsonParam = new JSONObject();
+        jsonParam.put("data",resU);
+        log.setRedata("" + jsonParam.toJSONString());
+        log.setType(0 + "");
+        logRestMapper.insert(log);
+
         return map;
     }
 
     private Sgjh getSgjhToMap(Map listDatum) {
         Sgjh sgjh=new Sgjh();
         sgjh.setId(UUIDHelper.getUUIDStr());
-        sgjh.setZywz((String) listDatum.get("zywz"));
-        sgjh.setQschzm((String) listDatum.get("qschzm"));
-        sgjh.setZzchzm((String) listDatum.get("zzchzm"));
-        sgjh.setXm((String) listDatum.get("xm"));
-        sgjh.setZyrq((String) listDatum.get("zyrq"));
-        sgjh.setJhqssj((String) listDatum.get("jhqssj"));
-        sgjh.setJhzzsj((String) listDatum.get("jhzzsj"));
-        sgjh.setZydj((String) listDatum.get("zydj"));
-        sgjh.setZylx((String) listDatum.get("zylx"));
-        sgjh.setRjhh((String) listDatum.get("rjhh"));
-        sgjh.setSgnrjyxfw((String) listDatum.get("sgnrjyxfw"));
-        sgjh.setXsjxcfs((String) listDatum.get("xsjxcfs"));
-        sgjh.setZyqslc((String) listDatum.get("zyqslc"));
-        sgjh.setZyzzlc((String) listDatum.get("zyzzlc"));
-        sgjh.setSbztw((String) listDatum.get("sbztw"));
-        sgjh.setZyxm((String) listDatum.get("zyxm"));
-        sgjh.setXb((String) listDatum.get("xb"));
-        sgjh.setSgztdw((String) listDatum.get("sgztdw"));
-        sgjh.setPhdw((String) listDatum.get("phdw"));
-        sgjh.setFzrname((String) listDatum.get("fzrname"));
-        sgjh.setLycxx((String) listDatum.get("lycxx"));
+        sgjh.setZywz((String) listDatum.get("fzywz"));
+        sgjh.setQschzm((String) listDatum.get("fqschzm"));
+        sgjh.setZzchzm((String) listDatum.get("fzzchzm"));
+        sgjh.setXm((String) listDatum.get("fxm"));
+        sgjh.setZyrq((String) listDatum.get("fzyrq"));
+        sgjh.setJhqssj((String) listDatum.get("fjhqssj"));
+        sgjh.setJhzzsj((String) listDatum.get("fjhzzsj"));
+        sgjh.setZydj((String) listDatum.get("fzydj"));
+        sgjh.setZylx((String) listDatum.get("fzylx"));
+        sgjh.setRjhh((String) listDatum.get("frjhh"));
+        sgjh.setSgnrjyxfw((String) listDatum.get("fsgnrjyxfw"));
+        sgjh.setXsjxcfs((String) listDatum.get("fxsjxcfs"));
+        sgjh.setZyqslc((String) listDatum.get("fzyqslc"));
+        sgjh.setZyzzlc((String) listDatum.get("fzyzzlc"));
+        sgjh.setSbztw((String) listDatum.get("fsbztw"));
+        sgjh.setZyxm((String) listDatum.get("fzyxm"));
+        sgjh.setXb((String) listDatum.get("fxb"));
+        sgjh.setSgztdw((String) listDatum.get("fsgztdw"));
+        sgjh.setPhdw((String) listDatum.get("fphdw"));
+        sgjh.setFzrname((String) listDatum.get("ffzrname"));
+        sgjh.setLycxx((String) listDatum.get("flycxx"));
         return sgjh;
     }
 
@@ -1685,12 +1710,14 @@ public class ServiceImpl implements Service {
         String wsdlNamespace=Properties.getWsdlNamespace();
         String wsdlName=Properties.getWsdlName();
 
-        String resU = null;
-        try {
-            // resU = webServiceUtils.dynamicCallWebServiceByCXF("http://localhost:8088/services/big?wsdl", "getXml", "http://webService.big.data.com/", "service", listO);
-            resU = webServiceUtils.dynamicCallWebServiceByCXF(wsdlUrl, "getWxjh", wsdlNamespace, wsdlName, listO);
-        } catch (Exception e) {
-            e.printStackTrace();
+        GwaqscJxglService services = new GwaqscJxglService();//创建接口方法类
+        GwaqscJxglServicePortType portType = services. getGwaqscJxglServiceHttpSoap12Endpoint ();//获取接口对象
+        String resU= portType.getWxjh(qsrq, jsrq);
+
+        if(resU==null){
+            map.put("data","接收的数据为null");
+            logger.info("请求错误 wsdlUrl "+wsdlUrl+" wsdlNamespace"+wsdlNamespace+" wsdlName"+wsdlName+" qsrq"+qsrq+" jsrq"+jsrq);
+            return map;
         }
         List<Map> data = Dom.getData(resU);
 
@@ -1706,10 +1733,31 @@ public class ServiceImpl implements Service {
         }
         for (Wxjh wxjh : wxjhList) {
             wxjhMapper.insertSelective(wxjh);
+            LogRest log = new LogRest();
+            log.setFunname("getWxjh");
+            log.setIp(wsdlUrl);
+            log.setLrsj(new Date());
+            log.setParamin("公务维修计划 查询开始时间："+qsrq+" 结束时间："+jsrq);
+            JSONObject jsonParam = new JSONObject();
+            jsonParam.put("data",resU);
+            log.setRedata("" + jsonParam.toJSONString());
+            log.setType(0 + "");
+            logRestMapper.insert(log);
         }
         map.put("status","成功");
         logger.info("公务维修计划 查询开始时间："+qsrq+" 结束时间："+jsrq+" 返回数据："+resU);
         map.put("data",resU);
+
+        LogRest log = new LogRest();
+        log.setFunname("getWxjh");
+        log.setIp(wsdlUrl);
+        log.setLrsj(new Date());
+        log.setParamin("公务维修计划 查询开始时间："+qsrq+" 结束时间："+jsrq);
+        JSONObject jsonParam = new JSONObject();
+        jsonParam.put("data",resU);
+        log.setRedata("" + jsonParam.toJSONString());
+        log.setType(0 + "");
+        logRestMapper.insert(log);
 
         return map;
     }
@@ -1717,24 +1765,24 @@ public class ServiceImpl implements Service {
     private Wxjh getWxjhToMap(Map listDatum) {
         Wxjh wxjh=new Wxjh();
         wxjh.setId(UUIDHelper.getUUIDStr());
-        wxjh.setBzdwmc((String) listDatum.get("bzdwmc"));
-        wxjh.setZylx((String) listDatum.get("zylx"));
-        wxjh.setZydj((String) listDatum.get("zydj"));
-        wxjh.setZyxm((String) listDatum.get("zyxm"));
-        wxjh.setZyrq((String) listDatum.get("zyrq"));
-        wxjh.setZysd((String) listDatum.get("zysd"));
-        wxjh.setXm((String) listDatum.get("xm"));
-        wxjh.setXb((String) listDatum.get("xb"));
-        wxjh.setQschzm((String) listDatum.get("qschzm"));
-        wxjh.setZzchzm((String) listDatum.get("zzchzm"));
-        wxjh.setZyqslc((String) listDatum.get("zyqslc"));
-        wxjh.setZyzzlc((String) listDatum.get("zyzzlc"));
-        wxjh.setBanci((String) listDatum.get("banci"));
-        wxjh.setZzfhr((String) listDatum.get("zzfhr"));
-        wxjh.setGdfhr((String) listDatum.get("gdfhr"));
-        wxjh.setYffhr((String) listDatum.get("yffhr"));
-        wxjh.setDbr((String) listDatum.get("dbr"));
-        wxjh.setSbztw((String) listDatum.get("sbztw"));
+        wxjh.setBzdwmc((String) listDatum.get("fbzdwmc"));
+        wxjh.setZylx((String) listDatum.get("fzylx"));
+        wxjh.setZydj((String) listDatum.get("fzydj"));
+        wxjh.setZyxm((String) listDatum.get("fzyxm"));
+        wxjh.setZyrq((String) listDatum.get("fzyrq"));
+        wxjh.setZysd((String) listDatum.get("fzysd"));
+        wxjh.setXm((String) listDatum.get("fxm"));
+        wxjh.setXb((String) listDatum.get("fxb"));
+        wxjh.setQschzm((String) listDatum.get("fqschzm"));
+        wxjh.setZzchzm((String) listDatum.get("fzzchzm"));
+        wxjh.setZyqslc((String) listDatum.get("fzyqslc"));
+        wxjh.setZyzzlc((String) listDatum.get("fzyzzlc"));
+        wxjh.setBanci((String) listDatum.get("fbanci"));
+        wxjh.setZzfhr((String) listDatum.get("fzzfhr"));
+        wxjh.setGdfhr((String) listDatum.get("fgdfhr"));
+        wxjh.setYffhr((String) listDatum.get("fyffhr"));
+        wxjh.setDbr((String) listDatum.get("fdbr"));
+        wxjh.setSbztw((String) listDatum.get("fsbztw"));
         return wxjh;
     }
 
@@ -1824,6 +1872,18 @@ public class ServiceImpl implements Service {
         }
         map.put("data",jsonData);
         logger.info("查询旅服 预警 查询开始时间；"+beginTime+"结束时间："+endTime+" 返回内容："+jsonData);
+
+
+        LogRest log = new LogRest();
+        log.setFunname("lf");
+        log.setIp(url);
+        log.setLrsj(new Date());
+        log.setParamin("查询旅服 预警 查询开始时间；"+beginTime+" 结束时间："+endTime);
+        JSONObject jsonParam = new JSONObject();
+        jsonParam.put("data",jsonData);
+        log.setRedata("" + jsonParam.toJSONString());
+        log.setType(0 + "");
+        logRestMapper.insert(log);
         return map;
     }
 
@@ -1868,6 +1928,7 @@ public class ServiceImpl implements Service {
             Date date = DateUtils.nextDay(i);
             String date1 = DateUtils.getDate(date, "yyyy-MM-dd");
             VideoFile videoFile1=new VideoFile();
+            videoFile1.setId(UUIDHelper.getUUIDStr());
             videoFile1.setStatus("0");
             videoFile1.setKssj(date1+" "+benginTime);
             videoFile1.setJssj(date1+" "+endTime);

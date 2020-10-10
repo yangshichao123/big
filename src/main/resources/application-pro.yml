@@ -6,18 +6,18 @@ spring:
   datasource:
     username: admin
     password: 1qaz!QAZ
-    url: jdbc:mysql://10.3.78.209:13306/video_db?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=GMT%2b8
+    url: jdbc:mysql://127.0.0.1:13306/video_db?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=GMT%2b8
     driver-class-name: com.mysql.cj.jdbc.Driver
     type: com.zaxxer.hikari.HikariDataSource
-      hikari:
-        minimum-idle: 5
-        maximum-pool-size: 15
-        auto-commit: true
-        idle-timeout: 30000
-        pool-name: DatebookHikariCP
-        max-lifetime: 1800000
-        connection-timeout: 30000
-        connection-test-query: SELECT 1
+    hikari:
+      minimum-idle: 5
+      maximum-pool-size: 15
+      auto-commit: true
+      idle-timeout: 30000
+      pool-name: DatebookHikariCP
+      max-lifetime: 1800000
+      connection-timeout: 30000
+      connection-test-query: SELECT 1
   #MQ配置IP 端口
   rabbitmq:
     host: 127.0.0.1
@@ -56,7 +56,7 @@ logging:
     org.springframework.boot.autoconfigure: ERROR
 
 sendFileCron:
-  "0 10 0 0/1 * ?"
+  "0 0/1 * * * ?"
 getANBAO3:
   url: "http://10.3.64.10/video_aj/ssmisbdwebservice.asmx"
   #从右到左 表示 年 月 日 时 分 秒    0 0 0/1 * * ? 表示每小时0分0秒执行一次     0 20 0 0/1 * ? 表示每天0点20分0秒 执行
@@ -146,18 +146,20 @@ queryTaskTime: "0 0/5 * * * ?"
 #防灾配置
 netty:
   #是否启动防灾客户端
-  startOrNot: "false"
-  host: "39.103.130.69"
+  startOrNot: "true"
+  host: "10.3.144.48"
   #host: "127.0.0.1"
-  port: "11022"
+  port: "11029"
   version: "010101"  #版本号v1.1.1 转成 010101
-  nameAndPassword: "<JingWei_JingZhangXian,JingWei_JingZhangXian>"  #用户名密码
+  nameAndPassword: "<JingWei_GongDianGong,JingWei_GongDianGong>"  #用户名密码
 
 #公务配置
 gw:
-  wsdlUrl: "http://localhost:8088/services/big?wsdl"
-  wsdlNamespace: "http://webService.big.data.com/"
-  wsdlName: "service"
+  wsdlUrl: "http://10.3.136.225:8000/AqscWebMIS/services/GwaqscJxglService?wsdl"
+  //wsdlNamespace: "http://webService.big.data.com/"
+  wsdlNamespace: "http://services.itcmor.com/"
+  wsdlName: "GwaqscJxglService"
+  cron: "0 18 0/1 * * ?"
 
 #旅服
 lf:

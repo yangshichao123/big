@@ -119,6 +119,7 @@ public class webServiceUtils {
 
     /**
      * @param wsdlUrl         wsdl的地址：http://localhost:8001/demo/HelloServiceDemoUrl?wsdl
+     *                        http://10.3.136.225:8000/AqscWebMIS/services/GwaqscJxglService?wsdl
      * @param methodName      调用的方法名称 selectOrderInfo
      * @param targetNamespace 命名空间 http://service.limp.com/
      * @param name            name HelloServiceDemo
@@ -254,6 +255,7 @@ public class webServiceUtils {
 
         //返回调用结果
 
+        logger.info("公务--------------------------------接收到得数据为 ："+result.toString());
         if (result.length > 0) {
 			/*System.out.println(result[0]);
 			Object json = JSON.toJSON(result[0]);
@@ -262,10 +264,10 @@ public class webServiceUtils {
 			return  json.toString();*/
 
             //return JSON.toJSONString(result[0]);
+            logger.info("公务--------------------------------接收到得数据为 ："+(String)result[0]);
             return (String)result[0];
 
         }
-
         return "invoke success, but is void ";
 
     }

@@ -48,6 +48,8 @@ public class ServiceNettyImpl implements ServiceNetty {
     private VideoFileMapper videoFileMapper;
     @Autowired
     private VideoKilometerMapper videoKilometerMapper;
+    @Autowired
+    private CameraMapper cameraMapper;
 
     // 日志记录器
     private static final Logger logger = LogManager.getLogger(ServiceNettyImpl.class);
@@ -143,7 +145,7 @@ public class ServiceNettyImpl implements ServiceNetty {
                             break;
                         }
                         case "65"://心跳回执
-                           // logger.info("接收到心跳回执 数据为："+ms);
+                            logger.info("接收到心跳回执 数据为："+ms);
                             if(Integer.parseInt(keepAliveNum,16)%1000==0){
                                 String s4 = CRCUtil.Bytes2HexString(getByets(ver, ver.length - 14, ver.length));
                                 String s = AsciiStringToHex.convertHexToString(s4);
@@ -208,6 +210,8 @@ public class ServiceNettyImpl implements ServiceNetty {
             criteria.andEqualTo("id", select.get(0).getId());
             int i = foreignBodyAlarmMapper.updateByExampleSelective(wsa, example);
             if (i > 0) {
+                addVideoTask(select.get(0).getCheckLocaleCode(),DateUtils.getDate(select.get(0).getDate(),"yyyy-MM-dd HH:mm:ss"),DateUtils.getDate(yyyyMMddHHmmss,"yyyy-MM-dd HH:mm:ss"));
+
                 logger.info("保存异物解除告警数据成功");
                 //发送回执信息
                 sendAlarmReceipt("08",result,"00");
@@ -235,6 +239,8 @@ public class ServiceNettyImpl implements ServiceNetty {
             criteria.andEqualTo("id", select.get(0).getId());
             int i = snowAlarmMapper.updateByExampleSelective(wsa, example);
             if (i > 0) {
+                addVideoTask(select.get(0).getCheckLocaleCode(),DateUtils.getDate(select.get(0).getDate(),"yyyy-MM-dd HH:mm:ss"),DateUtils.getDate(yyyyMMddHHmmss,"yyyy-MM-dd HH:mm:ss"));
+
                 logger.info("保存雪深解除告警数据成功");
                 //发送回执信息
                 sendAlarmReceipt("08",result,"00");
@@ -262,6 +268,8 @@ public class ServiceNettyImpl implements ServiceNetty {
             criteria.andEqualTo("id", select.get(0).getId());
             int i = rainAlarmMapper.updateByExampleSelective(wsa, example);
             if (i > 0) {
+                addVideoTask(select.get(0).getCheckLocaleCode(),DateUtils.getDate(select.get(0).getDate(),"yyyy-MM-dd HH:mm:ss"),DateUtils.getDate(yyyyMMddHHmmss,"yyyy-MM-dd HH:mm:ss"));
+
                 logger.info("保存雨量解除告警数据成功");
                 //发送回执信息
                 sendAlarmReceipt("08",result,"00");
@@ -290,6 +298,7 @@ public class ServiceNettyImpl implements ServiceNetty {
             criteria.andEqualTo("id", select.get(0).getId());
             int i = windSpeedAlarmMapper.updateByExampleSelective(wsa, example);
             if (i > 0) {
+                addVideoTask(select.get(0).getCheckLocaleCode(),DateUtils.getDate(select.get(0).getDate(),"yyyy-MM-dd HH:mm:ss"),DateUtils.getDate(yyyyMMddHHmmss,"yyyy-MM-dd HH:mm:ss"));
                 logger.info("保存风速解除告警数据成功");
                 //发送回执信息
                 sendAlarmReceipt("08",result,"00");
@@ -299,7 +308,30 @@ public class ServiceNettyImpl implements ServiceNetty {
         }
 
     }
+    private int addVideoTask(String k,String startTime,String endTime){
+        Camera camera=cameraMapper.getMinVideoCode(k);
+        if(camera!=null&&camera.getDeviceId()!=null){
 
+            VideoFile videoFile=new VideoFile();
+            videoFile.setId(UUIDHelper.getUUIDStr());
+            videoFile.setIpcid(camera.getDeviceId());
+            videoFile.setKssj(startTime);
+            videoFile.setJssj(endTime);
+            videoFile.setStatus("0");
+            int i = videoFileMapper.insertSelective(videoFile);//添加到任务表里
+        }
+        Camera camera1=cameraMapper.getMxnVideoCode(k);
+        if(camera1!=null&&camera1.getDeviceId()!=null){
+            VideoFile videoFile=new VideoFile();
+            videoFile.setId(UUIDHelper.getUUIDStr());
+            videoFile.setIpcid(camera1.getDeviceId());
+            videoFile.setKssj(startTime);
+            videoFile.setJssj(endTime);
+            videoFile.setStatus("0");
+            int i1 = videoFileMapper.insertSelective(videoFile);//添加到任务表里
+        }
+        return 1;
+    }
 
 
     private void unitAlarm(byte[] dataByets, String ms, String result) {
@@ -482,7 +514,11 @@ public class ServiceNettyImpl implements ServiceNetty {
                 Example example = new Example(SnowAlarm.class);
                 Example.Criteria criteria = example.createCriteria();
                 criteria.andEqualTo("id", sensorStatusAlarm.getId());
-                snowAlarmMapper.updateByExampleSelective(sa,example);
+                int i=snowAlarmMapper.updateByExampleSelective(sa,example);
+                if(i>0){
+                    addVideoTask(sensorStatusAlarm.getCheckLocaleCode(),DateUtils.getDate(sensorStatusAlarm.getDate(),"yyyy-MM-dd HH:mm:ss"),DateUtils.getDate(sa.getRelieveTime(),"yyyy-MM-dd HH:mm:ss"));
+
+                }
             }else{
                 //发送回执信息
                 sendAlarmReceipt("07",result,"00");
@@ -550,7 +586,11 @@ public class ServiceNettyImpl implements ServiceNetty {
                 Example example = new Example(RainAlarm.class);
                 Example.Criteria criteria = example.createCriteria();
                 criteria.andEqualTo("id", sensorStatusAlarm.getId());
-                rainAlarmMapper.updateByExampleSelective(sa,example);
+                int i=rainAlarmMapper.updateByExampleSelective(sa,example);
+                if(i>0){
+                    addVideoTask(sensorStatusAlarm.getCheckLocaleCode(),DateUtils.getDate(sensorStatusAlarm.getDate(),"yyyy-MM-dd HH:mm:ss"),DateUtils.getDate(sa.getRelieveTime(),"yyyy-MM-dd HH:mm:ss"));
+
+                }
             }else{
                 //发送回执信息
                 sendAlarmReceipt("07",result,"00");
@@ -622,7 +662,11 @@ public class ServiceNettyImpl implements ServiceNetty {
                 Example example = new Example(WindSpeedAlarm.class);
                 Example.Criteria criteria = example.createCriteria();
                 criteria.andEqualTo("id", sensorStatusAlarm.getId());
-                windSpeedAlarmMapper.updateByExampleSelective(sa,example);
+                int i = windSpeedAlarmMapper.updateByExampleSelective(sa, example);
+                if(i>0){
+                    addVideoTask(sensorStatusAlarm.getCheckLocaleCode(),DateUtils.getDate(sensorStatusAlarm.getDate(),"yyyy-MM-dd HH:mm:ss"),DateUtils.getDate(sa.getRelieveTime(),"yyyy-MM-dd HH:mm:ss"));
+
+                }
             }else{
                 //发送回执信息
                 sendAlarmReceipt("07",alarmType,"00");
@@ -662,6 +706,9 @@ public class ServiceNettyImpl implements ServiceNetty {
         windSpeedAlarm.setAlarmStatus("0");
         int insert = windSpeedAlarmMapper.insert(windSpeedAlarm);
         if (insert > 0) {
+
+
+
             logger.info("保存风速告警开始数据成功");
             //发送回执信息
             sendAlarmReceipt("07",alarmType,"00");
@@ -728,7 +775,7 @@ public class ServiceNettyImpl implements ServiceNetty {
                 addLog(DateUtils.parseDate(yyyyMMddHHmmss,"yyyyMMddHHmmss"),"发送心跳",fber.toString());
             }
 
-          //  logger.info("心跳包命令" + fber.toString());
+           logger.info("心跳包命令" + fber.toString());
 
             BootNettyChannelInboundHandlerAdapter.ctx.writeAndFlush(Unpooled.copiedBuffer(CRCUtil.toByteArray(fber.toString())));
         }

@@ -256,4 +256,16 @@ public class TimingTask {
         service.queryCurrentDayWarningData(beginTime,endTime);
 
     }
+
+
+    // @Scheduled(cron="* * 0/1 * * ?")
+    @Scheduled(cron = "${gw.cron}")
+    private void sendGu() {
+        String beginTime = DateUtils.getBeforeDate(1, "yyyy-MM-dd") + " 00:00:00";
+        String endTime = DateUtils.getBeforeDate(1, "yyyy-MM-dd") + " 23:59:59";
+        service.getHcsj(beginTime, endTime, "");
+        service.getSgjh(beginTime, endTime);
+        service.getWxjh(beginTime, endTime);
+
+    }
 }

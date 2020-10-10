@@ -84,7 +84,7 @@ public class BootNettyChannelInboundHandlerAdapter extends ChannelInboundHandler
     public void channelActive(ChannelHandlerContext ctx) throws Exception, IOException
     {
         super.channelActive(ctx);
-        BootNettyChannelInboundHandlerAdapter.ctx=ctx;
+
         InetSocketAddress insocket = (InetSocketAddress) ctx.channel().remoteAddress();
         String clientIp = insocket.getAddress().getHostAddress();
         logger.error("通道已经连接:"+clientIp+":"+ Properties.getNettyPost());
@@ -98,7 +98,9 @@ public class BootNettyChannelInboundHandlerAdapter extends ChannelInboundHandler
         }
 */
         Thread.sleep(500);
+        BootNettyChannelInboundHandlerAdapter.ctx=ctx;
         serviceNetty.sendRegister();
+
     }
 
     /**
