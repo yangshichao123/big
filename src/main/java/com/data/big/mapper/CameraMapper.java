@@ -16,5 +16,5 @@ public interface CameraMapper extends BaseMapper<Camera> {
 
     Camera getMxnVideoCode(int parseInt);
 
-    List<Camera> getVideoCode(Integer getkMark, Integer getkMark1);
+    List<Camera> getVideoCode(Integer k, Integer j);
 }

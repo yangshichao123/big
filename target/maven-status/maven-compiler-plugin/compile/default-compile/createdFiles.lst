@@ -151,7 +151,7 @@ com\data\big\netty\BootNettyChannelInitializer.class
 com\data\big\service\ServiceNetty.class
 com\data\big\gw\GetGwdLjwclByRqResponse.class
 com\data\big\service\Service.class
-com\data\big\task\TimingTask.class
+com\data\big\task\TimingTaskQ.class
 com\data\big\gw\GetHQdata.class
 com\data\big\model\Wxjh.class
 com\data\big\model\Line.class

@@ -129,6 +129,9 @@ public class HttpClientUt {
         try {
             httpClient = HttpClientBuilder.create().build();
             httpPost = new HttpPost(url);
+            //请求超时
+            RequestConfig requestConfig = RequestConfig.custom().setConnectTimeout(5000).setConnectionRequestTimeout(1000).setSocketTimeout(3000).build();
+            httpPost.setConfig(requestConfig);
             httpPost.addHeader("Authorization", headerStr);
             StringEntity se = new StringEntity(jsonstr, "utf-8");
             se.setContentType("text/json");
@@ -216,6 +219,9 @@ public class HttpClientUt {
         try {
             httpClient = HttpClientBuilder.create().build();
             httpPost = new HttpPost(url);
+            //请求超时
+            RequestConfig requestConfig = RequestConfig.custom().setConnectTimeout(5000).setConnectionRequestTimeout(1000).setSocketTimeout(3000).build();
+            httpPost.setConfig(requestConfig);
             httpPost.addHeader("user-agent", "Koala Admin");
             StringEntity se = new StringEntity(jsonstr, "utf-8");
             se.setContentType("text/json");
@@ -316,6 +322,9 @@ public class HttpClientUt {
         try {
             httpClient = HttpClientBuilder.create().build();
             httpPost = new HttpPost(url);
+            //请求超时
+            RequestConfig requestConfig = RequestConfig.custom().setConnectTimeout(5000).setConnectionRequestTimeout(1000).setSocketTimeout(3000).build();
+            httpPost.setConfig(requestConfig);
             if (boo) {
                 httpPost.addHeader("user-agent", "Koala Admin");
             } else {
@@ -377,6 +386,9 @@ public class HttpClientUt {
         try {
             httpClient = HttpClientBuilder.create().build();
             httpPost = new HttpPost(url);
+            //请求超时
+            RequestConfig requestConfig = RequestConfig.custom().setConnectTimeout(5000).setConnectionRequestTimeout(1000).setSocketTimeout(3000).build();
+            httpPost.setConfig(requestConfig);
             httpPost.addHeader("Cookie", cookieMap.get("cookie"));
 
             MultipartEntityBuilder builder = MultipartEntityBuilder.create();
@@ -436,7 +448,9 @@ public class HttpClientUt {
         try {
             httpClient = HttpClientBuilder.create().build();
             httpGet = new HttpGet(uri);
-
+            //请求超时
+            RequestConfig requestConfig = RequestConfig.custom().setConnectTimeout(5000).setConnectionRequestTimeout(1000).setSocketTimeout(3000).build();
+            httpGet.setConfig(requestConfig);
             httpGet.addHeader("Cookie", cookieMap.get("cookie"));
 
 

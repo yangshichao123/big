@@ -1,6 +1,9 @@
 package com.data.big.service.impl;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.data.big.gw.GwaqscJxglService;
 import com.data.big.gw.GwaqscJxglServicePortType;
 import com.data.big.mapper.*;
@@ -2203,15 +2206,45 @@ public class ServiceImpl implements Service {
     @Override
     public Map<String,Object> addTable() {
         Map<String,Object> map=new HashMap<>();
+
+        JSONArray jsonArray = new JSONArray();
         List<Camera> cameras = cameraMapper.selectAll();
+        List<String > cameraList=new ArrayList<>();
+        for (Camera camera : cameras) {
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("device_id",camera.getDeviceId()==null?"":camera.getDeviceId());
+            jsonObject.put("device_name",camera.getDeviceName()==null?"":camera.getDeviceName());
+            jsonObject.put("node_id",camera.getNodeId()==null?"":camera.getNodeId());
+            jsonObject.put("device_type",camera.getDeviceType()==null?"":camera.getDeviceType());
+            jsonObject.put("manufacturer",camera.getManufacturer()==null?"":camera.getManufacturer());
+            jsonObject.put("camera_type",camera.getCameraType()==null?"":camera.getCameraType());
+            jsonObject.put("Camera_dpi",camera.getCameraDpi()==null?"":camera.getCameraDpi());
+            jsonObject.put("ip_addr",camera.getIpAddr()==null?"":camera.getIpAddr());
+            jsonObject.put("ip_port",camera.getIpPort()==null?"":camera.getIpPort());
+            jsonObject.put("username",camera.getUsername()==null?"":camera.getUsername());
+            jsonObject.put("password",camera.getPassword()==null?"":camera.getPassword());
+            jsonObject.put("install_time",camera.getInstallTime()==null?"":camera.getInstallTime());
+            jsonObject.put("affiliation",camera.getAffiliation()==null?"":camera.getAffiliation());
+            jsonObject.put("up_down",camera.getUpDown()==null?"":camera.getUpDown());
+            jsonObject.put("associated_line",camera.getAssociatedLine()==null?"":camera.getAssociatedLine());
+            jsonObject.put("k_mark",camera.getkMark()==null?"":camera.getkMark());
+            jsonObject.put("join_station",camera.getJoinStation()==null?"":camera.getJoinStation());
+            jsonObject.put("direction",camera.getDirection()==null?"":camera.getDirection());
+            jsonObject.put("target_location",camera.getTargetLocation()==null?"":camera.getTargetLocation());
+            jsonObject.put("catalogue",camera.getCatalogue()==null?"":camera.getCatalogue());
+            jsonObject.put("longitude",camera.getLongitude()==null?"":camera.getLongitude());
+            jsonObject.put("latitude",camera.getLatitude()==null?"":camera.getLatitude());
+            jsonArray.add(jsonObject);
+        }
         JSONObject jsonParam = new JSONObject();
         jsonParam.put("total",cameras.size());
         jsonParam.put("fieldNum",22);
-        jsonParam.put("data",cameras);
+        jsonParam.put("data",jsonArray);
         String sendAddTableUrl = Properties.getSendAddTableUrl();
         String Authorization=Properties.getAuthorization();
         String s = HttpClientUt.doPost(sendAddTableUrl, jsonParam.toJSONString(), Authorization);
         map.put("返回数据",s);
+        logger.info(jsonParam.toJSONString());
         return map;
     }
 }
