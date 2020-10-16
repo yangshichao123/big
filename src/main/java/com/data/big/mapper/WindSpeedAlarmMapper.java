@@ -19,4 +19,10 @@ public interface WindSpeedAlarmMapper extends BaseMapper<WindSpeedAlarm> {
      * @return
      */
     List<WindSpeedAlarm> selectAllByStatus(WindSpeedAlarm windSpeedAlarm);
+
+    /**
+     * 批量修改 添加视频下载表任务 状态
+     * @param windSpeedAlarms
+     */
+    void updateAll(List<WindSpeedAlarm> windSpeedAlarms);
 }

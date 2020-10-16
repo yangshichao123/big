@@ -89,6 +89,7 @@ public class HttpClientUt {
                 meBuilder.addPart("files", fileBody);
             }
             httpPost.setHeader("Authorization", Authorization);
+
             HttpEntity reqEntity = meBuilder.build();
 
             httpPost.setEntity(reqEntity);
@@ -114,6 +115,52 @@ public class HttpClientUt {
         return result;
     }
 
+    /**
+     * post http请求
+     *
+     * @param url     请求地址
+     * @param jsonstr json字符串
+     * @return json字符串
+     */
+    public static String doPost(String url, String jsonstr,String headerStr) {
+        HttpClient httpClient = null;
+        HttpPost httpPost = null;
+        String result = null;
+        try {
+            httpClient = HttpClientBuilder.create().build();
+            httpPost = new HttpPost(url);
+            httpPost.addHeader("Authorization", headerStr);
+            StringEntity se = new StringEntity(jsonstr, "utf-8");
+            se.setContentType("text/json");
+            se.setContentEncoding(new BasicHeader("Content-Type", "application/json"));
+            httpPost.setEntity(se);
+            HttpResponse response = httpClient.execute(httpPost);
+            if (response != null) {
+                int code = response.getStatusLine().getStatusCode();
+                //如果成功 则处理数据
+                if (code == 200) {
+
+                    HttpEntity resEntity = response.getEntity();
+                    if (resEntity != null) {
+                        result = EntityUtils.toString(resEntity, "utf-8");
+
+                    }
+                } else {
+                    JSONObject jsonParam = new JSONObject();
+                    jsonParam.put("stateCode", code);//-1表示没有登陆
+                    result = jsonParam.toString();
+                }
+            }
+        } catch (ClientProtocolException ex) {
+            logger.error(ex.getMessage(), ex);
+        } catch (IOException ex) {
+            logger.error(ex.getMessage(), ex);
+        } catch (Exception ex) {
+            logger.error(ex.getMessage(), ex);
+        }
+        return result;
+    }
+
 
     public static String doGetd(String uri, Map<String,String> mapStr) {
         HttpClient httpClient = null;
@@ -127,6 +174,10 @@ public class HttpClientUt {
             httpClient = HttpClientBuilder.create().build();
             httpGet = new HttpGet(uriBuilder.build());
             httpGet.addHeader("user-agent", "Koala Admin");
+
+            RequestConfig requestConfig =  RequestConfig.custom().setSocketTimeout(10000).setConnectTimeout(10000).build();
+            httpGet.setConfig(requestConfig);
+
             HttpResponse response = httpClient.execute(httpGet);
             if (response != null) {
                 int code = response.getStatusLine().getStatusCode();
@@ -612,13 +663,13 @@ public class HttpClientUt {
             return strRequest;
 
         } catch (ClientProtocolException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage(), e);
             return "协议异常";
         } catch (ParseException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage(), e);
             return "解析异常";
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage(), e);
             return "传输异常";
         } finally {
             try {
@@ -626,7 +677,7 @@ public class HttpClientUt {
                     closeableHttpClient.close();
                 }
             } catch (IOException e) {
-                e.printStackTrace();
+                logger.error(e.getMessage(), e);
             }
 
         }

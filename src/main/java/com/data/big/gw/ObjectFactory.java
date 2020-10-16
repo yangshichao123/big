@@ -23,14 +23,11 @@ import javax.xml.bind.annotation.XmlRegistry;
 @XmlRegistry
 public class ObjectFactory {
 
-    private final static javax.xml.namespace.QName _GetGwdLjwclByRqQsrq_QNAME = new javax.xml.namespace.QName("http://services.itcmor.com", "qsrq");
-    private final static javax.xml.namespace.QName _GetGwdLjwclByRqZzrq_QNAME = new javax.xml.namespace.QName("http://services.itcmor.com", "zzrq");
-    private final static javax.xml.namespace.QName _GetGwdLjwclByRqResponseReturn_QNAME = new javax.xml.namespace.QName("http://services.itcmor.com", "return");
-    private final static javax.xml.namespace.QName _GetLjwclByGwdAndRqGwd_QNAME = new javax.xml.namespace.QName("http://services.itcmor.com", "gwd");
     private final static javax.xml.namespace.QName _GetHQdataLineCode_QNAME = new javax.xml.namespace.QName("http://services.itcmor.com", "lineCode");
     private final static javax.xml.namespace.QName _GetHQdataXb_QNAME = new javax.xml.namespace.QName("http://services.itcmor.com", "xb");
     private final static javax.xml.namespace.QName _GetHQdataGjqs_QNAME = new javax.xml.namespace.QName("http://services.itcmor.com", "gjqs");
     private final static javax.xml.namespace.QName _GetHQdataGjzz_QNAME = new javax.xml.namespace.QName("http://services.itcmor.com", "gjzz");
+    private final static javax.xml.namespace.QName _GetHQdataResponseReturn_QNAME = new javax.xml.namespace.QName("http://services.itcmor.com", "return");
     private final static javax.xml.namespace.QName _GetCHZHdataDwbh_QNAME = new javax.xml.namespace.QName("http://services.itcmor.com", "dwbh");
     private final static javax.xml.namespace.QName _GetCHZHdataQslc_QNAME = new javax.xml.namespace.QName("http://services.itcmor.com", "qslc");
     private final static javax.xml.namespace.QName _GetCHZHdataZzlc_QNAME = new javax.xml.namespace.QName("http://services.itcmor.com", "zzlc");
@@ -38,12 +35,16 @@ public class ObjectFactory {
     private final static javax.xml.namespace.QName _GetCHZHdataZyb_QNAME = new javax.xml.namespace.QName("http://services.itcmor.com", "zyb");
     private final static javax.xml.namespace.QName _GetCHZHdataCzbh_QNAME = new javax.xml.namespace.QName("http://services.itcmor.com", "czbh");
     private final static javax.xml.namespace.QName _GetGjByZzjglxZzjg_QNAME = new javax.xml.namespace.QName("http://services.itcmor.com", "zzjg");
+    private final static javax.xml.namespace.QName _GetLjwclByGwdAndRqQsrq_QNAME = new javax.xml.namespace.QName("http://services.itcmor.com", "qsrq");
+    private final static javax.xml.namespace.QName _GetLjwclByGwdAndRqZzrq_QNAME = new javax.xml.namespace.QName("http://services.itcmor.com", "zzrq");
+    private final static javax.xml.namespace.QName _GetLjwclByGwdAndRqGwd_QNAME = new javax.xml.namespace.QName("http://services.itcmor.com", "gwd");
     private final static javax.xml.namespace.QName _GetXcbhDataTemp_QNAME = new javax.xml.namespace.QName("http://services.itcmor.com", "temp");
     private final static javax.xml.namespace.QName _List2XmlList_QNAME = new javax.xml.namespace.QName("http://services.itcmor.com", "list");
     private final static javax.xml.namespace.QName _List2XmlElement_QNAME = new javax.xml.namespace.QName("http://services.itcmor.com", "element");
     private final static javax.xml.namespace.QName _GetBhdataFlag_QNAME = new javax.xml.namespace.QName("http://services.itcmor.com", "flag");
     private final static javax.xml.namespace.QName _GetJcjhJsrq_QNAME = new javax.xml.namespace.QName("http://services.itcmor.com", "jsrq");
     private final static javax.xml.namespace.QName _GetJcjhJhlx_QNAME = new javax.xml.namespace.QName("http://services.itcmor.com", "jhlx");
+    private final static javax.xml.namespace.QName _GetSgjhXm_QNAME = new javax.xml.namespace.QName("http://services.itcmor.com", "xm");
     private final static javax.xml.namespace.QName _GetHcsjCxdj_QNAME = new javax.xml.namespace.QName("http://services.itcmor.com", "cxdj");
     private final static javax.xml.namespace.QName _AbstractNodeDocument_QNAME = new javax.xml.namespace.QName("http://tree.dom4j.org/xsd", "document");
     private final static javax.xml.namespace.QName _AbstractNodeName_QNAME = new javax.xml.namespace.QName("http://tree.dom4j.org/xsd", "name");
@@ -105,7 +106,7 @@ public class ObjectFactory {
     }
 
     /**
-     *
+     * Create an instance of {@link com.data.big.gw.QName }
      * 
      */
     public com.data.big.gw.QName createQName() {
@@ -161,38 +162,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link GetGwdLjwclByRq }
-     * 
-     */
-    public GetGwdLjwclByRq createGetGwdLjwclByRq() {
-        return new GetGwdLjwclByRq();
-    }
-
-    /**
-     * Create an instance of {@link GetGwdLjwclByRqResponse }
-     * 
-     */
-    public GetGwdLjwclByRqResponse createGetGwdLjwclByRqResponse() {
-        return new GetGwdLjwclByRqResponse();
-    }
-
-    /**
-     * Create an instance of {@link GetLjwclByGwdAndRq }
-     * 
-     */
-    public GetLjwclByGwdAndRq createGetLjwclByGwdAndRq() {
-        return new GetLjwclByGwdAndRq();
-    }
-
-    /**
-     * Create an instance of {@link GetLjwclByGwdAndRqResponse }
-     * 
-     */
-    public GetLjwclByGwdAndRqResponse createGetLjwclByGwdAndRqResponse() {
-        return new GetLjwclByGwdAndRqResponse();
-    }
-
-    /**
      * Create an instance of {@link GetHQdata }
      * 
      */
@@ -241,6 +210,22 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link GetGjByZzjglx }
+     * 
+     */
+    public GetGjByZzjglx createGetGjByZzjglx() {
+        return new GetGjByZzjglx();
+    }
+
+    /**
+     * Create an instance of {@link GetGjByZzjglxResponse }
+     * 
+     */
+    public GetGjByZzjglxResponse createGetGjByZzjglxResponse() {
+        return new GetGjByZzjglxResponse();
+    }
+
+    /**
      * Create an instance of {@link GetSDdata }
      * 
      */
@@ -257,19 +242,35 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link GetGjByZzjglx }
+     * Create an instance of {@link GetLjwclByGwdAndRq }
      * 
      */
-    public GetGjByZzjglx createGetGjByZzjglx() {
-        return new GetGjByZzjglx();
+    public GetLjwclByGwdAndRq createGetLjwclByGwdAndRq() {
+        return new GetLjwclByGwdAndRq();
     }
 
     /**
-     * Create an instance of {@link GetGjByZzjglxResponse }
+     * Create an instance of {@link GetLjwclByGwdAndRqResponse }
      * 
      */
-    public GetGjByZzjglxResponse createGetGjByZzjglxResponse() {
-        return new GetGjByZzjglxResponse();
+    public GetLjwclByGwdAndRqResponse createGetLjwclByGwdAndRqResponse() {
+        return new GetLjwclByGwdAndRqResponse();
+    }
+
+    /**
+     * Create an instance of {@link GetGwdLjwclByRq }
+     * 
+     */
+    public GetGwdLjwclByRq createGetGwdLjwclByRq() {
+        return new GetGwdLjwclByRq();
+    }
+
+    /**
+     * Create an instance of {@link GetGwdLjwclByRqResponse }
+     * 
+     */
+    public GetGwdLjwclByRqResponse createGetGwdLjwclByRqResponse() {
+        return new GetGwdLjwclByRqResponse();
     }
 
     /**
@@ -305,6 +306,22 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link GetGgssData }
+     * 
+     */
+    public GetGgssData createGetGgssData() {
+        return new GetGgssData();
+    }
+
+    /**
+     * Create an instance of {@link GetGgssDataResponse }
+     * 
+     */
+    public GetGgssDataResponse createGetGgssDataResponse() {
+        return new GetGgssDataResponse();
+    }
+
+    /**
      * Create an instance of {@link GetBhdata }
      * 
      */
@@ -334,22 +351,6 @@ public class ObjectFactory {
      */
     public GetTcjhDataResponse createGetTcjhDataResponse() {
         return new GetTcjhDataResponse();
-    }
-
-    /**
-     * Create an instance of {@link GetGgssData }
-     * 
-     */
-    public GetGgssData createGetGgssData() {
-        return new GetGgssData();
-    }
-
-    /**
-     * Create an instance of {@link GetGgssDataResponse }
-     * 
-     */
-    public GetGgssDataResponse createGetGgssDataResponse() {
-        return new GetGgssDataResponse();
     }
 
     /**
@@ -385,22 +386,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link GetHcsj }
-     * 
-     */
-    public GetHcsj createGetHcsj() {
-        return new GetHcsj();
-    }
-
-    /**
-     * Create an instance of {@link GetHcsjResponse }
-     * 
-     */
-    public GetHcsjResponse createGetHcsjResponse() {
-        return new GetHcsjResponse();
-    }
-
-    /**
      * Create an instance of {@link GetSgjh }
      * 
      */
@@ -417,6 +402,22 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link GetHcsj }
+     * 
+     */
+    public GetHcsj createGetHcsj() {
+        return new GetHcsj();
+    }
+
+    /**
+     * Create an instance of {@link GetHcsjResponse }
+     * 
+     */
+    public GetHcsjResponse createGetHcsjResponse() {
+        return new GetHcsjResponse();
+    }
+
+    /**
      * Create an instance of {@link GetWxjh }
      * 
      */
@@ -430,69 +431,6 @@ public class ObjectFactory {
      */
     public GetWxjhResponse createGetWxjhResponse() {
         return new GetWxjhResponse();
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://services.itcmor.com", name = "qsrq", scope = GetGwdLjwclByRq.class)
-    public JAXBElement<String> createGetGwdLjwclByRqQsrq(String value) {
-        return new JAXBElement<String>(_GetGwdLjwclByRqQsrq_QNAME, String.class, GetGwdLjwclByRq.class, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://services.itcmor.com", name = "zzrq", scope = GetGwdLjwclByRq.class)
-    public JAXBElement<String> createGetGwdLjwclByRqZzrq(String value) {
-        return new JAXBElement<String>(_GetGwdLjwclByRqZzrq_QNAME, String.class, GetGwdLjwclByRq.class, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://services.itcmor.com", name = "return", scope = GetGwdLjwclByRqResponse.class)
-    public JAXBElement<String> createGetGwdLjwclByRqResponseReturn(String value) {
-        return new JAXBElement<String>(_GetGwdLjwclByRqResponseReturn_QNAME, String.class, GetGwdLjwclByRqResponse.class, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://services.itcmor.com", name = "qsrq", scope = GetLjwclByGwdAndRq.class)
-    public JAXBElement<String> createGetLjwclByGwdAndRqQsrq(String value) {
-        return new JAXBElement<String>(_GetGwdLjwclByRqQsrq_QNAME, String.class, GetLjwclByGwdAndRq.class, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://services.itcmor.com", name = "zzrq", scope = GetLjwclByGwdAndRq.class)
-    public JAXBElement<String> createGetLjwclByGwdAndRqZzrq(String value) {
-        return new JAXBElement<String>(_GetGwdLjwclByRqZzrq_QNAME, String.class, GetLjwclByGwdAndRq.class, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://services.itcmor.com", name = "gwd", scope = GetLjwclByGwdAndRq.class)
-    public JAXBElement<String> createGetLjwclByGwdAndRqGwd(String value) {
-        return new JAXBElement<String>(_GetLjwclByGwdAndRqGwd_QNAME, String.class, GetLjwclByGwdAndRq.class, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://services.itcmor.com", name = "return", scope = GetLjwclByGwdAndRqResponse.class)
-    public JAXBElement<String> createGetLjwclByGwdAndRqResponseReturn(String value) {
-        return new JAXBElement<String>(_GetGwdLjwclByRqResponseReturn_QNAME, String.class, GetLjwclByGwdAndRqResponse.class, value);
     }
 
     /**
@@ -537,7 +475,7 @@ public class ObjectFactory {
      */
     @XmlElementDecl(namespace = "http://services.itcmor.com", name = "return", scope = GetHQdataResponse.class)
     public JAXBElement<String> createGetHQdataResponseReturn(String value) {
-        return new JAXBElement<String>(_GetGwdLjwclByRqResponseReturn_QNAME, String.class, GetHQdataResponse.class, value);
+        return new JAXBElement<String>(_GetHQdataResponseReturn_QNAME, String.class, GetHQdataResponse.class, value);
     }
 
     /**
@@ -618,7 +556,7 @@ public class ObjectFactory {
      */
     @XmlElementDecl(namespace = "http://services.itcmor.com", name = "return", scope = GetCHZHdataResponse.class)
     public JAXBElement<String> createGetCHZHdataResponseReturn(String value) {
-        return new JAXBElement<String>(_GetGwdLjwclByRqResponseReturn_QNAME, String.class, GetCHZHdataResponse.class, value);
+        return new JAXBElement<String>(_GetHQdataResponseReturn_QNAME, String.class, GetCHZHdataResponse.class, value);
     }
 
     /**
@@ -663,7 +601,25 @@ public class ObjectFactory {
      */
     @XmlElementDecl(namespace = "http://services.itcmor.com", name = "return", scope = GetQLdataResponse.class)
     public JAXBElement<String> createGetQLdataResponseReturn(String value) {
-        return new JAXBElement<String>(_GetGwdLjwclByRqResponseReturn_QNAME, String.class, GetQLdataResponse.class, value);
+        return new JAXBElement<String>(_GetHQdataResponseReturn_QNAME, String.class, GetQLdataResponse.class, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://services.itcmor.com", name = "zzjg", scope = GetGjByZzjglx.class)
+    public JAXBElement<String> createGetGjByZzjglxZzjg(String value) {
+        return new JAXBElement<String>(_GetGjByZzjglxZzjg_QNAME, String.class, GetGjByZzjglx.class, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://services.itcmor.com", name = "return", scope = GetGjByZzjglxResponse.class)
+    public JAXBElement<String> createGetGjByZzjglxResponseReturn(String value) {
+        return new JAXBElement<String>(_GetHQdataResponseReturn_QNAME, String.class, GetGjByZzjglxResponse.class, value);
     }
 
     /**
@@ -708,25 +664,70 @@ public class ObjectFactory {
      */
     @XmlElementDecl(namespace = "http://services.itcmor.com", name = "return", scope = GetSDdataResponse.class)
     public JAXBElement<String> createGetSDdataResponseReturn(String value) {
-        return new JAXBElement<String>(_GetGwdLjwclByRqResponseReturn_QNAME, String.class, GetSDdataResponse.class, value);
+        return new JAXBElement<String>(_GetHQdataResponseReturn_QNAME, String.class, GetSDdataResponse.class, value);
     }
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://services.itcmor.com", name = "zzjg", scope = GetGjByZzjglx.class)
-    public JAXBElement<String> createGetGjByZzjglxZzjg(String value) {
-        return new JAXBElement<String>(_GetGjByZzjglxZzjg_QNAME, String.class, GetGjByZzjglx.class, value);
+    @XmlElementDecl(namespace = "http://services.itcmor.com", name = "qsrq", scope = GetLjwclByGwdAndRq.class)
+    public JAXBElement<String> createGetLjwclByGwdAndRqQsrq(String value) {
+        return new JAXBElement<String>(_GetLjwclByGwdAndRqQsrq_QNAME, String.class, GetLjwclByGwdAndRq.class, value);
     }
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://services.itcmor.com", name = "return", scope = GetGjByZzjglxResponse.class)
-    public JAXBElement<String> createGetGjByZzjglxResponseReturn(String value) {
-        return new JAXBElement<String>(_GetGwdLjwclByRqResponseReturn_QNAME, String.class, GetGjByZzjglxResponse.class, value);
+    @XmlElementDecl(namespace = "http://services.itcmor.com", name = "zzrq", scope = GetLjwclByGwdAndRq.class)
+    public JAXBElement<String> createGetLjwclByGwdAndRqZzrq(String value) {
+        return new JAXBElement<String>(_GetLjwclByGwdAndRqZzrq_QNAME, String.class, GetLjwclByGwdAndRq.class, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://services.itcmor.com", name = "gwd", scope = GetLjwclByGwdAndRq.class)
+    public JAXBElement<String> createGetLjwclByGwdAndRqGwd(String value) {
+        return new JAXBElement<String>(_GetLjwclByGwdAndRqGwd_QNAME, String.class, GetLjwclByGwdAndRq.class, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://services.itcmor.com", name = "return", scope = GetLjwclByGwdAndRqResponse.class)
+    public JAXBElement<String> createGetLjwclByGwdAndRqResponseReturn(String value) {
+        return new JAXBElement<String>(_GetHQdataResponseReturn_QNAME, String.class, GetLjwclByGwdAndRqResponse.class, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://services.itcmor.com", name = "qsrq", scope = GetGwdLjwclByRq.class)
+    public JAXBElement<String> createGetGwdLjwclByRqQsrq(String value) {
+        return new JAXBElement<String>(_GetLjwclByGwdAndRqQsrq_QNAME, String.class, GetGwdLjwclByRq.class, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://services.itcmor.com", name = "zzrq", scope = GetGwdLjwclByRq.class)
+    public JAXBElement<String> createGetGwdLjwclByRqZzrq(String value) {
+        return new JAXBElement<String>(_GetLjwclByGwdAndRqZzrq_QNAME, String.class, GetGwdLjwclByRq.class, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://services.itcmor.com", name = "return", scope = GetGwdLjwclByRqResponse.class)
+    public JAXBElement<String> createGetGwdLjwclByRqResponseReturn(String value) {
+        return new JAXBElement<String>(_GetHQdataResponseReturn_QNAME, String.class, GetGwdLjwclByRqResponse.class, value);
     }
 
     /**
@@ -744,7 +745,7 @@ public class ObjectFactory {
      */
     @XmlElementDecl(namespace = "http://services.itcmor.com", name = "return", scope = GetXcbhDataResponse.class)
     public JAXBElement<String> createGetXcbhDataResponseReturn(String value) {
-        return new JAXBElement<String>(_GetGwdLjwclByRqResponseReturn_QNAME, String.class, GetXcbhDataResponse.class, value);
+        return new JAXBElement<String>(_GetHQdataResponseReturn_QNAME, String.class, GetXcbhDataResponse.class, value);
     }
 
     /**
@@ -771,43 +772,7 @@ public class ObjectFactory {
      */
     @XmlElementDecl(namespace = "http://services.itcmor.com", name = "return", scope = List2XmlResponse.class)
     public JAXBElement<Element> createList2XmlResponseReturn(Element value) {
-        return new JAXBElement<Element>(_GetGwdLjwclByRqResponseReturn_QNAME, Element.class, List2XmlResponse.class, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://services.itcmor.com", name = "flag", scope = GetBhdata.class)
-    public JAXBElement<String> createGetBhdataFlag(String value) {
-        return new JAXBElement<String>(_GetBhdataFlag_QNAME, String.class, GetBhdata.class, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://services.itcmor.com", name = "return", scope = GetBhdataResponse.class)
-    public JAXBElement<String> createGetBhdataResponseReturn(String value) {
-        return new JAXBElement<String>(_GetGwdLjwclByRqResponseReturn_QNAME, String.class, GetBhdataResponse.class, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://services.itcmor.com", name = "temp", scope = GetTcjhData.class)
-    public JAXBElement<String> createGetTcjhDataTemp(String value) {
-        return new JAXBElement<String>(_GetXcbhDataTemp_QNAME, String.class, GetTcjhData.class, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://services.itcmor.com", name = "return", scope = GetTcjhDataResponse.class)
-    public JAXBElement<String> createGetTcjhDataResponseReturn(String value) {
-        return new JAXBElement<String>(_GetGwdLjwclByRqResponseReturn_QNAME, String.class, GetTcjhDataResponse.class, value);
+        return new JAXBElement<Element>(_GetHQdataResponseReturn_QNAME, Element.class, List2XmlResponse.class, value);
     }
 
     /**
@@ -825,7 +790,43 @@ public class ObjectFactory {
      */
     @XmlElementDecl(namespace = "http://services.itcmor.com", name = "return", scope = GetGgssDataResponse.class)
     public JAXBElement<String> createGetGgssDataResponseReturn(String value) {
-        return new JAXBElement<String>(_GetGwdLjwclByRqResponseReturn_QNAME, String.class, GetGgssDataResponse.class, value);
+        return new JAXBElement<String>(_GetHQdataResponseReturn_QNAME, String.class, GetGgssDataResponse.class, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://services.itcmor.com", name = "flag", scope = GetBhdata.class)
+    public JAXBElement<String> createGetBhdataFlag(String value) {
+        return new JAXBElement<String>(_GetBhdataFlag_QNAME, String.class, GetBhdata.class, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://services.itcmor.com", name = "return", scope = GetBhdataResponse.class)
+    public JAXBElement<String> createGetBhdataResponseReturn(String value) {
+        return new JAXBElement<String>(_GetHQdataResponseReturn_QNAME, String.class, GetBhdataResponse.class, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://services.itcmor.com", name = "temp", scope = GetTcjhData.class)
+    public JAXBElement<String> createGetTcjhDataTemp(String value) {
+        return new JAXBElement<String>(_GetXcbhDataTemp_QNAME, String.class, GetTcjhData.class, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://services.itcmor.com", name = "return", scope = GetTcjhDataResponse.class)
+    public JAXBElement<String> createGetTcjhDataResponseReturn(String value) {
+        return new JAXBElement<String>(_GetHQdataResponseReturn_QNAME, String.class, GetTcjhDataResponse.class, value);
     }
 
     /**
@@ -843,7 +844,7 @@ public class ObjectFactory {
      */
     @XmlElementDecl(namespace = "http://services.itcmor.com", name = "return", scope = GetSdjhDataResponse.class)
     public JAXBElement<String> createGetSdjhDataResponseReturn(String value) {
-        return new JAXBElement<String>(_GetGwdLjwclByRqResponseReturn_QNAME, String.class, GetSdjhDataResponse.class, value);
+        return new JAXBElement<String>(_GetHQdataResponseReturn_QNAME, String.class, GetSdjhDataResponse.class, value);
     }
 
     /**
@@ -852,7 +853,7 @@ public class ObjectFactory {
      */
     @XmlElementDecl(namespace = "http://services.itcmor.com", name = "qsrq", scope = GetJcjh.class)
     public JAXBElement<String> createGetJcjhQsrq(String value) {
-        return new JAXBElement<String>(_GetGwdLjwclByRqQsrq_QNAME, String.class, GetJcjh.class, value);
+        return new JAXBElement<String>(_GetLjwclByGwdAndRqQsrq_QNAME, String.class, GetJcjh.class, value);
     }
 
     /**
@@ -879,7 +880,43 @@ public class ObjectFactory {
      */
     @XmlElementDecl(namespace = "http://services.itcmor.com", name = "return", scope = GetJcjhResponse.class)
     public JAXBElement<String> createGetJcjhResponseReturn(String value) {
-        return new JAXBElement<String>(_GetGwdLjwclByRqResponseReturn_QNAME, String.class, GetJcjhResponse.class, value);
+        return new JAXBElement<String>(_GetHQdataResponseReturn_QNAME, String.class, GetJcjhResponse.class, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://services.itcmor.com", name = "qsrq", scope = GetSgjh.class)
+    public JAXBElement<String> createGetSgjhQsrq(String value) {
+        return new JAXBElement<String>(_GetLjwclByGwdAndRqQsrq_QNAME, String.class, GetSgjh.class, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://services.itcmor.com", name = "jsrq", scope = GetSgjh.class)
+    public JAXBElement<String> createGetSgjhJsrq(String value) {
+        return new JAXBElement<String>(_GetJcjhJsrq_QNAME, String.class, GetSgjh.class, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://services.itcmor.com", name = "xm", scope = GetSgjh.class)
+    public JAXBElement<String> createGetSgjhXm(String value) {
+        return new JAXBElement<String>(_GetSgjhXm_QNAME, String.class, GetSgjh.class, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://services.itcmor.com", name = "return", scope = GetSgjhResponse.class)
+    public JAXBElement<String> createGetSgjhResponseReturn(String value) {
+        return new JAXBElement<String>(_GetHQdataResponseReturn_QNAME, String.class, GetSgjhResponse.class, value);
     }
 
     /**
@@ -888,7 +925,7 @@ public class ObjectFactory {
      */
     @XmlElementDecl(namespace = "http://services.itcmor.com", name = "qsrq", scope = GetHcsj.class)
     public JAXBElement<String> createGetHcsjQsrq(String value) {
-        return new JAXBElement<String>(_GetGwdLjwclByRqQsrq_QNAME, String.class, GetHcsj.class, value);
+        return new JAXBElement<String>(_GetLjwclByGwdAndRqQsrq_QNAME, String.class, GetHcsj.class, value);
     }
 
     /**
@@ -913,36 +950,18 @@ public class ObjectFactory {
      * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
      * 
      */
+    @XmlElementDecl(namespace = "http://services.itcmor.com", name = "xm", scope = GetHcsj.class)
+    public JAXBElement<String> createGetHcsjXm(String value) {
+        return new JAXBElement<String>(_GetSgjhXm_QNAME, String.class, GetHcsj.class, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+     * 
+     */
     @XmlElementDecl(namespace = "http://services.itcmor.com", name = "return", scope = GetHcsjResponse.class)
     public JAXBElement<String> createGetHcsjResponseReturn(String value) {
-        return new JAXBElement<String>(_GetGwdLjwclByRqResponseReturn_QNAME, String.class, GetHcsjResponse.class, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://services.itcmor.com", name = "qsrq", scope = GetSgjh.class)
-    public JAXBElement<String> createGetSgjhQsrq(String value) {
-        return new JAXBElement<String>(_GetGwdLjwclByRqQsrq_QNAME, String.class, GetSgjh.class, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://services.itcmor.com", name = "jsrq", scope = GetSgjh.class)
-    public JAXBElement<String> createGetSgjhJsrq(String value) {
-        return new JAXBElement<String>(_GetJcjhJsrq_QNAME, String.class, GetSgjh.class, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://services.itcmor.com", name = "return", scope = GetSgjhResponse.class)
-    public JAXBElement<String> createGetSgjhResponseReturn(String value) {
-        return new JAXBElement<String>(_GetGwdLjwclByRqResponseReturn_QNAME, String.class, GetSgjhResponse.class, value);
+        return new JAXBElement<String>(_GetHQdataResponseReturn_QNAME, String.class, GetHcsjResponse.class, value);
     }
 
     /**
@@ -951,7 +970,7 @@ public class ObjectFactory {
      */
     @XmlElementDecl(namespace = "http://services.itcmor.com", name = "qsrq", scope = GetWxjh.class)
     public JAXBElement<String> createGetWxjhQsrq(String value) {
-        return new JAXBElement<String>(_GetGwdLjwclByRqQsrq_QNAME, String.class, GetWxjh.class, value);
+        return new JAXBElement<String>(_GetLjwclByGwdAndRqQsrq_QNAME, String.class, GetWxjh.class, value);
     }
 
     /**
@@ -967,9 +986,18 @@ public class ObjectFactory {
      * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
      * 
      */
+    @XmlElementDecl(namespace = "http://services.itcmor.com", name = "xm", scope = GetWxjh.class)
+    public JAXBElement<String> createGetWxjhXm(String value) {
+        return new JAXBElement<String>(_GetSgjhXm_QNAME, String.class, GetWxjh.class, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+     * 
+     */
     @XmlElementDecl(namespace = "http://services.itcmor.com", name = "return", scope = GetWxjhResponse.class)
     public JAXBElement<String> createGetWxjhResponseReturn(String value) {
-        return new JAXBElement<String>(_GetGwdLjwclByRqResponseReturn_QNAME, String.class, GetWxjhResponse.class, value);
+        return new JAXBElement<String>(_GetHQdataResponseReturn_QNAME, String.class, GetWxjhResponse.class, value);
     }
 
     /**

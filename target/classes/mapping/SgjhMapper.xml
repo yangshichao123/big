@@ -9,7 +9,6 @@
     <result column="zyrq" jdbcType="VARCHAR" property="zyrq" />
     <result column="jhqssj" jdbcType="VARCHAR" property="jhqssj" />
     <result column="jhzzsj" jdbcType="VARCHAR" property="jhzzsj" />
-    <result column="zyxm" jdbcType="VARCHAR" property="zyxm" />
     <result column="zydj" jdbcType="VARCHAR" property="zydj" />
     <result column="xm" jdbcType="VARCHAR" property="xm" />
     <result column="xb" jdbcType="VARCHAR" property="xb" />
@@ -21,37 +20,46 @@
     <result column="sgztdw" jdbcType="VARCHAR" property="sgztdw" />
     <result column="phdw" jdbcType="VARCHAR" property="phdw" />
     <result column="fzrname" jdbcType="VARCHAR" property="fzrname" />
-    <result column="sgnrjyxfw" jdbcType="VARCHAR" property="sgnrjyxfw" />
     <result column="xsjxcfs" jdbcType="VARCHAR" property="xsjxcfs" />
     <result column="lycxx" jdbcType="VARCHAR" property="lycxx" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.data.big.model.Sgjh">
+    <result column="zyxm" jdbcType="LONGVARCHAR" property="zyxm" />
+    <result column="sgnrjyxfw" jdbcType="LONGVARCHAR" property="sgnrjyxfw" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, rjhh, sbztw, zylx, zyrq, jhqssj, jhzzsj, zyxm, zydj, xm, xb, zywz, qschzm, zzchzm, 
-    zyqslc, zyzzlc, sgztdw, phdw, fzrname, sgnrjyxfw, xsjxcfs, lycxx
+    id, rjhh, sbztw, zylx, zyrq, jhqssj, jhzzsj, zydj, xm, xb, zywz, qschzm, zzchzm, 
+    zyqslc, zyzzlc, sgztdw, phdw, fzrname, xsjxcfs, lycxx, `status`
   </sql>
-  <select id="selectByPrimaryId" parameterType="java.lang.String" resultMap="BaseResultMap">
+  <sql id="Blob_Column_List">
+    zyxm, sgnrjyxfw
+  </sql>
+  <select id="selectByPrimaryId" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
     select 
     <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
     from sgjh
     where id = #{id,jdbcType=VARCHAR}
   </select>
   <insert id="insert" parameterType="com.data.big.model.Sgjh">
     insert into sgjh (id, rjhh, sbztw, 
       zylx, zyrq, jhqssj, 
-      jhzzsj, zyxm, zydj, 
-      xm, xb, zywz, qschzm, 
-      zzchzm, zyqslc, zyzzlc, 
-      sgztdw, phdw, fzrname, 
-      sgnrjyxfw, xsjxcfs, lycxx
-      )
+      jhzzsj, zydj, xm, xb, 
+      zywz, qschzm, zzchzm, 
+      zyqslc, zyzzlc, sgztdw, 
+      phdw, fzrname, xsjxcfs, 
+      lycxx, `status`, zyxm, 
+      sgnrjyxfw)
     values (#{id,jdbcType=VARCHAR}, #{rjhh,jdbcType=VARCHAR}, #{sbztw,jdbcType=VARCHAR}, 
       #{zylx,jdbcType=VARCHAR}, #{zyrq,jdbcType=VARCHAR}, #{jhqssj,jdbcType=VARCHAR}, 
-      #{jhzzsj,jdbcType=VARCHAR}, #{zyxm,jdbcType=VARCHAR}, #{zydj,jdbcType=VARCHAR}, 
-      #{xm,jdbcType=VARCHAR}, #{xb,jdbcType=VARCHAR}, #{zywz,jdbcType=VARCHAR}, #{qschzm,jdbcType=VARCHAR}, 
-      #{zzchzm,jdbcType=VARCHAR}, #{zyqslc,jdbcType=VARCHAR}, #{zyzzlc,jdbcType=VARCHAR}, 
-      #{sgztdw,jdbcType=VARCHAR}, #{phdw,jdbcType=VARCHAR}, #{fzrname,jdbcType=VARCHAR}, 
-      #{sgnrjyxfw,jdbcType=VARCHAR}, #{xsjxcfs,jdbcType=VARCHAR}, #{lycxx,jdbcType=VARCHAR}
-      )
+      #{jhzzsj,jdbcType=VARCHAR}, #{zydj,jdbcType=VARCHAR}, #{xm,jdbcType=VARCHAR}, #{xb,jdbcType=VARCHAR}, 
+      #{zywz,jdbcType=VARCHAR}, #{qschzm,jdbcType=VARCHAR}, #{zzchzm,jdbcType=VARCHAR}, 
+      #{zyqslc,jdbcType=VARCHAR}, #{zyzzlc,jdbcType=VARCHAR}, #{sgztdw,jdbcType=VARCHAR}, 
+      #{phdw,jdbcType=VARCHAR}, #{fzrname,jdbcType=VARCHAR}, #{xsjxcfs,jdbcType=VARCHAR}, 
+      #{lycxx,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{zyxm,jdbcType=LONGVARCHAR}, 
+      #{sgnrjyxfw,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.data.big.model.Sgjh">
     insert into sgjh
@@ -76,9 +84,6 @@
       </if>
       <if test="jhzzsj != null">
         jhzzsj,
-      </if>
-      <if test="zyxm != null">
-        zyxm,
       </if>
       <if test="zydj != null">
         zydj,
@@ -113,14 +118,20 @@
       <if test="fzrname != null">
         fzrname,
       </if>
-      <if test="sgnrjyxfw != null">
-        sgnrjyxfw,
-      </if>
       <if test="xsjxcfs != null">
         xsjxcfs,
       </if>
       <if test="lycxx != null">
         lycxx,
+      </if>
+      <if test="status != null">
+        `status`,
+      </if>
+      <if test="zyxm != null">
+        zyxm,
+      </if>
+      <if test="sgnrjyxfw != null">
+        sgnrjyxfw,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -144,9 +155,6 @@
       </if>
       <if test="jhzzsj != null">
         #{jhzzsj,jdbcType=VARCHAR},
-      </if>
-      <if test="zyxm != null">
-        #{zyxm,jdbcType=VARCHAR},
       </if>
       <if test="zydj != null">
         #{zydj,jdbcType=VARCHAR},
@@ -181,15 +189,77 @@
       <if test="fzrname != null">
         #{fzrname,jdbcType=VARCHAR},
       </if>
-      <if test="sgnrjyxfw != null">
-        #{sgnrjyxfw,jdbcType=VARCHAR},
-      </if>
       <if test="xsjxcfs != null">
         #{xsjxcfs,jdbcType=VARCHAR},
       </if>
       <if test="lycxx != null">
         #{lycxx,jdbcType=VARCHAR},
       </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="zyxm != null">
+        #{zyxm,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="sgnrjyxfw != null">
+        #{sgnrjyxfw,jdbcType=LONGVARCHAR},
+      </if>
     </trim>
   </insert>
+  <update id="updateAll" parameterType="com.data.big.model.Sgjh">
+    <foreach collection="list" item="sgjh" separator=";">
+      update
+      sgjh  set
+      <trim prefix="" suffix=" " suffixOverrides=",">
+        status=#{sgjh.status}
+      </trim>
+      where id= #{sgjh.id}
+    </foreach>
+  </update>
+
+  <update id="updateChartParamByAccountAndChartid" parameterType="list">
+    update
+    sgjh
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="status =case" suffix="end,">
+        <foreach collection="list" item="item" index="index">
+          <if test="item.status!=null">
+            when id=#{item.id}
+            then #{item.status}
+          </if>
+        </foreach>
+      </trim>
+
+    </trim>
+    where id in
+    <foreach collection="list" item="item" index="index" separator="," open="(" close=")">
+      #{item.id}
+    </foreach>
+  </update>
+
+
+  <!-- 批量插入生成的兑换码 -->
+  <insert id ="insertCodeBatch" parameterType="java.util.List" >
+    insert IGNORE into sgjh (id, rjhh, sbztw,
+    zylx, zyrq, jhqssj,
+    jhzzsj, zydj, xm, xb,
+    zywz, qschzm, zzchzm,
+    zyqslc, zyzzlc, sgztdw,
+    phdw, fzrname, xsjxcfs,
+    lycxx, `status`, zyxm,
+    sgnrjyxfw)
+    values
+    <foreach collection ="list" item="reddemCode" index= "index" separator =",">
+      (
+      #{reddemCode.id}, #{reddemCode.rjhh},#{reddemCode.sbztw},
+      #{reddemCode.zylx},#{reddemCode.zyrq}, #{reddemCode.jhqssj},
+      #{reddemCode.jhzzsj},#{reddemCode.zydj}, #{reddemCode.xm},#{reddemCode.xb},
+      #{reddemCode.zywz},#{reddemCode.qschzm},#{reddemCode.zzchzm},
+      #{reddemCode.zyqslc}, #{reddemCode.zyzzlc}, #{reddemCode.sgztdw},
+      #{reddemCode.phdw}, #{reddemCode.fzrname}, #{reddemCode.xsjxcfs},
+      #{reddemCode.lycxx}, #{reddemCode.status}, #{reddemCode.zyxm},
+      #{reddemCode.sgnrjyxfw}
+      )
+    </foreach >
+  </insert >
 </mapper>

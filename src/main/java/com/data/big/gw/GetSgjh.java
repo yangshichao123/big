@@ -21,6 +21,7 @@ import javax.xml.bind.annotation.XmlType;
  *       &lt;sequence&gt;
  *         &lt;element name="qsrq" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
  *         &lt;element name="jsrq" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
+ *         &lt;element name="xm" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
@@ -32,7 +33,8 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
     "qsrq",
-    "jsrq"
+    "jsrq",
+    "xm"
 })
 @XmlRootElement(name = "getSgjh")
 public class GetSgjh {
@@ -41,6 +43,8 @@ public class GetSgjh {
     protected JAXBElement<String> qsrq;
     @XmlElementRef(name = "jsrq", namespace = "http://services.itcmor.com", type = JAXBElement.class, required = false)
     protected JAXBElement<String> jsrq;
+    @XmlElementRef(name = "xm", namespace = "http://services.itcmor.com", type = JAXBElement.class, required = false)
+    protected JAXBElement<String> xm;
 
     /**
      * ��ȡqsrq���Ե�ֵ��
@@ -88,6 +92,30 @@ public class GetSgjh {
      */
     public void setJsrq(JAXBElement<String> value) {
         this.jsrq = value;
+    }
+
+    /**
+     * ��ȡxm���Ե�ֵ��
+     * 
+     * @return
+     *     possible object is
+     *     {@link JAXBElement }{@code <}{@link String }{@code >}
+     *     
+     */
+    public JAXBElement<String> getXm() {
+        return xm;
+    }
+
+    /**
+     * ����xm���Ե�ֵ��
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link JAXBElement }{@code <}{@link String }{@code >}
+     *     
+     */
+    public void setXm(JAXBElement<String> value) {
+        this.xm = value;
     }
 
 }

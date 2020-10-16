@@ -2,6 +2,9 @@ package com.data.big.netty;
 
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelInitializer;
+import io.netty.handler.timeout.IdleStateHandler;
+
+import java.util.concurrent.TimeUnit;
 
 /**
  * 通道初始化
@@ -19,7 +22,7 @@ public class BootNettyChannelInitializer<SocketChannel> extends ChannelInitializ
          * 自定义ChannelInboundHandlerAdapter
          */
         ch.pipeline().addLast(new BootNettyChannelInboundHandlerAdapter());
-
+        ch.pipeline().addLast(new IdleStateHandler(61, 30, 0, TimeUnit.SECONDS));
     }
 
 }

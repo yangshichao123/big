@@ -217,7 +217,7 @@ public interface Service {
      * @param cxdj 超限等级（1、2、3、4）
      * @return
      */
-    Map<String,String> getHcsj(String qsrq, String jsrq, String cxdj);
+    Map<String,String> getHcsj(String qsrq, String jsrq, String cxdj,String xm);
 
     /**
      * 2、	施工计划
@@ -225,14 +225,14 @@ public interface Service {
      * @param jsrq 检测终止日期yyyy-MM-dd
      * @return
      */
-    Map<String,String> getSgjh(String qsrq, String jsrq);
+    Map<String,String> getSgjh(String qsrq, String jsrq,String xm);
     /**
      * 3、	维修计划
      * @param qsrq 检测起始日期 yyyy-MM-dd
      * @param jsrq 检测终止日期yyyy-MM-dd
      * @return
      */
-    Map<String,String> getWxjh(String qsrq, String jsrq);
+    Map<String,String> getWxjh(String qsrq, String jsrq,String xm);
 
     /**
      * 旅服 预警信息
@@ -259,4 +259,28 @@ public interface Service {
      * @return
      */
     Map<String,String> addVideoTask(String videoCode, String benginTime, String endTime, String intervalTime, String timeRange);
+
+    /**
+     * 添加公务告警到视频下载任务表
+     */
+    void addGWTask();
+
+    /**
+     * 查询摄像头资产信息
+     * @return
+     */
+    Map<String,Object> getCamerainfoList();
+
+    /**
+     * 根据公里标查询摄像机信息
+     * @param kMark
+     * @return
+     */
+    Map<String,Object> getCamerainfoByk(String kMark);
+
+    /**
+     * 向大数据中心添加摄像头资产信息
+     * @return
+     */
+    Map<String,Object> addTable();
 }

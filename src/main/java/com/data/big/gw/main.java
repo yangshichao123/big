@@ -12,7 +12,7 @@ public class main {
         try {
             GwaqscJxglService service = new GwaqscJxglService();//创建接口方法类
             GwaqscJxglServicePortType portType = service. getGwaqscJxglServiceHttpSoap12Endpoint ();//获取接口对象
-            String testString= portType.getHcsj("2020-09-08", "2020-09-08", "3");
+            String testString= portType.getHcsj("2020-09-08", "2020-09-08", "3","");
             System.out.println(testString);
         } catch (Exception e) {
             e.printStackTrace();

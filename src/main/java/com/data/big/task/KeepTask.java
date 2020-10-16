@@ -3,6 +3,7 @@ package com.data.big.task;
 import java.util.Date;
 
 import com.data.big.service.Service;
+import com.data.big.service.ServiceNetty;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;
@@ -13,26 +14,28 @@ import org.springframework.scheduling.config.ScheduledTaskRegistrar;
 @EnableScheduling   // 2.开启定时任务
 public class KeepTask implements SchedulingConfigurer {
 
-    private Integer saKeepAlivePeriod = 30;
+    private Integer saKeepAlivePeriod = 500;
     @Autowired
     private Service service;
+    @Autowired
+    private ServiceNetty serviceNetty;
 
     /**
      * 执行定时任务.
      */
     @Override
     public void configureTasks(ScheduledTaskRegistrar taskRegistrar) {
-/*
         taskRegistrar.addTriggerTask(
                 //1.添加任务内容(Runnable)
                 () -> {
-                    service.executeTask("", "");
+                   // service.executeTask("", "");
+                   // serviceNetty.sendKeepAlive();
                 },
                 //2.设置执行周期(Trigger)
                 triggerContext -> {
-                    return new Date(new Date().getTime() + saKeepAlivePeriod * 1000);
+                    return new Date(new Date().getTime() + saKeepAlivePeriod);
                 }
-        );*/
+        );
     }
 
     public Integer getSaKeepAlivePeriod() {

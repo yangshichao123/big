@@ -3,6 +3,8 @@ package com.data.big.mapper;
 import com.data.big.base.BaseMapper;
 import com.data.big.model.Camera;
 
+import java.util.List;
+
 public interface CameraMapper extends BaseMapper<Camera> {
     int insert(Camera record);
 
@@ -10,17 +12,9 @@ public interface CameraMapper extends BaseMapper<Camera> {
 
     Camera selectByPrimaryId(String deviceId);
 
-    /**
-     * 查询里公里标最小的摄像机id
-     * @param k 公里标
-     * @return
-     */
-    Camera getMinVideoCode(String k);
+    Camera getMinVideoCode(int k);
 
-    /**
-     * 查询里公里标最大的摄像机id
-     * @param  k 公里标
-     * @return
-     */
-    Camera getMxnVideoCode(String k);
+    Camera getMxnVideoCode(int parseInt);
+
+    List<Camera> getVideoCode(Integer getkMark, Integer getkMark1);
 }

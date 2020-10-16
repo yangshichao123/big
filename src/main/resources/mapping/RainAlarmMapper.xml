@@ -226,5 +226,14 @@
       </if>
     </trim>
   </insert>
-
+  <update id="updateAll" parameterType="com.data.big.model.RainAlarm">
+    <foreach collection="list" item="rainAlarm" separator=";">
+      update
+      rain_alarm  set
+      <trim prefix="" suffix=" " suffixOverrides=",">
+        video_up_status=#{rainAlarm.videoUpStatus}
+      </trim>
+      where id= #{rainAlarm.id}
+    </foreach>
+  </update>
 </mapper>

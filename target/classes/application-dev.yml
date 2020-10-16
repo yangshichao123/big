@@ -6,7 +6,7 @@ spring:
   datasource:
     username: root
     password: 1qaz!QAZ
-    url: jdbc:mysql://127.0.0.1:3307/video_bigdata?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=GMT%2b8
+    url: jdbc:mysql://127.0.0.1:3307/video_bigdata?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=GMT%2b8&allowMultiQueries=true
     driver-class-name: com.mysql.cj.jdbc.Driver
     type: com.zaxxer.hikari.HikariDataSource
     hikari:
@@ -78,61 +78,61 @@ getANBAO3:
 
 #京张综合视频 摄像机资产信息 url
 sendGetCameraInfo:
-  url: "http://172.23.37.60:8077/fdCon/GetCameraInfo"
+  url: "http://10.3.114.8:16559/nis/GetCameraInfo"
   cron: "0 20 0 0/1 * ?"
 #京张综合视频 节点信息 url
 sendGetNodeInfo:
-  url: "http://172.23.37.60:8077/fdCon/GetNodeInfo"
+  url: "http://10.3.114.8:16559/nis/GetNodeInfo"
   cron: "0 30 0 0/1 * ?"
 #京张综合视频 服务器产信息 url
 sendGetServerInfo:
-  url: "http://172.23.37.60:8077/fdCon/GetServerInfo"
+  url: "http://10.3.114.8:16559/nis/GetServerInfo"
   cron: "0 40 0 0/1 * ?"
 #京张综合视频 磁盘资产信息 url
 sendGetDiskInfo:
-  url: "http://172.23.37.60:8077/fdCon/GetDiskInfo"
+  url: "http://10.3.114.8:16559/nis/GetDiskInfo"
   cron: "0 50 0 0/1 * ?"
 #京张综合视频 交换机资产信息 url
 sendGetSwitchInfo:
-  url: "http://172.23.37.60:8077/fdCon/GetSwitchInfo"
+  url: "http://10.3.114.8:16559/nis/GetSwitchInfo"
   cron: "0 0 1 0/1 * ?"
 
 
 #摄像机告警
 sendGetCameraAlarm:
-  url: "http://172.23.37.60:8077/fdCon/GetCameraAlarm"
-  cron: "0/20 * * * * ?"
+  url: "http://10.3.114.8:16559/nis/GetCameraAlarm"
+  cron: "0 10 1 0/1 * ?"
 #摄像机状态
 sendGetCameraStatus:
-  url: "http://172.23.37.60:8077/fdCon/GetCameraStatus"
+  url: "http://10.3.114.8:16559/nis/GetCameraStatus"
   cron: "0 20 1 0/1 * ?"
 #视频服务器告警
 sendGetServerAlarm:
-  url: "http://172.23.37.60:8077/fdCon/GetServerAlarm"
+  url: "http://10.3.114.8:16559/nis/GetServerAlarm"
   cron: "0 30 1 0/1 * ?"
 #视频服务器状态
 sendGetServerStatus:
-  url: "http://172.23.37.60:8077/fdCon/GetServerStatus"
+  url: "http://10.3.114.8:16559/nis/GetServerStatus"
   cron: "0 40 1 0/1 * ?"
 #视频磁盘阵列告警
 sendGetDiskAlarm:
-  url: "http://172.23.37.60:8077/fdCon/GetDiskAlarm"
+  url: "http://10.3.114.8:16559/nis/GetDiskAlarm"
   cron: "0 50 1 0/1 * ?"
 #视频磁盘阵列状态
 sendGeDiskStatus:
-  url: "http://172.23.37.60:8077/fdCon/GeDiskStatus"
+  url: "http://10.3.114.8:16559/nis/GeDiskStatus"
   cron: "0 10 2 0/1 * ?"
 #交换机告警
 sendGetSwitchAlarm:
-  url: "http://172.23.37.60:8077/fdCon/GetSwitchAlarm"
+  url: "http://10.3.114.8:16559/nis/GetSwitchAlarm"
   cron: "0 20 2 0/1 * ?"
 #交换机状态
 sendGetSwitchStatus:
-  url: "http://172.23.37.60:8077/fdCon/GetSwitchStatus"
+  url: "http://10.3.114.8:16559/nis/GetSwitchStatus"
   cron: "0 30 2 0/1 * ?"
 #智能分析告警
 sendGetIVSAlarm:
-  url: "http://172.23.37.60:8077/fdCon/GetIVSAlarm"
+  url: "http://10.3.114.8:16559/nis/GetIVSAlarm"
   cron: "0 40 2 0/1 * ?"
 alarmSelectTime:
   #从右到左 表示 年 月 日 时 分 秒    0 0 0/1 * * ? 表示每小时0分0秒执行一次     0 10 0 0/1 * ？ 表示每天0点10分0秒 执行
@@ -140,18 +140,20 @@ alarmSelectTime:
   cron: "0 0 0/1 * * ?"
 
 
-
-sendFileUrl: "http://172.23.37.60:8077/fdCon/addFiles"
-
-token: "451372063468f978d84f31fbbbe85d10"
-
-fid: "1565"
-
-saveFileUrl: "D:/fileUpload/"
-
-
 #执行定时查询任务    每5分钟查询一次
 queryTaskTime: "0/20 * * * * ?"
+
+
+#向大数据中心发送数据
+#发送视频文件
+sendFileUrl: "http://172.23.37.60:8077/fdCon/addFiles"
+token: "451372063468f978d84f31fbbbe85d10"
+fid: "1565"
+saveFileUrl: "D:/fileUpload/"
+#发送摄像头资产信息
+sendAddTableUrl: "http://127.0.0.1:8077/fdCon/addTbale?tableName=ipc"
+Authorization: "027ade7c3843cf0fc322033e89ba9a59"
+
 
 
 

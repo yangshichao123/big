@@ -32,6 +32,7 @@ public class nettyThread {
 
                 try {
                     Thread.sleep(10000);
+                    logger.error("重起客户端++++++++++++++++++++++++++++");
                 } catch (InterruptedException e) {
                     logger.error(e.getMessage(), e);
                 }

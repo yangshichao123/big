@@ -18,10 +18,11 @@
     <result column="jcxh" jdbcType="VARCHAR" property="jcxh" />
     <result column="jch" jdbcType="VARCHAR" property="jch" />
     <result column="cc" jdbcType="VARCHAR" property="cc" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
   </resultMap>
   <sql id="Base_Column_List">
     id, dwmc, xm, xbh, xb, lc, jcsj, jssj, czjsd, czjsdjb, spjsd, spjsdjb, sd, jcxh, 
-    jch, cc
+    jch, cc, `status`
   </sql>
   <select id="selectByPrimaryId" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
@@ -34,12 +35,14 @@
       xbh, xb, lc, jcsj, 
       jssj, czjsd, czjsdjb, 
       spjsd, spjsdjb, sd, 
-      jcxh, jch, cc)
+      jcxh, jch, cc, `status`
+      )
     values (#{id,jdbcType=VARCHAR}, #{dwmc,jdbcType=VARCHAR}, #{xm,jdbcType=VARCHAR}, 
       #{xbh,jdbcType=VARCHAR}, #{xb,jdbcType=VARCHAR}, #{lc,jdbcType=VARCHAR}, #{jcsj,jdbcType=VARCHAR}, 
       #{jssj,jdbcType=VARCHAR}, #{czjsd,jdbcType=VARCHAR}, #{czjsdjb,jdbcType=VARCHAR}, 
       #{spjsd,jdbcType=VARCHAR}, #{spjsdjb,jdbcType=VARCHAR}, #{sd,jdbcType=VARCHAR}, 
-      #{jcxh,jdbcType=VARCHAR}, #{jch,jdbcType=VARCHAR}, #{cc,jdbcType=VARCHAR})
+      #{jcxh,jdbcType=VARCHAR}, #{jch,jdbcType=VARCHAR}, #{cc,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.data.big.model.Hcsj">
     insert into hcsj
@@ -92,6 +95,9 @@
       <if test="cc != null">
         cc,
       </if>
+      <if test="status != null">
+        `status`,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -142,6 +148,64 @@
       <if test="cc != null">
         #{cc,jdbcType=VARCHAR},
       </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
     </trim>
   </insert>
+
+
+
+  <update id="updateAll" parameterType="com.data.big.model.Hcsj">
+    <foreach collection="list" item="hcsj" separator=";">
+      update
+      hcsj  set
+      <trim prefix="" suffix=" " suffixOverrides=",">
+        status=#{hcsj.status}
+      </trim>
+      where id= #{hcsj.id}
+    </foreach>
+  </update>
+
+
+  <update id="updateChartParamByAccountAndChartid" parameterType="list">
+    update
+    hcsj
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="status =case" suffix="end,">
+        <foreach collection="list" item="item" index="index">
+          <if test="item.status!=null">
+            when id=#{item.id}
+            then #{item.status}
+          </if>
+        </foreach>
+      </trim>
+
+    </trim>
+    where id in
+    <foreach collection="list" item="item" index="index" separator="," open="(" close=")">
+      #{item.id}
+    </foreach>
+  </update>
+
+  <!-- 批量插入生成的兑换码 -->
+  <insert id ="insertCodeBatch" parameterType="java.util.List" >
+    insert IGNORE into hcsj (id, dwmc, xm,
+    xbh, xb, lc, jcsj,
+    jssj, czjsd, czjsdjb,
+    spjsd, spjsdjb, sd,
+    jcxh, jch, cc, `status`
+    )
+    values
+    <foreach collection ="list" item="reddemCode" index= "index" separator =",">
+      (
+      #{reddemCode.id}, #{reddemCode.dwmc},#{reddemCode.xm},
+      #{reddemCode.xbh},#{reddemCode.xb}, #{reddemCode.lc},#{reddemCode.jcsj},
+      #{reddemCode.jssj}, #{reddemCode.czjsd},#{reddemCode.czjsdjb},
+      #{reddemCode.spjsd},#{reddemCode.spjsdjb},#{reddemCode.sd},
+      #{reddemCode.jcxh}, #{reddemCode.jch}, #{reddemCode.cc},
+      #{reddemCode.status}
+      )
+    </foreach >
+  </insert >
 </mapper>

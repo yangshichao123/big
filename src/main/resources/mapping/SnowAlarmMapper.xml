@@ -201,5 +201,14 @@
       </if>
     </trim>
   </insert>
-
+  <update id="updateAll" parameterType="com.data.big.model.SnowAlarm">
+    <foreach collection="list" item="snowAlarm" separator=";">
+      update
+      snow_alarm  set
+      <trim prefix="" suffix=" " suffixOverrides=",">
+        video_up_status=#{snowAlarm.videoUpStatus}
+      </trim>
+      where id= #{snowAlarm.id}
+    </foreach>
+  </update>
 </mapper>

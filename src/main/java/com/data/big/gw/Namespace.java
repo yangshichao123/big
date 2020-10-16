@@ -45,12 +45,12 @@ public class Namespace
 {
 
     @XmlElementRefs({
+        @XmlElementRef(name = "text", namespace = "http://dom4j.org/xsd", type = JAXBElement.class, required = false),
+        @XmlElementRef(name = "XPathNameStep", namespace = "http://dom4j.org/xsd", type = JAXBElement.class, required = false),
         @XmlElementRef(name = "stringValue", namespace = "http://dom4j.org/xsd", type = JAXBElement.class, required = false),
         @XmlElementRef(name = "URI", namespace = "http://dom4j.org/xsd", type = JAXBElement.class, required = false),
         @XmlElementRef(name = "nodeType", namespace = "http://dom4j.org/xsd", type = JAXBElement.class, required = false),
-        @XmlElementRef(name = "prefix", namespace = "http://dom4j.org/xsd", type = JAXBElement.class, required = false),
-        @XmlElementRef(name = "text", namespace = "http://dom4j.org/xsd", type = JAXBElement.class, required = false),
-        @XmlElementRef(name = "XPathNameStep", namespace = "http://dom4j.org/xsd", type = JAXBElement.class, required = false)
+        @XmlElementRef(name = "prefix", namespace = "http://dom4j.org/xsd", type = JAXBElement.class, required = false)
     })
     protected List<JAXBElement<? extends Serializable>> rest;
 
@@ -84,8 +84,8 @@ public class Namespace
      * Objects of the following type(s) are allowed in the list
      * {@link JAXBElement }{@code <}{@link String }{@code >}
      * {@link JAXBElement }{@code <}{@link String }{@code >}
-     * {@link JAXBElement }{@code <}{@link String }{@code >}
      * {@link JAXBElement }{@code <}{@link Short }{@code >}
+     * {@link JAXBElement }{@code <}{@link String }{@code >}
      * {@link JAXBElement }{@code <}{@link String }{@code >}
      * {@link JAXBElement }{@code <}{@link String }{@code >}
      * 

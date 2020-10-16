@@ -6,7 +6,6 @@
     <result column="bzdwmc" jdbcType="VARCHAR" property="bzdwmc" />
     <result column="zylx" jdbcType="VARCHAR" property="zylx" />
     <result column="zydj" jdbcType="VARCHAR" property="zydj" />
-    <result column="zyxm" jdbcType="VARCHAR" property="zyxm" />
     <result column="zyrq" jdbcType="VARCHAR" property="zyrq" />
     <result column="zysd" jdbcType="VARCHAR" property="zysd" />
     <result column="xm" jdbcType="VARCHAR" property="xm" />
@@ -21,30 +20,41 @@
     <result column="yffhr" jdbcType="VARCHAR" property="yffhr" />
     <result column="dbr" jdbcType="VARCHAR" property="dbr" />
     <result column="sbztw" jdbcType="VARCHAR" property="sbztw" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.data.big.model.Wxjh">
+    <result column="zyxm" jdbcType="LONGVARCHAR" property="zyxm" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, bzdwmc, zylx, zydj, zyxm, zyrq, zysd, xm, xb, qschzm, zzchzm, zyqslc, zyzzlc, 
-    banci, zzfhr, gdfhr, yffhr, dbr, sbztw
+    id, bzdwmc, zylx, zydj, zyrq, zysd, xm, xb, qschzm, zzchzm, zyqslc, zyzzlc, banci, 
+    zzfhr, gdfhr, yffhr, dbr, sbztw, `status`
   </sql>
-  <select id="selectByPrimaryId" parameterType="java.lang.String" resultMap="BaseResultMap">
+  <sql id="Blob_Column_List">
+    zyxm
+  </sql>
+  <select id="selectByPrimaryId" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
     select 
     <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
     from wxjh
     where id = #{id,jdbcType=VARCHAR}
   </select>
   <insert id="insert" parameterType="com.data.big.model.Wxjh">
     insert into wxjh (id, bzdwmc, zylx, 
-      zydj, zyxm, zyrq, zysd, 
-      xm, xb, qschzm, zzchzm, 
+      zydj, zyrq, zysd, xm, 
+      xb, qschzm, zzchzm, 
       zyqslc, zyzzlc, banci, 
       zzfhr, gdfhr, yffhr, 
-      dbr, sbztw)
+      dbr, sbztw, `status`, 
+      zyxm)
     values (#{id,jdbcType=VARCHAR}, #{bzdwmc,jdbcType=VARCHAR}, #{zylx,jdbcType=VARCHAR}, 
-      #{zydj,jdbcType=VARCHAR}, #{zyxm,jdbcType=VARCHAR}, #{zyrq,jdbcType=VARCHAR}, #{zysd,jdbcType=VARCHAR}, 
-      #{xm,jdbcType=VARCHAR}, #{xb,jdbcType=VARCHAR}, #{qschzm,jdbcType=VARCHAR}, #{zzchzm,jdbcType=VARCHAR}, 
+      #{zydj,jdbcType=VARCHAR}, #{zyrq,jdbcType=VARCHAR}, #{zysd,jdbcType=VARCHAR}, #{xm,jdbcType=VARCHAR}, 
+      #{xb,jdbcType=VARCHAR}, #{qschzm,jdbcType=VARCHAR}, #{zzchzm,jdbcType=VARCHAR}, 
       #{zyqslc,jdbcType=VARCHAR}, #{zyzzlc,jdbcType=VARCHAR}, #{banci,jdbcType=VARCHAR}, 
       #{zzfhr,jdbcType=VARCHAR}, #{gdfhr,jdbcType=VARCHAR}, #{yffhr,jdbcType=VARCHAR}, 
-      #{dbr,jdbcType=VARCHAR}, #{sbztw,jdbcType=VARCHAR})
+      #{dbr,jdbcType=VARCHAR}, #{sbztw,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
+      #{zyxm,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.data.big.model.Wxjh">
     insert into wxjh
@@ -60,9 +70,6 @@
       </if>
       <if test="zydj != null">
         zydj,
-      </if>
-      <if test="zyxm != null">
-        zyxm,
       </if>
       <if test="zyrq != null">
         zyrq,
@@ -106,6 +113,12 @@
       <if test="sbztw != null">
         sbztw,
       </if>
+      <if test="status != null">
+        `status`,
+      </if>
+      <if test="zyxm != null">
+        zyxm,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -119,9 +132,6 @@
       </if>
       <if test="zydj != null">
         #{zydj,jdbcType=VARCHAR},
-      </if>
-      <if test="zyxm != null">
-        #{zyxm,jdbcType=VARCHAR},
       </if>
       <if test="zyrq != null">
         #{zyrq,jdbcType=VARCHAR},
@@ -165,6 +175,70 @@
       <if test="sbztw != null">
         #{sbztw,jdbcType=VARCHAR},
       </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="zyxm != null">
+        #{zyxm,jdbcType=LONGVARCHAR},
+      </if>
     </trim>
   </insert>
+
+  <update id="updateAll" parameterType="com.data.big.model.Wxjh">
+    <foreach collection="list" item="wxjh" separator=";">
+      update
+      wxjh  set
+      <trim prefix="" suffix=" " suffixOverrides=",">
+          status=#{wxjh.status}
+      </trim>
+      where id= #{wxjh.id}
+    </foreach>
+  </update>
+
+
+  <update id="updateChartParamByAccountAndChartid" parameterType="list">
+    update
+    wxjh
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="status =case" suffix="end,">
+        <foreach collection="list" item="item" index="index">
+          <if test="item.status!=null">
+            when id=#{item.id}
+            then #{item.status}
+          </if>
+        </foreach>
+      </trim>
+
+    </trim>
+    where id in
+    <foreach collection="list" item="item" index="index" separator="," open="(" close=")">
+      #{item.id}
+    </foreach>
+  </update>
+
+
+  <!-- 批量插入生成的兑换码 -->
+  <insert id ="insertCodeBatch" parameterType="java.util.List" >
+    insert IGNORE into wxjh (id, bzdwmc, zylx,
+    zydj, zyrq, zysd, xm,
+    xb, qschzm, zzchzm,
+    zyqslc, zyzzlc, banci,
+    zzfhr, gdfhr, yffhr,
+    dbr, sbztw, `status`,
+    zyxm)
+    values
+    <foreach collection ="list" item="reddemCode" index= "index" separator =",">
+      (
+      #{reddemCode.id}, #{reddemCode.bzdwmc},#{reddemCode.zylx},
+      #{reddemCode.zydj},#{reddemCode.zyrq}, #{reddemCode.zysd},#{reddemCode.xm},
+       #{reddemCode.xb}, #{reddemCode.qschzm},#{reddemCode.zzchzm},
+       #{reddemCode.zyqslc},#{reddemCode.zyzzlc},#{reddemCode.banci},
+      #{reddemCode.zzfhr}, #{reddemCode.gdfhr}, #{reddemCode.yffhr},
+       #{reddemCode.dbr},
+       #{reddemCode.sbztw},
+       #{reddemCode.status},
+       #{reddemCode.zyxm}
+      )
+    </foreach >
+  </insert >
 </mapper>

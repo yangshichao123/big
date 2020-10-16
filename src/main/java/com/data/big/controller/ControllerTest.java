@@ -497,6 +497,15 @@ public class ControllerTest {
         return "failure";
     }
 
+    @RequestMapping(value = "/addTbale", method = RequestMethod.POST ,produces = "application/json;charset=UTF-8")
+    @ResponseBody
+    public Map addTbale(@RequestHeader("Authorization") String authorization, @RequestBody String jsonObject, @RequestParam("tableName") String tableName) {
+        System.out.println( authorization+"       "+ jsonObject+"    "+tableName);
+        return null;
+    }
+
+
+
 
     @RequestMapping(value = "/addFiles", method = RequestMethod.POST)
     @ResponseBody

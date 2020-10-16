@@ -244,5 +244,14 @@
       </if>
     </trim>
   </insert>
-
+  <update id="updateAll" parameterType="com.data.big.model.ForeignBodyAlarm">
+    <foreach collection="list" item="foreignBodyAlarm" separator=";">
+      update
+      foreign_body_alarm  set
+      <trim prefix="" suffix=" " suffixOverrides=",">
+        video_up_status=#{foreignBodyAlarm.videoUpStatus}
+      </trim>
+      where id= #{foreignBodyAlarm.id}
+    </foreach>
+  </update>
 </mapper>

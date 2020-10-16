@@ -20,6 +20,12 @@ public interface ServiceNetty {
      */
     Boolean sendRegister();
 
+    int addVideoTask(String alarmId,String alarmNmae,String k,String startTime,String endTime);
 
     void addTask();
+
+    /**
+     * 防灾告警 添加到 视频下载任务表
+     */
+    void addFZTask();
 }

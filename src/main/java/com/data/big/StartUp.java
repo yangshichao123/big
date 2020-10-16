@@ -39,7 +39,7 @@ import javax.xml.soap.SOAPException;
 public class StartUp {
 
     public static void main(String[] args) throws URISyntaxException {
-	/*	try {
+		/*try {
 			System.out.println("--------------------start generator-------------------");
 			List<String> warnings = new ArrayList<String>();
 			boolean overwrite = true;
@@ -97,6 +97,25 @@ public class StartUp {
             System.out.println(date1);
             i=i+i1;
         }
+
+
+
+        String zyrq ="2014-12-04 00:00:00";
+        String zysd = "23:30-04:30";
+        if(zysd.contains("(")){
+            zysd=zysd.substring(0,zysd.indexOf("("));
+        }
+        String kaishi = zyrq.substring(0, zyrq.indexOf(" ")) + " " + zysd.split("-")[0] + ":00";
+        String jieshu = zyrq.substring(0, zyrq.indexOf(" ")) + " " + zysd.split("-")[1] + ":00";
+        Date kdate = DateUtils.parseDate(kaishi, "yyyy-MM-dd HH:mm:ss");
+        Date jdate = DateUtils.parseDate(jieshu, "yyyy-MM-dd HH:mm:ss");
+        if(kdate.getTime()>jdate.getTime()){
+            jieshu=DateUtils.getDate(new Date(kdate.getTime()+24*3600*1000),"yyyy-MM-dd")+ " " + zysd.split("-")[1] + ":00";
+        }
+        System.out.println(kaishi+"            " +jieshu);
+        String hcsj="333.333";
+        hcsj=hcsj.replace(".","");
+        System.out.println(hcsj);
     }
 
     /**

@@ -6,7 +6,8 @@ spring:
   datasource:
     username: admin
     password: 1qaz!QAZ
-    url: jdbc:mysql://127.0.0.1:13306/video_db?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=GMT%2b8
+    #url: jdbc:mysql://10.3.78.209:13306/video_db?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=GMT%2b8&allowMultiQueries=true
+    url: jdbc:mysql://127.0.0.1:13306/video_db?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=GMT%2b8&allowMultiQueries=true
     driver-class-name: com.mysql.cj.jdbc.Driver
     type: com.zaxxer.hikari.HikariDataSource
     hikari:
@@ -131,23 +132,31 @@ alarmSelectTime:
   # 如果 是按每天执行一次 系统默认查询前一天数据  如果按小时执行 根据执行间隔小时数 查询前几小时数据
   cron: "0 0 0/1 * * ?"
 
-sendFileUrl: "http://10.3.78.188:1280/file-access/v1/tlzhspjkxt"
-
-token: "451372063468f978d84f31fbbbe85d10"
-
-fid: "1565"
-
-saveFileUrl: "D:/fileUpload/"
 
 #执行定时查询任务    每5分钟查询一次
 queryTaskTime: "0 0/5 * * * ?"
+
+
+
+#向大数据中心发送数据
+#发送视频文件
+sendFileUrl: "http://10.3.78.188:1280/file-access/v1/tlzhspjkxt"
+token: "451372063468f978d84f31fbbbe85d10"
+fid: "1565"
+saveFileUrl: "D:/fileUpload/"
+#发送摄像头资产信息
+sendAddTableUrl: "http://10.3.78.188:1280/data-access/v1/auto_tlzhspjkxtjghsj?tableName=ipc"
+Authorization: "027ade7c3843cf0fc322033e89ba9a59"
+
+
+
 
 
 #防灾配置
 netty:
   #是否启动防灾客户端
   startOrNot: "true"
-  host: "10.3.144.48"
+  host: "10.3.91.181"
   #host: "127.0.0.1"
   port: "11029"
   version: "010101"  #版本号v1.1.1 转成 010101
@@ -163,9 +172,9 @@ gw:
 
 #旅服
 lf:
-  #url: "http://10.67.51.189/warningDataOperation/queryCurrentDayWarningData"
-  url: "http://127.0.0.1:8088/fdCon/queryCurrentDayWarningData"
+  url: "http://10.67.69.189/warningDataOperation/queryCurrentDayWarningData"
+  #url: "http://127.0.0.1:8088/fdCon/queryCurrentDayWarningData"
   #保存文件地址
-  saveAddress: "D://baocun"
+  saveAddress: "lf"
   cron: "0 09 0/1 * * ?"
 

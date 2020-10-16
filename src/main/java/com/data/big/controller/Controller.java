@@ -2,10 +2,14 @@ package com.data.big.controller;
 
 import com.data.big.gw.GwaqscJxglService;
 import com.data.big.gw.GwaqscJxglServicePortType;
+import com.data.big.mapper.WxjhMapper;
 import com.data.big.model.Camerainfo;
 import com.data.big.model.MethodType;
 import com.data.big.model.VideoKilometer;
+import com.data.big.model.Wxjh;
 import com.data.big.service.Service;
+import com.data.big.util.HttpClientUt;
+import com.data.big.util.UUIDHelper;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -14,7 +18,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
+import java.io.ObjectInput;
 import java.net.MalformedURLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -33,6 +39,8 @@ public class Controller {
 
     @Autowired
     private Service service;
+  @Autowired
+    private WxjhMapper wxjhMapper;
 
     @RequestMapping("/test")
     @ResponseBody
@@ -185,21 +193,21 @@ public class Controller {
     }
     @RequestMapping("/getHcsj")
     @ResponseBody
-    public Map<String,String> getHcsj(String qsrq, String jsrq, String cxdj) {
+    public Map<String,String> getHcsj(String qsrq, String jsrq, String cxdj,String xm) {
 
-       return service.getHcsj(qsrq,jsrq,cxdj);
+       return service.getHcsj(qsrq,jsrq,cxdj,xm);
     }
     @RequestMapping("/getSgjh")
     @ResponseBody
-    public Map<String,String> getSgjh(String qsrq, String jsrq) {
+    public Map<String,String> getSgjh(String qsrq, String jsrq,String xm) {
 
 
-        return service.getSgjh(qsrq,jsrq);
+        return service.getSgjh(qsrq,jsrq,xm);
     }
     @RequestMapping("/getWxjh")
     @ResponseBody
-    public Map<String,String> getWxjh(String qsrq, String jsrq) {
-        return service.getWxjh(qsrq,jsrq);
+    public Map<String,String> getWxjh(String qsrq, String jsrq,String xm) {
+        return service.getWxjh(qsrq,jsrq,xm);
     }
     @RequestMapping("/queryCurrentDayWarningData")
     @ResponseBody
@@ -216,5 +224,34 @@ public class Controller {
     @ResponseBody
     public Map<String ,String >  addVideoTask(String videoCode,String benginTime,String endTime,String intervalTime,String timeRange) {
         return service.addVideoTask(videoCode,benginTime,endTime,intervalTime,timeRange);
+    }
+    @RequestMapping("/tess")
+    @ResponseBody
+    public Map<String ,String >  tess() {
+        List<Wxjh> wxjhList = wxjhMapper.selectAll();
+        /*for (Wxjh wxjh : wxjhList) {
+            wxjh.setId(UUIDHelper.getUUIDStr());
+        }*/
+        wxjhMapper.insertCodeBatch(wxjhList);
+
+
+        return null;
+    }
+    @RequestMapping("/getCamerainfoList")
+    @ResponseBody
+    public Map<String ,Object >  getCamerainfoList() {
+        return service.getCamerainfoList();
+    }
+    @RequestMapping("/getCamerainfoByk")
+    @ResponseBody
+    public Map<String ,Object >  getCamerainfoByk(String KMark) {
+
+        return service.getCamerainfoByk(KMark);
+    } @RequestMapping("/addTbale")
+    @ResponseBody
+    public Map<String ,Object >  addTbale() {
+        /*HttpClientUt.doPost("http://127.0.0.1:8077/fdCon/addTbale?tableName=3333",jsonStr,Authorization);
+        System.out.println( Authorization+"       "+ jsonStr+"    "+tableName);*/
+        return service.addTable();
     }
 }

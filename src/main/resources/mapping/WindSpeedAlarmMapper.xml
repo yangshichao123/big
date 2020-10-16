@@ -252,5 +252,14 @@
       </if>
     </trim>
   </insert>
-
+  <update id="updateAll" parameterType="com.data.big.model.WindSpeedAlarm">
+    <foreach collection="list" item="windSpeedAlarm" separator=";">
+      update
+      wind_speed_alarm  set
+      <trim prefix="" suffix=" " suffixOverrides=",">
+        video_up_status=#{windSpeedAlarm.videoUpStatus}
+      </trim>
+      where id= #{windSpeedAlarm.id}
+    </foreach>
+  </update>
 </mapper>

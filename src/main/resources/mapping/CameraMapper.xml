@@ -17,7 +17,7 @@
     <result column="affiliation" jdbcType="VARCHAR" property="affiliation" />
     <result column="up_down" jdbcType="VARCHAR" property="upDown" />
     <result column="associated_line" jdbcType="VARCHAR" property="associatedLine" />
-    <result column="k_mark" jdbcType="VARCHAR" property="kMark" />
+    <result column="k_mark" jdbcType="INTEGER" property="kMark" />
     <result column="join_station" jdbcType="VARCHAR" property="joinStation" />
     <result column="direction" jdbcType="VARCHAR" property="direction" />
     <result column="target_location" jdbcType="VARCHAR" property="targetLocation" />
@@ -26,38 +26,32 @@
     <result column="latitude" jdbcType="VARCHAR" property="latitude" />
   </resultMap>
   <sql id="Base_Column_List">
-    device_id, device_name, node_id, device_type, manufacturer, camera_type, Camera_dpi,
-    ip_addr, ip_port, username, `password`, install_time, affiliation, up_down, associated_line,
+    device_id, device_name, node_id, device_type, manufacturer, camera_type, Camera_dpi, 
+    ip_addr, ip_port, username, `password`, install_time, affiliation, up_down, associated_line, 
     k_mark, join_station, direction, target_location, catalogue, longitude, latitude
   </sql>
   <select id="selectByPrimaryId" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select
+    select 
     <include refid="Base_Column_List" />
     from camera
     where device_id = #{deviceId,jdbcType=VARCHAR}
   </select>
-  <select id="getMinVideoCode" parameterType="java.lang.String" resultMap="BaseResultMap">
-    SELECT c.device_id from camera c where c.k_mark &lt;=#{k,jdbcType=VARCHAR} ORDER BY  c.k_mark  DESC LIMIT 1
-  </select>
-  <select id="getMxnVideoCode" parameterType="java.lang.String" resultMap="BaseResultMap">
-   SELECT c.device_id from camera c where c.k_mark >=#{k,jdbcType=VARCHAR} ORDER BY c.k_mark LIMIT 1
-  </select>
   <insert id="insert" parameterType="com.data.big.model.Camera">
-    insert into camera (device_id, device_name, node_id,
-      device_type, manufacturer, camera_type,
-      Camera_dpi, ip_addr, ip_port,
-      username, `password`, install_time,
-      affiliation, up_down, associated_line,
+    insert into camera (device_id, device_name, node_id, 
+      device_type, manufacturer, camera_type, 
+      Camera_dpi, ip_addr, ip_port, 
+      username, `password`, install_time, 
+      affiliation, up_down, associated_line, 
       k_mark, join_station, direction,
-      target_location, catalogue, longitude,
+      target_location, catalogue, longitude, 
       latitude)
-    values (#{deviceId,jdbcType=VARCHAR}, #{deviceName,jdbcType=VARCHAR}, #{nodeId,jdbcType=VARCHAR},
-      #{deviceType,jdbcType=VARCHAR}, #{manufacturer,jdbcType=VARCHAR}, #{cameraType,jdbcType=VARCHAR},
-      #{cameraDpi,jdbcType=VARCHAR}, #{ipAddr,jdbcType=VARCHAR}, #{ipPort,jdbcType=VARCHAR},
-      #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{installTime,jdbcType=VARCHAR},
-      #{affiliation,jdbcType=VARCHAR}, #{upDown,jdbcType=VARCHAR}, #{associatedLine,jdbcType=VARCHAR},
-      #{kMark,jdbcType=VARCHAR}, #{joinStation,jdbcType=VARCHAR}, #{direction,jdbcType=VARCHAR},
-      #{targetLocation,jdbcType=VARCHAR}, #{catalogue,jdbcType=VARCHAR}, #{longitude,jdbcType=VARCHAR},
+    values (#{deviceId,jdbcType=VARCHAR}, #{deviceName,jdbcType=VARCHAR}, #{nodeId,jdbcType=VARCHAR}, 
+      #{deviceType,jdbcType=VARCHAR}, #{manufacturer,jdbcType=VARCHAR}, #{cameraType,jdbcType=VARCHAR}, 
+      #{cameraDpi,jdbcType=VARCHAR}, #{ipAddr,jdbcType=VARCHAR}, #{ipPort,jdbcType=VARCHAR}, 
+      #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{installTime,jdbcType=VARCHAR}, 
+      #{affiliation,jdbcType=VARCHAR}, #{upDown,jdbcType=VARCHAR}, #{associatedLine,jdbcType=VARCHAR}, 
+      #{kMark,jdbcType=INTEGER}, #{joinStation,jdbcType=VARCHAR}, #{direction,jdbcType=VARCHAR},
+      #{targetLocation,jdbcType=VARCHAR}, #{catalogue,jdbcType=VARCHAR}, #{longitude,jdbcType=VARCHAR}, 
       #{latitude,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.data.big.model.Camera">
@@ -177,7 +171,7 @@
         #{associatedLine,jdbcType=VARCHAR},
       </if>
       <if test="kMark != null">
-        #{kMark,jdbcType=VARCHAR},
+        #{kMark,jdbcType=INTEGER},
       </if>
       <if test="joinStation != null">
         #{joinStation,jdbcType=VARCHAR},
@@ -199,5 +193,14 @@
       </if>
     </trim>
   </insert>
+  <select id="getMinVideoCode" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    SELECT c.device_id,c.k_mark from camera c where c.k_mark &lt;=#{k,jdbcType=INTEGER} ORDER BY  c.k_mark  DESC LIMIT 1
+  </select>
+  <select id="getMxnVideoCode" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+   SELECT c.device_id,c.k_mark from camera c where c.k_mark >=#{k,jdbcType=INTEGER} ORDER BY c.k_mark LIMIT 1
+  </select>
+  <select id="getVideoCode" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+   SELECT c.device_id,c.k_mark from camera c where c.k_mark >#{k,jdbcType=INTEGER} and c.k_mark &lt; #{j,jdbcType=INTEGER}
+  </select>
 
 </mapper>

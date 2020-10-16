@@ -68,6 +68,7 @@ com\data\big\gw\GetHcsjResponse.class
 com\data\big\model\Switchstatus.class
 com\data\big\model\UnitEquipmentAlarm.class
 com\data\big\model\ForeignBodyAlarm.class
+com\data\big\task\taskThread.class
 com\data\big\gw\GetSdjhDataResponse.class
 com\data\big\model\Camerainfo.class
 com\data\big\model\SensorStatusAlarm.class

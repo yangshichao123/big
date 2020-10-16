@@ -206,6 +206,34 @@ public class Properties {
      * 旅服 图片 视频保存地址
      */
     private static String lfSaveAddress;
+    /**
+     * 向大数据中心发送摄像头资产信息 url
+     */
+    private static String sendAddTableUrl;
+
+    /**
+     * 向大数据中心发送摄像头资产信息 token
+     */
+    private static String Authorization;
+
+
+    public static String getSendAddTableUrl() {
+        return sendAddTableUrl;
+    }
+    @Value("${sendAddTableUrl}")
+    public  void setSendAddTableUrl(String sendAddTableUrl) {
+        Properties.sendAddTableUrl = sendAddTableUrl;
+    }
+
+
+
+    public static String getAuthorization() {
+        return Authorization;
+    }
+    @Value("${Authorization}")
+    public  void setAuthorization(String authorization) {
+        Authorization = authorization;
+    }
 
     public static String getLfUrl() {
         return lfUrl;

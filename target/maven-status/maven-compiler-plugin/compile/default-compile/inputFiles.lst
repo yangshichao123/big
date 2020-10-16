@@ -94,6 +94,7 @@ D:\workspace\bigWorkspace\big\src\main\java\com\data\big\model\SensorStatusAlarm
 D:\workspace\bigWorkspace\big\src\main\java\com\data\big\mapper\TravelMapper.java
 D:\workspace\bigWorkspace\big\src\main\java\com\data\big\model\Camerainfo.java
 D:\workspace\bigWorkspace\big\src\main\java\com\data\big\queue\TaskQueue.java
+D:\workspace\bigWorkspace\big\src\main\java\com\data\big\task\TimingTaskQ.java
 D:\workspace\bigWorkspace\big\src\main\java\com\data\big\util\DateUtils.java
 D:\workspace\bigWorkspace\big\src\main\java\com\data\big\gw\GetXcbhDataResponse.java
 D:\workspace\bigWorkspace\big\src\main\java\com\data\big\webService\MuWebService.java
@@ -126,6 +127,7 @@ D:\workspace\bigWorkspace\big\src\main\java\com\data\big\mapper\SwitchstatusMapp
 D:\workspace\bigWorkspace\big\src\main\java\com\data\big\gw\Namespace.java
 D:\workspace\bigWorkspace\big\src\main\java\com\data\big\mapper\CameraalarmMapper.java
 D:\workspace\bigWorkspace\big\src\main\java\com\data\big\gw\GetWxjh.java
+D:\workspace\bigWorkspace\big\src\main\java\com\data\big\task\taskThread.java
 D:\workspace\bigWorkspace\big\src\main\java\com\data\big\gw\List2Xml.java
 D:\workspace\bigWorkspace\big\src\main\java\com\data\big\mapper\HcsjMapper.java
 D:\workspace\bigWorkspace\big\src\main\java\com\data\big\model\RainAlarm.java
