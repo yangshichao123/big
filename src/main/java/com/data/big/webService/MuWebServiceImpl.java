@@ -17,8 +17,8 @@ public class MuWebServiceImpl implements MuWebService {
     @Override
     public User getUser(String userName, String userId) {
         User user=new User();
-        user.setName(userName);
-        user.setUserId(userId);
+       /* user.setName(userName);
+        user.setUserId(userId);*/
         return user;
     }
 

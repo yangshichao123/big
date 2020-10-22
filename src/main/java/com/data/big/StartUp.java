@@ -62,60 +62,8 @@ public class StartUp {
 		} catch (XMLParserException e) {
 			e.printStackTrace();
 		}*/
-		/*ExecutorService cachedThreadPool = Executors.newCachedThreadPool();
 		
-		
-		
-		cachedThreadPool.submit(new Runnable() {
-			
-			@Override
-			
-			public void run() {
-				
-				System.out.println("1");
-				
-			}
-			
-		});*/
 
-		/*String method ="";
-		String json = "";
-		callWebserviceASMX(method,json);*/
-     /*   String s="555555C0C0";
-        int i1 = s.indexOf("C0C0", s.indexOf("C0C0")+1);
-        System.out.println(i1);
-        int i = StringUtils.indexOf(s, "C0C0", s.indexOf("C0C0") + 1);
-        System.out.println(i);*/
-        Date date2 = DateUtils.parseDate("2020-10-10", "yyyy-MM-dd");
-        long l = DateUtils.pastDays(date2);
-
-
-        int i1 = Integer.parseInt("3");
-        for (int i=0;i<l;i++) {
-            Date date = DateUtils.nextDay(i);
-            String date1 = DateUtils.getDate(date, "yyyy-MM-dd");
-            System.out.println(date1);
-            i=i+i1;
-        }
-
-
-
-        String zyrq ="2014-12-04 00:00:00";
-        String zysd = "23:30-04:30";
-        if(zysd.contains("(")){
-            zysd=zysd.substring(0,zysd.indexOf("("));
-        }
-        String kaishi = zyrq.substring(0, zyrq.indexOf(" ")) + " " + zysd.split("-")[0] + ":00";
-        String jieshu = zyrq.substring(0, zyrq.indexOf(" ")) + " " + zysd.split("-")[1] + ":00";
-        Date kdate = DateUtils.parseDate(kaishi, "yyyy-MM-dd HH:mm:ss");
-        Date jdate = DateUtils.parseDate(jieshu, "yyyy-MM-dd HH:mm:ss");
-        if(kdate.getTime()>jdate.getTime()){
-            jieshu=DateUtils.getDate(new Date(kdate.getTime()+24*3600*1000),"yyyy-MM-dd")+ " " + zysd.split("-")[1] + ":00";
-        }
-        System.out.println(kaishi+"            " +jieshu);
-        String hcsj="333.333";
-        hcsj=hcsj.replace(".","");
-        System.out.println(hcsj);
     }
 
     /**

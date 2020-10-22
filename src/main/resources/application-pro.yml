@@ -6,8 +6,8 @@ spring:
   datasource:
     username: admin
     password: 1qaz!QAZ
-    url: jdbc:mysql://10.3.78.209:13306/video_db?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=GMT%2b8&allowMultiQueries=true
-    #url: jdbc:mysql://127.0.0.1:13306/video_db?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=GMT%2b8&allowMultiQueries=true
+    #url: jdbc:mysql://10.3.78.209:13306/video_db?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=GMT%2b8&allowMultiQueries=true
+    url: jdbc:mysql://127.0.0.1:13306/video_db?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=GMT%2b8&allowMultiQueries=true
     driver-class-name: com.mysql.cj.jdbc.Driver
     type: com.zaxxer.hikari.HikariDataSource
     hikari:
@@ -178,3 +178,8 @@ lf:
   saveAddress: "lf"
   cron: "0 09 0/1 * * ?"
 
+
+
+
+#.调用实时、历史视频（VideoPlayOpen）
+videoPlayOpenUrl: "http://127.0.0.1:10001/fdCon/queryCurrentDayWarningData"

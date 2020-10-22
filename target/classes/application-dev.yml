@@ -179,7 +179,11 @@ gw:
 #旅服
 lf:
   #url: "http://10.67.51.189/warningDataOperation/queryCurrentDayWarningData"
-  url: "http://127.0.0.1:8088/fdCon/queryCurrentDayWarningData"
+  url: "http://127.0.0.1:10001/fdCon/queryCurrentDayWarningData"
   #保存文件地址
   saveAddress: "D://baocun"
   cron: "0 09 0/1 * * ?"
+
+
+#.调用实时、历史视频（VideoPlayOpen）
+videoPlayOpenUrl: "http://127.0.0.1:10001/fdCon/queryCurrentDayWarningData"

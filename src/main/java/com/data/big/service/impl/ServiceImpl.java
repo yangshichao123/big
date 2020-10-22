@@ -7,6 +7,7 @@ import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.data.big.gw.GwaqscJxglService;
 import com.data.big.gw.GwaqscJxglServicePortType;
 import com.data.big.mapper.*;
+import com.data.big.model.Dictionary;
 import com.data.big.service.Service;
 import com.data.big.service.ServiceNetty;
 import com.data.big.task.KeepTask;
@@ -87,6 +88,8 @@ public class ServiceImpl implements Service {
     private SgjhMapper sgjhMapper;
     @Autowired
     private WxjhMapper wxjhMapper;
+    @Autowired
+    private DictionaryMapper dictionaryMapper;
 
     @Autowired
     private ServiceNetty serviceNetty;
@@ -2245,6 +2248,61 @@ public class ServiceImpl implements Service {
         String s = HttpClientUt.doPost(sendAddTableUrl, jsonParam.toJSONString(), Authorization);
         map.put("返回数据",s);
         logger.info(jsonParam.toJSONString());
+        return map;
+    }
+
+    @Override
+    public String videoPlayOpen(String ipcid, String type, String starttime, String endtime) {
+        Map<String,Object> map = new HashMap<>();
+        map.put("ipcid", ipcid);
+        map.put("type", type);
+        map.put("starttime", starttime);
+        map.put("endtime", endtime);
+        String url = Properties.getVideoPlayOpenUrl();
+        String jsonData = HttpClientUt.doPostMap(url, map);
+        return jsonData;
+    }
+
+    @Override
+    public Map<String,Object> getDictionary(Dictionary dictionary) {
+        Map<String,Object> map = new HashMap<>();
+        try {
+            List<Dictionary> select = dictionaryMapper.select(dictionary);
+            map.put("status", "200");
+            map.put("data", select);
+            map.put("message", "查询成功");
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+            map.put("status", "1");
+            map.put("message", "查询失败");
+        }
+        return map;
+    }
+
+    @Override
+    public Map<String,Object> getVideoRecord(String videoType, String cameraType, String cameraName, String startTime, String endTime) {
+
+
+        Map<String,Object> map = new HashMap<>();
+        try {
+            List<Dictionary> dictionaries = dictionaryMapper.selectAll();
+            for (Dictionary dictionary : dictionaries) {
+                if(StringUtils.isNotEmpty(videoType)&&videoType.equals(dictionary.getId()+"")){
+                    videoType=dictionary.getName();
+                }
+                if(StringUtils.isNotEmpty(cameraType)&&cameraType.equals(dictionary.getId()+"")){
+                    cameraType=dictionary.getDescs();
+                }
+            }
+            List<VideoFile> videoFileList=videoFileMapper.getVideoRecord(videoType,cameraType,cameraName,startTime,endTime);
+            map.put("status", "200");
+            map.put("data", videoFileList);
+            map.put("message", "查询成功");
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+            map.put("status", "1");
+            map.put("message", "查询失败");
+        }
         return map;
     }
 }

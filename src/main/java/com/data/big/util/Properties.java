@@ -215,7 +215,19 @@ public class Properties {
      * 向大数据中心发送摄像头资产信息 token
      */
     private static String Authorization;
+    /**
+     * 调用实时、历史视频（VideoPlayOpen）
+     */
+    private static String videoPlayOpenUrl;
 
+
+    public static String getVideoPlayOpenUrl() {
+        return videoPlayOpenUrl;
+    }
+    @Value("${videoPlayOpenUrl}")
+    public  void setVideoPlayOpenUrl(String videoPlayOpenUrl) {
+        Properties.videoPlayOpenUrl = videoPlayOpenUrl;
+    }
 
     public static String getSendAddTableUrl() {
         return sendAddTableUrl;

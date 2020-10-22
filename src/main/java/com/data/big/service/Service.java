@@ -1,10 +1,7 @@
 package com.data.big.service;
 
 
-import com.data.big.model.Camerainfo;
-import com.data.big.model.MethodType;
-import com.data.big.model.VideoFile;
-import com.data.big.model.VideoKilometer;
+import com.data.big.model.*;
 
 import java.util.List;
 import java.util.Map;
@@ -283,4 +280,32 @@ public interface Service {
      * @return
      */
     Map<String,Object> addTable();
+
+    /**
+     * 从京张高铁现场直接获取实时或历史视频播放。
+     * @param ipcid 摄像机id
+     * @param type 视频类型
+     * @param starttime 开始时间
+     * @param endtime  结束时间
+     * @return
+     */
+    String videoPlayOpen(String ipcid, String type, String starttime, String endtime);
+
+    /**
+     * 查询字典表
+     * @param dictionary 可根据类的属性查询
+     * @return
+     */
+    Map<String,Object> getDictionary(Dictionary dictionary);
+
+    /**
+     * 查询视频记录
+     * @param videoType 视频告警类型
+     * @param cameraType 摄像机类型
+     * @param cameraName 摄像机名称
+     * @param startTime 开始时间
+     * @param endTime 结束时间
+     * @return
+     */
+    Map<String,Object> getVideoRecord(String videoType, String cameraType, String cameraName, String startTime, String endTime);
 }

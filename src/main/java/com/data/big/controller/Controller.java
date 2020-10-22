@@ -3,19 +3,14 @@ package com.data.big.controller;
 import com.data.big.gw.GwaqscJxglService;
 import com.data.big.gw.GwaqscJxglServicePortType;
 import com.data.big.mapper.WxjhMapper;
-import com.data.big.model.Camerainfo;
-import com.data.big.model.MethodType;
-import com.data.big.model.VideoKilometer;
-import com.data.big.model.Wxjh;
+import com.data.big.model.*;
 import com.data.big.service.Service;
 import com.data.big.util.HttpClientUt;
 import com.data.big.util.UUIDHelper;
+import com.sun.xml.internal.ws.api.ha.StickyFeature;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.io.ObjectInput;
@@ -178,14 +173,20 @@ public class Controller {
         return service.addTask(startTime,endTime,methodId);
     }
 
-
+    /**
+     * 提供接口 给前端
+     * @return
+     */
     @RequestMapping("/getVideo")
     @ResponseBody
     public List<Camerainfo> getVideo() {
         return service.getVideo();
     }
 
-
+    /**
+     * 提供接口 给前端
+     * @return
+     */
     @RequestMapping("/addVideoKilometer")
     @ResponseBody
     public Map<String,String> addVideoKilometer(VideoKilometer videoKilometer) {
@@ -220,6 +221,10 @@ public class Controller {
         service.download(sourceUrl,targetUrl);
         return "成功";
     }
+    /**
+     * 提供接口 给前端
+     * @return
+     */
     @RequestMapping("/addVideoTask")
     @ResponseBody
     public Map<String ,String >  addVideoTask(String videoCode,String benginTime,String endTime,String intervalTime,String timeRange) {
@@ -237,21 +242,61 @@ public class Controller {
 
         return null;
     }
+
+    /**
+     * 提供接口
+     * @return
+     */
     @RequestMapping("/getCamerainfoList")
     @ResponseBody
     public Map<String ,Object >  getCamerainfoList() {
         return service.getCamerainfoList();
     }
+    /**
+     * 提供接口
+     * @return
+     */
     @RequestMapping("/getCamerainfoByk")
     @ResponseBody
     public Map<String ,Object >  getCamerainfoByk(String KMark) {
 
         return service.getCamerainfoByk(KMark);
-    } @RequestMapping("/addTbale")
+    }
+    /**
+     * 提供接口
+     * @return
+     */
+    @RequestMapping("/VideoPlayOpen")
+    public String   videoPlayOpen(String ipcid,String type,String starttime,String endtime) {
+
+        return service.videoPlayOpen(ipcid,type,starttime,endtime);
+    }
+    @RequestMapping("/addTbale")
     @ResponseBody
-    public Map<String ,Object >  addTbale() {
-        /*HttpClientUt.doPost("http://127.0.0.1:8077/fdCon/addTbale?tableName=3333",jsonStr,Authorization);
-        System.out.println( Authorization+"       "+ jsonStr+"    "+tableName);*/
-        return service.addTable();
+    public Map<String ,Object >  addTbale(@RequestBody String jsonStr) {
+        //HttpClientUt.doPost11("http://127.0.0.1:10001/fdCon/addTbale",jsonStr,"33333333");
+        //System.out.println( Authorization+"       "+ jsonStr+"    "+tableName);
+       // return service.addTable();
+        return  null;
+    }
+    /**
+     * 提供接口
+     * @return
+     */
+    @RequestMapping("/getDictionary")
+    @ResponseBody
+    public Map<String ,Object >  getDictionary(Dictionary dictionary) {
+
+        return  service.getDictionary(dictionary);
+    }
+    /**
+     * 提供接口  查询视频记录 根据条件
+     * @return
+     */
+    @RequestMapping("/getVideoRecord")
+    @ResponseBody
+    public Map<String ,Object >  getVideoRecord(String videoType, String cameraType,String cameraName ,String startTime,String endTime) {
+
+        return  service.getVideoRecord(videoType,cameraType,cameraName,startTime,endTime);
     }
 }

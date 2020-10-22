@@ -15,7 +15,35 @@
     <result column="bz" jdbcType="VARCHAR" property="bz" />
     <result column="video_type" jdbcType="VARCHAR" property="videoType" />
     <result column="alarm_id" jdbcType="VARCHAR" property="alarmId" />
+    <collection property="camera" resultMap="cameraMap" />
   </resultMap>
+
+  <resultMap id="cameraMap" type="com.data.big.model.Camera">
+    <id column="device_id" jdbcType="VARCHAR" property="deviceId" />
+    <result column="device_name" jdbcType="VARCHAR" property="deviceName" />
+    <result column="node_id" jdbcType="VARCHAR" property="nodeId" />
+    <result column="device_type" jdbcType="VARCHAR" property="deviceType" />
+    <result column="manufacturer" jdbcType="VARCHAR" property="manufacturer" />
+    <result column="camera_type" jdbcType="VARCHAR" property="cameraType" />
+    <result column="Camera_dpi" jdbcType="VARCHAR" property="cameraDpi" />
+    <result column="ip_addr" jdbcType="VARCHAR" property="ipAddr" />
+    <result column="ip_port" jdbcType="VARCHAR" property="ipPort" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="install_time" jdbcType="VARCHAR" property="installTime" />
+    <result column="affiliation" jdbcType="VARCHAR" property="affiliation" />
+    <result column="up_down" jdbcType="VARCHAR" property="upDown" />
+    <result column="associated_line" jdbcType="VARCHAR" property="associatedLine" />
+    <result column="k_mark" jdbcType="INTEGER" property="kMark" />
+    <result column="join_station" jdbcType="VARCHAR" property="joinStation" />
+    <result column="direction" jdbcType="VARCHAR" property="direction" />
+    <result column="target_location" jdbcType="VARCHAR" property="targetLocation" />
+    <result column="catalogue" jdbcType="VARCHAR" property="catalogue" />
+    <result column="longitude" jdbcType="VARCHAR" property="longitude" />
+    <result column="latitude" jdbcType="VARCHAR" property="latitude" />
+  </resultMap>
+
+
   <sql id="Base_Column_List">
     ID, IPCID, kssj, jssj, `status`, loadtime, `path`, filename, FileID, uptime, bz, 
     video_type, alarm_id
@@ -123,4 +151,30 @@
       </if>
     </trim>
   </insert>
+
+  <select id="getVideoRecord" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select vf.*,ca.*
+
+    from video_file vf
+    left join camera ca on vf.IPCID=ca.device_id
+    <where>
+      <if test="videoType != null and videoType !=''">
+        and vf.video_type = #{videoType,jdbcType=VARCHAR}
+      </if>
+      <if test="cameraType != null and cameraType !=''">
+        and ca.device_type = #{cameraType,jdbcType=VARCHAR}
+      </if>
+      <if test="cameraName != null and cameraName !=''">
+        and ca.device_name  like concat('%',#{cameraName,jdbcType=VARCHAR},'%')
+      </if>
+      <if test="startTime != null and startTime !=''">
+        and vf.kssj >= #{startTime,jdbcType=VARCHAR}
+      </if>
+      <if test="endTime != null and endTime !=''">
+        and vf.jssj &lt;= #{endTime,jdbcType=VARCHAR}
+      </if>
+    </where>
+
+  </select>
+
 </mapper>

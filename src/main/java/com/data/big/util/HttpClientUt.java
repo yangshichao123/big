@@ -23,11 +23,13 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.entity.ContentType;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.entity.mime.content.FileBody;
+import org.apache.http.entity.mime.content.StringBody;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicHeader;
 import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
 
 import com.alibaba.fastjson.JSONObject;
@@ -48,7 +50,7 @@ public class HttpClientUt {
 
 
     public static void main(String[] args) {
-        String s = doPost("http://172.23.37.60:8099/fdCon/GetCameraInfo", "");
+        /*String s = doPost("http://172.23.37.60:8099/fdCon/GetCameraInfo", "");
         HashMap<String,Object> dataMapList = getDataMapList(s);
         for (String s1 : dataMapList.keySet()) {
 
@@ -62,7 +64,20 @@ public class HttpClientUt {
                 Object o1 = o.get(s1);
                 System.out.println(o1.toString());
             }
-        }
+        }*/
+        String url="http://127.0.0.1:10001/fdCon/addTbale1";
+
+        Map<String,String> headers=new HashMap<>();
+        headers.put("Authorization","33333333333");
+
+        JSONObject body=new JSONObject();
+        body.put("data","3333333333333");
+        body.put("id","111111");
+        body.put("name","44444444444");
+
+        String jsonstr="C:\\Users\\61471\\Pictures\\Saved Pictures\\timg.jpg";
+
+        sendFilePost(url, headers, body.toJSONString(),jsonstr);
     }
 
     public static String sendFile(String url, String jsonstr, String Authorization) {
@@ -161,6 +176,92 @@ public class HttpClientUt {
         } catch (Exception ex) {
             logger.error(ex.getMessage(), ex);
         }
+        return result;
+    }
+ /**
+     * post http请求
+     *
+     * @param url     请求地址
+     * @param jsonstr json字符串
+     * @return json字符串
+     */
+    /**
+     * 发送图片HttpPost请求
+     * @param url
+     * @param headers 头部参数
+     * @param body body参数，json字符串
+     * @return
+     */
+    public static String sendFilePost(String url, Map<String, String> headers, String body,String jsonstr) {
+        CloseableHttpClient httpclient =HttpClientBuilder.create().build();
+        List<File> files = new ArrayList<>();
+        File f1 = new File(jsonstr);
+        files.add(f1);
+        HttpPost httppost = new HttpPost(url);
+
+        MultipartEntityBuilder builder = MultipartEntityBuilder.create();
+        builder.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
+        //第一个参数为 相当于 Form表单提交的file框的name值 第二个参数就是我们要发送的InputStream对象了
+        //第三个参数是文件名
+        //3)
+        for (File file : files) {
+            FileBody fileBody = new FileBody(file, ContentType.create("multipart/form-data", Charset.forName("UTF-8")));
+            builder.addPart("files", fileBody);
+        }
+        //4)构建请求参数 普通表单项
+		/*	StringBody stringBody = new StringBody("12", ContentType.MULTIPART_FORM_DATA);
+			builder.addPart("id", stringBody);*/
+        //决中文乱码
+       // ContentType contentType = ContentType.create(HTTP.PLAIN_TEXT_TYPE,Consts.UTF_8);
+        //ContentType contentType = ContentType.create("application/json",Consts.UTF_8);
+        builder.addTextBody("jsonObject", body);
+        HttpEntity entity = builder.build();
+        if (null!=headers&&headers.size()>0){
+            for (Map.Entry<String, String> entry : headers.entrySet()) {
+                httppost.addHeader(entry.getKey(),entry.getValue());
+            }
+        }
+        RequestConfig requestConfig = RequestConfig.custom().setConnectTimeout(5000).setConnectionRequestTimeout(1000).setSocketTimeout(3000).build();
+
+        httppost.setEntity(entity);
+        CloseableHttpResponse response = null;
+        try {
+            httppost.setConfig(requestConfig);
+            response = httpclient.execute(httppost);
+        } catch (IOException e) {
+            logger.error("请求出错:" + url, e);
+            return null;
+        }
+        String result = null;
+        try {
+            if(response!=null){
+                int code = response.getStatusLine().getStatusCode();
+                //如果成功 则处理数据
+                if (code == 200) {
+
+                    HttpEntity resEntity = response.getEntity();
+                    if (resEntity != null) {
+                        result = EntityUtils.toString(resEntity, "utf-8");
+
+                    }
+                } else {
+                    JSONObject jsonParam = new JSONObject();
+                    jsonParam.put("stateCode", code);//-1表示没有登陆
+                    result = jsonParam.toString();
+                }
+            }
+        } catch (Exception e) {
+            logger.error("请求出错:" + url, e);
+        } finally {
+            try {
+                if(response!=null){
+                    response.close();
+                }
+            } catch (IOException e) {
+                logger.error("请求出错:" + url, e);
+            }
+        }
+        logger.info("请求的URL:" + url + ", 返回结果:" + result);
         return result;
     }
 

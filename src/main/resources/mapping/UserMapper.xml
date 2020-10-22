@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.data.big.mapper.UserMapper">
+  <resultMap id="BaseResultMap" type="com.data.big.model.User">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="JOB_ID" jdbcType="INTEGER" property="jobId" />
+    <result column="ACCOUNT" jdbcType="VARCHAR" property="account" />
+    <result column="PASSWORD" jdbcType="VARCHAR" property="password" />
+    <result column="PHONE" jdbcType="VARCHAR" property="phone" />
+    <result column="LOGIN_STATE" jdbcType="INTEGER" property="loginState" />
+    <result column="LOGIN_TIME" jdbcType="TIMESTAMP" property="loginTime" />
+    <result column="LOGOUT_TIME" jdbcType="TIMESTAMP" property="logoutTime" />
+    <result column="LEVEL" jdbcType="INTEGER" property="level" />
+    <result column="ACTIVE_STATE" jdbcType="INTEGER" property="activeState" />
+    <result column="CREATETIME" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="IP" jdbcType="VARCHAR" property="ip" />
+    <result column="reserve" jdbcType="VARCHAR" property="reserve" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, JOB_ID, ACCOUNT, `PASSWORD`, PHONE, LOGIN_STATE, LOGIN_TIME, LOGOUT_TIME, `LEVEL`, 
+    ACTIVE_STATE, CREATETIME, IP, reserve
+  </sql>
+  <select id="selectByPrimaryId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <insert id="insert" parameterType="com.data.big.model.User">
+    insert into user (ID, JOB_ID, ACCOUNT, 
+      `PASSWORD`, PHONE, LOGIN_STATE, 
+      LOGIN_TIME, LOGOUT_TIME, `LEVEL`, 
+      ACTIVE_STATE, CREATETIME, IP, 
+      reserve)
+    values (#{id,jdbcType=VARCHAR}, #{jobId,jdbcType=INTEGER}, #{account,jdbcType=VARCHAR}, 
+      #{password,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{loginState,jdbcType=INTEGER}, 
+      #{loginTime,jdbcType=TIMESTAMP}, #{logoutTime,jdbcType=TIMESTAMP}, #{level,jdbcType=INTEGER}, 
+      #{activeState,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP}, #{ip,jdbcType=VARCHAR}, 
+      #{reserve,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.data.big.model.User">
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="jobId != null">
+        JOB_ID,
+      </if>
+      <if test="account != null">
+        ACCOUNT,
+      </if>
+      <if test="password != null">
+        `PASSWORD`,
+      </if>
+      <if test="phone != null">
+        PHONE,
+      </if>
+      <if test="loginState != null">
+        LOGIN_STATE,
+      </if>
+      <if test="loginTime != null">
+        LOGIN_TIME,
+      </if>
+      <if test="logoutTime != null">
+        LOGOUT_TIME,
+      </if>
+      <if test="level != null">
+        `LEVEL`,
+      </if>
+      <if test="activeState != null">
+        ACTIVE_STATE,
+      </if>
+      <if test="createtime != null">
+        CREATETIME,
+      </if>
+      <if test="ip != null">
+        IP,
+      </if>
+      <if test="reserve != null">
+        reserve,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="jobId != null">
+        #{jobId,jdbcType=INTEGER},
+      </if>
+      <if test="account != null">
+        #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="loginState != null">
+        #{loginState,jdbcType=INTEGER},
+      </if>
+      <if test="loginTime != null">
+        #{loginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="logoutTime != null">
+        #{logoutTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="level != null">
+        #{level,jdbcType=INTEGER},
+      </if>
+      <if test="activeState != null">
+        #{activeState,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ip != null">
+        #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="reserve != null">
+        #{reserve,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

@@ -6,6 +6,7 @@ D:\workspace\bigWorkspace\big\src\main\java\com\data\big\util\AsciiStringToHex.j
 D:\workspace\bigWorkspace\big\src\main\java\com\data\big\gw\GetBhdata.java
 D:\workspace\bigWorkspace\big\src\main\java\com\data\big\gw\GetSgjh.java
 D:\workspace\bigWorkspace\big\src\main\java\com\data\big\model\Alarm.java
+D:\workspace\bigWorkspace\big\src\main\java\com\data\big\model\Role.java
 D:\workspace\bigWorkspace\big\src\main\java\com\data\big\gw\GetGjByZzjglxResponse.java
 D:\workspace\bigWorkspace\big\src\main\java\com\data\big\gw\GetHcsj.java
 D:\workspace\bigWorkspace\big\src\main\java\com\data\big\mq\RabbitMQConfig.java
@@ -20,6 +21,7 @@ D:\workspace\bigWorkspace\big\src\main\java\com\data\big\netty\BootNettyClient.j
 D:\workspace\bigWorkspace\big\src\main\java\com\data\big\gw\GwaqscJxglService.java
 D:\workspace\bigWorkspace\big\src\main\java\com\data\big\gw\GwaqscJxglServicePortType_GwaqscJxglServiceHttpSoap12Endpoint_Client.java
 D:\workspace\bigWorkspace\big\src\main\java\com\data\big\mapper\ServerinfoMapper.java
+D:\workspace\bigWorkspace\big\src\main\java\com\data\big\service\ServiceUser.java
 D:\workspace\bigWorkspace\big\src\main\java\com\data\big\mapper\NodeinfoMapper.java
 D:\workspace\bigWorkspace\big\src\main\java\com\data\big\model\MethodType.java
 D:\workspace\bigWorkspace\big\src\main\java\com\data\big\model\Travel.java
@@ -72,8 +74,10 @@ D:\workspace\bigWorkspace\big\src\main\java\com\data\big\model\Sgjh.java
 D:\workspace\bigWorkspace\big\src\main\java\com\data\big\gw\GetCHZHdata.java
 D:\workspace\bigWorkspace\big\src\main\java\com\data\big\gw\GetHQdata.java
 D:\workspace\bigWorkspace\big\src\main\java\com\data\big\mapper\WindSpeedAlarmMapper.java
+D:\workspace\bigWorkspace\big\src\main\java\com\data\big\service\impl\ServiceUserImpl.java
 D:\workspace\bigWorkspace\big\src\main\java\com\data\big\task\KeepTask.java
 D:\workspace\bigWorkspace\big\src\main\java\com\data\big\gw\GetHcsjResponse.java
+D:\workspace\bigWorkspace\big\src\main\java\com\data\big\controller\ControllerUser.java
 D:\workspace\bigWorkspace\big\src\main\java\com\data\big\model\Ivsalarm.java
 D:\workspace\bigWorkspace\big\src\main\java\com\data\big\mapper\WxjhMapper.java
 D:\workspace\bigWorkspace\big\src\main\java\com\data\big\model\QueryTask.java
@@ -83,16 +87,19 @@ D:\workspace\bigWorkspace\big\src\main\java\com\data\big\gw\GetGwdLjwclByRq.java
 D:\workspace\bigWorkspace\big\src\main\java\com\data\big\util\Enumeration.java
 D:\workspace\bigWorkspace\big\src\main\java\com\data\big\util\PTZCMD.java
 D:\workspace\bigWorkspace\big\src\main\java\com\data\big\mapper\CamerainfoMapper.java
+D:\workspace\bigWorkspace\big\src\main\java\com\data\big\model\Modular.java
 D:\workspace\bigWorkspace\big\src\main\java\com\data\big\gw\DocumentType.java
 D:\workspace\bigWorkspace\big\src\main\java\com\data\big\gw\GetGgssData.java
 D:\workspace\bigWorkspace\big\src\main\java\com\data\big\gw\GetGwdLjwclByRqResponse.java
 D:\workspace\bigWorkspace\big\src\main\java\com\data\big\netty\BootNettyChannelInboundHandlerAdapter.java
+D:\workspace\bigWorkspace\big\src\main\java\com\data\big\mapper\RoleMapper.java
 D:\workspace\bigWorkspace\big\src\main\java\com\data\big\model\Serverstatus.java
 D:\workspace\bigWorkspace\big\src\main\java\com\data\big\gw\DocumentFactory.java
 D:\workspace\bigWorkspace\big\src\main\java\com\data\big\gw\GetLjwclByGwdAndRq.java
 D:\workspace\bigWorkspace\big\src\main\java\com\data\big\model\SensorStatusAlarm.java
 D:\workspace\bigWorkspace\big\src\main\java\com\data\big\mapper\TravelMapper.java
 D:\workspace\bigWorkspace\big\src\main\java\com\data\big\model\Camerainfo.java
+D:\workspace\bigWorkspace\big\src\main\java\com\data\big\mapper\UserMapper.java
 D:\workspace\bigWorkspace\big\src\main\java\com\data\big\queue\TaskQueue.java
 D:\workspace\bigWorkspace\big\src\main\java\com\data\big\task\TimingTaskQ.java
 D:\workspace\bigWorkspace\big\src\main\java\com\data\big\util\DateUtils.java
@@ -138,6 +145,7 @@ D:\workspace\bigWorkspace\big\src\main\java\com\data\big\task\TimingTask.java
 D:\workspace\bigWorkspace\big\src\main\java\com\data\big\service\impl\ServiceImpl.java
 D:\workspace\bigWorkspace\big\src\main\java\com\data\big\base\MyCommentGenerator.java
 D:\workspace\bigWorkspace\big\src\main\java\com\data\big\mapper\IvsalarmMapper.java
+D:\workspace\bigWorkspace\big\src\main\java\com\data\big\mapper\ModularMapper.java
 D:\workspace\bigWorkspace\big\src\main\java\com\data\big\mapper\ServeralarmMapper.java
 D:\workspace\bigWorkspace\big\src\main\java\com\data\big\model\VideoKilometer.java
 D:\workspace\bigWorkspace\big\src\main\java\com\data\big\mapper\DiskinfoMapper.java

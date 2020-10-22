@@ -13,14 +13,84 @@ import java.util.*;
 @RequestMapping("/fdCon")
 public class ControllerTest {
 
-    @RequestMapping("/queryCurrentDayWarningData")
+    //@RequestMapping(value = "/queryCurrentDayWarningData" , method = RequestMethod.POST)
+    @PostMapping("/queryCurrentDayWarningData")
     @ResponseBody
-    public Map<String,Object> queryCurrentDayWarningData(Map<String ,Object> map) {
+    public Map<String,Object> queryCurrentDayWarningData(@RequestParam Map<String ,Object> map) {
         Map<String ,Object> mm=new HashMap<>();
         mm.put("status","200");
         String  beginTime =(String)map.get("beginTime");
         String  endTime =(String)map.get("endTime");
-        System.out.println("beginTime: "+beginTime+" endTime: "+endTime);
+        String  ipcid =(String)map.get("ipcid");
+        String  type =(String)map.get("type");
+        String  starttime =(String)map.get("starttime");
+        String  endtime =(String)map.get("endtime");
+        System.out.println("ipcid: "+ipcid+" type: "+type+" starttime "+starttime+" endtime "+endtime);
+        Map<String,Object> mO=new HashMap<>();
+        Map<String,Object> mO1=new HashMap<>();
+        mO1.put("STATUS","4");
+        mO1.put("DeptCode","00P000000000000000000000000000XiaHuaYuanBei006688");
+        mO1.put("createTime","1600838113000");
+        mO1.put("img_path","http://localhost/data/timg.jpg");
+        mO1.put("ip","10.234.61.10");
+        mO1.put("id","2");
+        mO1.put("cameraName","测试摄像机");
+        mO1.put("vid_path","http://localhost/data/2-5 Vuejs介绍.avi");
+
+        List list =new ArrayList();
+        List list1 =new ArrayList();
+        list.add(mO1);
+        mO.put("yxbj",list);
+        mO.put("pdcd",list1);
+        mO.put("dbrq",list1);
+        mO.put("rynx",list1);
+        mO.put("klmd",list1);
+        mO.put("cztdnx",list1);
+        mm.put("data",mO);
+
+        return mm;
+    } @RequestMapping("/queryCurrentDayWarningData2")
+    @ResponseBody
+    public Map<String,Object> queryCurrentDayWarningData2(@RequestBody Map<String ,Object> map) {
+        Map<String ,Object> mm=new HashMap<>();
+        mm.put("status","200");
+        String  beginTime =(String)map.get("beginTime");
+        String  endTime =(String)map.get("endTime");
+        String  ipcid =(String)map.get("ipcid");
+        String  type =(String)map.get("type");
+        String  starttime =(String)map.get("starttime");
+        String  endtime =(String)map.get("endtime");
+        System.out.println("ipcid: "+ipcid+" type: "+type+" starttime "+starttime+" endtime "+endtime);
+        Map<String,Object> mO=new HashMap<>();
+        Map<String,Object> mO1=new HashMap<>();
+        mO1.put("STATUS","4");
+        mO1.put("DeptCode","00P000000000000000000000000000XiaHuaYuanBei006688");
+        mO1.put("createTime","1600838113000");
+        mO1.put("img_path","http://localhost/data/timg.jpg");
+        mO1.put("ip","10.234.61.10");
+        mO1.put("id","2");
+        mO1.put("cameraName","测试摄像机");
+        mO1.put("vid_path","http://localhost/data/2-5 Vuejs介绍.avi");
+
+        List list =new ArrayList();
+        List list1 =new ArrayList();
+        list.add(mO1);
+        mO.put("yxbj",list);
+        mO.put("pdcd",list1);
+        mO.put("dbrq",list1);
+        mO.put("rynx",list1);
+        mO.put("klmd",list1);
+        mO.put("cztdnx",list1);
+        mm.put("data",mO);
+
+        return mm;
+    }
+ @RequestMapping("/queryCurrentDayWarningData1")
+    @ResponseBody
+    public Map<String,Object> queryCurrentDayWarningData1(String ipcid,String type,String starttime,String endtime) {
+        Map<String ,Object> mm=new HashMap<>();
+        mm.put("status","200");
+        System.out.println("ipcid: "+ipcid+" type: "+type+" starttime "+starttime+" endtime "+endtime);
         Map<String,Object> mO=new HashMap<>();
         Map<String,Object> mO1=new HashMap<>();
         mO1.put("STATUS","4");
@@ -497,10 +567,16 @@ public class ControllerTest {
         return "failure";
     }
 
-    @RequestMapping(value = "/addTbale", method = RequestMethod.POST ,produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/addTbale", method = RequestMethod.POST )
     @ResponseBody
-    public Map addTbale(@RequestHeader("Authorization") String authorization, @RequestBody String jsonObject, @RequestParam("tableName") String tableName) {
+    public Map addTbale(@RequestHeader("Authorization") String authorization, @RequestBody String jsonObject,@RequestBody MultipartFile files, @RequestParam("tableName") String tableName) {
         System.out.println( authorization+"       "+ jsonObject+"    "+tableName);
+        return null;
+    }
+    @RequestMapping(value = "/addTbale1", method = RequestMethod.POST )
+    @ResponseBody
+    public Map addTbale1(@RequestHeader("Authorization") String authorization, @RequestParam("jsonObject") String jsonObject,@RequestParam("files") MultipartFile files) {
+        System.out.println( authorization+"       "+ jsonObject+"    ");
         return null;
     }
 
