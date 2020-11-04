@@ -1,8 +1,10 @@
 package com.data.big.task;
 
+import com.data.big.gw.GwaqscJxglServicePortType;
 import com.data.big.netty.nettyThread;
 import com.data.big.service.Service;
 import com.data.big.service.ServiceNetty;
+import com.data.big.util.CacheMap;
 import com.data.big.util.Properties;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -31,20 +33,27 @@ public class taskThread {
         }
         new Thread(() -> {
             while (true) {
+                GwaqscJxglServicePortType portType=null;
                 try {
-                    service.addGWTask();
-                    serviceNetty.addFZTask();
+                    CacheMap.clientTokenLock.readLock().lock();
+                    portType=(GwaqscJxglServicePortType)CacheMap.clientToken.get("GW");
+
                 } catch (Exception e) {
                     logger.error(e.getMessage(), e);
+                } finally {
+                    CacheMap.clientTokenLock.readLock().unlock();
+                }
+                if(portType==null){
+                    service.getportType();
                 }
 
-                try {
-                    long l=5*60*1000;
+                logger.info("---------------获取公务连接信息---------------------");
+                /*try {
+                    long l=1000;
                     Thread.sleep(l);
-                    logger.info("---------------执行添加视频任务---------------------");
                 } catch (InterruptedException e) {
                     logger.error(e.getMessage(), e);
-                }
+                }*/
             }
         }).start();
 

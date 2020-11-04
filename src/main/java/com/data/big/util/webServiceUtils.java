@@ -12,13 +12,30 @@ import org.apache.cxf.endpoint.ClientImpl;
 import org.apache.cxf.endpoint.Endpoint;
 import org.apache.cxf.jaxws.endpoint.dynamic.JaxWsDynamicClientFactory;
 import org.apache.cxf.service.model.*;
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpException;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.config.RequestConfig;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClientBuilder;
+import org.apache.http.util.EntityUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.http.RequestEntity;
 
 import javax.xml.namespace.QName;
 import javax.xml.rpc.ServiceException;
 import javax.xml.soap.SOAPException;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
+import java.nio.charset.Charset;
 import java.rmi.RemoteException;
 import java.util.List;
 
@@ -88,7 +105,7 @@ public class webServiceUtils {
             call.setSOAPVersion(org.apache.axis.soap.SOAPConstants.SOAP11_CONSTANTS);
             call.setOperationName(new javax.xml.namespace.QName("http://tempuri.org/", "GetSGBYXL"));
 
-
+            call.setTimeout(Integer.valueOf(20000));// 这里面超时时间设大点
             call.registerTypeMapping(ANBAO3.class, new javax.xml.namespace.QName("http://tempuri.org/", "GetSGBYXL"), new BeanSerializerFactory(ANBAO3.class, new javax.xml.namespace.QName("http://tempuri.org/", "GetSGBYXLResult")), new BeanDeserializerFactory(ANBAO3.class, new javax.xml.namespace.QName("http://tempuri.org/", "GetSGBYXLResult")));
 
 
@@ -271,4 +288,70 @@ public class webServiceUtils {
         return "invoke success, but is void ";
 
     }
+
+    /**
+     * 使用SOAP1.1发送消息
+     *
+     * @param postUrl
+     * @param soapXml
+     * @param soapAction
+     * @return
+     */
+    public static String doPostSoap1_1(String postUrl, String soapXml,
+                                       String soapAction,List list,String method,String ns) {
+        String retStr = "";
+        // 创建HttpClientBuilder
+        HttpClientBuilder httpClientBuilder = HttpClientBuilder.create();
+        // HttpClient
+        CloseableHttpClient closeableHttpClient = httpClientBuilder.build();
+        HttpPost httpPost = new HttpPost(postUrl);
+        //  设置请求和传输超时时间
+        RequestConfig requestConfig = RequestConfig.custom()
+                .setSocketTimeout(60000)
+                .setConnectTimeout(60000).build();
+        httpPost.setConfig(requestConfig);
+
+
+        StringBuffer stringBuffer = new StringBuffer();
+        //拼接参数
+        for(int i=0;i<list.size();i++){
+            stringBuffer.append("<arg" + i + ">" + list.get(i) + "</arg" + i + ">");
+        }
+
+        //拼接SOAP
+        StringBuffer soapRequestData = new StringBuffer("");
+        soapRequestData.append("<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ser=\""+ns+"\">");
+        //soapRequestData.append(ns);
+        soapRequestData.append("<soapenv:Header/>");
+        soapRequestData.append("<soapenv:Body>");
+        soapRequestData.append("<ser:" + method + ">");
+        soapRequestData.append(stringBuffer);
+        soapRequestData.append("</ser:" + method + ">");
+        soapRequestData.append("</soapenv:Body>" + "</soapenv:Envelope>");
+
+
+        try {
+            httpPost.setHeader("Content-Type", "text/xml;charset=UTF-8");
+            httpPost.setHeader("SOAPAction", soapAction);
+            StringEntity data = new StringEntity(soapRequestData.toString(),
+                    Charset.forName("UTF-8"));
+            httpPost.setEntity(data);
+            CloseableHttpResponse response = closeableHttpClient
+                    .execute(httpPost);
+            HttpEntity httpEntity = response.getEntity();
+            if (httpEntity != null) {
+                // 打印响应内容
+                retStr = EntityUtils.toString(httpEntity, "UTF-8");
+                logger.info("response:" + retStr);
+            }
+            // 释放资源
+            closeableHttpClient.close();
+        } catch (Exception e) {
+            logger.error("exception in doPostSoap1_1", e);
+        }
+        return retStr;
+    }
+
+
+
 }

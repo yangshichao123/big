@@ -1,6 +1,13 @@
 package com.data.big.controller;
 
+import com.data.big.Interceptor.ClientLoginInterceptor;
+import com.data.big.service.Service;
+import com.data.big.util.CXFUtil;
+import com.data.big.util.CacheMap;
 import com.data.big.util.Properties;
+import com.data.big.util.webServiceUtils;
+import org.apache.cxf.endpoint.Client;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -13,6 +20,9 @@ import java.util.*;
 @RequestMapping("/fdCon")
 public class ControllerTest {
 
+
+    @Autowired
+    private Service service;
     //@RequestMapping(value = "/queryCurrentDayWarningData" , method = RequestMethod.POST)
     @PostMapping("/queryCurrentDayWarningData")
     @ResponseBody
@@ -646,6 +656,54 @@ public class ControllerTest {
         }
 
         return map;
+    }
+    @PostMapping("/getGW")
+    public String getGW(String beginTime,String endTime,String cxdj,String ffName,String url) {
+        /*Client connection = CXFUtil.getConnection(url);
+
+
+       */
+        Client fz=null;
+        try {
+            CacheMap.clientTokenLock.readLock().lock();
+            fz = (Client)CacheMap.clientToken.get("GW");
+
+        } catch (Exception e) {
+            e.getMessage();
+        } finally {
+            CacheMap.clientTokenLock.readLock().unlock();
+        }
+        if(fz==null){
+            Client gwConnection = service.getGWConnection(url);
+            if(gwConnection==null)
+            return "没有获取到连接稍后再试！";
+            fz=gwConnection;
+        }
+        List<String> list=new ArrayList<>();
+        list.add(beginTime);
+        list.add(endTime);
+        if(cxdj!=null){
+            list.add(cxdj);
+        }
+        list.add("京包客专");
+      //  fz.getOutInterceptors().add(new ClientLoginInterceptor("admin", "admin"));
+        String s = CXFUtil.gwAlarm(fz,list, ffName);
+
+        return s;
+    }
+    @PostMapping("/getGWConnection")
+    public String getGWConnection(String url) {
+        service.getGWConnection(url);
+        return "";
+    }
+    @PostMapping("/getGWConn")
+    public String getGWConn(String qsrq, String jsrq, String url,String method,String ns) {
+        List list=new ArrayList();
+        list.add(qsrq);
+        list.add(jsrq);
+        list.add("京包客专");
+        String s = webServiceUtils.doPostSoap1_1(url, "", "", list, method, ns);
+        return s;
     }
 
 }

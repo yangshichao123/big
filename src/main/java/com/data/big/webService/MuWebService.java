@@ -10,4 +10,5 @@ public interface MuWebService {
 
     User getUser(String userName, String userId);
     String getHcsj(String userName, String userId,String str);
+     String getWxjh(String userName, String userId,String str);
 }

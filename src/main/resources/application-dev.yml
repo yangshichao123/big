@@ -67,7 +67,7 @@ getANBAO3:
   url: "http://172.20.98.116:8081/SSMISBDWebService.asmx"
   #从右到左 表示 年 月 日 时 分 秒    0 0 0/1 * * ? 表示每小时0分0秒执行一次     0 10 0 0/1 * ？ 表示每天0点10分0秒 执行
   # 如果 是按每天执行一次 系统默认查询前一天数据  如果按小时执行 根据执行间隔小时数 查询前几小时数据
-  cron: "0 0 0/1 * * ?"
+  cron: "0 */1 * * * ?"
   xm: "京包客专"
   lj: "路局"
   name: "VIDEO_AJ"   #用户名密码
@@ -167,14 +167,24 @@ netty:
   version: "010101"  #版本号v1.1.1 转成 010101
   nameAndPassword: "<JingWei_JingZhangXian,JingWei_JingZhangXian>"  #用户名密码
 
+#防灾webservice
+fz:
+  url: "http://172.23.37.61:11021/ws/bigdata?wsdl"
+  userName: "admin"
+  passWord: "admin"
+  cron: "0 */5 * * * ?"
+
+
+
 
 #公务配置
 gw:
-  wsdlUrl: "http://localhost:8088/services/big?wsdl"
+ # wsdlUrl: "http://localhost:10001/services/big?wsdl"
+  wsdlUrl: "http://10.3.136.225:8000/AqscWebMIS/services/GwaqscJxglService?wsdl"
   wsdlNamespace: "http://services.itcmor.com/"
   #wsdlName: "service"
   wsdlName: "GwaqscJxglService"
-  cron: "0 18 0/1 * * ?"
+  cron: "0 */1 * * * ?"
 
 #旅服
 lf:

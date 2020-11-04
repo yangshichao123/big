@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 public class Properties {
 
 
+    public static String getwsdlUrl;
     /**
      * #京张综合视频 摄像机资产信息 url
      */
@@ -220,6 +221,45 @@ public class Properties {
      */
     private static String videoPlayOpenUrl;
 
+    /**
+     * 防灾 url
+     */
+    private static String fzUrl;
+
+    /**
+     * 防灾用户名
+     */
+    private static String fzUserName;
+
+    /**
+     * 防灾 密码
+     */
+    private static String fzPassWord;
+
+
+    public static String getFzUrl() {
+        return fzUrl;
+    }
+    @Value("${fz.url}")
+    public  void setFzUrl(String fzUrl) {
+        Properties.fzUrl = fzUrl;
+    }
+
+    public static String getFzUserName() {
+        return fzUserName;
+    }
+    @Value("${fz.userName}")
+    public  void setFzUserName(String fzUserName) {
+        Properties.fzUserName = fzUserName;
+    }
+
+    public static String getFzPassWord() {
+        return fzPassWord;
+    }
+    @Value("${fz.passWord}")
+    public  void setFzPassWord(String fzPassWord) {
+        Properties.fzPassWord = fzPassWord;
+    }
 
     public static String getVideoPlayOpenUrl() {
         return videoPlayOpenUrl;

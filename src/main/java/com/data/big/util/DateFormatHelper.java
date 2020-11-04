@@ -1,10 +1,12 @@
 package com.data.big.util;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-
+@Slf4j
 public class DateFormatHelper {
     public static Date String2Date(String time, String format) {
         Date date = null;
@@ -14,7 +16,7 @@ public class DateFormatHelper {
             date = sdf.parse(time);
         } catch (ParseException e) {
             // TODO Auto-generated catch block
-            e.printStackTrace();
+          log.error(e.getMessage(), e);
         }
         return date;
 

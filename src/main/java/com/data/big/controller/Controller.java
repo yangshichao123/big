@@ -1,29 +1,16 @@
 package com.data.big.controller;
 
-import com.data.big.gw.GwaqscJxglService;
-import com.data.big.gw.GwaqscJxglServicePortType;
 import com.data.big.mapper.WxjhMapper;
 import com.data.big.model.*;
 import com.data.big.service.Service;
-import com.data.big.util.HttpClientUt;
-import com.data.big.util.UUIDHelper;
-import com.sun.xml.internal.ws.api.ha.StickyFeature;
-import org.apache.commons.lang3.StringUtils;
+import com.data.big.service.ServiceFZ;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.IOException;
-import java.io.ObjectInput;
-import java.net.MalformedURLException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.io.FileUtils;
-
-import java.io.File;
-import java.net.URL;
 
 
 @RestController
@@ -36,6 +23,8 @@ public class Controller {
     private Service service;
   @Autowired
     private WxjhMapper wxjhMapper;
+  @Autowired
+    private ServiceFZ serviceFZ;
 
     @RequestMapping("/test")
     @ResponseBody
@@ -195,19 +184,20 @@ public class Controller {
     @RequestMapping("/getHcsj")
     @ResponseBody
     public Map<String,String> getHcsj(String qsrq, String jsrq, String cxdj,String xm) {
-
+        service.getportType();
        return service.getHcsj(qsrq,jsrq,cxdj,xm);
     }
     @RequestMapping("/getSgjh")
     @ResponseBody
     public Map<String,String> getSgjh(String qsrq, String jsrq,String xm) {
 
-
+        service.getportType();
         return service.getSgjh(qsrq,jsrq,xm);
     }
     @RequestMapping("/getWxjh")
     @ResponseBody
     public Map<String,String> getWxjh(String qsrq, String jsrq,String xm) {
+        service.getportType();
         return service.getWxjh(qsrq,jsrq,xm);
     }
     @RequestMapping("/queryCurrentDayWarningData")
@@ -251,7 +241,18 @@ public class Controller {
     @ResponseBody
     public Map<String ,Object >  getCamerainfoList() {
         return service.getCamerainfoList();
+    } /**
+     * 提供接口
+     * @return
+     */
+    @RequestMapping("/getCamerainfoListPage")
+    @ResponseBody
+    public Map<String ,Object >  getCamerainfoListPage(Camera camera,String pageIndex, String pageSize) {
+
+        return service.getCamerainfoListPage(camera,pageIndex,pageSize);
     }
+
+
     /**
      * 提供接口
      * @return
@@ -269,6 +270,7 @@ public class Controller {
     @RequestMapping("/VideoPlayOpen")
     public String   videoPlayOpen(String ipcid,String type,String starttime,String endtime) {
 
+
         return service.videoPlayOpen(ipcid,type,starttime,endtime);
     }
     @RequestMapping("/addTbale")
@@ -280,7 +282,7 @@ public class Controller {
         return  null;
     }
     /**
-     * 提供接口
+     * 提供接口  查询字典
      * @return
      */
     @RequestMapping("/getDictionary")
@@ -293,10 +295,158 @@ public class Controller {
      * 提供接口  查询视频记录 根据条件
      * @return
      */
+    @RequestMapping("/getVideoRecordPage")
+    @ResponseBody
+    public Map<String ,Object >  getVideoRecordPage(String videoType, String cameraType,String cameraName ,String startTime,String endTime,String pageIndex,String pageSize) {
+
+        return  service.getVideoRecordPage(videoType,cameraType,cameraName,startTime,endTime,pageIndex,pageSize);
+    }
+    /**
+     * 提供接口  查询视频记录 根据条件 分页
+     * @return
+     */
     @RequestMapping("/getVideoRecord")
     @ResponseBody
     public Map<String ,Object >  getVideoRecord(String videoType, String cameraType,String cameraName ,String startTime,String endTime) {
 
         return  service.getVideoRecord(videoType,cameraType,cameraName,startTime,endTime);
     }
+    /**
+     * 提供接口  删除视频任务信息
+     * @return
+     */
+    @RequestMapping("/deleteVideoRecord")
+    @ResponseBody
+    public Map<String ,Object >  deleteVideoRecord( @RequestParam(value = "ids") List<String> ids) {
+
+        return  service.deleteVideoRecord(ids);
+    }
+    /**
+     * 提供接口  修改视频任务信息
+     * @return
+     */
+    @RequestMapping("/updateVideoRecord")
+    @ResponseBody
+    public Map<String ,Object >  updateVideoRecord(VideoFile videoFile) {
+
+        return  service.updateVideoRecord(videoFile);
+    }
+
+    /**
+     * 提供接口 给前端
+     * @return
+     */
+    @RequestMapping("/addVideoRecord")
+    @ResponseBody
+    public Map<String ,String >  addVideoRecord(VideoFile videoFile) {
+        return service.addVideoRecord(videoFile);
+    }
+
+    /**
+     * 提供接口  查询视频记录 根据条件 分页
+     * @return
+     */
+    @RequestMapping("/getFzAlarm")
+    @ResponseBody
+    public Map<String ,Object >  getFzAlarm( String alarmType,String km ,String startTime,String endTime,String pageIndex,String pageSize) {
+
+        return  serviceFZ.getFzAlarm(alarmType,km,startTime,endTime,pageIndex,pageSize);
+    }
+    /**
+     * 提供接口  查询视频记录 根据条件 分页
+     * @return
+     */
+    @RequestMapping("/getFz")
+    @ResponseBody
+    public Map<String ,Object >  getFz(@RequestParam Map map) {
+        serviceFZ.getClient();
+        serviceFZ.login();
+        map.put("bureauCode", "C");
+        map.put("lineCode", "30142");
+        map.put("monitorCode", "");
+        map.put("alarmLevel", "");
+        map.put("type", "");
+        //map.put("startTime", beginTime);
+       // map.put("endTime", endTime);
+
+        return  serviceFZ.getFZAlarm(map);
+    }
+
+   /* @RequestMapping("/getGWConn")
+    @ResponseBody
+    public Map<String ,String >  getGWConn( ) {
+
+        return  service.getportType();
+    }*/
+    /**
+     * 提供接口  查询视频记录 根据条件 分页
+     * @return
+     */
+    @RequestMapping("/addIpcTag")
+    @ResponseBody
+    public Map<String ,String >  addIpcTag( IpcTag ipcTag) {
+
+        return  service.addIpcTag(ipcTag);
+    }
+    /**
+     * 提供接口  查询视频记录 根据条件 分页
+     * @return
+     */
+    @RequestMapping("/updataIpcTag")
+    @ResponseBody
+    public Map<String ,Object >  updataIpcTag( IpcTag ipcTag) {
+
+        return  service.updataIpcTag(ipcTag);
+    }
+    /**
+     * 提供接口  查询视频记录 根据条件 分页
+     * @return
+     */
+    @RequestMapping("/deleteIpcTag")
+    @ResponseBody
+    public Map<String ,Object >  deleteIpcTag( @RequestParam(value = "ids") List<String> ids) {
+
+        return  service.deleteIpcTag(ids);
+    }
+    /**
+     * 提供接口  查询视频记录 根据条件 分页
+     * @return
+     */
+    @RequestMapping("/getIpcTag")
+    @ResponseBody
+    public Map<String ,Object >  getIpcTag( IpcTag ipcTag,String pageIndex,String pageSize) {
+
+        return  service.getIpcTag(ipcTag,pageIndex,pageSize);
+    }
+    /**
+     * 提供接口  增加字典
+     * @return
+     */
+    @RequestMapping("/addDictionary")
+    @ResponseBody
+    public Map<String ,Object >  addDictionary( Dictionary dictionary) {
+
+        return  service.addDictionary(dictionary);
+    }
+    /**
+     * 提供接口  修改字典
+     * @return
+     */
+    @RequestMapping("/updateDictionary")
+    @ResponseBody
+    public Map<String ,Object >  updateDictionary( Dictionary dictionary) {
+
+        return  service.updateDictionary(dictionary);
+    }
+    /**
+     * 提供接口  删除字典
+     * @return
+     */
+    @RequestMapping("/deleteDictionary")
+    @ResponseBody
+    public Map<String ,Object >  deleteDictionary( Dictionary dictionary) {
+
+        return  service.deleteDictionary(dictionary);
+    }
+
 }

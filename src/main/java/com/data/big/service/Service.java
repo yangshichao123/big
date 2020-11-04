@@ -2,6 +2,7 @@ package com.data.big.service;
 
 
 import com.data.big.model.*;
+import org.apache.cxf.endpoint.Client;
 
 import java.util.List;
 import java.util.Map;
@@ -267,6 +268,11 @@ public interface Service {
      * @return
      */
     Map<String,Object> getCamerainfoList();
+    /**
+     * 查询摄像头资产信息 分页
+     * @return
+     */
+    Map<String,Object> getCamerainfoListPage(Camera camera,String pageIndex, String pageSize);
 
     /**
      * 根据公里标查询摄像机信息
@@ -308,4 +314,95 @@ public interface Service {
      * @return
      */
     Map<String,Object> getVideoRecord(String videoType, String cameraType, String cameraName, String startTime, String endTime);
+
+ /**
+     * 查询视频记录 分页查询
+     * @param videoType 视频告警类型
+     * @param cameraType 摄像机类型
+     * @param cameraName 摄像机名称
+     * @param startTime 开始时间
+     * @param endTime 结束时间
+     * @return
+     */
+    Map<String,Object> getVideoRecordPage(String videoType, String cameraType, String cameraName, String startTime, String endTime,String pageIndex,String pageSize);
+
+
+    /**
+     * 获取公务连接
+     */
+    Client  getGWConnection(String url);
+    /**
+     * 获取公务连接
+     */
+     Map<String,String> getportType();
+
+    /**
+     * 添加摄像机标签
+     * @param ipcTag 摄像机标签类
+     * @return
+     */
+    Map<String,String> addIpcTag(IpcTag ipcTag);
+
+    /**
+     * 跟新摄像机标签信息
+     * @param ipcTag
+     * @return
+     */
+    Map<String,Object> updataIpcTag(IpcTag ipcTag);
+
+    /**
+     * 批量删除 摄像机标签
+     * @param ids
+     * @return
+     */
+    Map<String,Object> deleteIpcTag(List ids);
+
+    /**
+     * 查询摄像机标签
+     * @param ipcTag
+     * @return
+     */
+    Map<String,Object> getIpcTag(IpcTag ipcTag,String pageIndex,String pageSize);
+
+    /**
+     * 删除 视频任务
+     * @param ids
+     * @return
+     */
+    Map<String,Object> deleteVideoRecord(List ids);
+
+    /**
+     * 修改视频任务信息
+     * @param videoFile
+     * @return
+     */
+    Map<String,Object> updateVideoRecord(VideoFile videoFile);
+
+    /**
+     * 添加视频任务记录
+     * @param videoFile
+     * @return
+     */
+    Map<String,String> addVideoRecord(VideoFile videoFile);
+
+    /**
+     * 添加字典
+     * @param dictionary 字典类
+     * @return
+     */
+    Map<String,Object> addDictionary(Dictionary dictionary);
+
+    /**
+     * 修改字典
+     * @param dictionary 字典类
+     * @return
+     */
+    Map<String,Object> updateDictionary(Dictionary dictionary);
+
+    /**
+     * 删除字典
+     * @param dictionary
+     * @return
+     */
+    Map<String,Object> deleteDictionary(Dictionary dictionary);
 }

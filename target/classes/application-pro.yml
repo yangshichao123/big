@@ -1,5 +1,5 @@
 server:
-  port: 9000
+  port: 10001
 
 
 spring:
@@ -62,7 +62,7 @@ getANBAO3:
   url: "http://10.3.64.10/video_aj/ssmisbdwebservice.asmx"
   #从右到左 表示 年 月 日 时 分 秒    0 0 0/1 * * ? 表示每小时0分0秒执行一次     0 20 0 0/1 * ? 表示每天0点20分0秒 执行
   # 如果 是按每天执行一次 系统默认查询前一天数据  如果按小时执行 根据执行间隔小时数 查询前几小时数据
-  cron: "0 10 0 0/1 * ?"
+  cron: "0 30 */2 * * ?"
   xm: "京包客专"
   lj: "路局"
   name: "VIDEO_AJ"   #用户名密码
@@ -161,6 +161,12 @@ netty:
   port: "11029"
   version: "010101"  #版本号v1.1.1 转成 010101
   nameAndPassword: "<JingWei_GongDianGong,JingWei_GongDianGong>"  #用户名密码
+#防灾webservice
+fz:
+  url: "http://10.3.144.48:11022/ws/bigdata?wsdl"
+  userName: "bigdata"
+  passWord: "bigData@217"
+  cron: "0 10 */2 * * ?"
 
 #公务配置
 gw:
@@ -168,7 +174,7 @@ gw:
   //wsdlNamespace: "http://webService.big.data.com/"
   wsdlNamespace: "http://services.itcmor.com/"
   wsdlName: "GwaqscJxglService"
-  cron: "0 18 0/1 * * ?"
+  cron: "0 */2 * * * ?"
 
 #旅服
 lf:
@@ -182,4 +188,4 @@ lf:
 
 
 #.调用实时、历史视频（VideoPlayOpen）
-videoPlayOpenUrl: "http://127.0.0.1:10001/fdCon/queryCurrentDayWarningData"
+videoPlayOpenUrl: "http://10.3.78.166:11005/VideoPlayOpen"

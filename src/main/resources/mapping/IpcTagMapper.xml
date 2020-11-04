@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.data.big.mapper.IpcTagMapper">
+  <resultMap id="BaseResultMap" type="com.data.big.model.IpcTag">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="ipcid" jdbcType="VARCHAR" property="ipcid" />
+    <result column="tag" jdbcType="VARCHAR" property="tag" />
+    <result column="rktime" jdbcType="TIMESTAMP" property="rktime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, ipcid, tag, rktime
+  </sql>
+  <select id="selectByPrimaryId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ipc_tag
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <insert id="insert" parameterType="com.data.big.model.IpcTag">
+    insert into ipc_tag (id, ipcid, tag, 
+      rktime)
+    values (#{id,jdbcType=VARCHAR}, #{ipcid,jdbcType=VARCHAR}, #{tag,jdbcType=VARCHAR}, 
+      #{rktime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.data.big.model.IpcTag">
+    insert into ipc_tag
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="ipcid != null">
+        ipcid,
+      </if>
+      <if test="tag != null">
+        tag,
+      </if>
+      <if test="rktime != null">
+        rktime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="ipcid != null">
+        #{ipcid,jdbcType=VARCHAR},
+      </if>
+      <if test="tag != null">
+        #{tag,jdbcType=VARCHAR},
+      </if>
+      <if test="rktime != null">
+        #{rktime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+
+  <select id="selectIpc" parameterType="com.data.big.model.IpcTag" resultMap="BaseResultMap">
+    select
+        it.id,it.ipcid, it.tag,it.rktime
+    from ipc_tag it
+
+    <where>
+      <if test="id != null and id!=''">
+        and it.id=#{id,jdbcType=VARCHAR}
+      </if>
+      <if test="ipcid != null and ipcid != ''">
+        and it.ipcid=#{ipcid,jdbcType=VARCHAR}
+      </if>
+      <if test="tag != null and tag != ''">
+       and it.tag= #{tag,jdbcType=VARCHAR}
+      </if>
+      <if test="rktime != null and rktime != ''">
+        and it.rktime=#{rktime,jdbcType=TIMESTAMP}
+      </if>
+    </where>
+
+  </select>
+</mapper>

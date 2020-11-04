@@ -1,0 +1,585 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.data.big.mapper.NewWindSpeedAlarmMapper">
+  <resultMap id="BaseResultMap" type="com.data.big.model.NewWindSpeedAlarm">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="actualSnowDepth" jdbcType="VARCHAR" property="actualsnowdepth" />
+    <result column="alarmBasic" jdbcType="VARCHAR" property="alarmbasic" />
+    <result column="alarmConfirmTime" jdbcType="VARCHAR" property="alarmconfirmtime" />
+    <result column="alarmFlag" jdbcType="VARCHAR" property="alarmflag" />
+    <result column="alarmLevel" jdbcType="VARCHAR" property="alarmlevel" />
+    <result column="alarmResumeConfirmTime" jdbcType="VARCHAR" property="alarmresumeconfirmtime" />
+    <result column="alarmResumeTime" jdbcType="VARCHAR" property="alarmresumetime" />
+    <result column="alarmStatus" jdbcType="VARCHAR" property="alarmstatus" />
+    <result column="alarmValue" jdbcType="VARCHAR" property="alarmvalue" />
+    <result column="area" jdbcType="VARCHAR" property="area" />
+    <result column="benchMarkSnowDepth" jdbcType="VARCHAR" property="benchmarksnowdepth" />
+    <result column="bureauCode" jdbcType="VARCHAR" property="bureaucode" />
+    <result column="bureauName" jdbcType="VARCHAR" property="bureauname" />
+    <result column="continuousRainfall" jdbcType="VARCHAR" property="continuousrainfall" />
+    <result column="cumulativeRainfall" jdbcType="VARCHAR" property="cumulativerainfall" />
+    <result column="dayRainfall" jdbcType="VARCHAR" property="dayrainfall" />
+    <result column="dbCreatetime" jdbcType="VARCHAR" property="dbcreatetime" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="deviceType" jdbcType="VARCHAR" property="devicetype" />
+    <result column="downTrackControlArea" jdbcType="VARCHAR" property="downtrackcontrolarea" />
+    <result column="downTrackControlNum" jdbcType="VARCHAR" property="downtrackcontrolnum" />
+    <result column="dtype" jdbcType="VARCHAR" property="dtype" />
+    <result column="dvalue" jdbcType="VARCHAR" property="dvalue" />
+    <result column="dyss" jdbcType="VARCHAR" property="dyss" />
+    <result column="endTime" jdbcType="VARCHAR" property="endtime" />
+    <result column="handleAction" jdbcType="VARCHAR" property="handleaction" />
+    <result column="hourRainfall" jdbcType="VARCHAR" property="hourrainfall" />
+    <result column="km" jdbcType="VARCHAR" property="km" />
+    <result column="limitSegment" jdbcType="VARCHAR" property="limitsegment" />
+    <result column="limitSpeed" jdbcType="VARCHAR" property="limitspeed" />
+    <result column="lineCode" jdbcType="VARCHAR" property="linecode" />
+    <result column="lineName" jdbcType="VARCHAR" property="linename" />
+    <result column="monitorPoint" jdbcType="VARCHAR" property="monitorpoint" />
+    <result column="monitorTime" jdbcType="VARCHAR" property="monitortime" />
+    <result column="monitorUnit" jdbcType="VARCHAR" property="monitorunit" />
+    <result column="monitoringtime" jdbcType="VARCHAR" property="monitoringtime" />
+    <result column="prosegmentType" jdbcType="VARCHAR" property="prosegmenttype" />
+    <result column="rainfallIntensity" jdbcType="VARCHAR" property="rainfallintensity" />
+    <result column="segment" jdbcType="VARCHAR" property="segment" />
+    <result column="segmentType" jdbcType="VARCHAR" property="segmenttype" />
+    <result column="sensorCode" jdbcType="VARCHAR" property="sensorcode" />
+    <result column="snowDepth" jdbcType="VARCHAR" property="snowdepth" />
+    <result column="startTime" jdbcType="VARCHAR" property="starttime" />
+    <result column="tenMinuteRainfall" jdbcType="VARCHAR" property="tenminuterainfall" />
+    <result column="tweentyFourHourRainfall" jdbcType="VARCHAR" property="tweentyfourhourrainfall" />
+    <result column="upTrackControlArea" jdbcType="VARCHAR" property="uptrackcontrolarea" />
+    <result column="upTrackControlNum" jdbcType="VARCHAR" property="uptrackcontrolnum" />
+    <result column="windDirection" jdbcType="VARCHAR" property="winddirection" />
+    <result column="windDirection1" jdbcType="VARCHAR" property="winddirection1" />
+    <result column="windDirection2" jdbcType="VARCHAR" property="winddirection2" />
+    <result column="windSpeed" jdbcType="VARCHAR" property="windspeed" />
+    <result column="windSpeed1" jdbcType="VARCHAR" property="windspeed1" />
+    <result column="windSpeed2" jdbcType="VARCHAR" property="windspeed2" />
+    <result column="xyes" jdbcType="VARCHAR" property="xyes" />
+    <result column="xyesw" jdbcType="VARCHAR" property="xyesw" />
+    <result column="xys" jdbcType="VARCHAR" property="xys" />
+    <result column="xyss" jdbcType="VARCHAR" property="xyss" />
+    <result column="xysw" jdbcType="VARCHAR" property="xysw" />
+    <result column="xyw" jdbcType="VARCHAR" property="xyw" />
+    <result column="videoStatus" jdbcType="VARCHAR" property="videostatus" />
+    <result column="alarmType" jdbcType="VARCHAR" property="alarmType" />
+  </resultMap>
+
+
+  <resultMap id="BaseResultMap1" type="java.util.HashMap">
+    <result column="alarmLevel" jdbcType="VARCHAR" property="alarmlevel" />
+    <result column="alarmStatus" jdbcType="VARCHAR" property="alarmstatus" />
+    <result column="area" jdbcType="VARCHAR" property="area" />
+    <result column="endTime" jdbcType="VARCHAR" property="endTime" />
+    <result column="km" jdbcType="VARCHAR" property="km" />
+    <result column="startTime" jdbcType="VARCHAR" property="startTime" />
+    <result column="alarmType" jdbcType="VARCHAR" property="alarmType" />
+  </resultMap>
+
+  <select id="getFzAlarmMap" parameterType="java.lang.String" resultMap="BaseResultMap1">
+    SELECT * from (
+      SELECT ra.area,ra.alarmLevel,ra.alarmStatus,ra.endTime endTime,ra.startTime startTime,ra.km km,"rainAlarm" alarmType
+      from new_rain_alarm ra
+      <where>
+        <if test="km != null">and ra.km = #{km,jdbcType=VARCHAR}
+        </if>
+          <if test="startTime != null">
+            and ra.startTime >= #{startTime,jdbcType=VARCHAR}
+          </if>
+          <if test="endTime != null">
+            and ra.endTime &lt;= #{endTime,jdbcType=VARCHAR}
+          </if>
+        </where>
+        UNION all
+
+        SELECT sa.area,sa.alarmLevel,sa.alarmStatus,sa.endTime,sa.startTime,sa.km,"snowAlarm" alarmType
+        from new_snow_alarm sa
+        <where>
+          <if test="km != null">
+            and ra.km = #{km,jdbcType=VARCHAR}
+          </if>
+          <if test="startTime != null">
+            and ra.startTime >= #{startTime,jdbcType=VARCHAR}
+          </if>
+          <if test="endTime != null">
+            and ra.endTime &lt;= #{endTime,jdbcType=VARCHAR}
+          </if>
+        </where>
+        UNION ALL
+        SELECT wsa.area,wsa.alarmLevel,wsa.alarmStatus,wsa.endTime,wsa.startTime,wsa.km,"windSpeedAlarm" alarmType
+        from new_wind_speed_alarm wsa
+        <where>
+          <if test="km != null">
+            and ra.km = #{km,jdbcType=VARCHAR}
+          </if>
+          <if test="startTime != null">
+            and ra.startTime >= #{startTime,jdbcType=VARCHAR}
+          </if>
+          <if test="endTime != null">
+            and ra.endTime &lt;= #{endTime,jdbcType=VARCHAR}
+          </if>
+        </where>
+        UNION ALL
+        SELECT fba.area,fba.alarmLevel,fba.alarmStatus,fba.endTime,fba.startTime,fba.km,"foreignBodyAlarm" alarmType
+        from new_foreign_body_alarm fba
+        <where>
+          <if test="km != null">
+            and ra.km = #{km,jdbcType=VARCHAR}
+          </if>
+          <if test="startTime != null">
+            and ra.startTime >= #{startTime,jdbcType=VARCHAR}
+          </if>
+          <if test="endTime != null">
+            and ra.endTime &lt;= #{endTime,jdbcType=VARCHAR}
+          </if>
+        </where>
+    ) tt
+    <where>
+      <if test="alarmType != null">
+        and tt.alarmType = #{alarmType,jdbcType=VARCHAR}
+      </if>
+    </where>
+  </select>
+
+
+
+
+  <sql id="Base_Column_List">
+    id, actualSnowDepth, alarmBasic, alarmConfirmTime, alarmFlag, alarmLevel, alarmResumeConfirmTime, 
+    alarmResumeTime, alarmStatus, alarmValue, area, benchMarkSnowDepth, bureauCode, bureauName, 
+    continuousRainfall, cumulativeRainfall, dayRainfall, dbCreatetime, description, deviceType, 
+    downTrackControlArea, downTrackControlNum, dtype, dvalue, dyss, endTime, handleAction, 
+    hourRainfall, km, limitSegment, limitSpeed, lineCode, lineName, monitorPoint, monitorTime, 
+    monitorUnit, monitoringtime, prosegmentType, rainfallIntensity, segment, segmentType, 
+    sensorCode, snowDepth, startTime, tenMinuteRainfall, tweentyFourHourRainfall, upTrackControlArea, 
+    upTrackControlNum, windDirection, windDirection1, windDirection2, windSpeed, windSpeed1, 
+    windSpeed2, xyes, xyesw, xys, xyss, xysw, xyw, videoStatus
+  </sql>
+  <select id="selectByPrimaryId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from new_wind_speed_alarm
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <insert id="insert" parameterType="com.data.big.model.NewWindSpeedAlarm">
+    insert into new_wind_speed_alarm (id, actualSnowDepth, alarmBasic, 
+      alarmConfirmTime, alarmFlag, alarmLevel, 
+      alarmResumeConfirmTime, alarmResumeTime, 
+      alarmStatus, alarmValue, area, 
+      benchMarkSnowDepth, bureauCode, bureauName, 
+      continuousRainfall, cumulativeRainfall, 
+      dayRainfall, dbCreatetime, description, 
+      deviceType, downTrackControlArea, downTrackControlNum, 
+      dtype, dvalue, dyss, 
+      endTime, handleAction, hourRainfall, 
+      km, limitSegment, limitSpeed, 
+      lineCode, lineName, monitorPoint, 
+      monitorTime, monitorUnit, monitoringtime, 
+      prosegmentType, rainfallIntensity, segment, 
+      segmentType, sensorCode, snowDepth, 
+      startTime, tenMinuteRainfall, tweentyFourHourRainfall, 
+      upTrackControlArea, upTrackControlNum, 
+      windDirection, windDirection1, windDirection2, 
+      windSpeed, windSpeed1, windSpeed2, 
+      xyes, xyesw, xys, xyss, 
+      xysw, xyw, videoStatus
+      )
+    values (#{id,jdbcType=VARCHAR}, #{actualsnowdepth,jdbcType=VARCHAR}, #{alarmbasic,jdbcType=VARCHAR}, 
+      #{alarmconfirmtime,jdbcType=VARCHAR}, #{alarmflag,jdbcType=VARCHAR}, #{alarmlevel,jdbcType=VARCHAR}, 
+      #{alarmresumeconfirmtime,jdbcType=VARCHAR}, #{alarmresumetime,jdbcType=VARCHAR}, 
+      #{alarmstatus,jdbcType=VARCHAR}, #{alarmvalue,jdbcType=VARCHAR}, #{area,jdbcType=VARCHAR}, 
+      #{benchmarksnowdepth,jdbcType=VARCHAR}, #{bureaucode,jdbcType=VARCHAR}, #{bureauname,jdbcType=VARCHAR}, 
+      #{continuousrainfall,jdbcType=VARCHAR}, #{cumulativerainfall,jdbcType=VARCHAR}, 
+      #{dayrainfall,jdbcType=VARCHAR}, #{dbcreatetime,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
+      #{devicetype,jdbcType=VARCHAR}, #{downtrackcontrolarea,jdbcType=VARCHAR}, #{downtrackcontrolnum,jdbcType=VARCHAR}, 
+      #{dtype,jdbcType=VARCHAR}, #{dvalue,jdbcType=VARCHAR}, #{dyss,jdbcType=VARCHAR}, 
+      #{endtime,jdbcType=VARCHAR}, #{handleaction,jdbcType=VARCHAR}, #{hourrainfall,jdbcType=VARCHAR}, 
+      #{km,jdbcType=VARCHAR}, #{limitsegment,jdbcType=VARCHAR}, #{limitspeed,jdbcType=VARCHAR}, 
+      #{linecode,jdbcType=VARCHAR}, #{linename,jdbcType=VARCHAR}, #{monitorpoint,jdbcType=VARCHAR}, 
+      #{monitortime,jdbcType=VARCHAR}, #{monitorunit,jdbcType=VARCHAR}, #{monitoringtime,jdbcType=VARCHAR}, 
+      #{prosegmenttype,jdbcType=VARCHAR}, #{rainfallintensity,jdbcType=VARCHAR}, #{segment,jdbcType=VARCHAR}, 
+      #{segmenttype,jdbcType=VARCHAR}, #{sensorcode,jdbcType=VARCHAR}, #{snowdepth,jdbcType=VARCHAR}, 
+      #{starttime,jdbcType=VARCHAR}, #{tenminuterainfall,jdbcType=VARCHAR}, #{tweentyfourhourrainfall,jdbcType=VARCHAR}, 
+      #{uptrackcontrolarea,jdbcType=VARCHAR}, #{uptrackcontrolnum,jdbcType=VARCHAR}, 
+      #{winddirection,jdbcType=VARCHAR}, #{winddirection1,jdbcType=VARCHAR}, #{winddirection2,jdbcType=VARCHAR}, 
+      #{windspeed,jdbcType=VARCHAR}, #{windspeed1,jdbcType=VARCHAR}, #{windspeed2,jdbcType=VARCHAR}, 
+      #{xyes,jdbcType=VARCHAR}, #{xyesw,jdbcType=VARCHAR}, #{xys,jdbcType=VARCHAR}, #{xyss,jdbcType=VARCHAR}, 
+      #{xysw,jdbcType=VARCHAR}, #{xyw,jdbcType=VARCHAR}, #{videostatus,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.data.big.model.NewWindSpeedAlarm">
+    insert into new_wind_speed_alarm
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="actualsnowdepth != null">
+        actualSnowDepth,
+      </if>
+      <if test="alarmbasic != null">
+        alarmBasic,
+      </if>
+      <if test="alarmconfirmtime != null">
+        alarmConfirmTime,
+      </if>
+      <if test="alarmflag != null">
+        alarmFlag,
+      </if>
+      <if test="alarmlevel != null">
+        alarmLevel,
+      </if>
+      <if test="alarmresumeconfirmtime != null">
+        alarmResumeConfirmTime,
+      </if>
+      <if test="alarmresumetime != null">
+        alarmResumeTime,
+      </if>
+      <if test="alarmstatus != null">
+        alarmStatus,
+      </if>
+      <if test="alarmvalue != null">
+        alarmValue,
+      </if>
+      <if test="area != null">
+        area,
+      </if>
+      <if test="benchmarksnowdepth != null">
+        benchMarkSnowDepth,
+      </if>
+      <if test="bureaucode != null">
+        bureauCode,
+      </if>
+      <if test="bureauname != null">
+        bureauName,
+      </if>
+      <if test="continuousrainfall != null">
+        continuousRainfall,
+      </if>
+      <if test="cumulativerainfall != null">
+        cumulativeRainfall,
+      </if>
+      <if test="dayrainfall != null">
+        dayRainfall,
+      </if>
+      <if test="dbcreatetime != null">
+        dbCreatetime,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+      <if test="devicetype != null">
+        deviceType,
+      </if>
+      <if test="downtrackcontrolarea != null">
+        downTrackControlArea,
+      </if>
+      <if test="downtrackcontrolnum != null">
+        downTrackControlNum,
+      </if>
+      <if test="dtype != null">
+        dtype,
+      </if>
+      <if test="dvalue != null">
+        dvalue,
+      </if>
+      <if test="dyss != null">
+        dyss,
+      </if>
+      <if test="endtime != null">
+        endTime,
+      </if>
+      <if test="handleaction != null">
+        handleAction,
+      </if>
+      <if test="hourrainfall != null">
+        hourRainfall,
+      </if>
+      <if test="km != null">
+        km,
+      </if>
+      <if test="limitsegment != null">
+        limitSegment,
+      </if>
+      <if test="limitspeed != null">
+        limitSpeed,
+      </if>
+      <if test="linecode != null">
+        lineCode,
+      </if>
+      <if test="linename != null">
+        lineName,
+      </if>
+      <if test="monitorpoint != null">
+        monitorPoint,
+      </if>
+      <if test="monitortime != null">
+        monitorTime,
+      </if>
+      <if test="monitorunit != null">
+        monitorUnit,
+      </if>
+      <if test="monitoringtime != null">
+        monitoringtime,
+      </if>
+      <if test="prosegmenttype != null">
+        prosegmentType,
+      </if>
+      <if test="rainfallintensity != null">
+        rainfallIntensity,
+      </if>
+      <if test="segment != null">
+        segment,
+      </if>
+      <if test="segmenttype != null">
+        segmentType,
+      </if>
+      <if test="sensorcode != null">
+        sensorCode,
+      </if>
+      <if test="snowdepth != null">
+        snowDepth,
+      </if>
+      <if test="starttime != null">
+        startTime,
+      </if>
+      <if test="tenminuterainfall != null">
+        tenMinuteRainfall,
+      </if>
+      <if test="tweentyfourhourrainfall != null">
+        tweentyFourHourRainfall,
+      </if>
+      <if test="uptrackcontrolarea != null">
+        upTrackControlArea,
+      </if>
+      <if test="uptrackcontrolnum != null">
+        upTrackControlNum,
+      </if>
+      <if test="winddirection != null">
+        windDirection,
+      </if>
+      <if test="winddirection1 != null">
+        windDirection1,
+      </if>
+      <if test="winddirection2 != null">
+        windDirection2,
+      </if>
+      <if test="windspeed != null">
+        windSpeed,
+      </if>
+      <if test="windspeed1 != null">
+        windSpeed1,
+      </if>
+      <if test="windspeed2 != null">
+        windSpeed2,
+      </if>
+      <if test="xyes != null">
+        xyes,
+      </if>
+      <if test="xyesw != null">
+        xyesw,
+      </if>
+      <if test="xys != null">
+        xys,
+      </if>
+      <if test="xyss != null">
+        xyss,
+      </if>
+      <if test="xysw != null">
+        xysw,
+      </if>
+      <if test="xyw != null">
+        xyw,
+      </if>
+      <if test="videostatus != null">
+        videoStatus,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="actualsnowdepth != null">
+        #{actualsnowdepth,jdbcType=VARCHAR},
+      </if>
+      <if test="alarmbasic != null">
+        #{alarmbasic,jdbcType=VARCHAR},
+      </if>
+      <if test="alarmconfirmtime != null">
+        #{alarmconfirmtime,jdbcType=VARCHAR},
+      </if>
+      <if test="alarmflag != null">
+        #{alarmflag,jdbcType=VARCHAR},
+      </if>
+      <if test="alarmlevel != null">
+        #{alarmlevel,jdbcType=VARCHAR},
+      </if>
+      <if test="alarmresumeconfirmtime != null">
+        #{alarmresumeconfirmtime,jdbcType=VARCHAR},
+      </if>
+      <if test="alarmresumetime != null">
+        #{alarmresumetime,jdbcType=VARCHAR},
+      </if>
+      <if test="alarmstatus != null">
+        #{alarmstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="alarmvalue != null">
+        #{alarmvalue,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null">
+        #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="benchmarksnowdepth != null">
+        #{benchmarksnowdepth,jdbcType=VARCHAR},
+      </if>
+      <if test="bureaucode != null">
+        #{bureaucode,jdbcType=VARCHAR},
+      </if>
+      <if test="bureauname != null">
+        #{bureauname,jdbcType=VARCHAR},
+      </if>
+      <if test="continuousrainfall != null">
+        #{continuousrainfall,jdbcType=VARCHAR},
+      </if>
+      <if test="cumulativerainfall != null">
+        #{cumulativerainfall,jdbcType=VARCHAR},
+      </if>
+      <if test="dayrainfall != null">
+        #{dayrainfall,jdbcType=VARCHAR},
+      </if>
+      <if test="dbcreatetime != null">
+        #{dbcreatetime,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="devicetype != null">
+        #{devicetype,jdbcType=VARCHAR},
+      </if>
+      <if test="downtrackcontrolarea != null">
+        #{downtrackcontrolarea,jdbcType=VARCHAR},
+      </if>
+      <if test="downtrackcontrolnum != null">
+        #{downtrackcontrolnum,jdbcType=VARCHAR},
+      </if>
+      <if test="dtype != null">
+        #{dtype,jdbcType=VARCHAR},
+      </if>
+      <if test="dvalue != null">
+        #{dvalue,jdbcType=VARCHAR},
+      </if>
+      <if test="dyss != null">
+        #{dyss,jdbcType=VARCHAR},
+      </if>
+      <if test="endtime != null">
+        #{endtime,jdbcType=VARCHAR},
+      </if>
+      <if test="handleaction != null">
+        #{handleaction,jdbcType=VARCHAR},
+      </if>
+      <if test="hourrainfall != null">
+        #{hourrainfall,jdbcType=VARCHAR},
+      </if>
+      <if test="km != null">
+        #{km,jdbcType=VARCHAR},
+      </if>
+      <if test="limitsegment != null">
+        #{limitsegment,jdbcType=VARCHAR},
+      </if>
+      <if test="limitspeed != null">
+        #{limitspeed,jdbcType=VARCHAR},
+      </if>
+      <if test="linecode != null">
+        #{linecode,jdbcType=VARCHAR},
+      </if>
+      <if test="linename != null">
+        #{linename,jdbcType=VARCHAR},
+      </if>
+      <if test="monitorpoint != null">
+        #{monitorpoint,jdbcType=VARCHAR},
+      </if>
+      <if test="monitortime != null">
+        #{monitortime,jdbcType=VARCHAR},
+      </if>
+      <if test="monitorunit != null">
+        #{monitorunit,jdbcType=VARCHAR},
+      </if>
+      <if test="monitoringtime != null">
+        #{monitoringtime,jdbcType=VARCHAR},
+      </if>
+      <if test="prosegmenttype != null">
+        #{prosegmenttype,jdbcType=VARCHAR},
+      </if>
+      <if test="rainfallintensity != null">
+        #{rainfallintensity,jdbcType=VARCHAR},
+      </if>
+      <if test="segment != null">
+        #{segment,jdbcType=VARCHAR},
+      </if>
+      <if test="segmenttype != null">
+        #{segmenttype,jdbcType=VARCHAR},
+      </if>
+      <if test="sensorcode != null">
+        #{sensorcode,jdbcType=VARCHAR},
+      </if>
+      <if test="snowdepth != null">
+        #{snowdepth,jdbcType=VARCHAR},
+      </if>
+      <if test="starttime != null">
+        #{starttime,jdbcType=VARCHAR},
+      </if>
+      <if test="tenminuterainfall != null">
+        #{tenminuterainfall,jdbcType=VARCHAR},
+      </if>
+      <if test="tweentyfourhourrainfall != null">
+        #{tweentyfourhourrainfall,jdbcType=VARCHAR},
+      </if>
+      <if test="uptrackcontrolarea != null">
+        #{uptrackcontrolarea,jdbcType=VARCHAR},
+      </if>
+      <if test="uptrackcontrolnum != null">
+        #{uptrackcontrolnum,jdbcType=VARCHAR},
+      </if>
+      <if test="winddirection != null">
+        #{winddirection,jdbcType=VARCHAR},
+      </if>
+      <if test="winddirection1 != null">
+        #{winddirection1,jdbcType=VARCHAR},
+      </if>
+      <if test="winddirection2 != null">
+        #{winddirection2,jdbcType=VARCHAR},
+      </if>
+      <if test="windspeed != null">
+        #{windspeed,jdbcType=VARCHAR},
+      </if>
+      <if test="windspeed1 != null">
+        #{windspeed1,jdbcType=VARCHAR},
+      </if>
+      <if test="windspeed2 != null">
+        #{windspeed2,jdbcType=VARCHAR},
+      </if>
+      <if test="xyes != null">
+        #{xyes,jdbcType=VARCHAR},
+      </if>
+      <if test="xyesw != null">
+        #{xyesw,jdbcType=VARCHAR},
+      </if>
+      <if test="xys != null">
+        #{xys,jdbcType=VARCHAR},
+      </if>
+      <if test="xyss != null">
+        #{xyss,jdbcType=VARCHAR},
+      </if>
+      <if test="xysw != null">
+        #{xysw,jdbcType=VARCHAR},
+      </if>
+      <if test="xyw != null">
+        #{xyw,jdbcType=VARCHAR},
+      </if>
+      <if test="videostatus != null">
+        #{videostatus,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+</mapper>

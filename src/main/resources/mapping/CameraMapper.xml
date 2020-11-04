@@ -36,6 +36,36 @@
     from camera
     where device_id = #{deviceId,jdbcType=VARCHAR}
   </select>
+  <select id="selectAllCamera" parameterType="com.data.big.model.Camera" resultMap="BaseResultMap">
+    select
+        DISTINCT c.*
+    from camera c
+    left join ipc_tag it on it.ipcid=c.device_id
+    <where>
+      <if test="deviceName != null and deviceName!=''">
+       and c.device_name  like concat('%',#{deviceName,jdbcType=VARCHAR},'%')
+      </if>
+      <if test="ipAddr != null and ipAddr!=''">
+       and c.ip_addr   = #{ipAddr,jdbcType=VARCHAR}
+      </if>
+      <if test="startKM != null and startKM!=''">
+       and c.k_mark  >=  #{startKM,jdbcType=VARCHAR}
+      </if>
+      <if test="endKM != null and endKM!=''">
+       and c.k_mark  &lt;=  #{endKM,jdbcType=VARCHAR}
+      </if>
+      <if test="deviceType != null and deviceType!=''">
+        and  c.device_type  =  #{deviceType,jdbcType=VARCHAR}
+      </if>
+      <if test="tags != null and tags!=''">
+        and
+        <foreach collection="tags" index="index" item="tag" open="(" close=")" separator="or">
+          it.tag  =  #{tag,jdbcType=VARCHAR}
+        </foreach>
+      </if>
+    </where>
+
+  </select>
   <insert id="insert" parameterType="com.data.big.model.Camera">
     insert into camera (device_id, device_name, node_id, 
       device_type, manufacturer, camera_type, 

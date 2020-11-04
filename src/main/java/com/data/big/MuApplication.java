@@ -26,7 +26,7 @@ public class MuApplication  {
         ConfigurableApplicationContext run = SpringApplication.run(MuApplication.class, args);
 
         //new nettyThread(run);
-       // new taskThread(run);
+        //new taskThread(run);
     }
 
     @Bean

@@ -1,8 +1,13 @@
 package com.data.big.model;
 
+import jdk.nashorn.internal.runtime.OptimisticReturnFilters;
+
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import java.io.Serializable;
+import java.util.List;
+
 @Table(name = "camera")
 public class Camera implements Serializable {
     /**
@@ -102,6 +107,22 @@ public class Camera implements Serializable {
     private String targetLocation;
 
     /**
+     * 标签集合
+     */
+    @Transient
+    private List<String> tags;
+    /**
+     * 开始公里标
+     */
+    @Transient
+    private String  startKM;
+    /**
+     * 结束公里标
+     */
+    @Transient
+    private String endKM;
+
+    /**
      * 目录分类
  1、车站咽喉；
  2、公跨铁；
@@ -135,6 +156,30 @@ public class Camera implements Serializable {
      * @mbg.generated Wed Oct 14 17:15:04 CST 2020
      */
     private static final long serialVersionUID = 1L;
+
+    public String getStartKM() {
+        return startKM;
+    }
+
+    public void setStartKM(String startKM) {
+        this.startKM = startKM;
+    }
+
+    public String getEndKM() {
+        return endKM;
+    }
+
+    public void setEndKM(String endKM) {
+        this.endKM = endKM;
+    }
+
+    public List<String> getTags() {
+        return tags;
+    }
+
+    public void setTags(List<String> tags) {
+        this.tags = tags;
+    }
 
     public String getDeviceId() {
         return deviceId;
