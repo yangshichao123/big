@@ -28,7 +28,9 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.http.RequestEntity;
 
 import javax.xml.namespace.QName;
+import javax.xml.rpc.ParameterMode;
 import javax.xml.rpc.ServiceException;
+import javax.xml.rpc.encoding.XMLType;
 import javax.xml.soap.SOAPException;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -38,6 +40,7 @@ import java.net.MalformedURLException;
 import java.nio.charset.Charset;
 import java.rmi.RemoteException;
 import java.util.List;
+import java.util.Map;
 
 public class webServiceUtils {
 
@@ -135,6 +138,45 @@ public class webServiceUtils {
 
 
     /**
+     * 获取webservice 接口
+     * @param url 地址
+     * @param namespace 命名空间
+     * @param method 方法名
+     * @return
+     */
+    public static String getWebservice(String url,
+                                       String namespace, Map<String,String> map, String method) {
+        String retStr="";
+        Service service = new Service();
+        Call call = null;
+        try {
+            call = (Call) service.createCall();
+            call.setTargetEndpointAddress(url);
+           // QName qName = new QName("http://inter.webservice.cy.cn/", "getInfo");
+            QName qName = new QName(namespace, method);
+            call.setOperationName(qName);// WSDL里面描述的接口名称
+
+            Object[] objects=new Object[map.size()];
+            int i=0;
+            for (String str : map.keySet()) {
+                objects[i]=map.get(str);
+                QName qname = new QName(namespace, str);
+                call.addParameter(qname, XMLType.XSD_STRING, ParameterMode.IN);// 接口的参数
+            }
+
+            call.setTimeout(Integer.valueOf(20000));// 这里面超时时间设大点
+            call.setReturnType(XMLType.XSD_STRING);// 设置返回类型
+            retStr = (String) call.invoke(objects);              // 给方法传递参数，并且调用方法
+        } catch (ServiceException e) {
+           logger.error(e.getMessage(),e);
+        } catch (RemoteException e) {
+            logger.error(e.getMessage(),e);
+        }
+        return retStr;
+    }
+
+
+    /**
      * @param wsdlUrl         wsdl的地址：http://localhost:8001/demo/HelloServiceDemoUrl?wsdl
      *                        http://10.3.136.225:8000/AqscWebMIS/services/GwaqscJxglService?wsdl
      * @param methodName      调用的方法名称 selectOrderInfo
@@ -168,7 +210,7 @@ public class webServiceUtils {
 
         // 创建QName来指定NameSpace和要调用的service
 
-        String localPart = name + "SoapBinding";
+        String localPart = name+"SoapBinding";
 
         QName bindingName = new QName(targetNamespace, localPart);
 
@@ -351,6 +393,7 @@ public class webServiceUtils {
         }
         return retStr;
     }
+
 
 
 

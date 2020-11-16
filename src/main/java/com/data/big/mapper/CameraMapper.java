@@ -19,4 +19,10 @@ public interface CameraMapper extends BaseMapper<Camera> {
     List<Camera> getVideoCode(Integer k, Integer j);
 
     List<Camera> selectAllCamera(Camera camera);
+
+    /**
+     * 通过开始结束公里标 查找离最近的两个和中间的摄像机
+     * @return
+     */
+    List<Camera> getVideoByKJ(int k, int j);
 }

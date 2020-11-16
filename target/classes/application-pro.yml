@@ -1,5 +1,5 @@
 server:
-  port: 10001
+  port: 12003
 
 
 spring:
@@ -57,12 +57,12 @@ logging:
     org.springframework.boot.autoconfigure: ERROR
 
 sendFileCron:
-  "0 0/1 * * * ?"
+  "0 0/5 * * * ?"
 getANBAO3:
   url: "http://10.3.64.10/video_aj/ssmisbdwebservice.asmx"
   #从右到左 表示 年 月 日 时 分 秒    0 0 0/1 * * ? 表示每小时0分0秒执行一次     0 20 0 0/1 * ? 表示每天0点20分0秒 执行
   # 如果 是按每天执行一次 系统默认查询前一天数据  如果按小时执行 根据执行间隔小时数 查询前几小时数据
-  cron: "0 30 */2 * * ?"
+  cron: "0 30 01 */1 * ?"
   xm: "京包客专"
   lj: "路局"
   name: "VIDEO_AJ"   #用户名密码
@@ -163,7 +163,7 @@ netty:
   nameAndPassword: "<JingWei_GongDianGong,JingWei_GongDianGong>"  #用户名密码
 #防灾webservice
 fz:
-  url: "http://10.3.144.48:11022/ws/bigdata?wsdl"
+  url: "http://10.3.97.162:11029/ws/bigdata?wsdl"
   userName: "bigdata"
   passWord: "bigData@217"
   cron: "0 10 */2 * * ?"
@@ -174,7 +174,7 @@ gw:
   //wsdlNamespace: "http://webService.big.data.com/"
   wsdlNamespace: "http://services.itcmor.com/"
   wsdlName: "GwaqscJxglService"
-  cron: "0 */2 * * * ?"
+  cron: "0 30 */3 * * ?"
 
 #旅服
 lf:
@@ -182,10 +182,16 @@ lf:
   #url: "http://127.0.0.1:8088/fdCon/queryCurrentDayWarningData"
   #保存文件地址
   saveAddress: "lf"
-  cron: "0 09 0/1 * * ?"
+  cron: "0 40 */3 * * ?"
 
 
 
 
 #.调用实时、历史视频（VideoPlayOpen）
 videoPlayOpenUrl: "http://10.3.78.166:11005/VideoPlayOpen"
+
+#用户登陆token失效时长 单位分钟
+user:
+  #是否启动使用token认证功能
+  tokenEnable: "flase"
+  tokenOutTime: 10

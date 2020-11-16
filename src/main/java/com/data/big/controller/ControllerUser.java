@@ -1,15 +1,19 @@
 package com.data.big.controller;
 
+import com.data.big.mapper.TokenMapper;
 import com.data.big.mapper.WxjhMapper;
 import com.data.big.model.*;
 import com.data.big.service.Service;
 import com.data.big.service.ServiceUser;
+import com.data.big.token.TokenTools;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -26,15 +30,33 @@ public class ControllerUser {
     private ServiceUser serviceUser;
 
 
+
     @RequestMapping("/login")
     @ResponseBody
-    public Map<String ,Object >  login(User user) {
+    public Map<String ,Object >  login(HttpServletRequest request ,User user) {
         Map<String ,Object> map=new HashMap<>();
-       if(user==null||user.getAccount()==null||user.getPassword()==null){
+       if(user==null||StringUtils.isEmpty(user.getAccount())||StringUtils.isEmpty(user.getPassword())){
            map.put("status",1);
            map.put("message","参数错误");
+           return  map;
        }
-        return serviceUser.login(user);
+        Map<String,Object> login = serviceUser.login(request,user);
+
+        return login;
+    }
+    @RequestMapping("/getToken")
+    @ResponseBody
+    public Map<String ,Object >  getToken(User user) {
+        Map<String ,Object> map=new HashMap<>();
+       if(user==null||StringUtils.isEmpty(user.getId())){
+           map.put("status",1);
+           map.put("message","参数错误");
+           return  map;
+       }
+
+        Map<String,Object> login = serviceUser.getToken(user);
+
+        return login;
     }
     @RequestMapping("/addUser")
     @ResponseBody

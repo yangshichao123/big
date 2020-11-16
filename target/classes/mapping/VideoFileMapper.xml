@@ -16,6 +16,8 @@
     <result column="video_type" jdbcType="VARCHAR" property="videoType" />
     <result column="alarm_id" jdbcType="VARCHAR" property="alarmId" />
     <collection property="camera" resultMap="cameraMap" />
+    <collection property="videoTag" resultMap="BaseResultMapVideoFag" />
+    <collection property="ipcTags" resultMap="BaseResultMapIPCTag" />
   </resultMap>
 
   <resultMap id="cameraMap" type="com.data.big.model.Camera">
@@ -43,6 +45,23 @@
     <result column="latitude" jdbcType="VARCHAR" property="latitude" />
   </resultMap>
 
+  <resultMap id="BaseResultMapVideoFag" type="com.data.big.model.VideoTag">
+    <id column="video_fag" jdbcType="VARCHAR" property="id" />
+    <result column="ipcid_fag" jdbcType="VARCHAR" property="ipcid" />
+    <result column="tag" jdbcType="VARCHAR" property="tag" />
+    <result column="rktime" jdbcType="TIMESTAMP" property="rktime" />
+    <result column="video_file_id" jdbcType="VARCHAR" property="videoFileId" />
+  </resultMap>
+
+
+
+
+  <resultMap id="BaseResultMapIPCTag" type="com.data.big.model.IpcTag">
+    <id column="video_ipc_id" jdbcType="VARCHAR" property="id" />
+    <result column="ipcid_video_tag" jdbcType="VARCHAR" property="ipcid" />
+    <result column="tag_video_tag" jdbcType="VARCHAR" property="tag" />
+    <result column="rktime_video_tag" jdbcType="TIMESTAMP" property="rktime" />
+  </resultMap>
 
   <sql id="Base_Column_List">
     ID, IPCID, kssj, jssj, `status`, loadtime, `path`, filename, FileID, uptime, bz, 
@@ -153,16 +172,23 @@
   </insert>
 
   <select id="getVideoRecord" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select vf.*,ca.*
+    select DISTINCT vf.*,ca.*
 
     from video_file vf
     left join camera ca on vf.IPCID=ca.device_id
+    <if test="videoType != null and videoType !=''">
+      left join  dictionary d on vf.video_type=d.name
+    </if>
+    <if test="cameraType != null and cameraType !=''">
+      LEFT JOIN dictionary d1 on ca.device_type=d1.DESCS
+    </if>
+
     <where>
       <if test="videoType != null and videoType !=''">
-        and vf.video_type = #{videoType,jdbcType=VARCHAR}
+        and d.id = #{videoType,jdbcType=VARCHAR}
       </if>
       <if test="cameraType != null and cameraType !=''">
-        and ca.device_type = #{cameraType,jdbcType=VARCHAR}
+        and d1.id = #{cameraType,jdbcType=VARCHAR}
       </if>
       <if test="cameraName != null and cameraName !=''">
         and ca.device_name  like concat('%',#{cameraName,jdbcType=VARCHAR},'%')
@@ -173,8 +199,35 @@
       <if test="endTime != null and endTime !=''">
         and vf.jssj &lt;= #{endTime,jdbcType=VARCHAR}
       </if>
+      <if test="list != null and list !=''">
+        and
+        <foreach collection="list" index="index" item="tag" open="(" close=")" separator="or">
+          vf.`status`  =  #{tag,jdbcType=VARCHAR}
+        </foreach>
+      </if>
     </where>
 
+  </select>
+  <select id="selectByVideoFileId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select  vf.id, vt.id video_fag,vt.ipcid ipcid_fag,d.DESCS tag ,vt.rktime,vt.video_file_id
+
+    from video_file vf
+    left join video_tag vt on vf.id=vt.video_file_id
+    left join   dictionary d on d.id=vt.tag
+    where vt.video_file_id in
+    <foreach collection="list" item="videoFileId" separator="," open="(" close=")">
+      #{videoFileId,jdbcType=VARCHAR}
+    </foreach>
+  </select>
+  <select id="selectByVideoFag" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select  vf.id, it.id video_ipc_id,it.ipcid ipcid_video_tag, it.tag  tag_video_tag,it.rktime rktime_video_tag
+
+    from video_file vf
+    left join ipc_tag it on vf.IPCID=it.ipcid
+    where it.ipcid in
+    <foreach collection="list" item="videoFileId" separator="," open="(" close=")">
+      #{videoFileId,jdbcType=VARCHAR}
+    </foreach>
   </select>
 
 </mapper>

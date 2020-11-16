@@ -23,6 +23,8 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="jsrq" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
  *         &lt;element name="cxdj" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
  *         &lt;element name="xm" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
+ *         &lt;element name="page" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
+ *         &lt;element name="rows" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
@@ -36,7 +38,9 @@ import javax.xml.bind.annotation.XmlType;
     "qsrq",
     "jsrq",
     "cxdj",
-    "xm"
+    "xm",
+    "page",
+    "rows"
 })
 @XmlRootElement(name = "getHcsj")
 public class GetHcsj {
@@ -49,6 +53,10 @@ public class GetHcsj {
     protected JAXBElement<String> cxdj;
     @XmlElementRef(name = "xm", namespace = "http://services.itcmor.com", type = JAXBElement.class, required = false)
     protected JAXBElement<String> xm;
+    @XmlElementRef(name = "page", namespace = "http://services.itcmor.com", type = JAXBElement.class, required = false)
+    protected JAXBElement<String> page;
+    @XmlElementRef(name = "rows", namespace = "http://services.itcmor.com", type = JAXBElement.class, required = false)
+    protected JAXBElement<String> rows;
 
     /**
      * ��ȡqsrq���Ե�ֵ��
@@ -144,6 +152,54 @@ public class GetHcsj {
      */
     public void setXm(JAXBElement<String> value) {
         this.xm = value;
+    }
+
+    /**
+     * ��ȡpage���Ե�ֵ��
+     * 
+     * @return
+     *     possible object is
+     *     {@link JAXBElement }{@code <}{@link String }{@code >}
+     *     
+     */
+    public JAXBElement<String> getPage() {
+        return page;
+    }
+
+    /**
+     * ����page���Ե�ֵ��
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link JAXBElement }{@code <}{@link String }{@code >}
+     *     
+     */
+    public void setPage(JAXBElement<String> value) {
+        this.page = value;
+    }
+
+    /**
+     * ��ȡrows���Ե�ֵ��
+     * 
+     * @return
+     *     possible object is
+     *     {@link JAXBElement }{@code <}{@link String }{@code >}
+     *     
+     */
+    public JAXBElement<String> getRows() {
+        return rows;
+    }
+
+    /**
+     * ����rows���Ե�ֵ��
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link JAXBElement }{@code <}{@link String }{@code >}
+     *     
+     */
+    public void setRows(JAXBElement<String> value) {
+        this.rows = value;
     }
 
 }

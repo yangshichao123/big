@@ -215,7 +215,7 @@ public interface Service {
      * @param cxdj 超限等级（1、2、3、4）
      * @return
      */
-    Map<String,String> getHcsj(String qsrq, String jsrq, String cxdj,String xm);
+    Map<String,String> getHcsj(String qsrq, String jsrq, String cxdj,String xm,String page,String rows);
 
     /**
      * 2、	施工计划
@@ -262,6 +262,15 @@ public interface Service {
      * 添加公务告警到视频下载任务表
      */
     void addGWTask();
+
+
+    /**
+     * 以半小时为单位 存时间
+     * @param dateK
+     * @param dateJ
+     * @return
+     */
+    List<String > getTime(String dateK,String dateJ);
 
     /**
      * 查询摄像头资产信息
@@ -324,7 +333,7 @@ public interface Service {
      * @param endTime 结束时间
      * @return
      */
-    Map<String,Object> getVideoRecordPage(String videoType, String cameraType, String cameraName, String startTime, String endTime,String pageIndex,String pageSize);
+    Map<String,Object> getVideoRecordPage(String videoType, String cameraType, String cameraName, String startTime, String endTime,String  stutas,String pageIndex,String pageSize);
 
 
     /**
@@ -405,4 +414,34 @@ public interface Service {
      * @return
      */
     Map<String,Object> deleteDictionary(Dictionary dictionary);
+
+    /**
+     * 添加视频任务标签
+     * @param videoTag
+     * @return
+     */
+    Map<String,Object> addVideoTag(VideoTag videoTag);
+
+    /**
+     * 修改视频任务标签
+     * @param videoTag
+     * @return
+     */
+    Map<String,Object> updateVideoTag(VideoTag videoTag);
+
+    /**
+     * 删除视频任务标签
+     * @param ids
+     * @return
+     */
+    Map<String,Object> deleteVideoTag(List<String> ids);
+
+    /**
+     * 获取视频标签
+     * @param videoTag
+     * @param pageIndex
+     * @param pageSize
+     * @return
+     */
+    Map<String,Object> getVideoTag(VideoTag videoTag, String pageIndex, String pageSize);
 }

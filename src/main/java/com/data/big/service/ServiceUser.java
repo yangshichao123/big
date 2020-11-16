@@ -3,6 +3,7 @@ package com.data.big.service;
 
 import com.data.big.model.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
 public interface ServiceUser {
@@ -11,7 +12,7 @@ public interface ServiceUser {
      * 用户登陆
      * @return
      */
-    Map<String,Object> login(User user);
+    Map<String,Object> login(HttpServletRequest request,User user);
 
 
     /**
@@ -79,4 +80,24 @@ public interface ServiceUser {
      * @return
      */
     Map<String,Object> getModular(Modular modular);
+
+    /**
+     * 查询token是否过期  过期的话 删除缓存 数据库置为过期
+     */
+    void checkToken();
+
+    /**
+     * 检测token值是否合法
+     * @param token
+     * @param userId
+     * @return
+     */
+    Map<String ,String > judgeTokenIsEqual(String token, String userId);
+
+    /**
+     * 获取token
+     * @param user
+     * @return
+     */
+    Map<String,Object> getToken(User user);
 }

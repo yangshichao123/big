@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.data.big.mapper.VideoTagMapper">
+  <resultMap id="BaseResultMap" type="com.data.big.model.VideoTag">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="ipcid" jdbcType="VARCHAR" property="ipcid" />
+    <result column="tag" jdbcType="VARCHAR" property="tag" />
+    <result column="rktime" jdbcType="TIMESTAMP" property="rktime" />
+    <result column="video_file_id" jdbcType="VARCHAR" property="videoFileId" />
+    <collection property="videoFiles" resultMap="BaseResultMapVideoFile"/>
+  </resultMap>
+
+  <resultMap id="BaseResultMapVideoFile" type="com.data.big.model.VideoFile">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="IPCID" jdbcType="VARCHAR" property="ipcid" />
+    <result column="kssj" jdbcType="VARCHAR" property="kssj" />
+    <result column="jssj" jdbcType="VARCHAR" property="jssj" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="loadtime" jdbcType="VARCHAR" property="loadtime" />
+    <result column="path" jdbcType="VARCHAR" property="path" />
+    <result column="filename" jdbcType="VARCHAR" property="filename" />
+    <result column="FileID" jdbcType="VARCHAR" property="fileid" />
+    <result column="uptime" jdbcType="VARCHAR" property="uptime" />
+    <result column="bz" jdbcType="VARCHAR" property="bz" />
+    <result column="video_type" jdbcType="VARCHAR" property="videoType" />
+    <result column="alarm_id" jdbcType="VARCHAR" property="alarmId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, ipcid, tag, rktime, video_file_id
+  </sql>
+  <select id="selectByPrimaryId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from video_tag
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <insert id="insert" parameterType="com.data.big.model.VideoTag">
+    insert into video_tag (id, ipcid, tag, 
+      rktime, video_file_id)
+    values (#{id,jdbcType=VARCHAR}, #{ipcid,jdbcType=VARCHAR}, #{tag,jdbcType=VARCHAR}, 
+      #{rktime,jdbcType=TIMESTAMP}, #{videoFileId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.data.big.model.VideoTag">
+    insert into video_tag
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="ipcid != null">
+        ipcid,
+      </if>
+      <if test="tag != null">
+        tag,
+      </if>
+      <if test="rktime != null">
+        rktime,
+      </if>
+      <if test="videoFileId != null">
+        video_file_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="ipcid != null">
+        #{ipcid,jdbcType=VARCHAR},
+      </if>
+      <if test="tag != null">
+        #{tag,jdbcType=VARCHAR},
+      </if>
+      <if test="rktime != null">
+        #{rktime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="videoFileId != null">
+        #{videoFileId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <insert id="saveAll" parameterType="java.util.List">
+    insert into video_tag
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+        id,
+        ipcid,
+        tag,
+        rktime,
+        video_file_id
+    </trim>
+    values
+    <foreach collection="list" item="videoTag" separator="," >
+      <trim prefix=" (" suffix=")" suffixOverrides=",">
+          #{videoTag.id,jdbcType=VARCHAR},
+          #{videoTag.ipcid,jdbcType=VARCHAR},
+          #{videoTag.tag,jdbcType=VARCHAR},
+          #{videoTag.rktime,jdbcType=TIMESTAMP},
+          #{videoTag.videoFileId,jdbcType=VARCHAR}
+      </trim>
+    </foreach>
+  </insert>
+
+
+  <select id="selectIpc" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    vt.id,vt.ipcid,d.DESCS tag ,vt.rktime,vt.video_file_id,vf.*
+    from video_tag vt
+    left join dictionary d on d.id=vt.tag
+    left join video_file vf on vf.id=vt.video_file_id
+    <where>
+      <if test="id != null">
+       and vt.id= #{id,jdbcType=VARCHAR}
+      </if>
+      <if test="ipcid != null">
+       and vt.ipcid = #{ipcid,jdbcType=VARCHAR}
+      </if>
+      <if test="tag != null">
+       and d.DESCS like    concat('%',#{tag,jdbcType=VARCHAR},'%')
+      </if>
+      <if test="rktime != null">
+      and  vt.rktime = #{rktime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="videoFileId != null">
+      and  vt.video_file_id = #{videoFileId,jdbcType=VARCHAR}
+      </if>
+    </where>
+  </select>
+</mapper>

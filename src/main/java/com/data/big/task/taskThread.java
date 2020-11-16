@@ -4,7 +4,7 @@ import com.data.big.gw.GwaqscJxglServicePortType;
 import com.data.big.netty.nettyThread;
 import com.data.big.service.Service;
 import com.data.big.service.ServiceNetty;
-import com.data.big.util.CacheMap;
+import com.data.big.util.FZMap;
 import com.data.big.util.Properties;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -35,13 +35,13 @@ public class taskThread {
             while (true) {
                 GwaqscJxglServicePortType portType=null;
                 try {
-                    CacheMap.clientTokenLock.readLock().lock();
-                    portType=(GwaqscJxglServicePortType)CacheMap.clientToken.get("GW");
+                    FZMap.clientTokenLock.readLock().lock();
+                    portType=(GwaqscJxglServicePortType) FZMap.clientToken.get("GW");
 
                 } catch (Exception e) {
                     logger.error(e.getMessage(), e);
                 } finally {
-                    CacheMap.clientTokenLock.readLock().unlock();
+                    FZMap.clientTokenLock.readLock().unlock();
                 }
                 if(portType==null){
                     service.getportType();

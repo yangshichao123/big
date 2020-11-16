@@ -5,7 +5,7 @@ import org.apache.cxf.endpoint.Client;
 import java.util.HashMap;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
-public class CacheMap {
+public class FZMap {
 
     /**
      * 登录用户信息 key 为会话编号cuId

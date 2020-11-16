@@ -58,6 +58,9 @@
     select
         it.id,it.ipcid, it.tag,it.rktime
     from ipc_tag it
+    <if test="tag != null and tag != ''">
+      left join  dictionary d on it.tag=d.DESCS
+    </if>
 
     <where>
       <if test="id != null and id!=''">
@@ -67,7 +70,7 @@
         and it.ipcid=#{ipcid,jdbcType=VARCHAR}
       </if>
       <if test="tag != null and tag != ''">
-       and it.tag= #{tag,jdbcType=VARCHAR}
+       and d.id= #{tag,jdbcType=VARCHAR}
       </if>
       <if test="rktime != null and rktime != ''">
         and it.rktime=#{rktime,jdbcType=TIMESTAMP}

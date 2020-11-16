@@ -79,7 +79,7 @@
 
   <select id="getFzAlarmMap" parameterType="java.lang.String" resultMap="BaseResultMap1">
     SELECT * from (
-      SELECT ra.area,ra.alarmLevel,ra.alarmStatus,ra.endTime endTime,ra.startTime startTime,ra.km km,"rainAlarm" alarmType
+      SELECT ra.area,ra.alarmLevel,ra.alarmStatus,ra.alarmResumeTime endTime,ra.startTime startTime,ra.km km,"rainAlarm" alarmType
       from new_rain_alarm ra
       <where>
         <if test="km != null">and ra.km = #{km,jdbcType=VARCHAR}
@@ -93,7 +93,7 @@
         </where>
         UNION all
 
-        SELECT sa.area,sa.alarmLevel,sa.alarmStatus,sa.endTime,sa.startTime,sa.km,"snowAlarm" alarmType
+        SELECT sa.area,sa.alarmLevel,sa.alarmStatus,sa.alarmResumeTime endTime,sa.startTime,sa.km,"snowAlarm" alarmType
         from new_snow_alarm sa
         <where>
           <if test="km != null">
@@ -107,7 +107,7 @@
           </if>
         </where>
         UNION ALL
-        SELECT wsa.area,wsa.alarmLevel,wsa.alarmStatus,wsa.endTime,wsa.startTime,wsa.km,"windSpeedAlarm" alarmType
+        SELECT wsa.area,wsa.alarmLevel,wsa.alarmStatus,wsa.alarmResumeTime endTime,wsa.startTime,wsa.km,"windSpeedAlarm" alarmType
         from new_wind_speed_alarm wsa
         <where>
           <if test="km != null">
@@ -121,7 +121,7 @@
           </if>
         </where>
         UNION ALL
-        SELECT fba.area,fba.alarmLevel,fba.alarmStatus,fba.endTime,fba.startTime,fba.km,"foreignBodyAlarm" alarmType
+        SELECT fba.area,fba.alarmLevel,fba.alarmStatus,fba.alarmResumeTime endTime,fba.startTime,fba.km,"foreignBodyAlarm" alarmType
         from new_foreign_body_alarm fba
         <where>
           <if test="km != null">

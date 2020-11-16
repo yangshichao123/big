@@ -236,6 +236,31 @@ public class Properties {
      */
     private static String fzPassWord;
 
+    /**
+     * token超时时间 单位分钟
+     */
+    private static int userTokenOutTime;
+
+    /**
+     * 是否启用token认证机制
+     */
+    private static String userTokenEnable;
+
+    public static String getUserTokenEnable() {
+        return userTokenEnable;
+    }
+    @Value("${user.tokenEnable}")
+    public  void setUserTokenEnable(String userTokenEnable) {
+        Properties.userTokenEnable = userTokenEnable;
+    }
+
+    public static int getUserTokenOutTime() {
+        return userTokenOutTime;
+    }
+    @Value("${user.tokenOutTime}")
+    public  void setUserTokenOutTime(int userTokenOutTime) {
+        Properties.userTokenOutTime = userTokenOutTime;
+    }
 
     public static String getFzUrl() {
         return fzUrl;

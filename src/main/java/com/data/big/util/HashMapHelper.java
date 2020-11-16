@@ -1,6 +1,9 @@
 package com.data.big.util;
 
 
+import com.data.big.model.User;
+
+import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
@@ -18,12 +21,9 @@ public class HashMapHelper {
      *
      * @return
      */
-    public static final HashMap<String,String> loginUser = new HashMap<>();
-    /**
-     * web页面登陆用户 key 为sessionid
-     */
-    public static final HashMap<String,String> loginUserSession = new HashMap<>();
+    public static final HashMap<String,User> loginUser = new HashMap<>();
+
     // 互斥锁
-    public static ReentrantReadWriteLock userLongin = new ReentrantReadWriteLock();
+    public static ReentrantReadWriteLock loginUserLock = new ReentrantReadWriteLock();
 
 }

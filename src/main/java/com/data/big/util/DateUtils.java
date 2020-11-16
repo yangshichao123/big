@@ -36,6 +36,10 @@ public class DateUtils {
      * 每小时毫秒数.
      */
     public static final long MILLISECONDS_PER_HOUR = 3600000L;
+    /**
+     * 每半小时毫秒数.
+     */
+    public static final long MILLISECONDS_HALF_PER_HOUR = 1800000L;
 
     /**
      * 每分钟秒数.
@@ -351,6 +355,24 @@ public class DateUtils {
         DecimalFormat df = new DecimalFormat("#.0");
         double result = r * 1.0 / DateUtils.MILLISECONDS_PER_HOUR;
         return df.format(result);
+    }
+    /**
+     * 计算两个日期之前间隔的半小时数.
+     *
+     * @param dateK 结束时间
+     * @param dateJ 开始时间
+     * @return String 相差的小时数，保留一位小数
+     * @since 1.0
+     */
+    public static Double dateMinusHalf(String dateK, String  dateJ) {
+      Date  date1=parseDate(dateK, "yyyy-MM-dd HH:mm:ss");
+      Date  date2=parseDate(dateJ, "yyyy-MM-dd HH:mm:ss");
+        if (date1 == null || date2 == null) {
+            return 0D;
+        }
+        Long r = date2.getTime() - date1.getTime();
+        double result = r * 1.0 / DateUtils.MILLISECONDS_HALF_PER_HOUR;
+        return result;
     }
 
     /**

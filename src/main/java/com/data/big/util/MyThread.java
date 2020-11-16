@@ -20,13 +20,13 @@ public class MyThread extends Thread{
             log.info("---------------开始获取公务连接信息---------------------");
             GwaqscJxglServicePortType portType=null;
             try {
-                CacheMap.clientTokenLock.readLock().lock();
-                portType=(GwaqscJxglServicePortType)CacheMap.clientToken.get("GW");
+                FZMap.clientTokenLock.readLock().lock();
+                portType=(GwaqscJxglServicePortType) FZMap.clientToken.get("GW");
 
             } catch (Exception e) {
                 log.error(e.getMessage(), e);
             } finally {
-                CacheMap.clientTokenLock.readLock().unlock();
+                FZMap.clientTokenLock.readLock().unlock();
             }
             if(portType==null){
                 ((Service)service).getportType();

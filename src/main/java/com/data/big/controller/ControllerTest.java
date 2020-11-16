@@ -1,9 +1,8 @@
 package com.data.big.controller;
 
-import com.data.big.Interceptor.ClientLoginInterceptor;
 import com.data.big.service.Service;
 import com.data.big.util.CXFUtil;
-import com.data.big.util.CacheMap;
+import com.data.big.util.FZMap;
 import com.data.big.util.Properties;
 import com.data.big.util.webServiceUtils;
 import org.apache.cxf.endpoint.Client;
@@ -665,13 +664,13 @@ public class ControllerTest {
        */
         Client fz=null;
         try {
-            CacheMap.clientTokenLock.readLock().lock();
-            fz = (Client)CacheMap.clientToken.get("GW");
+            FZMap.clientTokenLock.readLock().lock();
+            fz = (Client) FZMap.clientToken.get("GW");
 
         } catch (Exception e) {
             e.getMessage();
         } finally {
-            CacheMap.clientTokenLock.readLock().unlock();
+            FZMap.clientTokenLock.readLock().unlock();
         }
         if(fz==null){
             Client gwConnection = service.getGWConnection(url);
@@ -696,13 +695,28 @@ public class ControllerTest {
         service.getGWConnection(url);
         return "";
     }
-    @PostMapping("/getGWConn")
-    public String getGWConn(String qsrq, String jsrq, String url,String method,String ns) {
+    @PostMapping("/getGWConn1")
+    public String getGWConn1(String qsrq, String jsrq, String url,String method,String ns) {
+        Map<String,String > map=new HashMap<>();
+        map.put("qsrq",qsrq);
+        map.put("jsrq",jsrq);
+        map.put("xm","京包客专");
+
+        String s = webServiceUtils.getWebservice(url,ns,map,method);
+        return s;
+    }
+    @PostMapping("/getGWConn2")
+    public String getGWConn2(String qsrq, String jsrq, String url,String method,String ns,String name) {
         List list=new ArrayList();
         list.add(qsrq);
         list.add(jsrq);
         list.add("京包客专");
-        String s = webServiceUtils.doPostSoap1_1(url, "", "", list, method, ns);
+        String s = null;
+        try {
+            s = webServiceUtils.dynamicCallWebServiceByCXF(url,method,ns,name,list);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return s;
     }
 

@@ -183,9 +183,9 @@ public class Controller {
     }
     @RequestMapping("/getHcsj")
     @ResponseBody
-    public Map<String,String> getHcsj(String qsrq, String jsrq, String cxdj,String xm) {
+    public Map<String,String> getHcsj(String qsrq, String jsrq, String cxdj,String xm,String size) {
         service.getportType();
-       return service.getHcsj(qsrq,jsrq,cxdj,xm);
+       return service.getHcsj(qsrq,jsrq,cxdj,xm,"1",size);
     }
     @RequestMapping("/getSgjh")
     @ResponseBody
@@ -270,16 +270,8 @@ public class Controller {
     @RequestMapping("/VideoPlayOpen")
     public String   videoPlayOpen(String ipcid,String type,String starttime,String endtime) {
 
-
         return service.videoPlayOpen(ipcid,type,starttime,endtime);
-    }
-    @RequestMapping("/addTbale")
-    @ResponseBody
-    public Map<String ,Object >  addTbale(@RequestBody String jsonStr) {
-        //HttpClientUt.doPost11("http://127.0.0.1:10001/fdCon/addTbale",jsonStr,"33333333");
-        //System.out.println( Authorization+"       "+ jsonStr+"    "+tableName);
-       // return service.addTable();
-        return  null;
+
     }
     /**
      * 提供接口  查询字典
@@ -297,9 +289,9 @@ public class Controller {
      */
     @RequestMapping("/getVideoRecordPage")
     @ResponseBody
-    public Map<String ,Object >  getVideoRecordPage(String videoType, String cameraType,String cameraName ,String startTime,String endTime,String pageIndex,String pageSize) {
+    public Map<String ,Object >  getVideoRecordPage(String videoType, String cameraType,String cameraName ,String startTime,String endTime,String  status,String pageIndex,String pageSize) {
 
-        return  service.getVideoRecordPage(videoType,cameraType,cameraName,startTime,endTime,pageIndex,pageSize);
+        return  service.getVideoRecordPage(videoType,cameraType,cameraName,startTime,endTime,status,pageIndex,pageSize);
     }
     /**
      * 提供接口  查询视频记录 根据条件 分页
@@ -310,6 +302,14 @@ public class Controller {
     public Map<String ,Object >  getVideoRecord(String videoType, String cameraType,String cameraName ,String startTime,String endTime) {
 
         return  service.getVideoRecord(videoType,cameraType,cameraName,startTime,endTime);
+    }
+    @RequestMapping("/addTbale")
+    @ResponseBody
+    public Map<String ,Object >  addTbale(@RequestBody String jsonStr) {
+        //HttpClientUt.doPost11("http://127.0.0.1:10001/fdCon/addTbale",jsonStr,"33333333");
+        //System.out.println( Authorization+"       "+ jsonStr+"    "+tableName);
+        // return service.addTable();
+        return  null;
     }
     /**
      * 提供接口  删除视频任务信息
@@ -447,6 +447,49 @@ public class Controller {
     public Map<String ,Object >  deleteDictionary( Dictionary dictionary) {
 
         return  service.deleteDictionary(dictionary);
+    }
+    /**
+     * 提供接口  添加任务视频标签
+     * @return
+     */
+    @RequestMapping("/addVideoTag")
+    @ResponseBody
+    public Map<String ,Object >  addVideoTag( VideoTag videoTag) {
+
+        return  service.addVideoTag(videoTag);
+    }
+
+    /**
+     * 提供接口  修改任务视频标签
+     * @return
+     */
+    @RequestMapping("/updateVideoTag")
+    @ResponseBody
+    public Map<String ,Object >  updateVideoTag( VideoTag videoTag) {
+
+        return  service.updateVideoTag(videoTag);
+    }
+
+    /**
+     * 提供接口  删除任务视频标签
+     * @return
+     */
+    @RequestMapping("/deleteVideoTag")
+    @ResponseBody
+    public Map<String ,Object >  deleteVideoTag(@RequestParam(value = "ids") List<String> ids ) {
+
+        return  service.deleteVideoTag(ids);
+    }
+
+    /**
+     * 提供接口  获取任务视频标签
+     * @return
+     */
+    @RequestMapping("/getVideoTag")
+    @ResponseBody
+    public Map<String ,Object >  getVideoTag( VideoTag videoTag,String pageIndex,String pageSize) {
+
+        return  service.getVideoTag(videoTag,pageIndex,pageSize);
     }
 
 }

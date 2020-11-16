@@ -1,9 +1,7 @@
 package com.data.big.service.impl;
 
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.data.big.gw.GwaqscJxglService;
 import com.data.big.gw.GwaqscJxglServicePortType;
 import com.data.big.mapper.*;
@@ -16,13 +14,9 @@ import com.data.big.model.*;
 import com.data.big.util.Properties;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import jdk.nashorn.internal.runtime.OptimisticReturnFilters;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.cxf.endpoint.Client;
-import org.apache.cxf.frontend.ClientProxy;
-import org.apache.cxf.transport.http.HTTPConduit;
-import org.apache.cxf.transports.http.configuration.HTTPClientPolicy;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +28,6 @@ import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.text.DateFormat;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -103,6 +96,9 @@ public class ServiceImpl implements Service {
 
     @Autowired
     private ServiceNetty serviceNetty;
+
+    @Autowired
+    private VideoTagMapper videoTagMapper;
 
     // 日志记录器
     private static final Logger logger = LogManager.getLogger(ServiceImpl.class);
@@ -1180,7 +1176,7 @@ public class ServiceImpl implements Service {
                 map.put("data", dataMapList.get("data"));
                 logger.error("上传视频文件成功返回数据为：" + data);
 
-                this.deleteFile(videoFile);
+              //  this.deleteFile(videoFile);
             } else {
                 map.put("stateCode", dataMapList.get("statusCode"));
                 logger.error("上传视频文件:失败 错误码 stateCode " + dataMapList.get("statusCode") + " message " + dataMapList.get("message"));
@@ -1194,6 +1190,12 @@ public class ServiceImpl implements Service {
             log.setRedata(data);
             log.setType(1 + "");
             logRestMapper.insert(log);
+
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
 
         }
         return listMap;
@@ -1518,7 +1520,8 @@ public class ServiceImpl implements Service {
     public Map<String,String> addTask(String startTime, String endTime, String methodId) {
         Map<String,String> resurtMap = new HashMap<>();
         if (StringUtils.isEmpty(startTime) || StringUtils.isEmpty(endTime) || StringUtils.isEmpty(methodId)) {
-            resurtMap.put("status", "参数错误");
+            resurtMap.put("message", "参数错误");
+            resurtMap.put("status", "1");
             logger.info("参数错误");
             return resurtMap;
         }
@@ -1530,10 +1533,12 @@ public class ServiceImpl implements Service {
         queryTask.setType(Integer.parseInt(methodId));
         int i = queryTaskMapper.insertSelective(queryTask);
         if (i > 0) {
-            resurtMap.put("status", "添加成功");
+            resurtMap.put("message", "添加成功");
+            resurtMap.put("status", "0");
             logger.info("添加成功");
         } else {
-            resurtMap.put("status", "添加失败");
+            resurtMap.put("message", "添加失败");
+            resurtMap.put("status", "1");
             logger.info("添加失败");
         }
         return resurtMap;
@@ -1551,7 +1556,8 @@ public class ServiceImpl implements Service {
         Map<String,String> resurtMap = new HashMap<>();
         if (StringUtils.isEmpty(videoKilometer.getStartkilometer()) || StringUtils.isEmpty(videoKilometer.getEndkilometer()) || StringUtils.isEmpty(videoKilometer.getVideoCode()) || StringUtils.isEmpty(videoKilometer.getInstalltype())) {
 
-            resurtMap.put("status", "参数错误");
+            resurtMap.put("message", "参数错误");
+            resurtMap.put("status", "1");
             logger.info("参数错误");
             return resurtMap;
         }
@@ -1560,10 +1566,12 @@ public class ServiceImpl implements Service {
         videoKilometer.setEndkilometer("K" + Integer.parseInt(videoKilometer.getEndkilometer()) / 1000 + "+" + Integer.parseInt(videoKilometer.getEndkilometer()) % 1000);
         int i = videoKilometerMapper.insertSelective(videoKilometer);
         if (i > 0) {
-            resurtMap.put("status", "添加成功");
+            resurtMap.put("message", "添加成功");
+            resurtMap.put("status", "0");
             logger.info("添加成功");
         } else {
-            resurtMap.put("status", "添加失败");
+            resurtMap.put("message", "添加失败");
+            resurtMap.put("status", "1");
             logger.info("添加失败");
         }
         return resurtMap;
@@ -1582,7 +1590,8 @@ public class ServiceImpl implements Service {
         }catch (Exception e){
             logger.error("================连接工务服务失败====================");
             logger.error(e.getMessage(),e);
-            map.put("status", "获取连接失败");
+            map.put("message", "获取连接失败");
+            map.put("status", "1");
             return map;
         }
         if(portType!=null){
@@ -1593,15 +1602,16 @@ public class ServiceImpl implements Service {
             policy.setReceiveTimeout(30000);// 请求超时时间.
             conduit.setClient(policy);*/
             try {
-                    CacheMap.clientTokenLock.writeLock().lock();
-                    CacheMap.clientToken.put("GW",portType);
+                    FZMap.clientTokenLock.writeLock().lock();
+                    FZMap.clientToken.put("GW",portType);
 
                 } catch (Exception e) {
                     logger.error(e.getMessage(), e);
                 } finally {
-                    CacheMap.clientTokenLock.writeLock().unlock();
+                    FZMap.clientTokenLock.writeLock().unlock();
                 }
-            map.put("status", "连接成功");
+            map.put("message", "连接成功");
+            map.put("status", "0");
 
         }
         logger.info("连接工务服务成功");
@@ -1609,10 +1619,11 @@ public class ServiceImpl implements Service {
     }
 
     @Override
-    public Map<String,String> getHcsj(String qsrq, String jsrq, String cxdj, String xm) {
+    public Map<String,String> getHcsj(String qsrq, String jsrq, String cxdj, String xm,String page,String rows) {
         Map<String,String> map = new HashMap<>();
         if (StringUtils.isEmpty(qsrq) || StringUtils.isEmpty(jsrq) || StringUtils.isEmpty(xm)) {
-            map.put("status", "参数错误");
+            map.put("message", "参数错误");
+            map.put("status", "1");
             logger.info("参数错误");
             return map;
         }
@@ -1622,18 +1633,19 @@ public class ServiceImpl implements Service {
         String wsdlName = Properties.getWsdlName();
 
         try {
-            CacheMap.clientTokenLock.readLock().lock();
-            portType=(GwaqscJxglServicePortType)CacheMap.clientToken.get("GW");
+            FZMap.clientTokenLock.readLock().lock();
+            portType=(GwaqscJxglServicePortType) FZMap.clientToken.get("GW");
 
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
         } finally {
-            CacheMap.clientTokenLock.readLock().unlock();
+            FZMap.clientTokenLock.readLock().unlock();
         }
 
         if(portType==null){
            logger.error("连接工务服务失败");
-            map.put("status", "连接工务服务失败");
+            map.put("message", "连接工务服务失败");
+            map.put("status", "1");
             return map;
         }
         /*GwaqscJxglService services = new GwaqscJxglService();//创建接口方法类
@@ -1645,26 +1657,40 @@ public class ServiceImpl implements Service {
         policy.setConnectionTimeout(30000); // 连接超时时间
         policy.setReceiveTimeout(30000);// 请求超时时间.
         conduit.setClient(policy);*/
-
-
-        String resU = portType.getHcsj(qsrq, jsrq, cxdj, xm);
-        if (resU == null) {
-            map.put("data", "接收的数据为null");
-            logger.info("请求错误 wsdlUrl " + wsdlUrl + " wsdlNamespace" + wsdlNamespace + " wsdlName" + wsdlName + " qsrq" + qsrq + " jsrq" + jsrq + " 线名:" + xm);
-            return map;
-        }
-
-        List<Map> data = Dom.getData(resU);
         List<Hcsj> hcsjList = new ArrayList<>();
-        if (data.get(0).get("hcsj") instanceof Map) {
-            Map mapData = (Map) data.get(0).get("hcsj");
-            hcsjList.add(getHcsjToMap(mapData));
-        } else {
-            List<Map> listData = (List) data.get(0).get("hcsj");
-            for (Map listDatum : listData) {
-                hcsjList.add(getHcsjToMap(listDatum));
+        StringBuffer buffer=new StringBuffer();
+        int i=Integer.parseInt(page);
+        while(true){
+
+            String resU = portType.getHcsj(qsrq, jsrq, cxdj, xm,i+"",rows);
+            i++;
+            if (StringUtils.isEmpty(resU)) {
+               break;
             }
+            buffer.append(resU);
+
+            List<Map> data = Dom.getData(resU);
+            if (data.get(0).get("hcsj") instanceof Map) {
+                Map mapData = (Map) data.get(0).get("hcsj");
+                hcsjList.add(getHcsjToMap(mapData));
+            } else {
+                List<Map> listData = (List) data.get(0).get("hcsj");
+                for (Map listDatum : listData) {
+                    hcsjList.add(getHcsjToMap(listDatum));
+                }
+            }
+            LogRest log = new LogRest();
+            log.setFunname("getHcsj");
+            log.setIp(wsdlUrl);
+            log.setLrsj(new Date());
+            log.setParamin("公务晃车数据 查询开始时间：" + qsrq + " 线名:" + xm + " 结束时间：" + jsrq);
+            JSONObject jsonParam = new JSONObject();
+            jsonParam.put("data", resU);
+            log.setRedata("" + jsonParam.toJSONString());
+            log.setType(0 + "");
+            logRestMapper.insert(log);
         }
+
         hcsjMapper.insertCodeBatch(hcsjList);
        /* for (Hcsj hcsj : hcsjList) {
             Hcsj hcsj1 = hcsjMapper.selectByPrimaryId(hcsj.getId());
@@ -1681,20 +1707,13 @@ public class ServiceImpl implements Service {
                 serviceNetty.addVideoTask(hcsj.getLc().replace(".",""),kaishi,jieshu);
             }*//*
         }*/
-        map.put("status", "成功");
-        logger.info("公务晃车数据 查询开始时间：" + qsrq + " 结束时间：" + jsrq + " 线名:" + xm + " 返回数据：" + resU);
-        map.put("data", resU);
+        map.put("message", "成功");
+        map.put("status", "0");
+        logger.info("公务晃车数据 查询开始时间：" + qsrq + " 结束时间：" + jsrq + " 线名:" + xm + " 返回数据：" + buffer.toString());
+        map.put("data", buffer.toString());
+        map.put("size", hcsjList.size()+"");
 
-        LogRest log = new LogRest();
-        log.setFunname("getHcsj");
-        log.setIp(wsdlUrl);
-        log.setLrsj(new Date());
-        log.setParamin("公务晃车数据 查询开始时间：" + qsrq + " 线名:" + xm + " 结束时间：" + jsrq);
-        JSONObject jsonParam = new JSONObject();
-        jsonParam.put("data", resU);
-        log.setRedata("" + jsonParam.toJSONString());
-        log.setType(0 + "");
-        logRestMapper.insert(log);
+
 
         return map;
     }
@@ -1725,7 +1744,8 @@ public class ServiceImpl implements Service {
     public Map<String,String> getSgjh(String qsrq, String jsrq, String xm) {
         Map<String,String> map = new HashMap<>();
         if (StringUtils.isEmpty(qsrq) || StringUtils.isEmpty(jsrq) || StringUtils.isEmpty(xm)) {
-            map.put("status", "参数错误");
+            map.put("message", "参数错误");
+            map.put("status", "1");
             logger.info("参数错误");
             return map;
         }
@@ -1738,23 +1758,24 @@ public class ServiceImpl implements Service {
         String wsdlName = Properties.getWsdlName();
 
         try {
-            CacheMap.clientTokenLock.readLock().lock();
-            portType=(GwaqscJxglServicePortType)CacheMap.clientToken.get("GW");
+            FZMap.clientTokenLock.readLock().lock();
+            portType=(GwaqscJxglServicePortType) FZMap.clientToken.get("GW");
 
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
         } finally {
-            CacheMap.clientTokenLock.readLock().unlock();
+            FZMap.clientTokenLock.readLock().unlock();
         }
 
         if(portType==null){
             logger.error("连接工务服务失败");
-            map.put("status", "连接工务服务失败");
+            map.put("message", "连接工务服务失败");
+            map.put("status", "1");
             return map;
         }
 
         String resU = portType.getSgjh(qsrq, jsrq, xm);
-        if (resU == null) {
+        if (StringUtils.isEmpty(resU)) {
             map.put("data", "接收的数据为null");
             logger.info("请求错误 wsdlUrl " + wsdlUrl + " wsdlNamespace" + wsdlNamespace + " wsdlName" + wsdlName + " qsrq" + qsrq + " jsrq" + jsrq + " 线名:" + xm);
             return map;
@@ -1782,9 +1803,12 @@ public class ServiceImpl implements Service {
                 addVideoTask(sgjh.getZyqslc().replace(".",""),sgjh.getZyzzlc().replace(".",""),sgjh.getJhqssj().substring(0,sgjh.getJhqssj().indexOf(".")),sgjh.getJhzzsj().substring(0,sgjh.getJhzzsj().indexOf(".")));
             }*//*
         }*/
-        map.put("status", "成功");
+        map.put("message", "成功");
+        map.put("status", "0");
         logger.info("公务施工计划 查询开始时间：" + qsrq + " 结束时间：" + jsrq + " 线名:" + xm + " 返回数据：" + resU);
         map.put("data", resU);
+        map.put("size", sgjhList.size()+"");
+
 
         LogRest log = new LogRest();
         log.setFunname("getSgjh");
@@ -1832,7 +1856,8 @@ public class ServiceImpl implements Service {
     public Map<String,String> getWxjh(String qsrq, String jsrq, String xm) {
         Map<String,String> map = new HashMap<>();
         if (StringUtils.isEmpty(qsrq) || StringUtils.isEmpty(jsrq) || StringUtils.isEmpty(xm)) {
-            map.put("status", "参数错误");
+            map.put("message", "参数错误");
+            map.put("status", "1");
             logger.info("参数错误");
             return map;
         }
@@ -1845,24 +1870,25 @@ public class ServiceImpl implements Service {
         String wsdlName = Properties.getWsdlName();
 
         try {
-            CacheMap.clientTokenLock.readLock().lock();
-            portType=(GwaqscJxglServicePortType)CacheMap.clientToken.get("GW");
+            FZMap.clientTokenLock.readLock().lock();
+            portType=(GwaqscJxglServicePortType) FZMap.clientToken.get("GW");
 
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
         } finally {
-            CacheMap.clientTokenLock.readLock().unlock();
+            FZMap.clientTokenLock.readLock().unlock();
         }
 
         if(portType==null){
             logger.error("连接工务服务失败");
-            map.put("status", "连接工务服务失败");
+            map.put("message", "连接工务服务失败");
+            map.put("status", "1");
             return map;
         }
 
         String resU = portType.getWxjh(qsrq, jsrq, xm);
 
-        if (resU == null) {
+        if (StringUtils.isEmpty(resU)) {
             map.put("data", "接收的数据为null");
             logger.info("请求错误 wsdlUrl " + wsdlUrl + " wsdlNamespace" + wsdlNamespace + " wsdlName" + wsdlName + " qsrq" + qsrq + " jsrq" + jsrq + " 线名:" + xm);
             return map;
@@ -1904,9 +1930,11 @@ public class ServiceImpl implements Service {
             log.setType(0 + "");
             logRestMapper.insert(log);
         }*/
-        map.put("status", "成功");
+        map.put("message", "成功");
+        map.put("status", "0");
         logger.info("公务维修计划 查询开始时间：" + qsrq + " 结束时间：" + jsrq + " 线名:" + xm + " 返回数据：" + resU);
         map.put("data", resU);
+        map.put("size", wxjhList.size()+"");
 
         LogRest log = new LogRest();
         log.setFunname("getWxjh");
@@ -2062,7 +2090,7 @@ public class ServiceImpl implements Service {
             }
         }*/
         List<VideoFile> videoFileList = new ArrayList<>();
-        Camera camera = cameraMapper.getMinVideoCode(Integer.parseInt(k));
+        /*Camera camera = cameraMapper.getMinVideoCode(Integer.parseInt(k));
         if (camera != null && camera.getDeviceId() != null) {
 
             VideoFile videoFile = new VideoFile();
@@ -2101,6 +2129,22 @@ public class ServiceImpl implements Service {
                 videoFileList.add(videoFile);
 
             }
+        }*/
+        List<String> time = getTime(startTime, endTime);
+        List<Camera> cameraList = cameraMapper.getVideoByKJ(Integer.parseInt(k),Integer.parseInt(j));
+        for (Camera camera : cameraList) {
+            for (int i=0;i<time.size()-1;i++) {
+
+                VideoFile videoFile = new VideoFile();
+                videoFile.setId(UUIDHelper.getUUIDStr());
+                videoFile.setIpcid(camera.getDeviceId());
+                videoFile.setKssj(time.get(i));
+                videoFile.setJssj(time.get(i+1));
+                videoFile.setStatus("0");
+                videoFile.setVideoType(alarmName);
+                videoFile.setAlarmId(alarmId);
+                videoFileList.add(videoFile);
+            }
         }
         for (VideoFile videoFile : videoFileList) {
             Example example = new Example(VideoFile.class);
@@ -2108,6 +2152,8 @@ public class ServiceImpl implements Service {
             criteria.andEqualTo("ipcid", videoFile.getIpcid());
             criteria.andEqualTo("alarmId", videoFile.getAlarmId());
             criteria.andEqualTo("videoType", videoFile.getVideoType());
+            criteria.andEqualTo("kssj", videoFile.getKssj());
+            criteria.andEqualTo("jssj", videoFile.getJssj());
             List<VideoFile> videoFiles = videoFileMapper.selectByExample(example);
             if (videoFiles.size() > 0) {
                 continue;
@@ -2116,6 +2162,27 @@ public class ServiceImpl implements Service {
         }
         return 1;
     }
+
+    /**
+     * 一半小时为单位存时间
+     * @return
+     */
+    @Override
+    public List<String > getTime(String dateK,String dateJ){
+        List<String > listTime=new ArrayList<>();
+        double l = DateUtils.dateMinusHalf(dateK, dateJ);
+        listTime.add(dateK);
+        for(int i=0,j=0;i<l;i++){
+            j=i;
+            if(++j>l){
+                listTime.add(dateJ);
+            }else{
+                listTime.add(DateUtils.getDate(new Date(DateUtils.parseDate(listTime.get(i), "yyyy-MM-dd HH:mm:ss").getTime()+1800000L),"yyyy-MM-dd HH:mm:ss"));
+            }
+        }
+        return  listTime;
+    }
+
 
     @Override
     public void download(String sourceUrl, String targetUrl) {
@@ -2139,7 +2206,8 @@ public class ServiceImpl implements Service {
         Map<String,String> map = new HashMap<>();
 
         if (StringUtils.isEmpty(videoCode) || StringUtils.isEmpty(benginTime) || StringUtils.isEmpty(endTime) || StringUtils.isEmpty(intervalTime) || StringUtils.isEmpty(timeRange)) {
-            map.put("status", "参数错误");
+            map.put("message", "参数错误");
+            map.put("status", "1");
             logger.info("参数错误");
             return map;
         }
@@ -2168,7 +2236,8 @@ public class ServiceImpl implements Service {
             i = i + i1;
         }
 
-        map.put("status", "添加任务成功");
+        map.put("message", "添加任务成功");
+        map.put("status", "0");
         logger.info("添加查询任务模板 摄像机编码：" + videoCode + " 开始时间：" + benginTime + " 结束时间：" + endTime + " 每间隔 ：" + intervalTime + "天执行一次  执行到：" + timeRange);
         return map;
     }
@@ -2214,6 +2283,7 @@ public class ServiceImpl implements Service {
                     wxjhMapper.updateChartParamByAccountAndChartid(mapList);
                 }
             } catch (Exception e) {
+                logger.error("执行维修计划定时插入视频任务失败");
                 logger.error(e.getMessage(), e);
             }
 
@@ -2247,6 +2317,7 @@ public class ServiceImpl implements Service {
                     hcsjMapper.updateChartParamByAccountAndChartid(mapList);
                 }
             } catch (Exception e) {
+                logger.error("执行晃车定时插入视频任务失败");
                 logger.error(e.getMessage(), e);
             }
         }
@@ -2273,6 +2344,7 @@ public class ServiceImpl implements Service {
                     sgjhMapper.updateChartParamByAccountAndChartid(mapList);
                 }
             } catch (Exception e) {
+                logger.error("执行施工计划定时插入视频任务失败");
                 logger.error(e.getMessage(), e);
             }
         }
@@ -2284,7 +2356,7 @@ public class ServiceImpl implements Service {
         Map<String,Object> map = new HashMap<>();
         try {
             List<Camera> cameras = cameraMapper.selectAll();
-            map.put("status", "200");
+            map.put("status", "0");
             map.put("data", cameras);
             map.put("message", "查询成功");
         } catch (Exception e) {
@@ -2299,21 +2371,12 @@ public class ServiceImpl implements Service {
 
         Map<String,Object> map = new HashMap<>();
         try {
-            List<Dictionary> dictionaries = dictionaryMapper.selectAll();
-            for (Dictionary dictionary : dictionaries) {
-
-                if(StringUtils.isNotEmpty(camera.getDeviceType())&&camera.getDeviceType().equals(dictionary.getId()+"")){
-                    camera.setDeviceType(dictionary.getDescs());
-                }
-
-            }
-
 
             PageHelper.startPage(Integer.parseInt(pageIndex), Integer.parseInt(pageSize));
             PageInfo<Camera> pageInfo = new PageInfo<>( cameraMapper.selectAllCamera(camera));
 
             List<Camera> cameras = pageInfo.getList();
-            map.put("status", "200");
+            map.put("status", "0");
             map.put("data", pageInfo);
             map.put("message", "查询成功");
         } catch (Exception e) {
@@ -2332,7 +2395,7 @@ public class ServiceImpl implements Service {
             Example.Criteria criteria = example.createCriteria();
             criteria.andEqualTo("kMark", kMark);
             List<Camera> cameras = cameraMapper.selectByExample(example);
-            map.put("status", "200");
+            map.put("status", "0");
             map.put("data", cameras);
             map.put("message", "查询成功");
         } catch (Exception e) {
@@ -2405,9 +2468,21 @@ public class ServiceImpl implements Service {
     public Map<String,Object> getDictionary(Dictionary dictionary) {
         Map<String,Object> map = new HashMap<>();
         try {
+            List<Dictionary> dictionaryList=new ArrayList<>();
             List<Dictionary> select = dictionaryMapper.select(dictionary);
-            map.put("status", "200");
-            map.put("data", select);
+            for (Dictionary dictionary1 : select) {
+                if(dictionary1.getType()!=null&&dictionary1.getType().equals("videoAlarmType")&&dictionary1.getName()!=null&&dictionary1.getName().equals("lstj")){
+                    dictionaryList.add(dictionary1);
+                }
+            }
+            for (Dictionary dictionary1 : select) {
+                if(dictionary1.getType()!=null&&dictionary1.getType().equals("videoAlarmType")&&dictionary1.getName()!=null&&dictionary1.getName().equals("lstj")){
+                }else{
+                    dictionaryList.add(dictionary1);
+                }
+            }
+            map.put("status", "0");
+            map.put("data", dictionaryList);
             map.put("message", "查询成功");
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
@@ -2424,17 +2499,9 @@ public class ServiceImpl implements Service {
 
         Map<String,Object> map = new HashMap<>();
         try {
-            List<Dictionary> dictionaries = dictionaryMapper.selectAll();
-            for (Dictionary dictionary : dictionaries) {
-                if(StringUtils.isNotEmpty(videoType)&&videoType.equals(dictionary.getId()+"")){
-                    videoType=dictionary.getName();
-                }
-                if(StringUtils.isNotEmpty(cameraType)&&cameraType.equals(dictionary.getId()+"")){
-                    cameraType=dictionary.getDescs();
-                }
-            }
-            List<VideoFile> videoFileList=videoFileMapper.getVideoRecord(videoType,cameraType,cameraName,startTime,endTime);
-            map.put("status", "200");
+            List<String > list=new ArrayList<>();
+            List<VideoFile> videoFileList=videoFileMapper.getVideoRecord(videoType,cameraType,cameraName,startTime,endTime,list);
+            map.put("status", "0");
             map.put("data", videoFileList);
             map.put("message", "查询成功");
         } catch (Exception e) {
@@ -2445,25 +2512,51 @@ public class ServiceImpl implements Service {
         return map;
     }
     @Override
-    public Map<String,Object> getVideoRecordPage(String videoType, String cameraType, String cameraName, String startTime, String endTime,String pageIndex,String pageSize) {
+    public Map<String,Object> getVideoRecordPage(String videoType, String cameraType, String cameraName, String startTime, String endTime,String  status,String pageIndex,String pageSize) {
 
 
         Map<String,Object> map = new HashMap<>();
         try {
-            List<Dictionary> dictionaries = dictionaryMapper.selectAll();
-            for (Dictionary dictionary : dictionaries) {
-                if(StringUtils.isNotEmpty(videoType)&&videoType.equals(dictionary.getId()+"")){
-                    videoType=dictionary.getName();
-                }
-                if(StringUtils.isNotEmpty(cameraType)&&cameraType.equals(dictionary.getId()+"")){
-                    cameraType=dictionary.getDescs();
+            List<String> list=null;
+            if(StringUtils.isNotEmpty(status)){
+                list=new ArrayList<>();
+                String[] strs=status.split(",");
+                for (String str : strs) {
+                    list.add(str);
                 }
             }
             PageHelper.startPage(Integer.parseInt(pageIndex), Integer.parseInt(pageSize));
-            PageInfo<VideoFile> pageInfo = new PageInfo<>( videoFileMapper.getVideoRecord(videoType,cameraType,cameraName,startTime,endTime));
-
+            PageInfo<VideoFile> pageInfo = new PageInfo<>( videoFileMapper.getVideoRecord(videoType,cameraType,cameraName,startTime,endTime,list));
+            List<String> videoFileIds=new ArrayList<>();
+            List<String> videoIPCId=new ArrayList<>();
             List<VideoFile> videoFileList=pageInfo.getList();
-            map.put("status", "200");
+            for (VideoFile videoFile : videoFileList) {
+                videoFileIds.add(videoFile.getId());
+                videoIPCId.add(videoFile.getIpcid());
+            }
+            if(videoFileIds.size()>0){
+                List<VideoFile> videotags= videoFileMapper.selectByVideoFileId(videoFileIds);
+                for (VideoFile videotag : videotags) {
+                    for (VideoFile videoFile : videoFileList) {
+                        if(StringUtils.equals(videoFile.getId(),videotag.getId())){
+                            videoFile.setVideoTag(videotag.getVideoTag());
+                        }
+                    }
+                }
+            }
+
+            if(videoIPCId.size()>0){
+                List<VideoFile> videotags=videoFileMapper.selectByVideoFag(videoIPCId);
+                for (VideoFile videotag : videotags) {
+                    for (VideoFile videoFile : videoFileList) {
+                        if(StringUtils.equals(videoFile.getId(),videotag.getId())){
+                            videoFile.setIpcTags(videotag.getIpcTags());
+                        }
+                    }
+                }
+            }
+
+            map.put("status", "0");
             map.put("data", pageInfo);
             map.put("message", "查询成功");
         } catch (Exception e) {
@@ -2480,13 +2573,13 @@ public class ServiceImpl implements Service {
         Client connection = CXFUtil.getConnection(url);
         if(connection!=null){
             try {
-                CacheMap.clientTokenLock.writeLock().lock();
-                CacheMap.clientToken.put("GW",connection);
+                FZMap.clientTokenLock.writeLock().lock();
+                FZMap.clientToken.put("GW",connection);
 
             } catch (Exception e) {
                 logger.error(e.getMessage(), e);
             } finally {
-                CacheMap.clientTokenLock.writeLock().unlock();
+                FZMap.clientTokenLock.writeLock().unlock();
             }
         }
         return connection;
@@ -2499,10 +2592,10 @@ public class ServiceImpl implements Service {
         ipcTag.setTag(dictionary.getDescs());
         ipcTag.setId(UUIDHelper.getUUID());
         int i = ipcTagMapper.insertSelective(ipcTag);
-        map.put("status", "-1");
+        map.put("status", "1");
         map.put("message", "保存失败");
         if(i>0){
-            map.put("status", "200");
+            map.put("status", "0");
             map.put("message", "保存成功");
         }
         logger.info("调用addIpcTag 添加摄像机标签 "+ipcTag.toString());
@@ -2513,10 +2606,10 @@ public class ServiceImpl implements Service {
     public Map<String,Object> updataIpcTag(IpcTag ipcTag) {
         Map<String,Object > map = new HashMap<>();
         int i = ipcTagMapper.updateByPrimaryKeySelective(ipcTag);
-        map.put("status", "-1");
+        map.put("status", "1");
         map.put("message", "跟新失败");
         if(i>0){
-            map.put("status", "200");
+            map.put("status", "0");
             map.put("message", "跟新成功");
         }
         logger.info("调用updataIpcTag 跟新摄像机标签 "+ipcTag.toString() );
@@ -2531,10 +2624,10 @@ public class ServiceImpl implements Service {
         Example.Criteria criteria = example.createCriteria();
         criteria.andIn("id",ids);
         int i = ipcTagMapper.deleteByExample(example);
-        map.put("status", "-1");
+        map.put("status", "1");
         map.put("message", "删除失败");
         if(i>0){
-            map.put("status", "200");
+            map.put("status", "0");
             map.put("message", "删除成功");
         }
         logger.info("调用deleteIpcTag 删除摄像机标签 id="+ids);
@@ -2544,19 +2637,14 @@ public class ServiceImpl implements Service {
     @Override
     public Map<String,Object> getIpcTag(IpcTag ipcTag,String pageIndex,String pageSize) {
         Map<String,Object > map = new HashMap<>();
-        if(ipcTag!=null&&StringUtils.isNotEmpty(ipcTag.getTag())){
-
-            Dictionary dictionary = dictionaryMapper.selectByPrimaryId(Integer.parseInt(ipcTag.getTag()));
-            ipcTag.setTag(dictionary.getDescs());
-        }
 
         PageHelper.startPage(Integer.parseInt(pageIndex), Integer.parseInt(pageSize));
         PageInfo<IpcTag> pageInfo = new PageInfo<>( ipcTagMapper.selectIpc(ipcTag));
 
-        map.put("status", "-1");
+        map.put("status", "1");
         map.put("message", "查询失败");
         if(pageInfo!=null){
-            map.put("status", "200");
+            map.put("status", "0");
             map.put("data",pageInfo);
             map.put("message", "查询摄像机标签成功");
         }
@@ -2572,10 +2660,10 @@ public class ServiceImpl implements Service {
         Example.Criteria criteria = example.createCriteria();
         criteria.andIn("id",ids);
         int i = videoFileMapper.deleteByExample(example);
-        map.put("status", "-1");
+        map.put("status", "1");
         map.put("message", "删除失败");
         if(i>0){
-            map.put("status", "200");
+            map.put("status", "0");
             map.put("message", "删除成功");
         }
         LogRest log = new LogRest();
@@ -2597,13 +2685,13 @@ public class ServiceImpl implements Service {
     public Map<String,Object> updateVideoRecord(VideoFile videoFile) {
         Map<String,Object > map = new HashMap<>();
         int i = videoFileMapper.updateByPrimaryKeySelective(videoFile);
-        map.put("status", "-1");
-        map.put("message", "跟新失败");
+        map.put("status", "1");
+        map.put("message", "更新失败");
         if(i>0){
-            map.put("status", "200");
-            map.put("message", "跟新成功");
+            map.put("status", "0");
+            map.put("message", "更新成功");
         }
-        logger.info("调用updataIpcTag 跟新摄像机标签 "+videoFile.toString());
+        logger.info("调用updataIpcTag 更新摄像机标签 "+videoFile.toString());
         return map;
     }
 
@@ -2612,13 +2700,23 @@ public class ServiceImpl implements Service {
         Map<String,String > map = new HashMap<>();
         videoFile.setId(UUIDHelper.getUUIDStr());
         videoFile.setStatus("0");
-        videoFile.setVideoType("zidingyi");
+        if(StringUtils.isEmpty(videoFile.getVideoType())){
+            videoFile.setVideoType("zidingyi");
+        }else{
+            Dictionary dictionary = dictionaryMapper.selectByPrimaryId(Integer.parseInt(videoFile.getVideoType()));
+            if(dictionary!=null){
+                videoFile.setVideoType(dictionary.getName());
+            }else{
+                videoFile.setVideoType("没有查找字典");
+            }
+        }
         int i = videoFileMapper.insertSelective(videoFile);
-        map.put("status", "-1");
+        map.put("status", "1");
         map.put("message", "保存视频任务失败");
         if(i>0){
-            map.put("status", "200");
+            map.put("status", "0");
             map.put("message", "保存视频任务成功");
+            map.put("data", videoFile.getId());
         }
         logger.info("调用addVideoRecord 保存视频任务 "+videoFile.toString());
         return map;
@@ -2629,10 +2727,10 @@ public class ServiceImpl implements Service {
         Map<String,Object > map = new HashMap<>();
 
         int i = dictionaryMapper.insertSelective(dictionary);
-        map.put("status", "-1");
+        map.put("status", "1");
         map.put("message", "保存字典失败");
         if(i>0){
-            map.put("status", "200");
+            map.put("status", "0");
             map.put("message", "保存字典成功");
         }
         logger.info("调用addDictionary 保存字典 "+dictionary.toString());
@@ -2643,10 +2741,10 @@ public class ServiceImpl implements Service {
     public Map<String,Object> updateDictionary(Dictionary dictionary) {
         Map<String,Object > map = new HashMap<>();
         int i = dictionaryMapper.updateByPrimaryKeySelective(dictionary);
-        map.put("status", "-1");
+        map.put("status", "1");
         map.put("message", "修改字典失败");
         if(i>0){
-            map.put("status", "200");
+            map.put("status", "0");
             map.put("message", "修改字典成功");
         }
         logger.info("调用 updateDictionary 修改字典 "+ dictionary.toString());
@@ -2657,10 +2755,10 @@ public class ServiceImpl implements Service {
     public Map<String,Object> deleteDictionary(Dictionary dictionary) {
         Map<String,Object > map = new HashMap<>();
         int i = dictionaryMapper.deleteByPrimaryKey(dictionary.getId());
-        map.put("status", "-1");
+        map.put("status", "1");
         map.put("message", "删除字典失败");
         if(i>0){
-            map.put("status", "200");
+            map.put("status", "0");
             map.put("message", "删除字典成功");
         }
 
@@ -2676,6 +2774,96 @@ public class ServiceImpl implements Service {
         logRestMapper.insert(log);
 
         logger.info("调用 deleteDictionary 删除字典 "+ dictionary.toString());
+        return map;
+    }
+
+    @Override
+    public Map<String,Object> addVideoTag(VideoTag videoTag) {
+        Map<String,Object > map = new HashMap<>();
+        List<VideoTag> listTags=new ArrayList<>();
+        if(videoTag==null||StringUtils.isEmpty(videoTag.getIpcid())
+                ||StringUtils.isEmpty(videoTag.getVideoFileId())
+                ||videoTag.getTags()==null){
+            map.put("status", "1");
+            map.put("message", "参数错误");
+            return map;
+        }
+        List<String> tags = videoTag.getTags();
+        for (String tag : tags) {
+            VideoTag vt=new VideoTag();
+            vt.setIpcid(videoTag.getIpcid());
+            vt.setVideoFileId(videoTag.getVideoFileId());
+            vt.setTag(tag);
+            vt.setId(UUIDHelper.getUUID());
+            listTags.add(vt);
+        }
+        videoTagMapper.saveAll(listTags);
+        map.put("status", "0");
+        map.put("message", "保存成功");
+        return map;
+    }
+
+    @Override
+    public Map<String,Object> updateVideoTag(VideoTag videoTag) {
+        Map<String,Object > map = new HashMap<>();
+        List<VideoTag> listTags=new ArrayList<>();
+        if(videoTag==null||StringUtils.isEmpty(videoTag.getId())){
+            map.put("status", "1");
+            map.put("message", "参数错误");
+            return map;
+        }
+
+        int i = videoTagMapper.updateByPrimaryKeySelective(videoTag);
+        if(i>0){
+
+            map.put("status", "0");
+            map.put("message", "保存成功");
+        }else{
+            map.put("status", "1");
+            map.put("message", "保存失败");
+        }
+        return map;
+    }
+
+    @Override
+    public Map<String,Object> deleteVideoTag(List<String> ids) {
+        Map<String,Object > map = new HashMap<>();
+        List<VideoTag> listTags=new ArrayList<>();
+        if(ids==null||ids.size()<1){
+            map.put("status", "1");
+            map.put("message", "参数错误");
+            return map;
+        }
+        Example example = new Example(VideoTag.class);
+        Example.Criteria criteria = example.createCriteria();
+        criteria.andIn("id",ids);
+        int i = videoTagMapper.deleteByExample(example);
+        if(i>0){
+
+            map.put("status", "0");
+            map.put("message", "删除成功");
+        }else{
+            map.put("status", "1");
+            map.put("message", "删除失败");
+        }
+        return map;
+    }
+
+    @Override
+    public Map<String,Object> getVideoTag(VideoTag videoTag, String pageIndex, String pageSize) {
+        Map<String,Object > map = new HashMap<>();
+
+        PageHelper.startPage(Integer.parseInt(pageIndex), Integer.parseInt(pageSize));
+        PageInfo<VideoTag> pageInfo = new PageInfo<>( videoTagMapper.selectIpc(videoTag));
+
+        map.put("status", "1");
+        map.put("message", "查询失败");
+        if(pageInfo!=null){
+            map.put("status", "0");
+            map.put("data",pageInfo);
+            map.put("message", "查询摄像机标签成功");
+        }
+        logger.info("调用getIpcTag 查询摄像机标签");
         return map;
     }
 }

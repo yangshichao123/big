@@ -89,7 +89,7 @@ public class HttpClientUt {
             HttpClient httpClient = HttpClientBuilder.create().build();
             HttpPost httpPost = new HttpPost(url);
             //请求超时
-            RequestConfig requestConfig = RequestConfig.custom().setConnectTimeout(5000).setConnectionRequestTimeout(1000).setSocketTimeout(30000).build();
+            RequestConfig requestConfig = RequestConfig.custom().setConnectTimeout(30000).setConnectionRequestTimeout(30000).setSocketTimeout(30000).build();
             httpPost.setConfig(requestConfig);
 
             //设置参数
@@ -119,6 +119,7 @@ public class HttpClientUt {
                     System.out.println(resEntity);
                     logger.info("请求返回状态 " + result);
                 }
+                logger.error("向大数据发送数据："+EntityUtils.toString(resEntity, "utf-8"));
             }
         } catch (ClientProtocolException ex) {
             logger.error(ex.getMessage(), ex);

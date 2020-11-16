@@ -197,3 +197,10 @@ lf:
 
 #.调用实时、历史视频（VideoPlayOpen）
 videoPlayOpenUrl: "http://127.0.0.1:10001/fdCon/queryCurrentDayWarningData"
+
+
+#用户登陆token失效时长 单位分钟
+user:
+  #是否启动使用token认证功能
+  tokenEnable: "flase"
+  tokenOutTime: 3

@@ -36,52 +36,22 @@
     from camera
     where device_id = #{deviceId,jdbcType=VARCHAR}
   </select>
-  <select id="selectAllCamera" parameterType="com.data.big.model.Camera" resultMap="BaseResultMap">
-    select
-        DISTINCT c.*
-    from camera c
-    left join ipc_tag it on it.ipcid=c.device_id
-    <where>
-      <if test="deviceName != null and deviceName!=''">
-       and c.device_name  like concat('%',#{deviceName,jdbcType=VARCHAR},'%')
-      </if>
-      <if test="ipAddr != null and ipAddr!=''">
-       and c.ip_addr   = #{ipAddr,jdbcType=VARCHAR}
-      </if>
-      <if test="startKM != null and startKM!=''">
-       and c.k_mark  >=  #{startKM,jdbcType=VARCHAR}
-      </if>
-      <if test="endKM != null and endKM!=''">
-       and c.k_mark  &lt;=  #{endKM,jdbcType=VARCHAR}
-      </if>
-      <if test="deviceType != null and deviceType!=''">
-        and  c.device_type  =  #{deviceType,jdbcType=VARCHAR}
-      </if>
-      <if test="tags != null and tags!=''">
-        and
-        <foreach collection="tags" index="index" item="tag" open="(" close=")" separator="or">
-          it.tag  =  #{tag,jdbcType=VARCHAR}
-        </foreach>
-      </if>
-    </where>
-
-  </select>
   <insert id="insert" parameterType="com.data.big.model.Camera">
-    insert into camera (device_id, device_name, node_id, 
-      device_type, manufacturer, camera_type, 
-      Camera_dpi, ip_addr, ip_port, 
-      username, `password`, install_time, 
-      affiliation, up_down, associated_line, 
+    insert into camera (device_id, device_name, node_id,
+      device_type, manufacturer, camera_type,
+      Camera_dpi, ip_addr, ip_port,
+      username, `password`, install_time,
+      affiliation, up_down, associated_line,
       k_mark, join_station, direction,
-      target_location, catalogue, longitude, 
+      target_location, catalogue, longitude,
       latitude)
-    values (#{deviceId,jdbcType=VARCHAR}, #{deviceName,jdbcType=VARCHAR}, #{nodeId,jdbcType=VARCHAR}, 
-      #{deviceType,jdbcType=VARCHAR}, #{manufacturer,jdbcType=VARCHAR}, #{cameraType,jdbcType=VARCHAR}, 
-      #{cameraDpi,jdbcType=VARCHAR}, #{ipAddr,jdbcType=VARCHAR}, #{ipPort,jdbcType=VARCHAR}, 
-      #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{installTime,jdbcType=VARCHAR}, 
-      #{affiliation,jdbcType=VARCHAR}, #{upDown,jdbcType=VARCHAR}, #{associatedLine,jdbcType=VARCHAR}, 
+    values (#{deviceId,jdbcType=VARCHAR}, #{deviceName,jdbcType=VARCHAR}, #{nodeId,jdbcType=VARCHAR},
+      #{deviceType,jdbcType=VARCHAR}, #{manufacturer,jdbcType=VARCHAR}, #{cameraType,jdbcType=VARCHAR},
+      #{cameraDpi,jdbcType=VARCHAR}, #{ipAddr,jdbcType=VARCHAR}, #{ipPort,jdbcType=VARCHAR},
+      #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{installTime,jdbcType=VARCHAR},
+      #{affiliation,jdbcType=VARCHAR}, #{upDown,jdbcType=VARCHAR}, #{associatedLine,jdbcType=VARCHAR},
       #{kMark,jdbcType=INTEGER}, #{joinStation,jdbcType=VARCHAR}, #{direction,jdbcType=VARCHAR},
-      #{targetLocation,jdbcType=VARCHAR}, #{catalogue,jdbcType=VARCHAR}, #{longitude,jdbcType=VARCHAR}, 
+      #{targetLocation,jdbcType=VARCHAR}, #{catalogue,jdbcType=VARCHAR}, #{longitude,jdbcType=VARCHAR},
       #{latitude,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.data.big.model.Camera">
@@ -231,6 +201,55 @@
   </select>
   <select id="getVideoCode" parameterType="java.lang.Integer" resultMap="BaseResultMap">
    SELECT c.device_id,c.k_mark from camera c where c.k_mark >#{k,jdbcType=INTEGER} and c.k_mark &lt; #{j,jdbcType=INTEGER}
+  </select>
+  <select id="getVideoByKJ" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    SELECT a.* from (SELECT c.device_id,c.k_mark from camera c where c.k_mark &lt;=#{k,jdbcType=INTEGER} ORDER BY  c.k_mark  DESC LIMIT 1
+    ) a
+    UNION all
+    SELECT b.* from (
+    SELECT c.device_id,c.k_mark from camera c where c.k_mark >=#{j,jdbcType=INTEGER} ORDER BY c.k_mark LIMIT 1
+    ) b
+    UNION all
+    SELECT c.device_id,c.k_mark from camera c where c.k_mark >#{k,jdbcType=INTEGER} and c.k_mark &lt; #{j,jdbcType=INTEGER}
+  </select>
+  <select id="selectAllCamera" parameterType="com.data.big.model.Camera" resultMap="BaseResultMap">
+
+    select
+    DISTINCT c.*
+    from camera c
+
+    <if test="tags != null and tags!=''">
+      left join ipc_tag it on it.ipcid=c.device_id
+      left join  dictionary d on it.tag=d.DESCS
+    </if>
+    <if test="deviceType != null and deviceType!=''">
+      LEFT JOIN dictionary d1 on c.device_type=d1.DESCS
+    </if>
+
+    <where>
+      <if test="deviceName != null and deviceName!=''">
+        and c.device_name  like concat('%',#{deviceName,jdbcType=VARCHAR},'%')
+      </if>
+      <if test="ipAddr != null and ipAddr!=''">
+        and c.ip_addr   = #{ipAddr,jdbcType=VARCHAR}
+      </if>
+      <if test="startKM != null and startKM!=''">
+        and c.k_mark  >=  #{startKM,jdbcType=VARCHAR}
+      </if>
+      <if test="endKM != null and endKM!=''">
+        and c.k_mark  &lt;=  #{endKM,jdbcType=VARCHAR}
+      </if>
+      <if test="deviceType != null and deviceType!=''">
+        and  d1.id  =  #{deviceType,jdbcType=VARCHAR}
+      </if>
+      <if test="tags != null and tags!=''">
+        and
+        <foreach collection="tags" index="index" item="tag" open="(" close=")" separator="or">
+          d.id  =  #{tag,jdbcType=VARCHAR}
+        </foreach>
+      </if>
+    </where>
+
   </select>
 
 </mapper>

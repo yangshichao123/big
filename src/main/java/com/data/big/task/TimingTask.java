@@ -4,10 +4,14 @@ import com.alibaba.fastjson.JSONObject;
 import com.data.big.gw.GwaqscJxglServicePortType;
 import com.data.big.mapper.LogRestMapper;
 import com.data.big.model.LogRest;
+import com.data.big.model.Token;
+import com.data.big.model.User;
 import com.data.big.service.Service;
 import com.data.big.service.ServiceFZ;
 import com.data.big.service.ServiceNetty;
+import com.data.big.service.ServiceUser;
 import com.data.big.util.*;
+import com.data.big.util.Properties;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -16,11 +20,9 @@ import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
 import org.springframework.stereotype.Component;
+import tk.mybatis.mapper.entity.Example;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Slf4j
 @EnableAsync
@@ -36,6 +38,8 @@ public class TimingTask {
     private ServiceFZ serviceFZ;
     @Autowired
     private LogRestMapper logRestMapper;
+    @Autowired
+    private ServiceUser serviceUser;
 
     @Bean
     public TaskScheduler taskScheduler() {
@@ -51,18 +55,18 @@ public class TimingTask {
     private void configur() {
         System.out.println(DateFormatHelper.date2String(new Date(),"mm:ss")+" 44444444444444444444444");
     }*/
-    @Scheduled(cron = "0 */5 * * * ?")
-    private void getGWTask() {
-        log.info("*************定时执行公务添加到视频任务*************************");
-        service.addGWTask();
-        LogRest log = new LogRest();
-        log.setFunname("getGWTask");
-        log.setLrsj(new Date());
-        log.setParamin("定时执行公务添加到视频任务");
-
-        log.setType(0 + "");
-        logRestMapper.insert(log);
-    }
+//    @Scheduled(cron = "30 */5 * * * ?")
+//    private void getGWTask() {
+//        log.info("*************定时执行公务添加到视频任务*************************");
+//        service.addGWTask();
+//        LogRest log = new LogRest();
+//        log.setFunname("getGWTask");
+//        log.setLrsj(new Date());
+//        log.setParamin("定时执行公务添加到视频任务");
+//
+//        log.setType(0 + "");
+//        logRestMapper.insert(log);
+//    }
 
     @Scheduled(cron = "0 */5 * * * ?")
     private void getFZTask() {
@@ -91,7 +95,7 @@ public class TimingTask {
 
             System.out.println(str);
         }
-       /* if ("*".equals(strs[3])) {
+        if ("*".equals(strs[3])) {
             String hour = strs[2].split("/")[1];
             beginTime = DateUtils.getBeforeDateTime(Integer.parseInt(hour), "yyyyMMddHH") + "0000";
             endTime = DateUtils.getBeforeDateTime(1, "yyyyMMddHH") + "5959";
@@ -101,7 +105,7 @@ public class TimingTask {
         }
         if ("".equalsIgnoreCase(beginTime) || "".equals(endTime)) {
             return;
-        }*/
+        }
         service.getANBAO3(beginTime, endTime, Properties.getXm(), Properties.getLj());
 
         LogRest log1 = new LogRest();
@@ -148,40 +152,44 @@ public class TimingTask {
     // @Scheduled(cron="* * 0/1 * * ?")
     @Scheduled(cron = "${gw.cron}")
     private void sendGW() {
-
+        String data="";
         LogRest log1 = new LogRest();
         log1.setFunname("sendGW");
         log1.setLrsj(new Date());
         log1.setParamin("定时执行查询公务任务");
 
         log1.setType(0 + "");
-        logRestMapper.insert(log1);
+
 
         log.info("*************开始定时执行查询公务任务*************************");
-        String beginTime = DateUtils.getBeforeDate(1, "yyyy-MM-dd") + " 00:00:00";
-        String endTime = DateUtils.getBeforeDate(1, "yyyy-MM-dd") + " 23:59:59";
+        String beginTime = DateUtils.getBeforeDate(1, "yyyy-MM-dd") ;
+        String endTime = DateUtils.getBeforeDate(1, "yyyy-MM-dd") ;
         try {
+                Map<String,String> hcsj = service.getHcsj(beginTime, endTime, "", "京包客专","1","2000");
+                data=" 查询到晃车数据个数"+hcsj.get("size");
 
-            service.getHcsj(beginTime, endTime, "", "京包客专");
         } catch (Exception e) {
             log.error("开始定时执行查询公务任务______getHcsj______---失败");
             log.error(e.getMessage(), e);
         }
         try {
 
-            service.getSgjh(beginTime, endTime, "京包客专");
+            Map<String,String> sgjh = service.getSgjh(beginTime, endTime, "京包客专");
+            data=data+"  查询到施工计划数据个数"+sgjh.get("size");
         } catch (Exception e) {
             log.error("开始定时执行查询公务任务_______getSgjh_____---失败");
             log.error(e.getMessage(), e);
         }
         try {
 
-            service.getWxjh(beginTime, endTime, "京包客专");
+            Map<String,String> wxjh = service.getWxjh(beginTime, endTime, "京包客专");
+            data=data+"  查询到维修计划数据个数"+wxjh.get("size");
         } catch (Exception e) {
             log.error("开始定时执行查询公务任务_______getWxjh_____---失败");
             log.error(e.getMessage(), e);
         }
-
+        log1.setRedata(data);
+        logRestMapper.insert(log1);
         log.info("*************结束定时执行查询公务任务*************************");
     }
 
@@ -253,6 +261,13 @@ public class TimingTask {
         } catch (Exception e) {
             log.error(e.getMessage(), e);
         }
+
+    }
+
+    @Scheduled(cron = "0/30 * * * * ?")
+    private void checkToken() {
+
+        serviceUser.checkToken();
 
     }
 

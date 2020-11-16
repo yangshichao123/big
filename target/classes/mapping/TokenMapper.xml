@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.data.big.mapper.TokenMapper">
+  <resultMap id="BaseResultMap" type="com.data.big.model.Token">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="user_id" jdbcType="VARCHAR" property="userId" />
+    <result column="token" jdbcType="VARCHAR" property="token" />
+    <result column="CREATETIME" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="extend" jdbcType="VARCHAR" property="extend" />
+    <result column="out_date" jdbcType="TIMESTAMP" property="outDate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, user_id, token, CREATETIME, `status`, extend, out_date
+  </sql>
+  <select id="selectByPrimaryId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from token
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <insert id="insert" parameterType="com.data.big.model.Token">
+    insert into token (id, user_id, token, 
+      CREATETIME, `status`, extend, 
+      out_date)
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=VARCHAR}, #{token,jdbcType=VARCHAR}, 
+      #{createtime,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER}, #{extend,jdbcType=VARCHAR}, 
+      #{outDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.data.big.model.Token">
+    insert into token
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="token != null">
+        token,
+      </if>
+      <if test="createtime != null">
+        CREATETIME,
+      </if>
+      <if test="status != null">
+        `status`,
+      </if>
+      <if test="extend != null">
+        extend,
+      </if>
+      <if test="outDate != null">
+        out_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="token != null">
+        #{token,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="extend != null">
+        #{extend,jdbcType=VARCHAR},
+      </if>
+      <if test="outDate != null">
+        #{outDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+
+</mapper>
