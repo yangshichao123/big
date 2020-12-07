@@ -23,6 +23,12 @@
     <result column="xsjxcfs" jdbcType="VARCHAR" property="xsjxcfs" />
     <result column="lycxx" jdbcType="VARCHAR" property="lycxx" />
     <result column="status" jdbcType="VARCHAR" property="status" />
+    <result property="fJwtdmids" jdbcType="VARCHAR" column="f_jwtdmids" />
+    <result property="fJwtdmmcs" jdbcType="VARCHAR" column="f_jwtdmmcs" />
+    <result property="fZhjtdmids" jdbcType="VARCHAR" column="f_zhjtdmids" />
+    <result property="fZhjtdmmcs" jdbcType="VARCHAR" column="f_zhjtdmmcs" />
+    <result property="fChwtdmids" jdbcType="VARCHAR" column="f_chwtdmids" />
+    <result property="fChwtdmmcs" jdbcType="VARCHAR" column="f_chwtdmmcs" />
   </resultMap>
   <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.data.big.model.Sgjh">
     <result column="zyxm" jdbcType="LONGVARCHAR" property="zyxm" />
@@ -30,7 +36,8 @@
   </resultMap>
   <sql id="Base_Column_List">
     id, rjhh, sbztw, zylx, zyrq, jhqssj, jhzzsj, zydj, xm, xb, zywz, qschzm, zzchzm, 
-    zyqslc, zyzzlc, sgztdw, phdw, fzrname, xsjxcfs, lycxx, `status`
+    zyqslc, zyzzlc, sgztdw, phdw, fzrname, xsjxcfs, lycxx, `status`,f_jwtdmids,f_jwtdmmcs,f_zhjtdmids,f_zhjtdmmcs,f_chwtdmids
+    ,f_chwtdmmcs
   </sql>
   <sql id="Blob_Column_List">
     zyxm, sgnrjyxfw
@@ -51,7 +58,9 @@
       zyqslc, zyzzlc, sgztdw, 
       phdw, fzrname, xsjxcfs, 
       lycxx, `status`, zyxm, 
-      sgnrjyxfw)
+      sgnrjyxfw
+      ,f_jwtdmids,f_jwtdmmcs,f_zhjtdmids,f_zhjtdmmcs,f_chwtdmids
+    ,f_chwtdmmcs)
     values (#{id,jdbcType=VARCHAR}, #{rjhh,jdbcType=VARCHAR}, #{sbztw,jdbcType=VARCHAR}, 
       #{zylx,jdbcType=VARCHAR}, #{zyrq,jdbcType=VARCHAR}, #{jhqssj,jdbcType=VARCHAR}, 
       #{jhzzsj,jdbcType=VARCHAR}, #{zydj,jdbcType=VARCHAR}, #{xm,jdbcType=VARCHAR}, #{xb,jdbcType=VARCHAR}, 
@@ -59,7 +68,9 @@
       #{zyqslc,jdbcType=VARCHAR}, #{zyzzlc,jdbcType=VARCHAR}, #{sgztdw,jdbcType=VARCHAR}, 
       #{phdw,jdbcType=VARCHAR}, #{fzrname,jdbcType=VARCHAR}, #{xsjxcfs,jdbcType=VARCHAR}, 
       #{lycxx,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{zyxm,jdbcType=LONGVARCHAR}, 
-      #{sgnrjyxfw,jdbcType=LONGVARCHAR})
+      #{sgnrjyxfw,jdbcType=LONGVARCHAR}
+      ,#{fJwtdmids,jdbcType=LONGVARCHAR},#{fJwtdmmcs,jdbcType=LONGVARCHAR},#{fZhjtdmids,jdbcType=LONGVARCHAR},
+      #{fZhjtdmmcs,jdbcType=LONGVARCHAR},#{fChwtdmids,jdbcType=LONGVARCHAR},#{fChwtdmmcs,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.data.big.model.Sgjh">
     insert into sgjh
@@ -133,6 +144,24 @@
       <if test="sgnrjyxfw != null">
         sgnrjyxfw,
       </if>
+      <if test="fJwtdmids != null">
+        f_jwtdmids,
+      </if>
+      <if test="fJwtdmmcs != null">
+        f_jwtdmmcs,
+      </if>
+      <if test="fZhjtdmids != null">
+        f_zhjtdmids,
+      </if>
+      <if test="fZhjtdmmcs != null">
+        f_zhjtdmmcs,
+      </if>
+      <if test="fChwtdmids != null">
+        f_chwtdmids,
+      </if>
+      <if test="fChwtdmmcs != null">
+        f_chwtdmmcs,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -204,6 +233,24 @@
       <if test="sgnrjyxfw != null">
         #{sgnrjyxfw,jdbcType=LONGVARCHAR},
       </if>
+      <if test="fJwtdmids != null">
+        #{fJwtdmids,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="fJwtdmmcs != null">
+        #{fJwtdmmcs,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="fZhjtdmids != null">
+        #{fZhjtdmids,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="fZhjtdmmcs != null">
+        #{fZhjtdmmcs,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="fChwtdmids != null">
+        #{fChwtdmids,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="fChwtdmmcs != null">
+        #{fChwtdmmcs,jdbcType=LONGVARCHAR},
+      </if>
     </trim>
   </insert>
   <update id="updateAll" parameterType="com.data.big.model.Sgjh">
@@ -247,7 +294,9 @@
     zyqslc, zyzzlc, sgztdw,
     phdw, fzrname, xsjxcfs,
     lycxx, `status`, zyxm,
-    sgnrjyxfw)
+    sgnrjyxfw
+    ,f_jwtdmids,f_jwtdmmcs,f_zhjtdmids,f_zhjtdmmcs,f_chwtdmids
+    ,f_chwtdmmcs)
     values
     <foreach collection ="list" item="reddemCode" index= "index" separator =",">
       (
@@ -259,6 +308,8 @@
       #{reddemCode.phdw}, #{reddemCode.fzrname}, #{reddemCode.xsjxcfs},
       #{reddemCode.lycxx}, #{reddemCode.status}, #{reddemCode.zyxm},
       #{reddemCode.sgnrjyxfw}
+      #{reddemCode.fJwtdmids,jdbcType=LONGVARCHAR},#{reddemCode.fJwtdmmcs,jdbcType=LONGVARCHAR},#{reddemCode.fZhjtdmids,jdbcType=LONGVARCHAR},
+      #{reddemCode.fZhjtdmmcs,jdbcType=LONGVARCHAR},#{reddemCode.fChwtdmids,jdbcType=LONGVARCHAR},#{reddemCode.fChwtdmmcs,jdbcType=LONGVARCHAR}
       )
     </foreach >
   </insert >

@@ -61,9 +61,8 @@ public class StartUp {
 			e.printStackTrace();
 		} catch (XMLParserException e) {
 			e.printStackTrace();
-		}*/
-		
-
+		}
+*/
     }
 
     /**

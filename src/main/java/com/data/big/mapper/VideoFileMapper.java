@@ -21,7 +21,7 @@ public interface VideoFileMapper extends BaseMapper<VideoFile> {
      * @param endTime 结束时间
      * @return
      */
-    List<VideoFile> getVideoRecord(String videoType, String cameraType, String cameraName, String startTime, String endTime,List<String > list);
+    List<VideoFile> getVideoRecord(String videoTypeTag,String videoType, String cameraType, String cameraName, String startTime, String endTime,List<String > list);
 
     List<VideoFile> selectByVideoFileId(List<String> videoFileIds);
 

@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.data.big.mapper.ImgTaskMapper">
+  <resultMap id="BaseResultMap" type="com.data.big.model.ImgTask">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="IPCID" jdbcType="VARCHAR" property="ipcid" />
+    <result column="ksrq" jdbcType="VARCHAR" property="ksrq" />
+    <result column="jsrq" jdbcType="VARCHAR" property="jsrq" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="loadtime" jdbcType="VARCHAR" property="loadtime" />
+    <result column="path" jdbcType="VARCHAR" property="path" />
+    <result column="filename" jdbcType="VARCHAR" property="filename" />
+    <result column="FileID" jdbcType="VARCHAR" property="fileid" />
+    <result column="uptime" jdbcType="VARCHAR" property="uptime" />
+    <result column="bz" jdbcType="VARCHAR" property="bz" />
+    <result column="video_type" jdbcType="VARCHAR" property="videoType" />
+    <result column="group_id" jdbcType="VARCHAR" property="groupId" />
+    <result column="zpsj" jdbcType="VARCHAR" property="zpsj" />
+    <result column="zprq" jdbcType="TIMESTAMP" property="zprq" />
+    <collection property="camera"  ofType="com.data.big.model.Camera">
+      <id column="device_id" jdbcType="VARCHAR" property="deviceId" />
+      <result column="device_name" jdbcType="VARCHAR" property="deviceName" />
+      <result column="node_id" jdbcType="VARCHAR" property="nodeId" />
+      <result column="device_type" jdbcType="VARCHAR" property="deviceType" />
+      <result column="manufacturer" jdbcType="VARCHAR" property="manufacturer" />
+      <result column="camera_type" jdbcType="VARCHAR" property="cameraType" />
+      <result column="Camera_dpi" jdbcType="VARCHAR" property="cameraDpi" />
+      <result column="ip_addr" jdbcType="VARCHAR" property="ipAddr" />
+      <result column="ip_port" jdbcType="VARCHAR" property="ipPort" />
+      <result column="username" jdbcType="VARCHAR" property="username" />
+      <result column="password" jdbcType="VARCHAR" property="password" />
+      <result column="install_time" jdbcType="VARCHAR" property="installTime" />
+      <result column="affiliation" jdbcType="VARCHAR" property="affiliation" />
+      <result column="up_down" jdbcType="VARCHAR" property="upDown" />
+      <result column="associated_line" jdbcType="VARCHAR" property="associatedLine" />
+      <result column="k_mark" jdbcType="INTEGER" property="kMark" />
+      <result column="join_station" jdbcType="VARCHAR" property="joinStation" />
+      <result column="direction" jdbcType="VARCHAR" property="direction" />
+      <result column="target_location" jdbcType="VARCHAR" property="targetLocation" />
+      <result column="catalogue" jdbcType="VARCHAR" property="catalogue" />
+      <result column="longitude" jdbcType="VARCHAR" property="longitude" />
+      <result column="latitude" jdbcType="VARCHAR" property="latitude" />
+    </collection>
+    <collection property="videoTags"  ofType="com.data.big.model.VideoTag">
+      <id column="video_fag" jdbcType="VARCHAR" property="id" />
+      <result column="ipcid_fag" jdbcType="VARCHAR" property="ipcid" />
+      <result column="tag" jdbcType="VARCHAR" property="tag" />
+      <result column="rktime" jdbcType="TIMESTAMP" property="rktime" />
+      <result column="video_file_id" jdbcType="VARCHAR" property="videoFileId" />
+    </collection>
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, IPCID, ksrq, jsrq, `status`, loadtime, `path`, filename, FileID, uptime, bz, 
+    video_type, group_id, zpsj, zprq
+  </sql>
+  <select id="selectByPrimaryId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from img_task
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <insert id="insert" parameterType="com.data.big.model.ImgTask">
+    insert into img_task (ID, IPCID, ksrq, 
+      jsrq, `status`, loadtime, 
+      `path`, filename, FileID, 
+      uptime, bz, video_type, 
+      group_id, zpsj, zprq)
+    values (#{id,jdbcType=VARCHAR}, #{ipcid,jdbcType=VARCHAR}, #{ksrq,jdbcType=VARCHAR}, 
+      #{jsrq,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{loadtime,jdbcType=VARCHAR}, 
+      #{path,jdbcType=VARCHAR}, #{filename,jdbcType=VARCHAR}, #{fileid,jdbcType=VARCHAR}, 
+      #{uptime,jdbcType=VARCHAR}, #{bz,jdbcType=VARCHAR}, #{videoType,jdbcType=VARCHAR}, 
+      #{groupId,jdbcType=VARCHAR}, #{zpsj,jdbcType=VARCHAR}, #{zprq,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="saveAll" parameterType="com.data.big.model.ImgTask">
+    insert into img_task (ID, IPCID, ksrq,
+      jsrq, `status`, loadtime,
+      `path`, filename, FileID,
+      uptime, bz, video_type,
+      group_id, zpsj, zprq)
+    values
+    <foreach collection="list" item="imgTask"  separator=",">
+    (
+      #{imgTask.id,jdbcType=VARCHAR}, #{imgTask.ipcid,jdbcType=VARCHAR}, #{imgTask.ksrq,jdbcType=VARCHAR},
+      #{imgTask.jsrq,jdbcType=VARCHAR}, #{imgTask.status,jdbcType=VARCHAR}, #{imgTask.loadtime,jdbcType=VARCHAR},
+      #{imgTask.path,jdbcType=VARCHAR}, #{imgTask.filename,jdbcType=VARCHAR}, #{imgTask.fileid,jdbcType=VARCHAR},
+      #{imgTask.uptime,jdbcType=VARCHAR}, #{imgTask.bz,jdbcType=VARCHAR}, #{imgTask.videoType,jdbcType=VARCHAR},
+      #{imgTask.groupId,jdbcType=VARCHAR}, #{imgTask.zpsj,jdbcType=VARCHAR}, #{imgTask.zprq,jdbcType=TIMESTAMP}
+      )
+    </foreach>
+
+  </insert>
+  <insert id="insertSelective" parameterType="com.data.big.model.ImgTask">
+    insert into img_task
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="ipcid != null">
+        IPCID,
+      </if>
+      <if test="ksrq != null">
+        ksrq,
+      </if>
+      <if test="jsrq != null">
+        jsrq,
+      </if>
+      <if test="status != null">
+        `status`,
+      </if>
+      <if test="loadtime != null">
+        loadtime,
+      </if>
+      <if test="path != null">
+        `path`,
+      </if>
+      <if test="filename != null">
+        filename,
+      </if>
+      <if test="fileid != null">
+        FileID,
+      </if>
+      <if test="uptime != null">
+        uptime,
+      </if>
+      <if test="bz != null">
+        bz,
+      </if>
+      <if test="videoType != null">
+        video_type,
+      </if>
+      <if test="groupId != null">
+        group_id,
+      </if>
+      <if test="zpsj != null">
+        zpsj,
+      </if>
+      <if test="zprq != null">
+        zprq,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="ipcid != null">
+        #{ipcid,jdbcType=VARCHAR},
+      </if>
+      <if test="ksrq != null">
+        #{ksrq,jdbcType=VARCHAR},
+      </if>
+      <if test="jsrq != null">
+        #{jsrq,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="loadtime != null">
+        #{loadtime,jdbcType=VARCHAR},
+      </if>
+      <if test="path != null">
+        #{path,jdbcType=VARCHAR},
+      </if>
+      <if test="filename != null">
+        #{filename,jdbcType=VARCHAR},
+      </if>
+      <if test="fileid != null">
+        #{fileid,jdbcType=VARCHAR},
+      </if>
+      <if test="uptime != null">
+        #{uptime,jdbcType=VARCHAR},
+      </if>
+      <if test="bz != null">
+        #{bz,jdbcType=VARCHAR},
+      </if>
+      <if test="videoType != null">
+        #{videoType,jdbcType=VARCHAR},
+      </if>
+      <if test="groupId != null">
+        #{groupId,jdbcType=VARCHAR},
+      </if>
+      <if test="zpsj != null">
+        #{zpsj,jdbcType=VARCHAR},
+      </if>
+      <if test="zprq != null">
+        #{zprq,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+
+
+  <update id="updateAll" parameterType="list">
+    update
+    img_task
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="ipcid =case" suffix="end,">
+        <foreach collection="list" item="item" index="index">
+          <if test="item.ipcid!=null">
+            when id=#{item.id}
+            then #{item.ipcid}
+          </if>
+        </foreach>
+      </trim>
+
+      <trim prefix="ksrq =case" suffix="end,">
+        <foreach collection="list" item="item" index="index">
+          <if test="item.ksrq!=null">
+            when id=#{item.id}
+            then #{item.ksrq}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="jsrq =case" suffix="end,">
+        <foreach collection="list" item="item" index="index">
+          <if test="item.jsrq!=null">
+            when id=#{item.id}
+            then #{item.jsrq}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="status =case" suffix="end,">
+        <foreach collection="list" item="item" index="index">
+          <if test="item.status!=null">
+            when id=#{item.id}
+            then #{item.status}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="loadtime =case" suffix="end,">
+        <foreach collection="list" item="item" index="index">
+          <if test="item.loadtime!=null">
+            when id=#{item.id}
+            then #{item.loadtime}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="path =case" suffix="end,">
+        <foreach collection="list" item="item" index="index">
+          <if test="item.path!=null">
+            when id=#{item.id}
+            then #{item.path}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="filename =case" suffix="end,">
+        <foreach collection="list" item="item" index="index">
+          <if test="item.filename!=null">
+            when id=#{item.id}
+            then #{item.filename}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="fileid =case" suffix="end,">
+        <foreach collection="list" item="item" index="index">
+          <if test="item.fileid!=null">
+            when id=#{item.id}
+            then #{item.fileid}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="uptime =case" suffix="end,">
+        <foreach collection="list" item="item" index="index">
+          <if test="item.uptime!=null">
+            when id=#{item.id}
+            then #{item.uptime}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="bz =case" suffix="end,">
+        <foreach collection="list" item="item" index="index">
+          <if test="item.bz!=null">
+            when id=#{item.id}
+            then #{item.bz}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="video_type =case" suffix="end,">
+        <foreach collection="list" item="item" index="index">
+          <if test="item.videoType!=null">
+            when id=#{item.id}
+            then #{item.videoType}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="group_id =case" suffix="end,">
+        <foreach collection="list" item="item" index="index">
+          <if test="item.groupId!=null">
+            when id=#{item.id}
+            then #{item.groupId}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="zpsj =case" suffix="end,">
+        <foreach collection="list" item="item" index="index">
+          <if test="item.zpsj!=null">
+            when id=#{item.id}
+            then #{item.zpsj}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="zprq =case" suffix="end,">
+        <foreach collection="list" item="item" index="index">
+          <if test="item.zprq!=null">
+            when id=#{item.id}
+            then #{item.zprq}
+          </if>
+        </foreach>
+      </trim>
+    </trim>
+    where id in
+    <foreach collection="list" item="item" index="index" separator="," open="(" close=")">
+      #{item.id}
+    </foreach>
+  </update>
+  <delete id="deleteAll" parameterType="com.data.big.model.ImgTask">
+    delete from img_task where id in
+    <foreach collection="list" item="item" index="index" separator="," open="(" close=")">
+      #{item.id}
+    </foreach>
+
+  </delete>
+  <select id="findAll"  resultMap="BaseResultMap" parameterType="com.data.big.model.ImgTask">
+    select it.ID, it.IPCID, it.ksrq, it.jsrq, it.`status`, it.loadtime, it.`path`, it.filename, it.FileID, it.uptime, it.bz,
+    d.descs video_type, it.group_id, it.zpsj, it.zprq ,c.*
+
+    from img_task it
+    left join  camera c on c.device_id=it.ipcid
+    left join  dictionary d on it.video_type=d.id
+    <if test="cameraType != null and cameraType !=''">
+      LEFT JOIN dictionary d1 on c.device_type=d1.DESCS
+    </if>
+    <if test="videoTypeTag != null and videoTypeTag !=''">
+      LEFT JOIN video_tag vt on vt.video_file_id=it.id
+    </if>
+    <where>
+      <if test="cameraType != null and cameraType !=''">
+        and d1.id = #{cameraType,jdbcType=VARCHAR}
+      </if>
+      <if test="id != null and id !=''">
+        and it.id = #{id,jdbcType=VARCHAR}
+      </if>
+      <if test="ipcid != null and ipcid !=''">
+        and it.ipcid = #{ipcid,jdbcType=VARCHAR}
+      </if>
+      <if test="ksrq != null and ksrq !=''">
+       and  date_format(it.zprq, '%Y-%m-%d %H:%i:%s') >= date_format(#{ksrq,jdbcType=VARCHAR}, '%Y-%m-%d %H:%i:%s')
+      </if>
+      <if test="jsrq != null and jsrq !=''">
+        and  date_format(it.zprq, '%Y-%m-%d %H:%i:%s') &lt;= date_format(#{jsrq,jdbcType=VARCHAR}, '%Y-%m-%d %H:%i:%s')
+      </if>
+      <if test="videoType != null and videoType !=''">
+        and it.videoType = #{videoType,jdbcType=VARCHAR}
+      </if>
+      <if test="groupId != null and groupId !=''">
+        and it.groupId = #{groupId,jdbcType=VARCHAR}
+      </if>
+      <if test="videoTypeTag != null and videoTypeTag !=''">
+        and  vt.tag  =  #{videoTypeTag,jdbcType=VARCHAR}
+      </if>
+      <if test="cameraName != null and cameraName !=''">
+        and c.device_name  like concat('%',#{cameraName,jdbcType=VARCHAR},'%')
+      </if>
+    </where>
+  </select>
+
+
+  <select id="selectByVideoFileId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select  vf.id, vt.id video_fag,vt.ipcid ipcid_fag,d.DESCS tag ,vt.rktime,vt.video_file_id
+
+    from img_task vf
+    left join video_tag vt on vf.id=vt.video_file_id
+    left join   dictionary d on d.id=vt.tag
+    where vt.video_file_id in
+    <foreach collection="list" item="videoFileId" separator="," open="(" close=")">
+      #{videoFileId,jdbcType=VARCHAR}
+    </foreach>
+  </select>
+</mapper>

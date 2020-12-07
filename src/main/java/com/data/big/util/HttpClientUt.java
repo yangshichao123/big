@@ -119,7 +119,7 @@ public class HttpClientUt {
                     System.out.println(resEntity);
                     logger.info("请求返回状态 " + result);
                 }
-                logger.error("向大数据发送数据："+EntityUtils.toString(resEntity, "utf-8"));
+                logger.error("向大数据上传视频返回直为："+EntityUtils.toString(resEntity, "utf-8"));
             }
         } catch (ClientProtocolException ex) {
             logger.error(ex.getMessage(), ex);
@@ -394,13 +394,14 @@ public class HttpClientUt {
         if (jsonData != null && !"".equals(jsonData.trim())) {
             HashMap<String,Object> mapObj = JSONObject.parseObject(jsonData, HashMap.class);
 
-            map.put("stateCode", mapObj.get("stateCode"));
-            if ("200".equals(mapObj.get("stateCode"))) {
+            map.put("statusCode", mapObj.get("statusCode"));
+           /* if ("200".equals(mapObj.get("statusCode"))) {
                 map.put("data", mapObj.get("data"));
             } else {
                 map.put("errorType", mapObj.get("errorType"));
 
-            }
+            }*/
+            map.put("data", mapObj.get("data"));
             map.put("message", mapObj.get("message"));
         } else {
             map.put("stateCode", "-999");

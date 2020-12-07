@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.data.big.mapper.IpcseelocationMapper">
+  <resultMap id="BaseResultMap" type="com.data.big.model.Ipcseelocation">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="x" jdbcType="VARCHAR" property="x" />
+    <result column="y" jdbcType="VARCHAR" property="y" />
+    <result column="z" jdbcType="VARCHAR" property="z" />
+    <result column="heading" jdbcType="VARCHAR" property="heading" />
+    <result column="pitch" jdbcType="VARCHAR" property="pitch" />
+    <result column="roll" jdbcType="VARCHAR" property="roll" />
+    <result column="ipcid" jdbcType="VARCHAR" property="ipcid" />
+    <result column="scenetype" jdbcType="VARCHAR" property="scenetype" />
+    <result column="km_start" jdbcType="INTEGER" property="kmStart" />
+    <result column="km_end" jdbcType="INTEGER" property="kmEnd" />
+    <result column="xm" jdbcType="VARCHAR" property="xm" />
+    <result column="xb" jdbcType="VARCHAR" property="xb" />
+    <result column="bz1" jdbcType="VARCHAR" property="bz1" />
+    <result column="bz2" jdbcType="VARCHAR" property="bz2" />
+    <result column="bz3" jdbcType="VARCHAR" property="bz3" />
+    <result column="bz4" jdbcType="VARCHAR" property="bz4" />
+    <collection property="screenresolvingList" ofType="com.data.big.model.Screenresolving">
+      <id column="ScreenresolvingId" jdbcType="VARCHAR" property="id" />
+      <result column="fid" jdbcType="VARCHAR" property="fid" />
+      <result column="length" jdbcType="VARCHAR" property="length" />
+      <result column="width" jdbcType="VARCHAR" property="width" />
+      <result column="resolving" jdbcType="VARCHAR" property="resolving" />
+      <result column="left_x" jdbcType="VARCHAR" property="leftX" />
+      <result column="left_y" jdbcType="VARCHAR" property="leftY" />
+    </collection>
+    <collection property="camera" ofType="com.data.big.model.Camera">
+      <id column="device_id" jdbcType="VARCHAR" property="deviceId" />
+      <result column="device_name" jdbcType="VARCHAR" property="deviceName" />
+      <result column="node_id" jdbcType="VARCHAR" property="nodeId" />
+      <result column="device_type" jdbcType="VARCHAR" property="deviceType" />
+      <result column="manufacturer" jdbcType="VARCHAR" property="manufacturer" />
+      <result column="camera_type" jdbcType="VARCHAR" property="cameraType" />
+      <result column="Camera_dpi" jdbcType="VARCHAR" property="cameraDpi" />
+      <result column="ip_addr" jdbcType="VARCHAR" property="ipAddr" />
+      <result column="ip_port" jdbcType="VARCHAR" property="ipPort" />
+      <result column="username" jdbcType="VARCHAR" property="username" />
+      <result column="password" jdbcType="VARCHAR" property="password" />
+      <result column="install_time" jdbcType="VARCHAR" property="installTime" />
+      <result column="affiliation" jdbcType="VARCHAR" property="affiliation" />
+      <result column="up_down" jdbcType="VARCHAR" property="upDown" />
+      <result column="associated_line" jdbcType="VARCHAR" property="associatedLine" />
+      <result column="k_mark" jdbcType="INTEGER" property="kMark" />
+      <result column="join_station" jdbcType="VARCHAR" property="joinStation" />
+      <result column="direction" jdbcType="VARCHAR" property="direction" />
+      <result column="target_location" jdbcType="VARCHAR" property="targetLocation" />
+      <result column="catalogue" jdbcType="VARCHAR" property="catalogue" />
+      <result column="longitude" jdbcType="VARCHAR" property="longitude" />
+      <result column="latitude" jdbcType="VARCHAR" property="latitude" />
+    </collection>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, x, y, z, heading, pitch, roll, ipcid, scenetype, km_start, km_end, xm, xb, bz1, 
+    bz2, bz3, bz4
+  </sql>
+  <select id="selectByPrimaryId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ipcseelocation
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <insert id="insert" parameterType="com.data.big.model.Ipcseelocation">
+    insert into ipcseelocation (id, x, y, z, 
+      heading, pitch, roll, 
+      ipcid, scenetype, km_start, 
+      km_end, xm, xb, bz1, 
+      bz2, bz3, bz4)
+    values (#{id,jdbcType=VARCHAR}, #{x,jdbcType=VARCHAR}, #{y,jdbcType=VARCHAR}, #{z,jdbcType=VARCHAR}, 
+      #{heading,jdbcType=VARCHAR}, #{pitch,jdbcType=VARCHAR}, #{roll,jdbcType=VARCHAR}, 
+      #{ipcid,jdbcType=VARCHAR}, #{scenetype,jdbcType=VARCHAR}, #{kmStart,jdbcType=INTEGER}, 
+      #{kmEnd,jdbcType=INTEGER}, #{xm,jdbcType=VARCHAR}, #{xb,jdbcType=VARCHAR}, #{bz1,jdbcType=VARCHAR}, 
+      #{bz2,jdbcType=VARCHAR}, #{bz3,jdbcType=VARCHAR}, #{bz4,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.data.big.model.Ipcseelocation">
+    insert into ipcseelocation
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="x != null">
+        x,
+      </if>
+      <if test="y != null">
+        y,
+      </if>
+      <if test="z != null">
+        z,
+      </if>
+      <if test="heading != null">
+        heading,
+      </if>
+      <if test="pitch != null">
+        pitch,
+      </if>
+      <if test="roll != null">
+        roll,
+      </if>
+      <if test="ipcid != null">
+        ipcid,
+      </if>
+      <if test="scenetype != null">
+        scenetype,
+      </if>
+      <if test="kmStart != null">
+        km_start,
+      </if>
+      <if test="kmEnd != null">
+        km_end,
+      </if>
+      <if test="xm != null">
+        xm,
+      </if>
+      <if test="xb != null">
+        xb,
+      </if>
+      <if test="bz1 != null">
+        bz1,
+      </if>
+      <if test="bz2 != null">
+        bz2,
+      </if>
+      <if test="bz3 != null">
+        bz3,
+      </if>
+      <if test="bz4 != null">
+        bz4,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="x != null">
+        #{x,jdbcType=VARCHAR},
+      </if>
+      <if test="y != null">
+        #{y,jdbcType=VARCHAR},
+      </if>
+      <if test="z != null">
+        #{z,jdbcType=VARCHAR},
+      </if>
+      <if test="heading != null">
+        #{heading,jdbcType=VARCHAR},
+      </if>
+      <if test="pitch != null">
+        #{pitch,jdbcType=VARCHAR},
+      </if>
+      <if test="roll != null">
+        #{roll,jdbcType=VARCHAR},
+      </if>
+      <if test="ipcid != null">
+        #{ipcid,jdbcType=VARCHAR},
+      </if>
+      <if test="scenetype != null">
+        #{scenetype,jdbcType=VARCHAR},
+      </if>
+      <if test="kmStart != null">
+        #{kmStart,jdbcType=INTEGER},
+      </if>
+      <if test="kmEnd != null">
+        #{kmEnd,jdbcType=INTEGER},
+      </if>
+      <if test="xm != null">
+        #{xm,jdbcType=VARCHAR},
+      </if>
+      <if test="xb != null">
+        #{xb,jdbcType=VARCHAR},
+      </if>
+      <if test="bz1 != null">
+        #{bz1,jdbcType=VARCHAR},
+      </if>
+      <if test="bz2 != null">
+        #{bz2,jdbcType=VARCHAR},
+      </if>
+      <if test="bz3 != null">
+        #{bz3,jdbcType=VARCHAR},
+      </if>
+      <if test="bz4 != null">
+        #{bz4,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+  <select id="findAll" parameterType="com.data.big.model.Ipcseelocation" resultMap="BaseResultMap">
+    select
+    ipc.*,c.*
+    from ipcseelocation ipc
+    left  join  Camera c on c.device_id=ipc.ipcid
+    <if test="cameraType != null and cameraType !=''">
+      LEFT JOIN dictionary d1 on c.device_type=d1.DESCS
+    </if>
+    <!--<if test="ipcsTag != null and ipcsTag !=''">
+      LEFT JOIN dictionary d2 on ipc.scenetype=d2.id
+    </if>-->
+    <where>
+      <if test="cameraName != null and cameraName !=''">
+        and c.device_name  like concat('%',#{cameraName,jdbcType=VARCHAR},'%')
+      </if>
+     <!-- <if test="ipcsTag != null and ipcsTag !=''">
+        and ipc.scenetype  = #{ipcsTag,jdbcType=VARCHAR}
+      </if>-->
+      <if test="cameraType != null and cameraType !=''">
+        and d1.id = #{cameraType,jdbcType=VARCHAR}
+      </if>
+      <if test="id != null">
+       and ipc.id = #{id,jdbcType=VARCHAR}
+      </if>
+      <if test="x != null">
+       and ipc.x = #{x,jdbcType=VARCHAR}
+      </if>
+      <if test="y != null">
+      and ipc.y =  #{y,jdbcType=VARCHAR}
+      </if>
+      <if test="z != null">
+       and ipc.z = #{z,jdbcType=VARCHAR}
+      </if>
+      <if test="heading != null">
+      and ipc.heading =  #{heading,jdbcType=VARCHAR}
+      </if>
+      <if test="pitch != null">
+       and ipc.pitch = #{pitch,jdbcType=VARCHAR}
+      </if>
+      <if test="roll != null">
+      and ipc.roll =  #{roll,jdbcType=VARCHAR}
+      </if>
+      <if test="ipcid != null">
+       and ipc.ipcid = #{ipcid,jdbcType=VARCHAR}
+      </if>
+      <if test="scenetype != null">
+      and ipc.scenetype  like concat('%',#{scenetype,jdbcType=VARCHAR},'%')
+      </if>
+      <if test="kmStart != null">
+      and ipc.kmStart =  #{kmStart,jdbcType=INTEGER}
+      </if>
+      <if test="kmEnd != null">
+       and ipc.kmEnd = #{kmEnd,jdbcType=INTEGER}
+      </if>
+      <if test="xm != null">
+      and ipc.xm =  #{xm,jdbcType=VARCHAR}
+      </if>
+      <if test="xb != null">
+      and ipc.xb =  #{xb,jdbcType=VARCHAR}
+      </if>
+      <if test="bz1 != null">
+      and ipc.bz1 =  #{bz1,jdbcType=VARCHAR}
+      </if>
+      <if test="bz2 != null">
+      and ipc.bz2 =  #{bz2,jdbcType=VARCHAR}
+      </if>
+      <if test="bz3 != null">
+      and ipc.bz3 =  #{bz3,jdbcType=VARCHAR}
+      </if>
+      <if test="bz4 != null">
+      and ipc.bz4 =  #{bz4,jdbcType=VARCHAR}
+      </if>
+    </where>
+
+  </select>
+  <select id="findScreenresolving" parameterType="com.data.big.model.Ipcseelocation" resultMap="BaseResultMap">
+    select
+    ipc.*,s.id ScreenresolvingId,s.fid, s.`length`,s.width, s.resolving, s.left_x, s.left_y
+    from ipcseelocation ipc
+    left  join  screenresolving s on s.fid=ipc.id
+    where
+    s.fid in
+    <foreach collection="list" item="ids" open="(" close=")" separator=",">
+      #{ids,jdbcType=VARCHAR}
+    </foreach>
+
+
+  </select>
+</mapper>

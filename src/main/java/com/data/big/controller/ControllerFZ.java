@@ -8,7 +8,7 @@ import java.util.Map;
 
 
 @RestController
-@RequestMapping("/ControllerFZ")
+@RequestMapping("/controllerFZ")
 @CrossOrigin
 public class ControllerFZ {
 

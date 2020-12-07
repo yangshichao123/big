@@ -1,0 +1,422 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.data.big.mapper.VideoUploadMapper">
+    <resultMap id="BaseResultMap" type="com.data.big.model.VideoUpload">
+        <id column="ID" jdbcType="VARCHAR" property="id"/>
+        <result column="IPCID" jdbcType="VARCHAR" property="ipcid"/>
+        <result column="kssj" jdbcType="VARCHAR" property="kssj"/>
+        <result column="jssj" jdbcType="VARCHAR" property="jssj"/>
+        <result column="status" jdbcType="VARCHAR" property="status"/>
+        <result column="loadtime" jdbcType="VARCHAR" property="loadtime"/>
+        <result column="path" jdbcType="VARCHAR" property="path"/>
+        <result column="filename" jdbcType="VARCHAR" property="filename"/>
+        <result column="FileID" jdbcType="VARCHAR" property="fileid"/>
+        <result column="uptime" jdbcType="VARCHAR" property="uptime"/>
+        <result column="bz" jdbcType="VARCHAR" property="bz"/>
+        <result column="video_type" jdbcType="VARCHAR" property="videoType"/>
+        <result column="alarm_id" jdbcType="VARCHAR" property="alarmId"/>
+        <collection property="camera" resultMap="cameraMap" />
+        <collection property="videoTag" resultMap="BaseResultMapVideoFag" />
+        <collection property="ipcTags" resultMap="BaseResultMapIPCTag" />
+        <collection property="videoTypeList" resultMap="BaseResultMapVideoType" />
+    </resultMap>
+
+    <resultMap id="cameraMap" type="com.data.big.model.Camera">
+        <id column="device_id" jdbcType="VARCHAR" property="deviceId" />
+        <result column="device_name" jdbcType="VARCHAR" property="deviceName" />
+        <result column="node_id" jdbcType="VARCHAR" property="nodeId" />
+        <result column="device_type" jdbcType="VARCHAR" property="deviceType" />
+        <result column="manufacturer" jdbcType="VARCHAR" property="manufacturer" />
+        <result column="camera_type" jdbcType="VARCHAR" property="cameraType" />
+        <result column="Camera_dpi" jdbcType="VARCHAR" property="cameraDpi" />
+        <result column="ip_addr" jdbcType="VARCHAR" property="ipAddr" />
+        <result column="ip_port" jdbcType="VARCHAR" property="ipPort" />
+        <result column="username" jdbcType="VARCHAR" property="username" />
+        <result column="password" jdbcType="VARCHAR" property="password" />
+        <result column="install_time" jdbcType="VARCHAR" property="installTime" />
+        <result column="affiliation" jdbcType="VARCHAR" property="affiliation" />
+        <result column="up_down" jdbcType="VARCHAR" property="upDown" />
+        <result column="associated_line" jdbcType="VARCHAR" property="associatedLine" />
+        <result column="k_mark" jdbcType="INTEGER" property="kMark" />
+        <result column="join_station" jdbcType="VARCHAR" property="joinStation" />
+        <result column="direction" jdbcType="VARCHAR" property="direction" />
+        <result column="target_location" jdbcType="VARCHAR" property="targetLocation" />
+        <result column="catalogue" jdbcType="VARCHAR" property="catalogue" />
+        <result column="longitude" jdbcType="VARCHAR" property="longitude" />
+        <result column="latitude" jdbcType="VARCHAR" property="latitude" />
+    </resultMap>
+
+    <resultMap id="BaseResultMapVideoFag" type="com.data.big.model.VideoTag">
+        <id column="video_fag" jdbcType="VARCHAR" property="id" />
+        <result column="ipcid_fag" jdbcType="VARCHAR" property="ipcid" />
+        <result column="tag" jdbcType="VARCHAR" property="tag" />
+        <result column="rktime" jdbcType="TIMESTAMP" property="rktime" />
+        <result column="video_file_id" jdbcType="VARCHAR" property="videoFileId" />
+    </resultMap>
+    <resultMap id="BaseResultMapVideoType" type="com.data.big.model.VideoType">
+        <id column="video_type_id" jdbcType="VARCHAR" property="id" />
+        <result column="ipcid_video_type" jdbcType="VARCHAR" property="ipcid" />
+        <result column="tag_video_type" jdbcType="VARCHAR" property="tag" />
+        <result column="rktime_video_type" jdbcType="TIMESTAMP" property="rktime" />
+        <result column="video_file_id_video_type" jdbcType="VARCHAR" property="videoFileId" />
+    </resultMap>
+
+
+
+
+    <resultMap id="BaseResultMapIPCTag" type="com.data.big.model.IpcTag">
+        <id column="video_ipc_id" jdbcType="VARCHAR" property="id" />
+        <result column="ipcid_video_tag" jdbcType="VARCHAR" property="ipcid" />
+        <result column="tag_video_tag" jdbcType="VARCHAR" property="tag" />
+        <result column="rktime_video_tag" jdbcType="TIMESTAMP" property="rktime" />
+    </resultMap>
+
+
+    <sql id="Base_Column_List">
+    ID, IPCID, kssj, jssj, `status`, loadtime, `path`, filename, FileID, uptime, bz, 
+    video_type, alarm_id
+  </sql>
+    <select id="selectByPrimaryId" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from video_upload
+        where ID = #{id,jdbcType=VARCHAR}
+    </select>
+    <insert id="insert" parameterType="com.data.big.model.VideoUpload">
+    insert into video_upload (ID, IPCID, kssj, 
+      jssj, `status`, loadtime, 
+      `path`, filename, FileID, 
+      uptime, bz, video_type, 
+      alarm_id)
+    values (#{id,jdbcType=VARCHAR}, #{ipcid,jdbcType=VARCHAR}, #{kssj,jdbcType=VARCHAR}, 
+      #{jssj,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{loadtime,jdbcType=VARCHAR}, 
+      #{path,jdbcType=VARCHAR}, #{filename,jdbcType=VARCHAR}, #{fileid,jdbcType=VARCHAR}, 
+      #{uptime,jdbcType=VARCHAR}, #{bz,jdbcType=VARCHAR}, #{videoType,jdbcType=VARCHAR}, 
+      #{alarmId,jdbcType=VARCHAR})
+  </insert>
+    <insert id="insertSelective" parameterType="com.data.big.model.VideoUpload">
+        insert into video_upload
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                ID,
+            </if>
+            <if test="ipcid != null">
+                IPCID,
+            </if>
+            <if test="kssj != null">
+                kssj,
+            </if>
+            <if test="jssj != null">
+                jssj,
+            </if>
+            <if test="status != null">
+                `status`,
+            </if>
+            <if test="loadtime != null">
+                loadtime,
+            </if>
+            <if test="path != null">
+                `path`,
+            </if>
+            <if test="filename != null">
+                filename,
+            </if>
+            <if test="fileid != null">
+                FileID,
+            </if>
+            <if test="uptime != null">
+                uptime,
+            </if>
+            <if test="bz != null">
+                bz,
+            </if>
+            <if test="videoType != null">
+                video_type,
+            </if>
+            <if test="alarmId != null">
+                alarm_id,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="ipcid != null">
+                #{ipcid,jdbcType=VARCHAR},
+            </if>
+            <if test="kssj != null">
+                #{kssj,jdbcType=VARCHAR},
+            </if>
+            <if test="jssj != null">
+                #{jssj,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=VARCHAR},
+            </if>
+            <if test="loadtime != null">
+                #{loadtime,jdbcType=VARCHAR},
+            </if>
+            <if test="path != null">
+                #{path,jdbcType=VARCHAR},
+            </if>
+            <if test="filename != null">
+                #{filename,jdbcType=VARCHAR},
+            </if>
+            <if test="fileid != null">
+                #{fileid,jdbcType=VARCHAR},
+            </if>
+            <if test="uptime != null">
+                #{uptime,jdbcType=VARCHAR},
+            </if>
+            <if test="bz != null">
+                #{bz,jdbcType=VARCHAR},
+            </if>
+            <if test="videoType != null">
+                #{videoType,jdbcType=VARCHAR},
+            </if>
+            <if test="alarmId != null">
+                #{alarmId,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <insert id="saveAll" parameterType="com.data.big.model.VideoUpload">
+        insert into video_upload
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            ID,
+            IPCID,
+            kssj,
+            jssj,
+            `status`,
+            loadtime,
+            `path`,
+            filename,
+            FileID,
+            uptime,
+            bz,
+            video_type,
+            alarm_id
+        </trim>
+        <foreach collection="list" item="item" index="index" separator=",">
+            <trim prefix="(" suffix=")" >
+                UUID(),
+                #{item.ipcid,jdbcType=VARCHAR},
+                #{item.kssj,jdbcType=VARCHAR},
+                #{item.jssj,jdbcType=VARCHAR},
+                #{item.status,jdbcType=VARCHAR},
+                #{item.loadtime,jdbcType=VARCHAR},
+                #{item.path,jdbcType=VARCHAR},
+                #{item.filename,jdbcType=VARCHAR},
+                #{item.fileid,jdbcType=VARCHAR},
+                #{item.uptime,jdbcType=VARCHAR},
+                #{item.bz,jdbcType=VARCHAR},
+                #{item.videoType,jdbcType=VARCHAR},
+                #{item.alarmId,jdbcType=VARCHAR}
+            </trim>
+        </foreach>
+
+    </insert>
+
+
+    <update id="updateAll" parameterType="list">
+        update
+        video_upload
+        <trim prefix="set" suffixOverrides=",">
+            <trim prefix="ipcid =case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                    <if test="item.ipcid!=null">
+                        when id=#{item.id}
+                        then #{item.ipcid}
+                    </if>
+                </foreach>
+            </trim>
+
+            <trim prefix="kssj =case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                    <if test="item.kssj!=null">
+                        when id=#{item.id}
+                        then #{item.kssj}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="jssj =case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                    <if test="item.jssj!=null">
+                        when id=#{item.id}
+                        then #{item.jssj}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="status =case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                    <if test="item.status!=null">
+                        when id=#{item.id}
+                        then #{item.status}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="loadtime =case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                    <if test="item.loadtime!=null">
+                        when id=#{item.id}
+                        then #{item.loadtime}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="path =case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                    <if test="item.path!=null">
+                        when id=#{item.id}
+                        then #{item.path}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="filename =case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                    <if test="item.filename!=null">
+                        when id=#{item.id}
+                        then #{item.filename}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="FileID =case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                    <if test="item.fileid!=null">
+                        when id=#{item.id}
+                        then #{item.fileid}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="uptime =case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                    <if test="item.uptime!=null">
+                        when id=#{item.id}
+                        then #{item.uptime}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="bz =case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                    <if test="item.bz!=null">
+                        when id=#{item.id}
+                        then #{item.bz}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="video_type =case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                    <if test="item.videoType!=null">
+                        when id=#{item.id}
+                        then #{item.videoType}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="alarm_id =case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                    <if test="item.alarmId!=null">
+                        when id=#{item.id}
+                        then #{item.alarmId}
+                    </if>
+                </foreach>
+            </trim>
+        </trim>
+        where id in
+        <foreach collection="list" item="item" index="index" separator="," open="(" close=")">
+            #{item.id}
+        </foreach>
+    </update>
+
+    <delete id="deleteAll" parameterType="com.data.big.model.VideoUpload">
+        delete from video_upload where id in
+        <foreach collection="list" item="item" index="index" separator="," open="(" close=")">
+            #{item.id}
+        </foreach>
+
+    </delete>
+
+
+    <select id="selectVideoUpoadAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select DISTINCT vf.*,ca.*
+
+        from video_upload vf
+        left join camera ca on vf.IPCID=ca.device_id
+        <if test="type != null and type !=''">
+            left join  video_type vt2 on vf.id=vt2.video_file_id
+        </if>
+        <if test="videoType != null and videoType !=''">
+            left join  dictionary d on vf.video_type=d.name
+        </if>
+        <if test="cameraType != null and cameraType !=''">
+            LEFT JOIN dictionary d1 on ca.device_type=d1.DESCS
+        </if>
+        <if test="videoTypeTag != null and videoTypeTag !=''">
+            LEFT JOIN video_tag vt on vt.video_file_id=vf.id
+        </if>
+
+        <where>
+            <if test="type != null and type !=''">
+                and vt2.tag = #{type,jdbcType=VARCHAR}
+            </if>
+            <if test="videoType != null and videoType !=''">
+                and d.id = #{videoType,jdbcType=VARCHAR}
+            </if>
+            <if test="cameraType != null and cameraType !=''">
+                and d1.id = #{cameraType,jdbcType=VARCHAR}
+            </if>
+            <if test="cameraName != null and cameraName !=''">
+                and ca.device_name  like concat('%',#{cameraName,jdbcType=VARCHAR},'%')
+            </if>
+            <if test="startTime != null and startTime !=''">
+                and vf.kssj >= #{startTime,jdbcType=VARCHAR}
+            </if>
+            <if test="endTime != null and endTime !=''">
+                and vf.jssj &lt;= #{endTime,jdbcType=VARCHAR}
+            </if>
+            <if test="list != null and list !=''">
+                and
+                <foreach collection="list" index="index" item="tag" open="(" close=")" separator="or">
+                    vf.`status`  =  #{tag,jdbcType=VARCHAR}
+                </foreach>
+            </if>
+            <if test="videoTypeTag != null and videoTypeTag !=''">
+                and  vt.tag  =  #{videoTypeTag,jdbcType=VARCHAR}
+            </if>
+        </where>
+        order by vf.bz desc
+
+    </select>
+
+
+    <select id="selectByVideoFileId" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select  vf.id, vt.id video_fag,vt.ipcid ipcid_fag,d.DESCS tag ,vt.rktime,vt.video_file_id
+
+        from video_upload vf
+        left join video_tag vt on vf.id=vt.video_file_id
+        left join   dictionary d on d.id=vt.tag
+        where vt.video_file_id in
+        <foreach collection="list" item="videoFileId" separator="," open="(" close=")">
+            #{videoFileId,jdbcType=VARCHAR}
+        </foreach>
+    </select>
+
+    <select id="selectVideoTypeByVideoFileId" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select  vf.id, vt.id video_type_id,vt.ipcid ipcid_video_type,d.DESCS tag_video_type ,vt.rktime rktime_video_type,vt.video_file_id video_file_id_video_type
+
+        from video_upload vf
+        left join video_type vt on vf.id=vt.video_file_id
+        left join   dictionary d on d.id=vt.tag
+        where vt.video_file_id in
+        <foreach collection="list" item="videoFileId" separator="," open="(" close=")">
+            #{videoFileId,jdbcType=VARCHAR}
+        </foreach>
+    </select>
+    <select id="selectByVideoFag" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select  vf.id, it.id video_ipc_id,it.ipcid ipcid_video_tag, it.tag  tag_video_tag,it.rktime rktime_video_tag
+
+        from video_upload vf
+        left join ipc_tag it on vf.IPCID=it.ipcid
+        where it.ipcid in
+        <foreach collection="list" item="videoFileId" separator="," open="(" close=")">
+            #{videoFileId,jdbcType=VARCHAR}
+        </foreach>
+    </select>
+</mapper>

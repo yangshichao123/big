@@ -182,6 +182,9 @@
     <if test="cameraType != null and cameraType !=''">
       LEFT JOIN dictionary d1 on ca.device_type=d1.DESCS
     </if>
+    <if test="videoTypeTag != null and videoTypeTag !=''">
+      LEFT JOIN video_tag vt on vt.video_file_id=vf.id
+    </if>
 
     <where>
       <if test="videoType != null and videoType !=''">
@@ -205,8 +208,11 @@
           vf.`status`  =  #{tag,jdbcType=VARCHAR}
         </foreach>
       </if>
+      <if test="videoTypeTag != null and videoTypeTag !=''">
+       and  vt.tag  =  #{videoTypeTag,jdbcType=VARCHAR}
+      </if>
     </where>
-
+    order by vf.bz desc
   </select>
   <select id="selectByVideoFileId" parameterType="java.lang.String" resultMap="BaseResultMap">
     select  vf.id, vt.id video_fag,vt.ipcid ipcid_fag,d.DESCS tag ,vt.rktime,vt.video_file_id

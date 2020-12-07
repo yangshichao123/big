@@ -55,18 +55,18 @@ public class TimingTask {
     private void configur() {
         System.out.println(DateFormatHelper.date2String(new Date(),"mm:ss")+" 44444444444444444444444");
     }*/
-//    @Scheduled(cron = "30 */5 * * * ?")
-//    private void getGWTask() {
-//        log.info("*************定时执行公务添加到视频任务*************************");
-//        service.addGWTask();
-//        LogRest log = new LogRest();
-//        log.setFunname("getGWTask");
-//        log.setLrsj(new Date());
-//        log.setParamin("定时执行公务添加到视频任务");
-//
-//        log.setType(0 + "");
-//        logRestMapper.insert(log);
-//    }
+    @Scheduled(cron = "30 */5 * * * ?")
+    private void getGWTask() {
+        log.info("*************定时执行公务添加到视频任务*************************");
+        service.addGWTask();
+        LogRest log = new LogRest();
+        log.setFunname("getGWTask");
+        log.setLrsj(new Date());
+        log.setParamin("定时执行公务添加到视频任务");
+
+        log.setType(0 + "");
+        logRestMapper.insert(log);
+    }
 
     @Scheduled(cron = "0 */5 * * * ?")
     private void getFZTask() {
@@ -163,12 +163,13 @@ public class TimingTask {
 
         log.info("*************开始定时执行查询公务任务*************************");
         String beginTime = DateUtils.getBeforeDate(1, "yyyy-MM-dd") ;
-        String endTime = DateUtils.getBeforeDate(1, "yyyy-MM-dd") ;
+        String endTime = DateUtils.getBeforeDate(0, "yyyy-MM-dd") ;
         try {
-                Map<String,String> hcsj = service.getHcsj(beginTime, endTime, "", "京包客专","1","2000");
+                Map<String,String> hcsj = service.getHcsj(beginTime, endTime, "", "京包客专","1","1000");
                 data=" 查询到晃车数据个数"+hcsj.get("size");
 
         } catch (Exception e) {
+            data="开始定时执行查询公务任务______getHcsj______---失败";
             log.error("开始定时执行查询公务任务______getHcsj______---失败");
             log.error(e.getMessage(), e);
         }
@@ -177,6 +178,7 @@ public class TimingTask {
             Map<String,String> sgjh = service.getSgjh(beginTime, endTime, "京包客专");
             data=data+"  查询到施工计划数据个数"+sgjh.get("size");
         } catch (Exception e) {
+            data=data+"  开始定时执行查询公务任务_______getSgjh_____---失败";
             log.error("开始定时执行查询公务任务_______getSgjh_____---失败");
             log.error(e.getMessage(), e);
         }
@@ -185,6 +187,7 @@ public class TimingTask {
             Map<String,String> wxjh = service.getWxjh(beginTime, endTime, "京包客专");
             data=data+"  查询到维修计划数据个数"+wxjh.get("size");
         } catch (Exception e) {
+            data=data+"  开始定时执行查询公务任务_______getWxjh_____---失败";
             log.error("开始定时执行查询公务任务_______getWxjh_____---失败");
             log.error(e.getMessage(), e);
         }

@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.data.big.mapper.ScreenresolvingMapper">
+  <resultMap id="BaseResultMap" type="com.data.big.model.Screenresolving">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="fid" jdbcType="VARCHAR" property="fid" />
+    <result column="length" jdbcType="VARCHAR" property="length" />
+    <result column="width" jdbcType="VARCHAR" property="width" />
+    <result column="resolving" jdbcType="VARCHAR" property="resolving" />
+    <result column="left_x" jdbcType="VARCHAR" property="leftX" />
+    <result column="left_y" jdbcType="VARCHAR" property="leftY" />
+    <collection property="ipcseelocation" ofType="com.data.big.model.Ipcseelocation">
+      <id column="screenresolvingId" jdbcType="VARCHAR" property="id" />
+      <result column="x" jdbcType="VARCHAR" property="x" />
+      <result column="y" jdbcType="VARCHAR" property="y" />
+      <result column="z" jdbcType="VARCHAR" property="z" />
+      <result column="heading" jdbcType="VARCHAR" property="heading" />
+      <result column="pitch" jdbcType="VARCHAR" property="pitch" />
+      <result column="roll" jdbcType="VARCHAR" property="roll" />
+      <result column="ipcid" jdbcType="VARCHAR" property="ipcid" />
+      <result column="scenetype" jdbcType="VARCHAR" property="scenetype" />
+      <result column="km_start" jdbcType="INTEGER" property="kmStart" />
+      <result column="km_end" jdbcType="INTEGER" property="kmEnd" />
+      <result column="xm" jdbcType="VARCHAR" property="xm" />
+      <result column="xb" jdbcType="VARCHAR" property="xb" />
+      <result column="bz1" jdbcType="VARCHAR" property="bz1" />
+      <result column="bz2" jdbcType="VARCHAR" property="bz2" />
+      <result column="bz3" jdbcType="VARCHAR" property="bz3" />
+      <result column="bz4" jdbcType="VARCHAR" property="bz4" />
+    </collection>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, fid, `length`, width, resolving, left_x, left_y
+  </sql>
+  <select id="selectByPrimaryId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from screenresolving
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <insert id="insert" parameterType="com.data.big.model.Screenresolving">
+    insert into screenresolving (id, fid, `length`, 
+      width, resolving, left_x, 
+      left_y)
+    values (#{id,jdbcType=VARCHAR}, #{fid,jdbcType=VARCHAR}, #{length,jdbcType=VARCHAR}, 
+      #{width,jdbcType=VARCHAR}, #{resolving,jdbcType=VARCHAR}, #{leftX,jdbcType=VARCHAR}, 
+      #{leftY,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.data.big.model.Screenresolving">
+    insert into screenresolving
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="fid != null">
+        fid,
+      </if>
+      <if test="length != null">
+        `length`,
+      </if>
+      <if test="width != null">
+        width,
+      </if>
+      <if test="resolving != null">
+        resolving,
+      </if>
+      <if test="leftX != null">
+        left_x,
+      </if>
+      <if test="leftY != null">
+        left_y,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="fid != null">
+        #{fid,jdbcType=VARCHAR},
+      </if>
+      <if test="length != null">
+        #{length,jdbcType=VARCHAR},
+      </if>
+      <if test="width != null">
+        #{width,jdbcType=VARCHAR},
+      </if>
+      <if test="resolving != null">
+        #{resolving,jdbcType=VARCHAR},
+      </if>
+      <if test="leftX != null">
+        #{leftX,jdbcType=VARCHAR},
+      </if>
+      <if test="leftY != null">
+        #{leftY,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+
+  <select id="findAll" parameterType="com.data.big.model.Screenresolving" resultMap="BaseResultMap">
+    select
+    s.*,ipc.id screenresolvingId, ipc.x, ipc.y, ipc.z, ipc.heading, ipc.pitch, ipc.roll, ipc.ipcid, ipc.scenetype, ipc.km_start, ipc.km_end, ipc.xm, ipc.xb, ipc.bz1,
+    ipc.bz2, ipc.bz3, ipc.bz4
+    from screenresolving s
+    left join  ipcseelocation ipc on s.fid=ipc.id
+    <where>
+      <if test="id != null">
+      and s.id =  #{id,jdbcType=VARCHAR}
+      </if>
+      <if test="fid != null">
+      and s.fid =  #{fid,jdbcType=VARCHAR}
+      </if>
+      <if test="length != null">
+       and s.length =  #{length,jdbcType=VARCHAR}
+      </if>
+      <if test="width != null">
+       and s.width = #{width,jdbcType=VARCHAR}
+      </if>
+      <if test="resolving != null">
+       and s.resolving = #{resolving,jdbcType=VARCHAR}
+      </if>
+      <if test="leftX != null">
+       and s.leftX =  #{leftX,jdbcType=VARCHAR}
+      </if>
+      <if test="leftY != null">
+       and s.leftY = #{leftY,jdbcType=VARCHAR}
+      </if>
+    </where>
+  </select>
+</mapper>

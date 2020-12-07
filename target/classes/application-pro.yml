@@ -58,6 +58,10 @@ logging:
 
 sendFileCron:
   "0 0/5 * * * ?"
+
+sendImgFileCron:
+  "0 0/2 * * * ?"
+
 getANBAO3:
   url: "http://10.3.64.10/video_aj/ssmisbdwebservice.asmx"
   #从右到左 表示 年 月 日 时 分 秒    0 0 0/1 * * ? 表示每小时0分0秒执行一次     0 20 0 0/1 * ? 表示每天0点20分0秒 执行
@@ -140,9 +144,9 @@ queryTaskTime: "0 0/5 * * * ?"
 
 #向大数据中心发送数据
 #发送视频文件
-sendFileUrl: "http://10.3.78.188:1280/file-access/v1/tlzhspjkxt"
-token: "451372063468f978d84f31fbbbe85d10"
-fid: "1565"
+sendFileUrl: "http://10.3.78.188:1280/file-access/v1/tlzhspjkxtVgen"
+token: "0e4e6ae9351e5d657b63406716ca2e9a"
+fid: "1738"
 saveFileUrl: "D:/fileUpload/"
 #发送摄像头资产信息
 sendAddTableUrl: "http://10.3.78.188:1280/data-access/v1/auto_tlzhspjkxtjghsj?tableName=ipc"

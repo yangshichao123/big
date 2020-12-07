@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.data.big.mapper.VideoTypeMapper">
+    <resultMap id="BaseResultMap" type="com.data.big.model.VideoType">
+        <id column="id" jdbcType="VARCHAR" property="id"/>
+        <result column="ipcid" jdbcType="VARCHAR" property="ipcid"/>
+        <result column="tag" jdbcType="VARCHAR" property="tag"/>
+        <result column="rktime" jdbcType="TIMESTAMP" property="rktime"/>
+        <result column="video_file_id" jdbcType="VARCHAR" property="videoFileId"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, ipcid, tag, rktime, video_file_id
+  </sql>
+    <select id="selectByPrimaryId" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from video_type
+        where id = #{id,jdbcType=VARCHAR}
+    </select>
+    <insert id="insert" parameterType="com.data.big.model.VideoType">
+        insert into video_type (id, ipcid, tag,
+        rktime, video_file_id)
+         values (#{id,jdbcType=VARCHAR}, #{ipcid,jdbcType=VARCHAR}, #{tag,jdbcType=VARCHAR},
+         #{rktime,jdbcType=TIMESTAMP}, #{videoFileId,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" parameterType="com.data.big.model.VideoType">
+        insert into video_type
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="ipcid != null">
+                ipcid,
+            </if>
+            <if test="tag != null">
+                tag,
+            </if>
+            <if test="rktime != null">
+                rktime,
+            </if>
+            <if test="videoFileId != null">
+                video_file_id,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="ipcid != null">
+                #{ipcid,jdbcType=VARCHAR},
+            </if>
+            <if test="tag != null">
+                #{tag,jdbcType=VARCHAR},
+            </if>
+            <if test="rktime != null">
+                #{rktime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="videoFileId != null">
+                #{videoFileId,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <insert id="saveAll" parameterType="com.data.big.model.VideoType">
+        insert into video_type
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            id,
+            ipcid,
+            tag,
+            video_file_id
+        </trim>
+        values
+        <foreach collection="list" item="item" index="index" separator=",">
+            <trim prefix="(" suffix=")" >
+                UUID(),
+                #{item.ipcid,jdbcType=VARCHAR},
+                #{item.tag,jdbcType=VARCHAR},
+                #{item.videoFileId,jdbcType=VARCHAR}
+            </trim>
+        </foreach>
+    </insert>
+
+
+    <update id="updateAll" parameterType="list">
+        update
+        video_type
+        <trim prefix="set" suffixOverrides=",">
+            <trim prefix="ipcid =case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                    <if test="item.ipcid!=null">
+                        when id=#{item.id}
+                        then #{item.ipcid}
+                    </if>
+                </foreach>
+            </trim>
+
+            <trim prefix="tag =case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                    <if test="item.tag!=null">
+                        when id=#{item.id}
+                        then #{item.tag}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="video_file_id =case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                    <if test="item.videoFileId!=null">
+                        when id=#{item.id}
+                        then #{item.videoFileId}
+                    </if>
+                </foreach>
+            </trim>
+        </trim>
+        where id in
+        <foreach collection="list" item="item" index="index" separator="," open="(" close=")">
+            #{item.id}
+        </foreach>
+    </update>
+    <delete id="deleteAll" parameterType="com.data.big.model.VideoType">
+        delete from video_type where id in
+        <foreach collection="list" item="item" index="index" separator="," open="(" close=")">
+            #{item.id}
+        </foreach>
+
+    </delete>
+    <select id="selectVideoTypeAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        vt.id,vt.ipcid,d1.descs tag ,vt.video_file_id
+        from video_type vt
+       /* left join  video_tag vg on vt.tag=vg.id
+        left join dictionary d on vg.tag=d.id*/
+        left join dictionary d1 on vt.tag=d1.id
+        <where>
+            <if test="id != null">
+             and  vt.id=   #{id,jdbcType=VARCHAR}
+            </if>
+            <if test="ipcid != null">
+             and vt.ipcid=   #{ipcid,jdbcType=VARCHAR}
+            </if>
+            <if test="tag != null">
+              and vt.tag=  #{tag,jdbcType=VARCHAR}
+            </if>
+            <if test="rktime != null">
+              and vt.rktime=  #{rktime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="videoFileId != null">
+             and vt.video_file_id=   #{videoFileId,jdbcType=VARCHAR}
+            </if>
+        </where>
+
+    </select>
+</mapper>

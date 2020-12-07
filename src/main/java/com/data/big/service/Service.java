@@ -2,6 +2,7 @@ package com.data.big.service;
 
 
 import com.data.big.model.*;
+import com.data.big.vo.Message;
 import org.apache.cxf.endpoint.Client;
 
 import java.util.List;
@@ -15,20 +16,20 @@ public interface Service {
      *
      * @return map
      */
-    Map GetCameraInfo();
+    Message GetCameraInfo();
     /**
      * 获取 摄像机资产信息
      *
      * @return map
      */
-    Map GetCamera();
+    Message GetCamera();
 
     /**
      * 获取节点信息
      *
      * @return
      */
-    Map GetNodeInfo();
+    Message GetNodeInfo();
 
     /**
      * 获取服务器信息
@@ -150,6 +151,12 @@ public interface Service {
     public List<Map<String,Object>> sendFile(String sendUrl, String fileUrl, String authorization);
 
 
+    /**
+     * 发送图片文件
+     *
+     * @return
+     */
+    Message sendImgFile();
     /**
      * 删除已经上传得文件
      */
@@ -333,7 +340,7 @@ public interface Service {
      * @param endTime 结束时间
      * @return
      */
-    Map<String,Object> getVideoRecordPage(String videoType, String cameraType, String cameraName, String startTime, String endTime,String  stutas,String pageIndex,String pageSize);
+    Map<String,Object> getVideoRecordPage(String videoTypeTag,String videoType, String cameraType, String cameraName, String startTime, String endTime,String  stutas,String pageIndex,String pageSize);
 
 
     /**
@@ -444,4 +451,5 @@ public interface Service {
      * @return
      */
     Map<String,Object> getVideoTag(VideoTag videoTag, String pageIndex, String pageSize);
+
 }

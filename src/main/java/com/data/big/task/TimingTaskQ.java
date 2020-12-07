@@ -5,6 +5,7 @@
 //import com.data.big.util.DateFormatHelper;
 //import com.data.big.util.DateUtils;
 //import com.data.big.util.Properties;
+//import com.data.big.vo.Message;
 //import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.context.annotation.Bean;
 //import org.springframework.scheduling.TaskScheduler;
@@ -41,6 +42,12 @@
 //    private void sendFile() {
 //        System.out.println(DateFormatHelper.date2String(new Date(), "mm:ss") + " 44444444444444444444444");
 //        List<Map<String,Object>> maps = service.sendFile("", "", "");
+//
+//    }
+//    // @Scheduled(cron="* * 0/1 * * ?")
+//    @Scheduled(cron = "${sendImgFileCron}")
+//    private void sendImgFile() {
+//        Message message = service.sendImgFile();
 //
 //    }
 //

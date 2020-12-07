@@ -6,9 +6,10 @@
     <result column="type" jdbcType="VARCHAR" property="type" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="DESCS" jdbcType="VARCHAR" property="descs" />
+    <result column="sort" jdbcType="INTEGER" property="sort" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, `type`, `name`, DESCS
+    id, `type`, `name`, DESCS, sort
   </sql>
   <select id="selectByPrimaryId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -18,9 +19,9 @@
   </select>
   <insert id="insert" parameterType="com.data.big.model.Dictionary">
     insert into dictionary (id, `type`, `name`, 
-      DESCS)
+      DESCS, sort)
     values (#{id,jdbcType=INTEGER}, #{type,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
-      #{descs,jdbcType=VARCHAR})
+      #{descs,jdbcType=VARCHAR}, #{sort,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.data.big.model.Dictionary">
     insert into dictionary
@@ -37,6 +38,9 @@
       <if test="descs != null">
         DESCS,
       </if>
+      <if test="sort != null">
+        sort,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -51,6 +55,10 @@
       <if test="descs != null">
         #{descs,jdbcType=VARCHAR},
       </if>
+      <if test="sort != null">
+        #{sort,jdbcType=INTEGER},
+      </if>
     </trim>
   </insert>
+
 </mapper>
