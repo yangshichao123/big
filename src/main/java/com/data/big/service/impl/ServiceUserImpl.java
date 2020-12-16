@@ -59,7 +59,7 @@ public class ServiceUserImpl implements ServiceUser {
                 map.put("status", 0);
                 map.put("message", "登陆成功");
                 map.put("data", user3);
-                Token token = this.addToken( user3.getId());
+                Token token = this.addToken(user3.getId());
                 request.getSession().setAttribute("userId", user3.getId());
                 user3.setToken(token);
             } else {
@@ -74,8 +74,8 @@ public class ServiceUserImpl implements ServiceUser {
         return map;
     }
 
-    private Token  addToken(String userId) {
-        User user1=new User();
+    private Token addToken(String userId) {
+        User user1 = new User();
         user1.setId(userId);
         String token = TokenProccessor.getInstance().makeToken();
         Token tok = new Token();
@@ -155,11 +155,11 @@ public class ServiceUserImpl implements ServiceUser {
 
     @Override
     public Map<String,String> judgeTokenIsEqual(String token, String userId) {
-        Map<String,String > map = new HashMap<>();
+        Map<String,String> map = new HashMap<>();
         try {
             HashMapHelper.loginUserLock.readLock().lock();
             User user = HashMapHelper.loginUser.get(userId);
-            if(user==null){
+            if (user == null) {
                 map.put("status", "1");
                 map.put("message", "token已过期 请重新获取有效token");
                 return map;
@@ -173,19 +173,20 @@ public class ServiceUserImpl implements ServiceUser {
         }
         return map;
     }
+
     @Override
     public Map<String,Object> getToken(User user) {
         Map<String,Object> map = new HashMap<>();
         Token token = this.addToken(user.getId());
-        if(token==null||StringUtils.isEmpty(token.getToken())){
+        if (token == null || StringUtils.isEmpty(token.getToken())) {
             map.put("status", 1);
             map.put("message", "获取失败请重试！");
-        }else{
+        } else {
             map.put("status", 0);
             map.put("message", "获取成功！");
             map.put("data", token);
         }
-        log.info("用户:"+user.getId() +" 重新获取token值");
+        log.info("用户:" + user.getId() + " 重新获取token值");
         return map;
     }
 

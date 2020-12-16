@@ -7,6 +7,7 @@ import com.data.big.vo.Message;
 public interface ServiceMap {
     /**
      * 添加摄像机位置
+     *
      * @param ipcseelocation
      * @return
      */
@@ -14,6 +15,7 @@ public interface ServiceMap {
 
     /**
      * 修改摄像机位置
+     *
      * @param ipcseelocation
      * @return
      */
@@ -21,6 +23,7 @@ public interface ServiceMap {
 
     /**
      * 删除摄像机位置
+     *
      * @param ipcseelocation
      * @return
      */
@@ -28,6 +31,7 @@ public interface ServiceMap {
 
     /**
      * 获取摄像机位置
+     *
      * @param ipcseelocation
      * @return
      */
@@ -35,6 +39,7 @@ public interface ServiceMap {
 
     /**
      * 添加屏幕分别率
+     *
      * @param screenresolving
      * @return
      */
@@ -42,6 +47,7 @@ public interface ServiceMap {
 
     /**
      * 修改屏幕分别率
+     *
      * @param screenresolving
      * @return
      */
@@ -49,6 +55,7 @@ public interface ServiceMap {
 
     /**
      * 删除屏幕分别率
+     *
      * @param screenresolving
      * @return
      */
@@ -56,6 +63,7 @@ public interface ServiceMap {
 
     /**
      * 获取屏幕分辨率
+     *
      * @param screenresolving
      * @return
      */

@@ -20,30 +20,30 @@ public class taskThread {
 
     public taskThread(ApplicationContext applicationContext) {
         taskThread.applicationContext = applicationContext;
-        service= (Service)applicationContext.getBean("Service");
-        serviceNetty= (ServiceNetty)applicationContext.getBean("ServiceNetty");
+        service = (Service) applicationContext.getBean("Service");
+        serviceNetty = (ServiceNetty) applicationContext.getBean("ServiceNetty");
         this.execuid();
     }
 
     private void execuid() {
 
         String nettyStartOrNot = Properties.getNettyStartOrNot();
-        if("false".equals(nettyStartOrNot)){
+        if ("false".equals(nettyStartOrNot)) {
             return;
         }
         new Thread(() -> {
             while (true) {
-                GwaqscJxglServicePortType portType=null;
+                GwaqscJxglServicePortType portType = null;
                 try {
                     FZMap.clientTokenLock.readLock().lock();
-                    portType=(GwaqscJxglServicePortType) FZMap.clientToken.get("GW");
+                    portType = (GwaqscJxglServicePortType) FZMap.clientToken.get("GW");
 
                 } catch (Exception e) {
                     logger.error(e.getMessage(), e);
                 } finally {
                     FZMap.clientTokenLock.readLock().unlock();
                 }
-                if(portType==null){
+                if (portType == null) {
                     service.getportType();
                 }
 

@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.data.big.mapper.TaskDoorMapper">
+  <resultMap id="BaseResultMap" type="com.data.big.model.TaskDoor">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="f_jwtdmid" jdbcType="VARCHAR" property="fJwtdmid" />
+    <result column="table_id" jdbcType="VARCHAR" property="tableId" />
+    <result column="kssj" jdbcType="VARCHAR" property="kssj" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="ipcid" jdbcType="VARCHAR" property="ipcid" />
+    <result column="tdmname" jdbcType="VARCHAR" property="tdmname" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, f_jwtdmid, table_id, kssj, `status`, `type`,tdmname
+  </sql>
+  <select id="selectByPrimaryId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from task_door
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="getAllByStatus" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select t.*,d.ipcid
+    from task_door t
+    left join dooripcrelation d on t.tdmname like concat('%',d.bh,'%')
+    where t.status='0'
+  </select>
+
+
+  <update id="updateAllStatus" parameterType="list">
+    update
+    task_door
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="status =case" suffix="end,">
+        <foreach collection="list" item="item" index="index">
+          <if test="item.status!=null">
+            when id=#{item.id}
+            then #{item.status}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="tdmname =case" suffix="end,">
+        <foreach collection="list" item="item" index="index">
+          <if test="item.tdmname!=null">
+            when id=#{item.id}
+            then #{item.tdmname}
+          </if>
+        </foreach>
+      </trim>
+
+    </trim>
+    where id in
+    <foreach collection="list" item="item" index="index" separator="," open="(" close=")">
+      #{item.id}
+    </foreach>
+  </update>
+
+  <insert id="insert" parameterType="com.data.big.model.TaskDoor">
+    insert into task_door (id, f_jwtdmid, table_id, 
+      kssj, `status`, `type`,tdmname)
+    values (#{id,jdbcType=INTEGER}, #{fJwtdmid,jdbcType=VARCHAR}, #{tableId,jdbcType=VARCHAR}, 
+      #{kssj,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{tdmname,jdbcType=VARCHAR})
+  </insert>
+  <insert id="saveAll" parameterType="com.data.big.model.TaskDoor">
+    replace into task_door ( f_jwtdmid, table_id,
+      kssj, `status`, `type`,tdmname)
+    values
+    <foreach collection="list" item="taskDoor" separator=",">
+      (
+      #{taskDoor.fJwtdmid,jdbcType=VARCHAR}, #{taskDoor.tableId,jdbcType=VARCHAR},
+      #{taskDoor.kssj,jdbcType=VARCHAR}, #{taskDoor.status,jdbcType=VARCHAR}, #{taskDoor.type,jdbcType=VARCHAR},
+      #{taskDoor.tdmname,jdbcType=VARCHAR}
+      )
+    </foreach>
+
+  </insert>
+  <insert id="insertSelective" parameterType="com.data.big.model.TaskDoor">
+    insert into task_door
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="fJwtdmid != null">
+        f_jwtdmid,
+      </if>
+      <if test="tableId != null">
+        table_id,
+      </if>
+      <if test="kssj != null">
+        kssj,
+      </if>
+      <if test="status != null">
+        `status`,
+      </if>
+      <if test="type != null">
+        `type`,
+      </if>
+      <if test="tdmname != null">
+        tdmname,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="fJwtdmid != null">
+        #{fJwtdmid,jdbcType=VARCHAR},
+      </if>
+      <if test="tableId != null">
+        #{tableId,jdbcType=VARCHAR},
+      </if>
+      <if test="kssj != null">
+        #{kssj,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="tdmname != null">
+        #{tdmname,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

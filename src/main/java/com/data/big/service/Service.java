@@ -17,6 +17,7 @@ public interface Service {
      * @return map
      */
     Message GetCameraInfo();
+
     /**
      * 获取 摄像机资产信息
      *
@@ -157,6 +158,7 @@ public interface Service {
      * @return
      */
     Message sendImgFile();
+
     /**
      * 删除已经上传得文件
      */
@@ -188,14 +190,16 @@ public interface Service {
 
     /**
      * 返回所有的方法名称类型
+     *
      * @return
      */
     List<MethodType> getMethodName();
 
     /**
      * 添加查询任务
+     *
      * @param startTime 开始时间
-     * @param endTime  结束时间
+     * @param endTime   结束时间
      * @param methodId  查询方法id
      * @return
      */
@@ -210,45 +214,52 @@ public interface Service {
 
     /**
      * 添加摄像机对应的公里标
-     * @param videoKilometer  摄像机参数类
+     *
+     * @param videoKilometer 摄像机参数类
      * @return
      */
     Map<String,String> addVideoKilometer(VideoKilometer videoKilometer);
 
     /**
      * 1、	晃车数据
+     *
      * @param qsrq 检测起始日期 yyyy-MM-dd
      * @param jsrq 检测终止日期yyyy-MM-dd
      * @param cxdj 超限等级（1、2、3、4）
      * @return
      */
-    Map<String,String> getHcsj(String qsrq, String jsrq, String cxdj,String xm,String page,String rows);
+    Map<String,String> getHcsj(String qsrq, String jsrq, String cxdj, String xm, String page, String rows);
 
     /**
      * 2、	施工计划
+     *
      * @param qsrq 检测起始日期 yyyy-MM-dd
      * @param jsrq 检测终止日期yyyy-MM-dd
      * @return
      */
-    Map<String,String> getSgjh(String qsrq, String jsrq,String xm);
+    Map<String,String> getSgjh(String qsrq, String jsrq, String xm);
+
     /**
      * 3、	维修计划
+     *
      * @param qsrq 检测起始日期 yyyy-MM-dd
      * @param jsrq 检测终止日期yyyy-MM-dd
      * @return
      */
-    Map<String,String> getWxjh(String qsrq, String jsrq,String xm);
+    Map<String,String> getWxjh(String qsrq, String jsrq, String xm);
 
     /**
      * 旅服 预警信息
+     *
      * @param beginTime 开始时间
-     * @param endTime  结束时间
+     * @param endTime   结束时间
      * @return
      */
     Map<String,Object> queryCurrentDayWarningData(String beginTime, String endTime);
 
     /**
      * 旅服 下载文件
+     *
      * @param sourceUrl 源文件
      * @param targetUrl 保存位置
      */
@@ -256,11 +267,12 @@ public interface Service {
 
     /**
      * 添加视频下载任务
-     * @param videoCode 摄像机code
-     * @param benginTime  下载开始时间
-     * @param endTime 下载结束时间
+     *
+     * @param videoCode    摄像机code
+     * @param benginTime   下载开始时间
+     * @param endTime      下载结束时间
      * @param intervalTime 添加任务间隔时间  单位为 天
-     * @param timeRange  任务执行 到几号结束
+     * @param timeRange    任务执行 到几号结束
      * @return
      */
     Map<String,String> addVideoTask(String videoCode, String benginTime, String endTime, String intervalTime, String timeRange);
@@ -273,25 +285,30 @@ public interface Service {
 
     /**
      * 以半小时为单位 存时间
+     *
      * @param dateK
      * @param dateJ
      * @return
      */
-    List<String > getTime(String dateK,String dateJ);
+    List<String> getTime(String dateK, String dateJ);
 
     /**
      * 查询摄像头资产信息
+     *
      * @return
      */
     Map<String,Object> getCamerainfoList();
+
     /**
      * 查询摄像头资产信息 分页
+     *
      * @return
      */
-    Map<String,Object> getCamerainfoListPage(Camera camera,String pageIndex, String pageSize);
+    Map<String,Object> getCamerainfoListPage(Camera camera, String pageIndex, String pageSize);
 
     /**
      * 根据公里标查询摄像机信息
+     *
      * @param kMark
      * @return
      */
@@ -299,22 +316,25 @@ public interface Service {
 
     /**
      * 向大数据中心添加摄像头资产信息
+     *
      * @return
      */
     Map<String,Object> addTable();
 
     /**
      * 从京张高铁现场直接获取实时或历史视频播放。
-     * @param ipcid 摄像机id
-     * @param type 视频类型
+     *
+     * @param ipcid     摄像机id
+     * @param type      视频类型
      * @param starttime 开始时间
-     * @param endtime  结束时间
+     * @param endtime   结束时间
      * @return
      */
     String videoPlayOpen(String ipcid, String type, String starttime, String endtime);
 
     /**
      * 查询字典表
+     *
      * @param dictionary 可根据类的属性查询
      * @return
      */
@@ -322,38 +342,42 @@ public interface Service {
 
     /**
      * 查询视频记录
-     * @param videoType 视频告警类型
+     *
+     * @param videoType  视频告警类型
      * @param cameraType 摄像机类型
      * @param cameraName 摄像机名称
-     * @param startTime 开始时间
-     * @param endTime 结束时间
+     * @param startTime  开始时间
+     * @param endTime    结束时间
      * @return
      */
     Map<String,Object> getVideoRecord(String videoType, String cameraType, String cameraName, String startTime, String endTime);
 
- /**
+    /**
      * 查询视频记录 分页查询
-     * @param videoType 视频告警类型
+     *
+     * @param videoType  视频告警类型
      * @param cameraType 摄像机类型
      * @param cameraName 摄像机名称
-     * @param startTime 开始时间
-     * @param endTime 结束时间
+     * @param startTime  开始时间
+     * @param endTime    结束时间
      * @return
      */
-    Map<String,Object> getVideoRecordPage(String videoTypeTag,String videoType, String cameraType, String cameraName, String startTime, String endTime,String  stutas,String pageIndex,String pageSize);
+    Map<String,Object> getVideoRecordPage(String videoTypeTag, String videoType, String cameraType, String cameraName, String startTime, String endTime, String stutas, String pageIndex, String pageSize);
 
 
     /**
      * 获取公务连接
      */
-    Client  getGWConnection(String url);
+    Client getGWConnection(String url);
+
     /**
      * 获取公务连接
      */
-     Map<String,String> getportType();
+    Map<String,String> getportType();
 
     /**
      * 添加摄像机标签
+     *
      * @param ipcTag 摄像机标签类
      * @return
      */
@@ -361,6 +385,7 @@ public interface Service {
 
     /**
      * 跟新摄像机标签信息
+     *
      * @param ipcTag
      * @return
      */
@@ -368,6 +393,7 @@ public interface Service {
 
     /**
      * 批量删除 摄像机标签
+     *
      * @param ids
      * @return
      */
@@ -375,13 +401,15 @@ public interface Service {
 
     /**
      * 查询摄像机标签
+     *
      * @param ipcTag
      * @return
      */
-    Map<String,Object> getIpcTag(IpcTag ipcTag,String pageIndex,String pageSize);
+    Map<String,Object> getIpcTag(IpcTag ipcTag, String pageIndex, String pageSize);
 
     /**
      * 删除 视频任务
+     *
      * @param ids
      * @return
      */
@@ -389,6 +417,7 @@ public interface Service {
 
     /**
      * 修改视频任务信息
+     *
      * @param videoFile
      * @return
      */
@@ -396,6 +425,7 @@ public interface Service {
 
     /**
      * 添加视频任务记录
+     *
      * @param videoFile
      * @return
      */
@@ -403,6 +433,7 @@ public interface Service {
 
     /**
      * 添加字典
+     *
      * @param dictionary 字典类
      * @return
      */
@@ -410,6 +441,7 @@ public interface Service {
 
     /**
      * 修改字典
+     *
      * @param dictionary 字典类
      * @return
      */
@@ -417,6 +449,7 @@ public interface Service {
 
     /**
      * 删除字典
+     *
      * @param dictionary
      * @return
      */
@@ -424,6 +457,7 @@ public interface Service {
 
     /**
      * 添加视频任务标签
+     *
      * @param videoTag
      * @return
      */
@@ -431,6 +465,7 @@ public interface Service {
 
     /**
      * 修改视频任务标签
+     *
      * @param videoTag
      * @return
      */
@@ -438,6 +473,7 @@ public interface Service {
 
     /**
      * 删除视频任务标签
+     *
      * @param ids
      * @return
      */
@@ -445,6 +481,7 @@ public interface Service {
 
     /**
      * 获取视频标签
+     *
      * @param videoTag
      * @param pageIndex
      * @param pageSize
@@ -452,4 +489,14 @@ public interface Service {
      */
     Map<String,Object> getVideoTag(VideoTag videoTag, String pageIndex, String pageSize);
 
+    /**
+     * 定时执行添加作业门任务
+     */
+    void addGWTaskDoor();
+
+    Map<String,Object> addTaskDoor();
+
+    Message findWxjh(Wxjh wxjh);
+
+    Message findSgjh(Sgjh sgjh);
 }

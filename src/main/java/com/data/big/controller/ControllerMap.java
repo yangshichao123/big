@@ -28,24 +28,24 @@ public class ControllerMap {
 
         return serviceMap.addIpcseelocation(ipcseelocation);
     }
+
     @RequestMapping("/updateIpcseelocation")
     public Message updateIpcseelocation(Ipcseelocation ipcseelocation) {
 
         return serviceMap.updateIpcseelocation(ipcseelocation);
     }
+
     @RequestMapping("/deleteIpcseelocation")
     public Message deleteIpcseelocation(Ipcseelocation ipcseelocation) {
 
         return serviceMap.deleteIpcseelocation(ipcseelocation);
     }
+
     @RequestMapping("/getIpcseelocation")
     public Message getIpcseelocation(Ipcseelocation ipcseelocation) {
 
         return serviceMap.getIpcseelocation(ipcseelocation);
     }
-
-
-
 
 
     @RequestMapping("/addScreenresolving")
@@ -59,11 +59,13 @@ public class ControllerMap {
 
         return serviceMap.updateScreenresolving(screenresolving);
     }
+
     @RequestMapping("/deleteScreenresolving")
     public Message deleteScreenresolving(Screenresolving screenresolving) {
 
         return serviceMap.deleteScreenresolving(screenresolving);
     }
+
     @RequestMapping("/getScreenresolving")
     public Message getScreenresolving(Screenresolving screenresolving) {
 

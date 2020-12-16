@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.data.big.mapper.AnalysiresultMapper">
+  <resultMap id="BaseResultMap" type="com.data.big.model.Analysiresult">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="analysiid" jdbcType="VARCHAR" property="analysiid" />
+    <result column="result" jdbcType="VARCHAR" property="result" />
+    <result column="resulturl" jdbcType="VARCHAR" property="resulturl" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="bz1" jdbcType="VARCHAR" property="bz1" />
+    <result column="bz2" jdbcType="VARCHAR" property="bz2" />
+    <result column="bz3" jdbcType="VARCHAR" property="bz3" />
+    <result column="bz4" jdbcType="VARCHAR" property="bz4" />
+    <result column="bz5" jdbcType="VARCHAR" property="bz5" />
+    <collection property="analysiresultList" ofType="com.data.big.model.Analysisvideo">
+      <id column="AnalysiresultId" jdbcType="VARCHAR" property="id" />
+      <result column="AnalysiresultType" jdbcType="VARCHAR" property="type" />
+      <result column="kssj" jdbcType="TIMESTAMP" property="kssj" />
+      <result column="jssj" jdbcType="TIMESTAMP" property="jssj" />
+      <result column="targetid" jdbcType="VARCHAR" property="targetid" />
+      <result column="rksj" jdbcType="TIMESTAMP" property="rksj" />
+      <result column="status" jdbcType="VARCHAR" property="status" />
+      <result column="algorithm" jdbcType="VARCHAR" property="algorithm" />
+      <result column="AnalysiresultBz1" jdbcType="VARCHAR" property="bz1" />
+      <result column="AnalysiresultBz2" jdbcType="VARCHAR" property="bz2" />
+      <result column="AnalysiresultBz3" jdbcType="VARCHAR" property="bz3" />
+      <result column="AnalysiresultBz4" jdbcType="VARCHAR" property="bz4" />
+      <result column="AnalysiresultBz5" jdbcType="VARCHAR" property="bz5" />
+    </collection>
+
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, analysiid, `result`, resulturl, `type`, bz1, bz2, bz3, bz4, bz5
+  </sql>
+  <select id="selectByPrimaryId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from analysiresult
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <insert id="insert" parameterType="com.data.big.model.Analysiresult">
+    insert into analysiresult (id, analysiid, `result`, 
+      resulturl, `type`, bz1, 
+      bz2, bz3, bz4, bz5
+      )
+    values (#{id,jdbcType=VARCHAR}, #{analysiid,jdbcType=VARCHAR}, #{result,jdbcType=VARCHAR}, 
+      #{resulturl,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{bz1,jdbcType=VARCHAR}, 
+      #{bz2,jdbcType=VARCHAR}, #{bz3,jdbcType=VARCHAR}, #{bz4,jdbcType=VARCHAR}, #{bz5,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.data.big.model.Analysiresult">
+    insert into analysiresult
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="analysiid != null">
+        analysiid,
+      </if>
+      <if test="result != null">
+        `result`,
+      </if>
+      <if test="resulturl != null">
+        resulturl,
+      </if>
+      <if test="type != null">
+        `type`,
+      </if>
+      <if test="bz1 != null">
+        bz1,
+      </if>
+      <if test="bz2 != null">
+        bz2,
+      </if>
+      <if test="bz3 != null">
+        bz3,
+      </if>
+      <if test="bz4 != null">
+        bz4,
+      </if>
+      <if test="bz5 != null">
+        bz5,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="analysiid != null">
+        #{analysiid,jdbcType=VARCHAR},
+      </if>
+      <if test="result != null">
+        #{result,jdbcType=VARCHAR},
+      </if>
+      <if test="resulturl != null">
+        #{resulturl,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="bz1 != null">
+        #{bz1,jdbcType=VARCHAR},
+      </if>
+      <if test="bz2 != null">
+        #{bz2,jdbcType=VARCHAR},
+      </if>
+      <if test="bz3 != null">
+        #{bz3,jdbcType=VARCHAR},
+      </if>
+      <if test="bz4 != null">
+        #{bz4,jdbcType=VARCHAR},
+      </if>
+      <if test="bz5 != null">
+        #{bz5,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+  <select id="findScreenresolving" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select  a.*,aa.id AnalysiresultId,aa.type AnalysiresultType,aa.kssj,aa.jssj,aa.targetid,aa.rksj
+    ,aa.status,aa.algorithm,aa.bz1 AnalysiresultBz1,aa.bz2 AnalysiresultBz2,aa.bz3 AnalysiresultBz3,
+    aa.bz4 AnalysiresultBz4,aa.bz5 AnalysiresultBz5
+
+    from analysiresult a
+    left join analysisvideo  aa on a.analysiid=aa.id
+    where a.id in
+    <foreach collection="list" item="id" separator="," open="(" close=")">
+      #{id,jdbcType=VARCHAR}
+    </foreach>
+  </select>
+
+  <select id="findByExample" parameterType="com.data.big.model.Analysiresult" resultMap="BaseResultMap">
+    select  a.*,aa.id AnalysiresultId,aa.type AnalysiresultType,aa.kssj,aa.jssj,aa.targetid,aa.rksj
+    ,aa.status,aa.algorithm,aa.bz1 AnalysiresultBz1,aa.bz2 AnalysiresultBz2,aa.bz3 AnalysiresultBz3,
+    aa.bz4 AnalysiresultBz4,aa.bz5 AnalysiresultBz5
+
+    from analysiresult a
+    left join analysisvideo  aa on a.analysiid=aa.id
+    left join dictionary d on aa.algorithm=d.id
+    <where>
+
+      <if test="type != null and type !=''">
+        and aa.type =  #{type,jdbcType=VARCHAR}
+      </if>
+      <if test="kssj != null ">
+        and aa.kssj >= #{kssj,jdbcType=TIMESTAMP}
+      </if>
+      <if test="jssj != null ">
+        and  #{jssj,jdbcType=TIMESTAMP} >= aa.jssj
+      </if>
+
+      <if test="algorithm != null and algorithm !=''">
+        and d.algorithm = #{algorithm,jdbcType=VARCHAR}
+      </if>
+
+      <if test="bz2 != null and bz2 !=''">
+        and aa.bz2  like concat('%',#{bz2,jdbcType=VARCHAR},'%')
+      </if>
+
+    </where>
+  </select>
+</mapper>

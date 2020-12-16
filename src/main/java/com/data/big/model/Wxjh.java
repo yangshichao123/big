@@ -5,6 +5,7 @@ import lombok.Data;
 import javax.persistence.Id;
 import javax.persistence.NamedNativeQueries;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import java.io.Serializable;
 @Table(name = "wxjh")
 @Data
@@ -141,6 +142,15 @@ public class Wxjh implements Serializable {
      * @mbg.generated Tue Oct 13 08:57:55 CST 2020
      */
     private static final long serialVersionUID = 1L;
-
+    /**
+     * 第几页
+     */
+    @Transient
+    private String pageIndex;
+    /**
+     * 每页个数
+     */
+    @Transient
+    private String pageSize;
 
 }

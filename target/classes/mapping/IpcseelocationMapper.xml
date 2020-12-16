@@ -234,10 +234,10 @@
       and ipc.scenetype  like concat('%',#{scenetype,jdbcType=VARCHAR},'%')
       </if>
       <if test="kmStart != null">
-      and ipc.kmStart =  #{kmStart,jdbcType=INTEGER}
+      and ipc.kmStart =  #{km_start,jdbcType=INTEGER}
       </if>
       <if test="kmEnd != null">
-       and ipc.kmEnd = #{kmEnd,jdbcType=INTEGER}
+       and ipc.kmEnd = #{km_End,jdbcType=INTEGER}
       </if>
       <if test="xm != null">
       and ipc.xm =  #{xm,jdbcType=VARCHAR}
@@ -258,7 +258,7 @@
       and ipc.bz4 =  #{bz4,jdbcType=VARCHAR}
       </if>
     </where>
-
+    order  by ipc.km_start
   </select>
   <select id="findScreenresolving" parameterType="com.data.big.model.Ipcseelocation" resultMap="BaseResultMap">
     select

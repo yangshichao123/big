@@ -192,7 +192,7 @@ public class Properties {
      */
     private static String wsdlUrl;
     /**
-     *  命名空间
+     * 命名空间
      */
     private static String wsdlNamespace;
     /**
@@ -249,266 +249,298 @@ public class Properties {
     public static String getUserTokenEnable() {
         return userTokenEnable;
     }
+
     @Value("${user.tokenEnable}")
-    public  void setUserTokenEnable(String userTokenEnable) {
+    public void setUserTokenEnable(String userTokenEnable) {
         Properties.userTokenEnable = userTokenEnable;
     }
 
     public static int getUserTokenOutTime() {
         return userTokenOutTime;
     }
+
     @Value("${user.tokenOutTime}")
-    public  void setUserTokenOutTime(int userTokenOutTime) {
+    public void setUserTokenOutTime(int userTokenOutTime) {
         Properties.userTokenOutTime = userTokenOutTime;
     }
 
     public static String getFzUrl() {
         return fzUrl;
     }
+
     @Value("${fz.url}")
-    public  void setFzUrl(String fzUrl) {
+    public void setFzUrl(String fzUrl) {
         Properties.fzUrl = fzUrl;
     }
 
     public static String getFzUserName() {
         return fzUserName;
     }
+
     @Value("${fz.userName}")
-    public  void setFzUserName(String fzUserName) {
+    public void setFzUserName(String fzUserName) {
         Properties.fzUserName = fzUserName;
     }
 
     public static String getFzPassWord() {
         return fzPassWord;
     }
+
     @Value("${fz.passWord}")
-    public  void setFzPassWord(String fzPassWord) {
+    public void setFzPassWord(String fzPassWord) {
         Properties.fzPassWord = fzPassWord;
     }
 
     public static String getVideoPlayOpenUrl() {
         return videoPlayOpenUrl;
     }
+
     @Value("${videoPlayOpenUrl}")
-    public  void setVideoPlayOpenUrl(String videoPlayOpenUrl) {
+    public void setVideoPlayOpenUrl(String videoPlayOpenUrl) {
         Properties.videoPlayOpenUrl = videoPlayOpenUrl;
     }
 
     public static String getSendAddTableUrl() {
         return sendAddTableUrl;
     }
+
     @Value("${sendAddTableUrl}")
-    public  void setSendAddTableUrl(String sendAddTableUrl) {
+    public void setSendAddTableUrl(String sendAddTableUrl) {
         Properties.sendAddTableUrl = sendAddTableUrl;
     }
-
 
 
     public static String getAuthorization() {
         return Authorization;
     }
+
     @Value("${Authorization}")
-    public  void setAuthorization(String authorization) {
+    public void setAuthorization(String authorization) {
         Authorization = authorization;
     }
 
     public static String getLfUrl() {
         return lfUrl;
     }
+
     @Value("${lf.url}")
-    public  void setLfUrl(String lfUrl) {
+    public void setLfUrl(String lfUrl) {
         Properties.lfUrl = lfUrl;
     }
 
     public static String getLfSaveAddress() {
         return lfSaveAddress;
     }
+
     @Value("${lf.saveAddress}")
-    public  void setLfSaveAddress(String lfSaveAddress) {
+    public void setLfSaveAddress(String lfSaveAddress) {
         Properties.lfSaveAddress = lfSaveAddress;
     }
 
     public static String getWsdlUrl() {
         return wsdlUrl;
     }
+
     @Value("${gw.wsdlUrl}")
-    public  void setWsdlUrl(String wsdlUrl) {
+    public void setWsdlUrl(String wsdlUrl) {
         Properties.wsdlUrl = wsdlUrl;
     }
 
     public static String getWsdlNamespace() {
         return wsdlNamespace;
     }
+
     @Value("${gw.wsdlNamespace}")
-    public  void setWsdlNamespace(String wsdlNamespace) {
+    public void setWsdlNamespace(String wsdlNamespace) {
         Properties.wsdlNamespace = wsdlNamespace;
     }
 
     public static String getWsdlName() {
         return wsdlName;
     }
+
     @Value("${gw.wsdlName}")
-    public  void setWsdlName(String wsdlName) {
+    public void setWsdlName(String wsdlName) {
         Properties.wsdlName = wsdlName;
     }
 
     public static String getNettyStartOrNot() {
         return nettyStartOrNot;
     }
+
     @Value("${netty.startOrNot}")
-    public  void setNettyStartOrNot(String nettyStartOrNot) {
+    public void setNettyStartOrNot(String nettyStartOrNot) {
         Properties.nettyStartOrNot = nettyStartOrNot;
     }
 
     public static String getVersion() {
         return version;
     }
+
     @Value("${netty.version}")
-    public  void setVersion(String version) {
+    public void setVersion(String version) {
         Properties.version = version;
     }
 
     public static String getNameAndPassword() {
         return nameAndPassword;
     }
+
     @Value("${netty.nameAndPassword}")
-    public  void setNameAndPassword(String nameAndPassword) {
+    public void setNameAndPassword(String nameAndPassword) {
         Properties.nameAndPassword = nameAndPassword;
     }
 
     public static String getNettyHost() {
         return nettyHost;
     }
+
     @Value("${netty.host}")
-    public  void setNettyHost(String nettyHost) {
+    public void setNettyHost(String nettyHost) {
         Properties.nettyHost = nettyHost;
     }
 
     public static String getNettyPost() {
         return nettyPost;
     }
+
     @Value("${netty.port}")
-    public  void setNettyPost(String nettyPost) {
+    public void setNettyPost(String nettyPost) {
         Properties.nettyPost = nettyPost;
     }
 
     public static String getSendGetCameraInfoCron() {
         return sendGetCameraInfoCron;
     }
+
     @Value("${sendGetCameraInfo.cron}")
-    public  void setSendGetCameraInfoCron(String sendGetCameraInfoCron) {
+    public void setSendGetCameraInfoCron(String sendGetCameraInfoCron) {
         Properties.sendGetCameraInfoCron = sendGetCameraInfoCron;
     }
 
     public static String getSendGetNodeInfoCron() {
         return sendGetNodeInfoCron;
     }
+
     @Value("${sendGetNodeInfo.cron}")
-    public  void setSendGetNodeInfoCron(String sendGetNodeInfoCron) {
+    public void setSendGetNodeInfoCron(String sendGetNodeInfoCron) {
         Properties.sendGetNodeInfoCron = sendGetNodeInfoCron;
     }
 
     public static String getSendGetServerInfoCron() {
         return sendGetServerInfoCron;
     }
+
     @Value("${sendGetServerInfo.cron}")
-    public  void setSendGetServerInfoCron(String sendGetServerInfoCron) {
+    public void setSendGetServerInfoCron(String sendGetServerInfoCron) {
         Properties.sendGetServerInfoCron = sendGetServerInfoCron;
     }
 
     public static String getSendGetDiskInfoCron() {
         return sendGetDiskInfoCron;
     }
+
     @Value("${sendGetDiskInfo.cron}")
-    public  void setSendGetDiskInfoCron(String sendGetDiskInfoCron) {
+    public void setSendGetDiskInfoCron(String sendGetDiskInfoCron) {
         Properties.sendGetDiskInfoCron = sendGetDiskInfoCron;
     }
 
     public static String getSendGetSwitchInfoCron() {
         return sendGetSwitchInfoCron;
     }
+
     @Value("${sendGetSwitchInfo.cron}")
-    public  void setSendGetSwitchInfoCron(String sendGetSwitchInfoCron) {
+    public void setSendGetSwitchInfoCron(String sendGetSwitchInfoCron) {
         Properties.sendGetSwitchInfoCron = sendGetSwitchInfoCron;
     }
 
     public static String getSendGetCameraAlarmCron() {
         return sendGetCameraAlarmCron;
     }
+
     @Value("${sendGetCameraAlarm.cron}")
-    public  void setSendGetCameraAlarmCron(String sendGetCameraAlarmCron) {
+    public void setSendGetCameraAlarmCron(String sendGetCameraAlarmCron) {
         Properties.sendGetCameraAlarmCron = sendGetCameraAlarmCron;
     }
 
     public static String getSendGetCameraStatusCron() {
         return sendGetCameraStatusCron;
     }
+
     @Value("${sendGetCameraStatus.cron}")
-    public  void setSendGetCameraStatusCron(String sendGetCameraStatusCron) {
+    public void setSendGetCameraStatusCron(String sendGetCameraStatusCron) {
         Properties.sendGetCameraStatusCron = sendGetCameraStatusCron;
     }
 
     public static String getSendGetServerAlarmCron() {
         return sendGetServerAlarmCron;
     }
+
     @Value("${sendGetServerAlarm.cron}")
-    public  void setSendGetServerAlarmCron(String sendGetServerAlarmCron) {
+    public void setSendGetServerAlarmCron(String sendGetServerAlarmCron) {
         Properties.sendGetServerAlarmCron = sendGetServerAlarmCron;
     }
 
     public static String getSendGetServerStatusCron() {
         return sendGetServerStatusCron;
     }
+
     @Value("${sendGetServerStatus.cron}")
-    public  void setSendGetServerStatusCron(String sendGetServerStatusCron) {
+    public void setSendGetServerStatusCron(String sendGetServerStatusCron) {
         Properties.sendGetServerStatusCron = sendGetServerStatusCron;
     }
 
     public static String getSendGetDiskAlarmCron() {
         return sendGetDiskAlarmCron;
     }
+
     @Value("${sendGetDiskAlarm.cron}")
-    public  void setSendGetDiskAlarmCron(String sendGetDiskAlarmCron) {
+    public void setSendGetDiskAlarmCron(String sendGetDiskAlarmCron) {
         Properties.sendGetDiskAlarmCron = sendGetDiskAlarmCron;
     }
 
     public static String getSendGeDiskStatusCron() {
         return sendGeDiskStatusCron;
     }
+
     @Value("${sendGeDiskStatus.cron}")
-    public  void setSendGeDiskStatusCron(String sendGeDiskStatusCron) {
+    public void setSendGeDiskStatusCron(String sendGeDiskStatusCron) {
         Properties.sendGeDiskStatusCron = sendGeDiskStatusCron;
     }
 
     public static String getSendGetSwitchAlarmCron() {
         return sendGetSwitchAlarmCron;
     }
+
     @Value("${sendGetSwitchAlarm.cron}")
-    public  void setSendGetSwitchAlarmCron(String sendGetSwitchAlarmCron) {
+    public void setSendGetSwitchAlarmCron(String sendGetSwitchAlarmCron) {
         Properties.sendGetSwitchAlarmCron = sendGetSwitchAlarmCron;
     }
 
     public static String getSendGetSwitchStatusCron() {
         return sendGetSwitchStatusCron;
     }
+
     @Value("${sendGetSwitchStatus.cron}")
-    public  void setSendGetSwitchStatusCron(String sendGetSwitchStatusCron) {
+    public void setSendGetSwitchStatusCron(String sendGetSwitchStatusCron) {
         Properties.sendGetSwitchStatusCron = sendGetSwitchStatusCron;
     }
 
     public static String getSendGetIVSAlarmCron() {
         return sendGetIVSAlarmCron;
     }
+
     @Value("${sendGetIVSAlarm.cron}")
-    public  void setSendGetIVSAlarmCron(String sendGetIVSAlarmCron) {
+    public void setSendGetIVSAlarmCron(String sendGetIVSAlarmCron) {
         Properties.sendGetIVSAlarmCron = sendGetIVSAlarmCron;
     }
 
     public static String getAnbao3Name() {
         return anbao3Name;
     }
+
     @Value("${getANBAO3.name}")
-    public  void setAnbao3Name(String anbao3Name) {
+    public void setAnbao3Name(String anbao3Name) {
         Properties.anbao3Name = anbao3Name;
     }
 
@@ -715,8 +747,9 @@ public class Properties {
     public static String getGetDataCron() {
         return getDataCron;
     }
+
     @Value("${alarmSelectTime.cron}")
-    public  void setGetDataCron(String getDataCron) {
+    public void setGetDataCron(String getDataCron) {
         Properties.getDataCron = getDataCron;
     }
 }

@@ -22,105 +22,109 @@ public class ControllerTest {
 
     @Autowired
     private Service service;
+
     //@RequestMapping(value = "/queryCurrentDayWarningData" , method = RequestMethod.POST)
     @PostMapping("/queryCurrentDayWarningData")
     @ResponseBody
-    public Map<String,Object> queryCurrentDayWarningData(@RequestParam Map<String ,Object> map) {
-        Map<String ,Object> mm=new HashMap<>();
-        mm.put("status","200");
-        String  beginTime =(String)map.get("beginTime");
-        String  endTime =(String)map.get("endTime");
-        String  ipcid =(String)map.get("ipcid");
-        String  type =(String)map.get("type");
-        String  starttime =(String)map.get("starttime");
-        String  endtime =(String)map.get("endtime");
-        System.out.println("ipcid: "+ipcid+" type: "+type+" starttime "+starttime+" endtime "+endtime);
-        Map<String,Object> mO=new HashMap<>();
-        Map<String,Object> mO1=new HashMap<>();
-        mO1.put("STATUS","4");
-        mO1.put("DeptCode","00P000000000000000000000000000XiaHuaYuanBei006688");
-        mO1.put("createTime","1600838113000");
-        mO1.put("img_path","http://localhost/data/timg.jpg");
-        mO1.put("ip","10.234.61.10");
-        mO1.put("id","2");
-        mO1.put("cameraName","测试摄像机");
-        mO1.put("vid_path","http://localhost/data/2-5 Vuejs介绍.avi");
+    public Map<String,Object> queryCurrentDayWarningData(@RequestParam Map<String,Object> map) {
+        Map<String,Object> mm = new HashMap<>();
+        mm.put("status", "200");
+        String beginTime = (String) map.get("beginTime");
+        String endTime = (String) map.get("endTime");
+        String ipcid = (String) map.get("ipcid");
+        String type = (String) map.get("type");
+        String starttime = (String) map.get("starttime");
+        String endtime = (String) map.get("endtime");
+        System.out.println("ipcid: " + ipcid + " type: " + type + " starttime " + starttime + " endtime " + endtime);
+        Map<String,Object> mO = new HashMap<>();
+        Map<String,Object> mO1 = new HashMap<>();
+        mO1.put("STATUS", "4");
+        mO1.put("DeptCode", "00P000000000000000000000000000XiaHuaYuanBei006688");
+        mO1.put("createTime", "1600838113000");
+        mO1.put("img_path", "http://localhost/data/timg.jpg");
+        mO1.put("ip", "10.234.61.10");
+        mO1.put("id", "2");
+        mO1.put("cameraName", "测试摄像机");
+        mO1.put("vid_path", "http://localhost/data/2-5 Vuejs介绍.avi");
 
-        List list =new ArrayList();
-        List list1 =new ArrayList();
+        List list = new ArrayList();
+        List list1 = new ArrayList();
         list.add(mO1);
-        mO.put("yxbj",list);
-        mO.put("pdcd",list1);
-        mO.put("dbrq",list1);
-        mO.put("rynx",list1);
-        mO.put("klmd",list1);
-        mO.put("cztdnx",list1);
-        mm.put("data",mO);
-
-        return mm;
-    } @RequestMapping("/queryCurrentDayWarningData2")
-    @ResponseBody
-    public Map<String,Object> queryCurrentDayWarningData2(@RequestBody Map<String ,Object> map) {
-        Map<String ,Object> mm=new HashMap<>();
-        mm.put("status","200");
-        String  beginTime =(String)map.get("beginTime");
-        String  endTime =(String)map.get("endTime");
-        String  ipcid =(String)map.get("ipcid");
-        String  type =(String)map.get("type");
-        String  starttime =(String)map.get("starttime");
-        String  endtime =(String)map.get("endtime");
-        System.out.println("ipcid: "+ipcid+" type: "+type+" starttime "+starttime+" endtime "+endtime);
-        Map<String,Object> mO=new HashMap<>();
-        Map<String,Object> mO1=new HashMap<>();
-        mO1.put("STATUS","4");
-        mO1.put("DeptCode","00P000000000000000000000000000XiaHuaYuanBei006688");
-        mO1.put("createTime","1600838113000");
-        mO1.put("img_path","http://localhost/data/timg.jpg");
-        mO1.put("ip","10.234.61.10");
-        mO1.put("id","2");
-        mO1.put("cameraName","测试摄像机");
-        mO1.put("vid_path","http://localhost/data/2-5 Vuejs介绍.avi");
-
-        List list =new ArrayList();
-        List list1 =new ArrayList();
-        list.add(mO1);
-        mO.put("yxbj",list);
-        mO.put("pdcd",list1);
-        mO.put("dbrq",list1);
-        mO.put("rynx",list1);
-        mO.put("klmd",list1);
-        mO.put("cztdnx",list1);
-        mm.put("data",mO);
+        mO.put("yxbj", list);
+        mO.put("pdcd", list1);
+        mO.put("dbrq", list1);
+        mO.put("rynx", list1);
+        mO.put("klmd", list1);
+        mO.put("cztdnx", list1);
+        mm.put("data", mO);
 
         return mm;
     }
- @RequestMapping("/queryCurrentDayWarningData1")
-    @ResponseBody
-    public Map<String,Object> queryCurrentDayWarningData1(String ipcid,String type,String starttime,String endtime) {
-        Map<String ,Object> mm=new HashMap<>();
-        mm.put("status","200");
-        System.out.println("ipcid: "+ipcid+" type: "+type+" starttime "+starttime+" endtime "+endtime);
-        Map<String,Object> mO=new HashMap<>();
-        Map<String,Object> mO1=new HashMap<>();
-        mO1.put("STATUS","4");
-        mO1.put("DeptCode","00P000000000000000000000000000XiaHuaYuanBei006688");
-        mO1.put("createTime","1600838113000");
-        mO1.put("img_path","http://localhost/data/timg.jpg");
-        mO1.put("ip","10.234.61.10");
-        mO1.put("id","2");
-        mO1.put("cameraName","测试摄像机");
-        mO1.put("vid_path","http://localhost/data/2-5 Vuejs介绍.avi");
 
-        List list =new ArrayList();
-        List list1 =new ArrayList();
+    @RequestMapping("/queryCurrentDayWarningData2")
+    @ResponseBody
+    public Map<String,Object> queryCurrentDayWarningData2(@RequestBody Map<String,Object> map) {
+        Map<String,Object> mm = new HashMap<>();
+        mm.put("status", "200");
+        String beginTime = (String) map.get("beginTime");
+        String endTime = (String) map.get("endTime");
+        String ipcid = (String) map.get("ipcid");
+        String type = (String) map.get("type");
+        String starttime = (String) map.get("starttime");
+        String endtime = (String) map.get("endtime");
+        System.out.println("ipcid: " + ipcid + " type: " + type + " starttime " + starttime + " endtime " + endtime);
+        Map<String,Object> mO = new HashMap<>();
+        Map<String,Object> mO1 = new HashMap<>();
+        mO1.put("STATUS", "4");
+        mO1.put("DeptCode", "00P000000000000000000000000000XiaHuaYuanBei006688");
+        mO1.put("createTime", "1600838113000");
+        mO1.put("img_path", "http://localhost/data/timg.jpg");
+        mO1.put("ip", "10.234.61.10");
+        mO1.put("id", "2");
+        mO1.put("cameraName", "测试摄像机");
+        mO1.put("vid_path", "http://localhost/data/2-5 Vuejs介绍.avi");
+
+        List list = new ArrayList();
+        List list1 = new ArrayList();
         list.add(mO1);
-        mO.put("yxbj",list);
-        mO.put("pdcd",list1);
-        mO.put("dbrq",list1);
-        mO.put("rynx",list1);
-        mO.put("klmd",list1);
-        mO.put("cztdnx",list1);
-        mm.put("data",mO);
+        mO.put("yxbj", list);
+        mO.put("pdcd", list1);
+        mO.put("dbrq", list1);
+        mO.put("rynx", list1);
+        mO.put("klmd", list1);
+        mO.put("cztdnx", list1);
+        mm.put("data", mO);
+
+        return mm;
+    }
+
+    @RequestMapping("/queryCurrentDayWarningData1")
+    @ResponseBody
+    public Map<String,Object> queryCurrentDayWarningData1(String ipcid, String type, String starttime, String endtime) {
+        Map<String,Object> mm = new HashMap<>();
+        mm.put("status", "200");
+        System.out.println("ipcid: " + ipcid + " type: " + type + " starttime " + starttime + " endtime " + endtime);
+        Map<String,Object> mO = new HashMap<>();
+        Map<String,Object> mO1 = new HashMap<>();
+        mO1.put("STATUS", "4");
+        mO1.put("DeptCode", "00P000000000000000000000000000XiaHuaYuanBei006688");
+        mO1.put("createTime", "1600838113000");
+        mO1.put("img_path", "http://localhost/data/timg.jpg");
+        mO1.put("ip", "10.234.61.10");
+        mO1.put("id", "2");
+        mO1.put("cameraName", "测试摄像机");
+        mO1.put("vid_path", "http://localhost/data/2-5 Vuejs介绍.avi");
+
+        List list = new ArrayList();
+        List list1 = new ArrayList();
+        list.add(mO1);
+        mO.put("yxbj", list);
+        mO.put("pdcd", list1);
+        mO.put("dbrq", list1);
+        mO.put("rynx", list1);
+        mO.put("klmd", list1);
+        mO.put("cztdnx", list1);
+        mm.put("data", mO);
 
         return mm;
     }
@@ -576,20 +580,19 @@ public class ControllerTest {
         return "failure";
     }
 
-    @RequestMapping(value = "/addTbale", method = RequestMethod.POST )
+    @RequestMapping(value = "/addTbale", method = RequestMethod.POST)
     @ResponseBody
-    public Map addTbale(@RequestHeader("Authorization") String authorization, @RequestBody String jsonObject,@RequestBody MultipartFile files, @RequestParam("tableName") String tableName) {
-        System.out.println( authorization+"       "+ jsonObject+"    "+tableName);
-        return null;
-    }
-    @RequestMapping(value = "/addTbale1", method = RequestMethod.POST )
-    @ResponseBody
-    public Map addTbale1(@RequestHeader("Authorization") String authorization, @RequestParam("jsonObject") String jsonObject,@RequestParam("files") MultipartFile files) {
-        System.out.println( authorization+"       "+ jsonObject+"    ");
+    public Map addTbale(@RequestHeader("Authorization") String authorization, @RequestBody String jsonObject, @RequestBody MultipartFile files, @RequestParam("tableName") String tableName) {
+        System.out.println(authorization + "       " + jsonObject + "    " + tableName);
         return null;
     }
 
-
+    @RequestMapping(value = "/addTbale1", method = RequestMethod.POST)
+    @ResponseBody
+    public Map addTbale1(@RequestHeader("Authorization") String authorization, @RequestParam("jsonObject") String jsonObject, @RequestParam("files") MultipartFile files) {
+        System.out.println(authorization + "       " + jsonObject + "    ");
+        return null;
+    }
 
 
     @RequestMapping(value = "/addFiles", method = RequestMethod.POST)
@@ -656,13 +659,14 @@ public class ControllerTest {
 
         return map;
     }
+
     @PostMapping("/getGW")
-    public String getGW(String beginTime,String endTime,String cxdj,String ffName,String url) {
+    public String getGW(String beginTime, String endTime, String cxdj, String ffName, String url) {
         /*Client connection = CXFUtil.getConnection(url);
 
 
-       */
-        Client fz=null;
+         */
+        Client fz = null;
         try {
             FZMap.clientTokenLock.readLock().lock();
             fz = (Client) FZMap.clientToken.get("GW");
@@ -672,48 +676,51 @@ public class ControllerTest {
         } finally {
             FZMap.clientTokenLock.readLock().unlock();
         }
-        if(fz==null){
+        if (fz == null) {
             Client gwConnection = service.getGWConnection(url);
-            if(gwConnection==null)
-            return "没有获取到连接稍后再试！";
-            fz=gwConnection;
+            if (gwConnection == null)
+                return "没有获取到连接稍后再试！";
+            fz = gwConnection;
         }
-        List<String> list=new ArrayList<>();
+        List<String> list = new ArrayList<>();
         list.add(beginTime);
         list.add(endTime);
-        if(cxdj!=null){
+        if (cxdj != null) {
             list.add(cxdj);
         }
         list.add("京包客专");
-      //  fz.getOutInterceptors().add(new ClientLoginInterceptor("admin", "admin"));
-        String s = CXFUtil.gwAlarm(fz,list, ffName);
+        //  fz.getOutInterceptors().add(new ClientLoginInterceptor("admin", "admin"));
+        String s = CXFUtil.gwAlarm(fz, list, ffName);
 
         return s;
     }
+
     @PostMapping("/getGWConnection")
     public String getGWConnection(String url) {
         service.getGWConnection(url);
         return "";
     }
-    @PostMapping("/getGWConn1")
-    public String getGWConn1(String qsrq, String jsrq, String url,String method,String ns) {
-        Map<String,String > map=new HashMap<>();
-        map.put("qsrq",qsrq);
-        map.put("jsrq",jsrq);
-        map.put("xm","京包客专");
 
-        String s = webServiceUtils.getWebservice(url,ns,map,method);
+    @PostMapping("/getGWConn1")
+    public String getGWConn1(String qsrq, String jsrq, String url, String method, String ns) {
+        Map<String,String> map = new HashMap<>();
+        map.put("qsrq", qsrq);
+        map.put("jsrq", jsrq);
+        map.put("xm", "京包客专");
+
+        String s = webServiceUtils.getWebservice(url, ns, map, method);
         return s;
     }
+
     @PostMapping("/getGWConn2")
-    public String getGWConn2(String qsrq, String jsrq, String url,String method,String ns,String name) {
-        List list=new ArrayList();
+    public String getGWConn2(String qsrq, String jsrq, String url, String method, String ns, String name) {
+        List list = new ArrayList();
         list.add(qsrq);
         list.add(jsrq);
         list.add("京包客专");
         String s = null;
         try {
-            s = webServiceUtils.dynamicCallWebServiceByCXF(url,method,ns,name,list);
+            s = webServiceUtils.dynamicCallWebServiceByCXF(url, method, ns, name, list);
         } catch (Exception e) {
             e.printStackTrace();
         }

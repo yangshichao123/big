@@ -6,6 +6,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+
 @Slf4j
 public class DateFormatHelper {
     public static Date String2Date(String time, String format) {
@@ -16,7 +17,7 @@ public class DateFormatHelper {
             date = sdf.parse(time);
         } catch (ParseException e) {
             // TODO Auto-generated catch block
-          log.error(e.getMessage(), e);
+            log.error(e.getMessage(), e);
         }
         return date;
 

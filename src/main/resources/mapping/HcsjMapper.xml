@@ -190,7 +190,7 @@
 
   <!-- 批量插入生成的兑换码 -->
   <insert id ="insertCodeBatch" parameterType="java.util.List" >
-    insert IGNORE into hcsj (id, dwmc, xm,
+    replace  into hcsj (id, dwmc, xm,
     xbh, xb, lc, jcsj,
     jssj, czjsd, czjsdjb,
     spjsd, spjsdjb, sd,

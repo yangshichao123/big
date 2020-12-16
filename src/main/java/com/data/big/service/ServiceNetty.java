@@ -5,6 +5,7 @@ import io.netty.channel.ChannelHandlerContext;
 public interface ServiceNetty {
     /**
      * 接收数据接口
+     *
      * @param ctx
      * @param msg
      */
@@ -20,7 +21,7 @@ public interface ServiceNetty {
      */
     Boolean sendRegister();
 
-    int addVideoTask(String alarmId,String alarmNmae,String k,String startTime,String endTime);
+    int addVideoTask(String alarmId, String alarmNmae, String k, String startTime, String endTime);
 
     void addTask();
 

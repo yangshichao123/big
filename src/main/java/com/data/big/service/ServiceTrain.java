@@ -9,6 +9,7 @@ public interface ServiceTrain {
 
     /**
      * 增加列车追踪
+     *
      * @param trainloaction
      * @return
      */
@@ -16,6 +17,7 @@ public interface ServiceTrain {
 
     /**
      * 修改列车追踪
+     *
      * @param trainloaction
      * @return
      */
@@ -23,6 +25,7 @@ public interface ServiceTrain {
 
     /**
      * 删除列车追踪
+     *
      * @param trainloaction
      * @return
      */
@@ -30,6 +33,7 @@ public interface ServiceTrain {
 
     /**
      * 查询列车追踪
+     *
      * @param trainloaction
      * @return
      */

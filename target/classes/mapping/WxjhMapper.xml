@@ -48,7 +48,7 @@
     where id = #{id,jdbcType=VARCHAR}
   </select>
   <insert id="insert" parameterType="com.data.big.model.Wxjh">
-    insert into wxjh (id, bzdwmc, zylx, 
+    replace into wxjh (id, bzdwmc, zylx,
       zydj, zyrq, zysd, xm, 
       xb, qschzm, zzchzm, 
       zyqslc, zyzzlc, banci, 
@@ -286,9 +286,97 @@
        #{reddemCode.sbztw},
        #{reddemCode.status},
        #{reddemCode.zyxm},
-        #{reddemCode.fJwtdmids,jdbcType=LONGVARCHAR},#{reddemCode.fJwtdmmcs,jdbcType=LONGVARCHAR},#{reddemCode.fZhjtdmids,jdbcType=LONGVARCHAR},
-      #{reddemCode.fZhjtdmmcs,jdbcType=LONGVARCHAR},#{reddemCode.fChwtdmids,jdbcType=LONGVARCHAR},#{reddemCode.fChwtdmmcs,jdbcType=LONGVARCHAR}
+        #{reddemCode.fJwtdmids},#{reddemCode.fJwtdmmcs},#{reddemCode.fZhjtdmids},
+      #{reddemCode.fZhjtdmmcs},#{reddemCode.fChwtdmids},#{reddemCode.fChwtdmmcs}
        )
     </foreach >
   </insert >
+
+
+  <select id="findByExample" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+    select
+    w.*
+    from wxjh w
+    <where>
+      <if test="id != null">
+       and w.id = #{id,jdbcType=VARCHAR}
+      </if>
+      <if test="bzdwmc != null">
+       and w.bzdwmc  like  concat('%',#{bzdwmc,jdbcType=VARCHAR},'%')
+      </if>
+      <if test="zylx != null">
+       and w.zylx = #{zylx,jdbcType=VARCHAR}
+      </if>
+      <if test="zydj != null">
+        and w.zydj = #{zydj,jdbcType=VARCHAR}
+      </if>
+      <if test="zyrq != null">
+        and w.zyrq  like  concat('%',#{zyrq,jdbcType=VARCHAR},'%')
+
+      </if>
+      <if test="zysd != null">
+        and w.zysd  like  concat('%',#{zysd,jdbcType=VARCHAR},'%')
+      </if>
+      <if test="xm != null">
+        and w.xm  like  concat('%',#{xm,jdbcType=VARCHAR},'%')
+      </if>
+      <if test="xb != null">
+        and w.xb  like  concat('%',#{xb,jdbcType=VARCHAR},'%')
+      </if>
+      <if test="qschzm != null">
+        and w.qschzm  like  concat('%',#{qschzm,jdbcType=VARCHAR},'%')
+      </if>
+      <if test="zzchzm != null">
+        and w.zzchzm  like  concat('%',#{zzchzm,jdbcType=VARCHAR},'%')
+      </if>
+      <if test="zyqslc != null">
+       and zyqslc = #{zyqslc,jdbcType=VARCHAR}
+      </if>
+      <if test="zyzzlc != null">
+        and zyzzlc =#{zyzzlc,jdbcType=VARCHAR}
+      </if>
+      <if test="banci != null">
+        and banci = #{banci,jdbcType=VARCHAR}
+      </if>
+      <if test="zzfhr != null">
+        and w.zzfhr  like  concat('%',#{zzfhr,jdbcType=VARCHAR},'%')
+      </if>
+      <if test="gdfhr != null">
+        and w.gdfhr  like  concat('%',#{gdfhr,jdbcType=VARCHAR},'%')
+      </if>
+      <if test="yffhr != null">
+        and w.yffhr  = #{yffhr,jdbcType=VARCHAR}
+      </if>
+      <if test="dbr != null">
+        and w.dbr  like  concat('%',#{dbr,jdbcType=VARCHAR},'%')
+      </if>
+      <if test="sbztw != null">
+        and w.sbztw  =  #{sbztw,jdbcType=VARCHAR}
+      </if>
+      <if test="status != null">
+        and w.status  = #{status,jdbcType=VARCHAR}
+      </if>
+      <if test="zyxm != null">
+        and w.zyxm  like  concat('%',#{zyxm,jdbcType=VARCHAR},'%')
+      </if>
+      <if test="fJwtdmids != null">
+        and w.fJwtdmids  =   #{fJwtdmids,jdbcType=LONGVARCHAR}
+      </if>
+      <if test="fJwtdmmcs != null">
+        and w.fJwtdmmcs  like  concat('%',#{fJwtdmmcs,jdbcType=VARCHAR},'%')
+      </if>
+      <if test="fZhjtdmids != null">
+        and w.fZhjtdmids  =#{fZhjtdmids,jdbcType=LONGVARCHAR}
+      </if>
+      <if test="fZhjtdmmcs != null">
+        and w.fZhjtdmmcs  like  concat('%',#{fZhjtdmmcs,jdbcType=VARCHAR},'%')
+      </if>
+      <if test="fChwtdmids != null">
+        and w.fChwtdmids  = #{fChwtdmids,jdbcType=LONGVARCHAR}
+      </if>
+      <if test="fChwtdmmcs != null">
+        and w.fChwtdmmcs  like  concat('%',#{fChwtdmmcs,jdbcType=VARCHAR},'%')
+      </if>
+    </where>
+  </select>
 </mapper>

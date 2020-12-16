@@ -18,14 +18,14 @@ import java.util.Map;
 public class CXFUtil {
 
 
-    public static   Client  getConnection(String url) {
-        Client client=null;
+    public static Client getConnection(String url) {
+        Client client = null;
         try {
 
             JaxWsDynamicClientFactory dcf = JaxWsDynamicClientFactory.newInstance();
             String result = "";
             client = dcf.createClient(url);
-            if(client!=null){
+            if (client != null) {
                 // 设置超时单位为毫秒
                 HTTPConduit conduit = (HTTPConduit) client.getConduit();
                 HTTPClientPolicy policy = new HTTPClientPolicy();
@@ -40,12 +40,12 @@ public class CXFUtil {
             log.error(e.getMessage(), e);
             return null;
         }
-        return   client;
+        return client;
     }
 
 
     //"http://172.23.37.61:11021/ws/bigdata?wsdl"
-    public static String getKeyPair( Client client) {
+    public static String getKeyPair(Client client) {
         String result = "连接异常";
 
         Object[] objects = new Object[0];
@@ -66,7 +66,7 @@ public class CXFUtil {
         return result;
     }
 
-    public static String auth( Client client, String keyPair,  Map<String,String> map) {
+    public static String auth(Client client, String keyPair, Map<String,String> map) {
         String result = "连接异常";
 
 
@@ -124,10 +124,10 @@ public class CXFUtil {
     public static String gwAlarm(Client client, List<String> list, String ffName) {
 
         String result = "连接异常";
-        int i=list.size();
+        int i = list.size();
         Object[] objectsMap = new Object[i];
-        for (int j=0;j<list.size();j++) {
-            objectsMap[j]=list.get(j);
+        for (int j = 0; j < list.size(); j++) {
+            objectsMap[j] = list.get(j);
         }
         log.info("-----参数----\n" + objectsMap.toString());
         try {

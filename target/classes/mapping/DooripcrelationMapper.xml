@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.data.big.mapper.DooripcrelationMapper">
+  <resultMap id="BaseResultMap" type="com.data.big.model.Dooripcrelation">
+    <id column="doorid" jdbcType="VARCHAR" property="doorid" />
+    <result column="xbh" jdbcType="VARCHAR" property="xbh" />
+    <result column="xm" jdbcType="VARCHAR" property="xm" />
+    <result column="lc" jdbcType="VARCHAR" property="lc" />
+    <result column="ipcid" jdbcType="VARCHAR" property="ipcid" />
+    <result column="ipcname" jdbcType="VARCHAR" property="ipcname" />
+    <result column="bh" jdbcType="VARCHAR" property="bh" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    doorid, xbh, xm, lc, ipcid, ipcname, bh
+  </sql>
+  <select id="selectByPrimaryId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dooripcrelation
+    where doorid = #{doorid,jdbcType=VARCHAR}
+  </select>
+  <insert id="insert" parameterType="com.data.big.model.Dooripcrelation">
+    insert into dooripcrelation (doorid, xbh, xm, 
+      lc, ipcid, ipcname, 
+      bh)
+    values (#{doorid,jdbcType=VARCHAR}, #{xbh,jdbcType=VARCHAR}, #{xm,jdbcType=VARCHAR}, 
+      #{lc,jdbcType=VARCHAR}, #{ipcid,jdbcType=VARCHAR}, #{ipcname,jdbcType=VARCHAR}, 
+      #{bh,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.data.big.model.Dooripcrelation">
+    insert into dooripcrelation
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="doorid != null">
+        doorid,
+      </if>
+      <if test="xbh != null">
+        xbh,
+      </if>
+      <if test="xm != null">
+        xm,
+      </if>
+      <if test="lc != null">
+        lc,
+      </if>
+      <if test="ipcid != null">
+        ipcid,
+      </if>
+      <if test="ipcname != null">
+        ipcname,
+      </if>
+      <if test="bh != null">
+        bh,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="doorid != null">
+        #{doorid,jdbcType=VARCHAR},
+      </if>
+      <if test="xbh != null">
+        #{xbh,jdbcType=VARCHAR},
+      </if>
+      <if test="xm != null">
+        #{xm,jdbcType=VARCHAR},
+      </if>
+      <if test="lc != null">
+        #{lc,jdbcType=VARCHAR},
+      </if>
+      <if test="ipcid != null">
+        #{ipcid,jdbcType=VARCHAR},
+      </if>
+      <if test="ipcname != null">
+        #{ipcname,jdbcType=VARCHAR},
+      </if>
+      <if test="bh != null">
+        #{bh,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

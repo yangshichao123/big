@@ -1,4 +1,5 @@
 package com.data.big.controller;
+
 import com.data.big.mq.Sender;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,18 +15,19 @@ public class MqController {
 
     @GetMapping("/sendDirectQueue")
     public Object sendDirectQueue() {
-       // sender.sendDirectQueue();
+        // sender.sendDirectQueue();
         return "ok";
     }
+
     @GetMapping("/sendTopic")
     public Object sendTopic() {
-       // sender.sendTopic();
+        // sender.sendTopic();
         return "ok";
     }
 
     @GetMapping("/sendFanout")
     public Object sendFanout() {
-       // sender.sendFanout();
+        // sender.sendFanout();
         return "ok";
     }
 }

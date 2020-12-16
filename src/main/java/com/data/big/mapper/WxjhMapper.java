@@ -28,4 +28,6 @@ public interface WxjhMapper extends BaseMapper<Wxjh> {
      * @param wxjhList
      */
     void insertCodeBatch(List<Wxjh>  wxjhList);
+
+    List<Wxjh> findByExample(Wxjh wxjh);
 }

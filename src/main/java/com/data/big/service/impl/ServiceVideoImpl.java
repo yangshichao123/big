@@ -38,57 +38,57 @@ public class ServiceVideoImpl implements ServiceVideo {
 
     @Override
     public Message addVideoType(List<VideoType> listVideType) {
-        Message message=new Message();
+        Message message = new Message();
         try {
             videoTypeMapper.saveAll(listVideType);
-        }catch (Exception e){
-            log.error(e.getMessage(),e);
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
             message.error("保存失败");
             return message;
         }
-        message.ok("保存成功","");
+        message.ok("保存成功", "");
         return message;
     }
 
     @Override
     public Message updateVideoType(List<VideoType> listVideType) {
-        Message message=new Message();
+        Message message = new Message();
         try {
             videoTypeMapper.updateAll(listVideType);
-        }catch (Exception e){
-            log.error(e.getMessage(),e);
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
             message.error("更新失败");
             return message;
         }
-        message.ok("更新成功","");
+        message.ok("更新成功", "");
         return message;
     }
 
     @Override
     public Message deleteVideoType(List<VideoType> listVideType) {
-        Message message=new Message();
+        Message message = new Message();
         try {
             videoTypeMapper.deleteAll(listVideType);
-        }catch (Exception e){
-            log.error(e.getMessage(),e);
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
             message.error("删除失败");
             return message;
         }
-        message.ok("删除成功","");
+        message.ok("删除成功", "");
         return message;
     }
 
     @Override
     public Message getVideoType(VideoType videType) {
-        Message message=new Message();
-        List<VideoType> videoTypes=null;
+        Message message = new Message();
+        List<VideoType> videoTypes = null;
         try {
             PageHelper.startPage(Integer.parseInt(videType.getPageIndex()), Integer.parseInt(videType.getPageSize()));
-            PageInfo<VideoType> pageInfo = new PageInfo<>( videoTypeMapper.selectVideoTypeAll(videType));
+            PageInfo<VideoType> pageInfo = new PageInfo<>(videoTypeMapper.selectVideoTypeAll(videType));
 
-            message.ok("查询成功",pageInfo);
-        }catch (Exception e){
-            log.error(e.getMessage(),e);
+            message.ok("查询成功", pageInfo);
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
             message.error("查询失败");
             return message;
         }
@@ -97,50 +97,50 @@ public class ServiceVideoImpl implements ServiceVideo {
 
     @Override
     public Message addVideoUpload(List<VideoUpload> listVideUpoad) {
-        Message message=new Message();
+        Message message = new Message();
         try {
             videoUploadMapper.saveAll(listVideUpoad);
-        }catch (Exception e){
-            log.error(e.getMessage(),e);
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
             message.error("保存失败");
             return message;
         }
-        message.ok("保存成功","");
+        message.ok("保存成功", "");
         return message;
     }
 
     @Override
     public Message updateVideoUpload(List<VideoUpload> listVideUpoad) {
-        Message message=new Message();
+        Message message = new Message();
         try {
             videoUploadMapper.updateAll(listVideUpoad);
-        }catch (Exception e){
-            log.error(e.getMessage(),e);
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
             message.error("更新失败");
             return message;
         }
-        message.ok("更新成功","");
+        message.ok("更新成功", "");
         return message;
     }
 
     @Override
     public Message deleteVideoUpload(List<VideoUpload> listVideUpoad) {
-        Message message=new Message();
+        Message message = new Message();
         try {
             videoUploadMapper.deleteAll(listVideUpoad);
-        }catch (Exception e){
-            log.error(e.getMessage(),e);
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
             message.error("删除失败");
             return message;
         }
-        message.ok("删除成功","");
+        message.ok("删除成功", "");
         return message;
     }
 
     @Override
-    public Message getVideoUpload(String type,String videoTypeTag,String videoType, String cameraType,String cameraName ,String startTime,String endTime,String  status,String pageIndex,String pageSize) {
-        Message message=new Message();
-        List<VideoType> videoTypes=null;
+    public Message getVideoUpload(String type, String videoTypeTag, String videoType, String cameraType, String cameraName, String startTime, String endTime, String status, String pageIndex, String pageSize) {
+        Message message = new Message();
+        List<VideoType> videoTypes = null;
         try {
             List<String> list = null;
             if (StringUtils.isNotEmpty(status)) {
@@ -151,7 +151,7 @@ public class ServiceVideoImpl implements ServiceVideo {
                 }
             }
             PageHelper.startPage(Integer.parseInt(pageIndex), Integer.parseInt(pageSize));
-            PageInfo<VideoUpload> pageInfo = new PageInfo<>( videoUploadMapper.selectVideoUpoadAll(type,videoTypeTag,videoType,cameraType,cameraName,startTime,endTime,list));
+            PageInfo<VideoUpload> pageInfo = new PageInfo<>(videoUploadMapper.selectVideoUpoadAll(type, videoTypeTag, videoType, cameraType, cameraName, startTime, endTime, list));
             List<String> videoFileIds = new ArrayList<>();
             List<String> videoIPCId = new ArrayList<>();
             List<VideoUpload> videoFileList = pageInfo.getList();
@@ -190,9 +190,9 @@ public class ServiceVideoImpl implements ServiceVideo {
                     }
                 }
             }
-            message.ok("查询成功",pageInfo);
-        }catch (Exception e){
-            log.error(e.getMessage(),e);
+            message.ok("查询成功", pageInfo);
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
             message.error("查询失败");
             return message;
         }
@@ -200,34 +200,34 @@ public class ServiceVideoImpl implements ServiceVideo {
     }
 
     @Override
-    public Message addVideoImgTask(String bz,String groupId,String tag,String ipcCodes, String benginTime, String endTime, String intervalTime, String time) {
-        Message message=new Message();
-        if (StringUtils.isEmpty(ipcCodes) || StringUtils.isEmpty(benginTime) || StringUtils.isEmpty(endTime)  || StringUtils.isEmpty(time)|| StringUtils.isEmpty(bz)) {
+    public Message addVideoImgTask(String bz, String groupId, String tag, String ipcCodes, String benginTime, String endTime, String intervalTime, String time) {
+        Message message = new Message();
+        if (StringUtils.isEmpty(ipcCodes) || StringUtils.isEmpty(benginTime) || StringUtils.isEmpty(endTime) || StringUtils.isEmpty(time) || StringUtils.isEmpty(bz)) {
             message.error("参数错误");
 
             log.info("参数错误");
             return message;
         }
-        if(StringUtils.isEmpty(groupId)){
-            groupId=benginTime+"-"+endTime;
+        if (StringUtils.isEmpty(groupId)) {
+            groupId = benginTime + "-" + endTime;
         }
-        if(StringUtils.isEmpty(intervalTime)){
-            intervalTime="0";
+        if (StringUtils.isEmpty(intervalTime)) {
+            intervalTime = "0";
         }
-        String[] strs=ipcCodes.split(",");
-        List<ImgTask> imgTasks=new ArrayList<>();
-        List<Map<String,String>> idList=new ArrayList<>();
+        String[] strs = ipcCodes.split(",");
+        List<ImgTask> imgTasks = new ArrayList<>();
+        List<Map<String,String>> idList = new ArrayList<>();
 
-        long l = DateUtils.pastDays(DateUtils.parseDate(endTime, "yyyy-MM-dd"),DateUtils.parseDate(benginTime, "yyyy-MM-dd"));
+        long l = DateUtils.pastDays(DateUtils.parseDate(endTime, "yyyy-MM-dd"), DateUtils.parseDate(benginTime, "yyyy-MM-dd"));
         int i1 = Integer.parseInt(intervalTime);
-        for (int i = 0; i <=l; i++) {
+        for (int i = 0; i <= l; i++) {
             for (String str : strs) {
-                Date date = DateUtils.nextDayByDate(DateUtils.parseDate(benginTime, "yyyy-MM-dd"),i);
+                Date date = DateUtils.nextDayByDate(DateUtils.parseDate(benginTime, "yyyy-MM-dd"), i);
                 String date1 = DateUtils.getDate(date, "yyyy-MM-dd");
                 ImgTask imgTask = new ImgTask();
                 imgTask.setIpcid(str);
                 imgTask.setStatus("0");
-                imgTask.setGroupId( groupId);
+                imgTask.setGroupId(groupId);
                 imgTask.setZprq(DateUtils.parseDate(date1 + " " + time, "yyyy-MM-dd HH:mm:ss"));
                 imgTask.setZpsj(time);
                 imgTask.setKsrq(benginTime);
@@ -235,28 +235,28 @@ public class ServiceVideoImpl implements ServiceVideo {
                 imgTask.setVideoType(tag);
                 imgTask.setBz(bz);
                 imgTask.setId(UUIDHelper.getUUID());
-                Map<String,String> idMap=new HashMap<>();
-                idMap.put(imgTask.getIpcid(),imgTask.getId());
+                Map<String,String> idMap = new HashMap<>();
+                idMap.put(imgTask.getIpcid(), imgTask.getId());
                 idList.add(idMap);
                 imgTasks.add(imgTask);
             }
             i = i + i1;
         }
-        if(imgTasks.size()>0){
+        if (imgTasks.size() > 0) {
             try {
                 imgTaskMapper.saveAll(imgTasks);
-            }catch (Exception e){
+            } catch (Exception e) {
                 //插入日志
-                LogExeManager.getInstance().executeLogTask(logTaskFactory.crezteLog("addVideoImgTask", "1", "", "添加查询任务模板 摄像机编码：" + ipcCodes + " 开始时间：" + benginTime + " 结束时间：" + endTime + " 每间隔 ：" + intervalTime + "天执行一次  执行时间：" + time,"添加任务失败"));
-                log.error(e.getMessage(),e);
+                LogExeManager.getInstance().executeLogTask(logTaskFactory.crezteLog("addVideoImgTask", "1", "", "添加查询任务模板 摄像机编码：" + ipcCodes + " 开始时间：" + benginTime + " 结束时间：" + endTime + " 每间隔 ：" + intervalTime + "天执行一次  执行时间：" + time, "添加任务失败"));
+                log.error(e.getMessage(), e);
                 message.error("添加任务失败");
                 return message;
             }
         }
 
         //插入日志
-        LogExeManager.getInstance().executeLogTask(logTaskFactory.crezteLog("addVideoImgTask", "1", "", "添加查询任务模板 摄像机编码：" + ipcCodes + " 开始时间：" + benginTime + " 结束时间：" + endTime + " 每间隔 ：" + intervalTime + "天执行一次  执行时间：" + time,"添加任务成功"));
-        message.ok("添加任务成功",idList);
+        LogExeManager.getInstance().executeLogTask(logTaskFactory.crezteLog("addVideoImgTask", "1", "", "添加查询任务模板 摄像机编码：" + ipcCodes + " 开始时间：" + benginTime + " 结束时间：" + endTime + " 每间隔 ：" + intervalTime + "天执行一次  执行时间：" + time, "添加任务成功"));
+        message.ok("添加任务成功", idList);
         log.info("添加查询任务模板 摄像机编码：" + ipcCodes + " 开始时间：" + benginTime + " 结束时间：" + endTime + " 每间隔 ：" + intervalTime + "天执行一次  执行时间：" + time);
 
         return message;
@@ -264,38 +264,38 @@ public class ServiceVideoImpl implements ServiceVideo {
 
     @Override
     public Message updateImgTask(List<ImgTask> imgTasks) {
-        Message message=new Message();
+        Message message = new Message();
         try {
             imgTaskMapper.updateAll(imgTasks);
-        }catch (Exception e){
-            log.error(e.getMessage(),e);
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
             message.error("更新失败");
-            return  message;
+            return message;
         }
-        message.ok("更新成功","");
+        message.ok("更新成功", "");
         return message;
     }
 
     @Override
     public Message deleteImgTask(List<ImgTask> imgTasks) {
-        Message message=new Message();
+        Message message = new Message();
         try {
             imgTaskMapper.deleteAll(imgTasks);
-        }catch (Exception e){
-            log.error(e.getMessage(),e);
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
             message.error("删除失败");
-            return  message;
+            return message;
         }
-        message.ok("删除成功","");
+        message.ok("删除成功", "");
         return message;
     }
 
     @Override
     public Message getImgTask(ImgTask imgTask) {
-        Message message=new Message();
+        Message message = new Message();
         try {
             PageHelper.startPage(Integer.parseInt(imgTask.getPageIndex()), Integer.parseInt(imgTask.getPageSize()));
-            PageInfo<ImgTask> pageInfo = new PageInfo<>( imgTaskMapper.findAll(imgTask));
+            PageInfo<ImgTask> pageInfo = new PageInfo<>(imgTaskMapper.findAll(imgTask));
             List<String> videoFileIds = new ArrayList<>();
             List<String> videoIPCId = new ArrayList<>();
             List<ImgTask> videoFileList = pageInfo.getList();
@@ -314,40 +314,40 @@ public class ServiceVideoImpl implements ServiceVideo {
                 }
             }
 
-            message.ok("查询成功",pageInfo);
-        }catch (Exception e){
-            log.error(e.getMessage(),e);
+            message.ok("查询成功", pageInfo);
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
             message.error("失败失败");
-            return  message;
+            return message;
         }
         return message;
     }
 
     @Override
     public Message addImgUpload(List<ImgUpload> imgUploads) {
-        Message message=new Message();
+        Message message = new Message();
         try {
             imgUploadMapper.saveAll(imgUploads);
-        }catch (Exception e){
-            log.error(e.getMessage(),e);
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
             message.error("保存失败");
-            return  message;
+            return message;
         }
-        message.ok("保存成功","");
+        message.ok("保存成功", "");
         return message;
     }
 
     @Override
     public Message deleteImgUpload(List<ImgUpload> imgUploads) {
-        Message message=new Message();
+        Message message = new Message();
         try {
             imgUploadMapper.deleteAll(imgUploads);
-        }catch (Exception e){
-            log.error(e.getMessage(),e);
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
             message.error("删除失败");
-            return  message;
+            return message;
         }
-        message.ok("删除成功","");
+        message.ok("删除成功", "");
         return message;
     }
 
@@ -367,10 +367,10 @@ public class ServiceVideoImpl implements ServiceVideo {
 
     @Override
     public Message getImgUpload(ImgUpload imgUpload) {
-        Message message=new Message();
+        Message message = new Message();
         try {
             PageHelper.startPage(Integer.parseInt(imgUpload.getPageIndex()), Integer.parseInt(imgUpload.getPageSize()));
-            PageInfo<ImgUpload> pageInfo = new PageInfo<>( imgUploadMapper.findAll(imgUpload));
+            PageInfo<ImgUpload> pageInfo = new PageInfo<>(imgUploadMapper.findAll(imgUpload));
             List<String> videoFileIds = new ArrayList<>();
             List<String> videoIPCId = new ArrayList<>();
             List<ImgUpload> videoFileList = pageInfo.getList();
@@ -390,12 +390,11 @@ public class ServiceVideoImpl implements ServiceVideo {
             }
 
 
-
-            message.ok("查询成功",pageInfo);
-        }catch (Exception e){
-            log.error(e.getMessage(),e);
+            message.ok("查询成功", pageInfo);
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
             message.error("失败失败");
-            return  message;
+            return message;
         }
         return message;
     }

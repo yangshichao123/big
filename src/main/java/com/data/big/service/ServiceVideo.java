@@ -75,7 +75,7 @@ public interface ServiceVideo {
      *
      * @return 消息类
      */
-    Message getVideoUpload(String type,String videoTypeTag, String videoType, String cameraType, String cameraName, String startTime, String endTime, String status, String pageIndex, String pageSize);
+    Message getVideoUpload(String type, String videoTypeTag, String videoType, String cameraType, String cameraName, String startTime, String endTime, String status, String pageIndex, String pageSize);
 
     /**
      * 手动添加下载图片任务
@@ -87,10 +87,11 @@ public interface ServiceVideo {
      * @param time         执行时间点
      * @return
      */
-    Message addVideoImgTask(String bz,String groupId,String tag,String ipcCodes, String benginTime, String endTime, String intervalTime, String time);
+    Message addVideoImgTask(String bz, String groupId, String tag, String ipcCodes, String benginTime, String endTime, String intervalTime, String time);
 
     /**
      * 批量修改
+     *
      * @param imgTasks
      * @return
      */
@@ -98,6 +99,7 @@ public interface ServiceVideo {
 
     /**
      * 批量删除 根据id
+     *
      * @param imgTasks
      * @return
      */
@@ -105,6 +107,7 @@ public interface ServiceVideo {
 
     /**
      * 根据属性查询数据
+     *
      * @param imgTask
      * @return
      */
@@ -112,18 +115,23 @@ public interface ServiceVideo {
 
     /**
      * 批量添加图片下载
+     *
      * @param imgUploads
      * @return
      */
     Message addImgUpload(List<ImgUpload> imgUploads);
+
     /**
      * 批量删除图片下载  根据id
+     *
      * @param imgUploads
      * @return
      */
     Message deleteImgUpload(List<ImgUpload> imgUploads);
+
     /**
      * 批量修改图片下载
+     *
      * @param imgUploads
      * @return
      */
@@ -131,6 +139,7 @@ public interface ServiceVideo {
 
     /**
      * 查询图片下载
+     *
      * @param imgUpload
      * @return
      */

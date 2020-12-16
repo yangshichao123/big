@@ -6,16 +6,17 @@ public class AsciiStringToHex {
 
     /**
      * ascii 转16进制
+     *
      * @param str
      * @return
      */
-    public static String convertStringToHex(String str){
+    public static String convertStringToHex(String str) {
 
         char[] chars = str.toCharArray();
 
         StringBuffer hex = new StringBuffer();
-        for(int i = 0; i < chars.length; i++){
-            hex.append(Integer.toHexString((int)chars[i]));
+        for (int i = 0; i < chars.length; i++) {
+            hex.append(Integer.toHexString((int) chars[i]));
         }
 
         return hex.toString();
@@ -23,23 +24,24 @@ public class AsciiStringToHex {
 
     /**
      * 16进制转ASCII
+     *
      * @param hex
      * @return
      */
-    public static String convertHexToString(String hex){
+    public static String convertHexToString(String hex) {
 
         StringBuilder sb = new StringBuilder();
         StringBuilder temp = new StringBuilder();
 
         //49204c6f7665204a617661 split into two characters 49, 20, 4c...
-        for( int i=0; i<hex.length()-1; i+=2 ){
+        for (int i = 0; i < hex.length() - 1; i += 2) {
 
             //grab the hex in pairs
             String output = hex.substring(i, (i + 2));
             //convert hex to decimal
             int decimal = Integer.parseInt(output, 16);
             //convert the decimal to character
-            sb.append((char)decimal);
+            sb.append((char) decimal);
 
             temp.append(decimal);
         }
@@ -49,20 +51,18 @@ public class AsciiStringToHex {
 
     /**
      * 字符串 转 ascii
+     *
      * @param value
      * @return
      */
-    public static String stringToAscii(String value)
-    {
+    public static String stringToAscii(String value) {
         StringBuffer sbu = new StringBuffer();
         char[] chars = value.toCharArray();
         for (int i = 0; i < chars.length; i++) {
-            if(i != chars.length - 1)
-            {
-                sbu.append((int)chars[i]).append(",");
-            }
-            else {
-                sbu.append((int)chars[i]);
+            if (i != chars.length - 1) {
+                sbu.append((int) chars[i]).append(",");
+            } else {
+                sbu.append((int) chars[i]);
             }
         }
         return sbu.toString();
@@ -70,11 +70,11 @@ public class AsciiStringToHex {
 
     /**
      * ascii  转字符串
+     *
      * @param value
      * @return
      */
-    public static String asciiToString(String value)
-    {
+    public static String asciiToString(String value) {
         StringBuffer sbu = new StringBuffer();
         String[] chars = value.split(",");
         for (int i = 0; i < chars.length; i++) {
@@ -82,28 +82,29 @@ public class AsciiStringToHex {
         }
         return sbu.toString();
     }
+
     /**
      * 16 转 10进制
+     *
      * @param value
      * @return
      */
-    public static String HexTo10(String value)
-    {
+    public static String HexTo10(String value) {
         int i;
-        if("ffff".equals(value)){
-            value="0";
+        if ("ffff".equals(value)) {
+            value = "0";
             i = Integer.parseInt(value, 16);
-        }else{
+        } else {
             i = Integer.parseInt(value, 16);
             i++;
         }
         String s = Integer.toHexString(i);
-        if(s.length()==1){
-           s="000"+s;
-        }else if(s.length()==2){
-            s="00"+s;
-        }else if(s.length()==3){
-            s="0"+s;
+        if (s.length() == 1) {
+            s = "000" + s;
+        } else if (s.length() == 2) {
+            s = "00" + s;
+        } else if (s.length() == 3) {
+            s = "0" + s;
         }
 
         return s;
@@ -111,10 +112,10 @@ public class AsciiStringToHex {
 
     /**
      * UTF-8编码 转换为对应的 汉字
-     *
+     * <p>
      * URLEncoder.encode("上海", "UTF-8") ---> %E4%B8%8A%E6%B5%B7
      * URLDecoder.decode("%E4%B8%8A%E6%B5%B7", "UTF-8") --> 上 海
-     *
+     * <p>
      * convertUTF8ToString("E4B88AE6B5B7")
      * E4B88AE6B5B7 --> 上海
      *
@@ -153,7 +154,7 @@ public class AsciiStringToHex {
     /**
      * 将文件名中的汉字转为UTF8编码的串,以便下载时能正确显示另存的文件名.
      *
-     * @param s	原串
+     * @param s 原串
      * @return
      */
     public static String convertStringToUTF8(String s) {

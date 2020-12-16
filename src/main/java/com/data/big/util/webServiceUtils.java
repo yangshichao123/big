@@ -46,6 +46,7 @@ public class webServiceUtils {
 
     // 日志记录器
     private static final Logger logger = LogManager.getLogger(webServiceUtils.class);
+
     /**
      * 获取安保3数据
      *
@@ -58,15 +59,15 @@ public class webServiceUtils {
     public static ANBAO3[] callWebserviceASMX(String beginTime, String endTime, String xm, String jl) {
         //获取webservice接口地址
         String url = Properties.getAnbao3Url();
-        String name= Properties.getAnbao3Name();
+        String name = Properties.getAnbao3Name();
         //获取域名地址，server定义的
         String soapaction = "http://tempuri.org/";
         ANBAO3[] result = new ANBAO3[0];
         Service service = new Service();
-        logger.error("访问地址："+url);
-        logger.error("访问账号密码："+name);
-        logger.error("访问开始时间："+beginTime);
-        logger.error("访问结束时间："+endTime);
+        logger.error("访问地址：" + url);
+        logger.error("访问账号密码：" + name);
+        logger.error("访问开始时间：" + beginTime);
+        logger.error("访问结束时间：" + endTime);
 
         try {
             Call call = (Call) service.createCall();
@@ -124,14 +125,14 @@ public class webServiceUtils {
 
 
         } catch (ServiceException e) {
-            logger.error(e.getMessage(),e);
+            logger.error(e.getMessage(), e);
         } catch (RemoteException e) {
             //(Line[]) org.apache.axis.utils.JavaUtils.convert(result, Line[].class);
-            logger.error(e.getMessage(),e);
+            logger.error(e.getMessage(), e);
         } catch (SOAPException e) {
-            logger.error(e.getMessage(),e);
+            logger.error(e.getMessage(), e);
         } catch (MalformedURLException e) {
-            logger.error(e.getMessage(),e);
+            logger.error(e.getMessage(), e);
         }
         return result;
     }
@@ -139,27 +140,28 @@ public class webServiceUtils {
 
     /**
      * 获取webservice 接口
-     * @param url 地址
+     *
+     * @param url       地址
      * @param namespace 命名空间
-     * @param method 方法名
+     * @param method    方法名
      * @return
      */
     public static String getWebservice(String url,
                                        String namespace, Map<String,String> map, String method) {
-        String retStr="";
+        String retStr = "";
         Service service = new Service();
         Call call = null;
         try {
             call = (Call) service.createCall();
             call.setTargetEndpointAddress(url);
-           // QName qName = new QName("http://inter.webservice.cy.cn/", "getInfo");
+            // QName qName = new QName("http://inter.webservice.cy.cn/", "getInfo");
             QName qName = new QName(namespace, method);
             call.setOperationName(qName);// WSDL里面描述的接口名称
 
-            Object[] objects=new Object[map.size()];
-            int i=0;
+            Object[] objects = new Object[map.size()];
+            int i = 0;
             for (String str : map.keySet()) {
-                objects[i]=map.get(str);
+                objects[i] = map.get(str);
                 QName qname = new QName(namespace, str);
                 call.addParameter(qname, XMLType.XSD_STRING, ParameterMode.IN);// 接口的参数
             }
@@ -168,9 +170,9 @@ public class webServiceUtils {
             call.setReturnType(XMLType.XSD_STRING);// 设置返回类型
             retStr = (String) call.invoke(objects);              // 给方法传递参数，并且调用方法
         } catch (ServiceException e) {
-           logger.error(e.getMessage(),e);
+            logger.error(e.getMessage(), e);
         } catch (RemoteException e) {
-            logger.error(e.getMessage(),e);
+            logger.error(e.getMessage(), e);
         }
         return retStr;
     }
@@ -210,7 +212,7 @@ public class webServiceUtils {
 
         // 创建QName来指定NameSpace和要调用的service
 
-        String localPart = name+"SoapBinding";
+        String localPart = name + "SoapBinding";
 
         QName bindingName = new QName(targetNamespace, localPart);
 
@@ -314,7 +316,7 @@ public class webServiceUtils {
 
         //返回调用结果
 
-        logger.info("公务--------------------------------接收到得数据为 ："+result.toString());
+        logger.info("公务--------------------------------接收到得数据为 ：" + result.toString());
         if (result.length > 0) {
 			/*System.out.println(result[0]);
 			Object json = JSON.toJSON(result[0]);
@@ -323,8 +325,8 @@ public class webServiceUtils {
 			return  json.toString();*/
 
             //return JSON.toJSONString(result[0]);
-            logger.info("公务--------------------------------接收到得数据为 ："+(String)result[0]);
-            return (String)result[0];
+            logger.info("公务--------------------------------接收到得数据为 ：" + (String) result[0]);
+            return (String) result[0];
 
         }
         return "invoke success, but is void ";
@@ -340,7 +342,7 @@ public class webServiceUtils {
      * @return
      */
     public static String doPostSoap1_1(String postUrl, String soapXml,
-                                       String soapAction,List list,String method,String ns) {
+                                       String soapAction, List list, String method, String ns) {
         String retStr = "";
         // 创建HttpClientBuilder
         HttpClientBuilder httpClientBuilder = HttpClientBuilder.create();
@@ -356,13 +358,13 @@ public class webServiceUtils {
 
         StringBuffer stringBuffer = new StringBuffer();
         //拼接参数
-        for(int i=0;i<list.size();i++){
+        for (int i = 0; i < list.size(); i++) {
             stringBuffer.append("<arg" + i + ">" + list.get(i) + "</arg" + i + ">");
         }
 
         //拼接SOAP
         StringBuffer soapRequestData = new StringBuffer("");
-        soapRequestData.append("<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ser=\""+ns+"\">");
+        soapRequestData.append("<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ser=\"" + ns + "\">");
         //soapRequestData.append(ns);
         soapRequestData.append("<soapenv:Header/>");
         soapRequestData.append("<soapenv:Body>");
@@ -393,8 +395,6 @@ public class webServiceUtils {
         }
         return retStr;
     }
-
-
 
 
 }

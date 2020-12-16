@@ -24,16 +24,19 @@ public class ControllerTrain {
 
         return serviceTrain.addTrainloaction(trainloaction);
     }
+
     @RequestMapping("/updateTrainloaction")
     public Message updateTrainloaction(Trainloaction trainloaction) {
 
         return serviceTrain.updateTrainloaction(trainloaction);
     }
+
     @RequestMapping("/deleteTrainloaction")
     public Message deleteTrainloaction(Trainloaction trainloaction) {
 
         return serviceTrain.deleteTrainloaction(trainloaction);
     }
+
     @RequestMapping("/getTrainloaction")
     public Message getTrainloaction(Trainloaction trainloaction) {
 

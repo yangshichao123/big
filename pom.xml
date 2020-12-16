@@ -52,6 +52,25 @@
             <version>2.1.2</version>
         </dependency>
 
+
+        <!-- 添加JDBC依赖 重要-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jdbc</artifactId>
+            <exclusions>
+                <!--去掉默认的tomcat-jdbc的依赖 重要-->
+                <exclusion>
+                    <groupId>org.apache.tomcat</groupId>
+                    <artifactId>tomcat-jdbc</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <!-- 添加 HikariCP数据源 重要-->
+        <dependency>
+            <groupId>com.zaxxer</groupId>
+            <artifactId>HikariCP</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
@@ -119,6 +138,7 @@
             <artifactId>cxf-spring-boot-starter-jaxws</artifactId>
             <version>3.2.4</version>
         </dependency>
+
 
 
         <!--引入lib文件下得jar包-->

@@ -349,18 +349,25 @@ public class ServiceNettyImpl implements ServiceNetty {
             videoFile.setVideoType(alarmName);
             videoFileList.add(videoFile);
         }
-        for (VideoFile videoFile : videoFileList) {
+        /*for (VideoFile videoFile : videoFileList) {
+
             Example example = new Example(VideoFile.class);
             Example.Criteria criteria = example.createCriteria();
             criteria.andEqualTo("ipcid", videoFile.getIpcid());
             criteria.andEqualTo("alarmId", videoFile.getAlarmId());
             criteria.andEqualTo("videoType", videoFile.getVideoType());
+            criteria.andEqualTo("kssj", videoFile.getKssj());
+            criteria.andEqualTo("jssj", videoFile.getJssj());
             List<VideoFile> videoFiles = videoFileMapper.selectByExample(example);
             if (videoFiles.size() > 0) {
                 continue;
             }
             int i1 = videoFileMapper.insertSelective(videoFile);//添加到任务表里
+        }*/
+        if (videoFileList.size() > 0) {
+            int i1 = videoFileMapper.saveAll(videoFileList);//添加到任务表里
         }
+
         return 1;
     }
 

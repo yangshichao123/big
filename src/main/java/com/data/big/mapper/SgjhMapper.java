@@ -30,4 +30,6 @@ public interface SgjhMapper extends BaseMapper<Sgjh> {
      * @param sgjhList
      */
     void insertCodeBatch(List<Sgjh> sgjhList);
+
+    List<Sgjh> findByExample(Sgjh sgjh);
 }

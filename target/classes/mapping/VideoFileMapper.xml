@@ -172,7 +172,7 @@
   </insert>
 
   <select id="getVideoRecord" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select DISTINCT vf.*,ca.*
+    select  vf.*,ca.*
 
     from video_file vf
     left join camera ca on vf.IPCID=ca.device_id
@@ -212,7 +212,7 @@
        and  vt.tag  =  #{videoTypeTag,jdbcType=VARCHAR}
       </if>
     </where>
-    order by vf.bz desc
+    order by vf.kssj desc
   </select>
   <select id="selectByVideoFileId" parameterType="java.lang.String" resultMap="BaseResultMap">
     select  vf.id, vt.id video_fag,vt.ipcid ipcid_fag,d.DESCS tag ,vt.rktime,vt.video_file_id
@@ -236,4 +236,48 @@
     </foreach>
   </select>
 
+
+  <insert id="saveOne" parameterType="com.data.big.model.VideoFile">
+    insert  into video_file (ID, IPCID, kssj,
+      jssj, `status`, loadtime,
+      `path`, filename, FileID,
+      uptime, bz, video_type,
+      alarm_id)
+      SELECT
+       #{id,jdbcType=VARCHAR}, #{ipcid,jdbcType=VARCHAR}, #{kssj,jdbcType=VARCHAR},
+      #{jssj,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{loadtime,jdbcType=VARCHAR},
+      #{path,jdbcType=VARCHAR}, #{filename,jdbcType=VARCHAR}, #{fileid,jdbcType=VARCHAR},
+      #{uptime,jdbcType=VARCHAR}, #{bz,jdbcType=VARCHAR}, #{videoType,jdbcType=VARCHAR},
+      #{alarmId,jdbcType=VARCHAR}
+
+       FROM DUAL WHERE NOT EXISTS(
+        SELECT
+         ID
+         FROM video_file WHERE
+         ipcid= #{ipcid,jdbcType=VARCHAR}
+         and kssj=#{kssj,jdbcType=VARCHAR}
+         and jssj = #{jssj,jdbcType=VARCHAR}
+         and alarm_id=  #{alarmId,jdbcType=VARCHAR}
+         and video_type= #{videoType,jdbcType=VARCHAR})
+
+
+  </insert>
+  <insert id="saveAll" parameterType="com.data.big.model.VideoFile">
+    insert ignore into video_file (ID, IPCID, kssj,
+      jssj, `status`, loadtime,
+      `path`, filename, FileID,
+      uptime, bz, video_type,
+      alarm_id)
+     values
+     <foreach collection="list" separator="," item="index" >
+     (
+       #{index.id,jdbcType=VARCHAR}, #{index.ipcid,jdbcType=VARCHAR}, #{index.kssj,jdbcType=VARCHAR},
+       #{index.jssj,jdbcType=VARCHAR}, #{index.status,jdbcType=VARCHAR}, #{index.loadtime,jdbcType=VARCHAR},
+       #{index.path,jdbcType=VARCHAR}, #{index.filename,jdbcType=VARCHAR}, #{index.fileid,jdbcType=VARCHAR},
+       #{index.uptime,jdbcType=VARCHAR}, #{index.bz,jdbcType=VARCHAR}, #{index.videoType,jdbcType=VARCHAR},
+       #{index.alarmId,jdbcType=VARCHAR}
+       )
+     </foreach>
+
+  </insert>
 </mapper>

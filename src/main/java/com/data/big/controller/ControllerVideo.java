@@ -29,24 +29,24 @@ public class ControllerVideo {
 
         return serviceVideo.addVideoType(listVideType);
     }
+
     @RequestMapping("/updateVideoType")
     public Message updateVideoType(@RequestBody List<VideoType> listVideType) {
 
         return serviceVideo.updateVideoType(listVideType);
     }
+
     @RequestMapping("/deleteVideoType")
     public Message deleteVideoType(@RequestBody List<VideoType> listVideType) {
 
         return serviceVideo.deleteVideoType(listVideType);
     }
+
     @RequestMapping("/getVideoType")
     public Message getVideoType(VideoType videType) {
 
         return serviceVideo.getVideoType(videType);
     }
-
-
-
 
 
     @RequestMapping("/addVideoUpload")
@@ -60,54 +60,63 @@ public class ControllerVideo {
 
         return serviceVideo.updateVideoUpload(listVideUpoad);
     }
+
     @RequestMapping("/deleteVideoUpload")
     public Message deleteVideoUpload(@RequestBody List<VideoUpload> listVideUpoad) {
 
         return serviceVideo.deleteVideoUpload(listVideUpoad);
     }
-    @RequestMapping("/getVideoUpload")
-    public Message getVideoUpload(String type,String videoTypeTag,String videoType, String cameraType,String cameraName ,String startTime,String endTime,String  status,String pageIndex,String pageSize) {
 
-        return serviceVideo.getVideoUpload(type,videoTypeTag,videoType,cameraType,cameraName,startTime,endTime,status,pageIndex,pageSize);
+    @RequestMapping("/getVideoUpload")
+    public Message getVideoUpload(String type, String videoTypeTag, String videoType, String cameraType, String cameraName, String startTime, String endTime, String status, String pageIndex, String pageSize) {
+
+        return serviceVideo.getVideoUpload(type, videoTypeTag, videoType, cameraType, cameraName, startTime, endTime, status, pageIndex, pageSize);
     }
 
     @RequestMapping("/addVideoImgTask")
-    public Message  addVideoImgTask(String bz,String groupId,String tag,String ipcCodes,String beginTime,String endTime,String intervalTime,String time) {
+    public Message addVideoImgTask(String bz, String groupId, String tag, String ipcCodes, String beginTime, String endTime, String intervalTime, String time) {
 
-        return serviceVideo.addVideoImgTask(bz,groupId,tag,ipcCodes,beginTime,endTime,intervalTime,time);
+        return serviceVideo.addVideoImgTask(bz, groupId, tag, ipcCodes, beginTime, endTime, intervalTime, time);
     }
+
     @RequestMapping("/updateImgTask")
-    public Message  updateImgTask(@RequestBody List<ImgTask> imgTasks) {
+    public Message updateImgTask(@RequestBody List<ImgTask> imgTasks) {
 
         return serviceVideo.updateImgTask(imgTasks);
     }
+
     @RequestMapping("/deleteImgTask")
-    public Message  deleteImgTask(@RequestBody List<ImgTask> imgTasks) {
+    public Message deleteImgTask(@RequestBody List<ImgTask> imgTasks) {
 
         return serviceVideo.deleteImgTask(imgTasks);
     }
+
     @RequestMapping("/getImgTask")
-    public Message  getImgTask(ImgTask imgTask) {
+    public Message getImgTask(ImgTask imgTask) {
 
         return serviceVideo.getImgTask(imgTask);
     }
+
     @RequestMapping("/addImgUpload")
-    public Message  addImgUpload(@RequestBody List<ImgUpload> imgUploads) {
+    public Message addImgUpload(@RequestBody List<ImgUpload> imgUploads) {
 
         return serviceVideo.addImgUpload(imgUploads);
     }
+
     @RequestMapping("/deleteImgUpload")
-    public Message  deleteImgUpload(@RequestBody List<ImgUpload> imgUploads) {
+    public Message deleteImgUpload(@RequestBody List<ImgUpload> imgUploads) {
 
         return serviceVideo.deleteImgUpload(imgUploads);
     }
+
     @RequestMapping("/updateImgUpload")
-    public Message  updateImgUpload(@RequestBody List<ImgUpload> imgUploads) {
+    public Message updateImgUpload(@RequestBody List<ImgUpload> imgUploads) {
 
         return serviceVideo.updateImgUpload(imgUploads);
     }
+
     @RequestMapping("/getImgUpload")
-    public Message  getImgUpload(ImgUpload imgUpload) {
+    public Message getImgUpload(ImgUpload imgUpload) {
 
         return serviceVideo.getImgUpload(imgUpload);
     }

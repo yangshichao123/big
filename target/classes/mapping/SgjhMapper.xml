@@ -307,10 +307,108 @@
       #{reddemCode.zyqslc}, #{reddemCode.zyzzlc}, #{reddemCode.sgztdw},
       #{reddemCode.phdw}, #{reddemCode.fzrname}, #{reddemCode.xsjxcfs},
       #{reddemCode.lycxx}, #{reddemCode.status}, #{reddemCode.zyxm},
-      #{reddemCode.sgnrjyxfw}
-      #{reddemCode.fJwtdmids,jdbcType=LONGVARCHAR},#{reddemCode.fJwtdmmcs,jdbcType=LONGVARCHAR},#{reddemCode.fZhjtdmids,jdbcType=LONGVARCHAR},
-      #{reddemCode.fZhjtdmmcs,jdbcType=LONGVARCHAR},#{reddemCode.fChwtdmids,jdbcType=LONGVARCHAR},#{reddemCode.fChwtdmmcs,jdbcType=LONGVARCHAR}
+      #{reddemCode.sgnrjyxfw},
+      #{reddemCode.fJwtdmids},#{reddemCode.fJwtdmmcs},#{reddemCode.fZhjtdmids},
+      #{reddemCode.fZhjtdmmcs},#{reddemCode.fChwtdmids},#{reddemCode.fChwtdmmcs}
       )
     </foreach >
   </insert >
+
+
+
+  <select id="findByExample" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+    select
+    w.*
+    from sgjh w
+    <where>
+      <if test="id != null">
+        and w.id  = #{id,jdbcType=VARCHAR}
+      </if>
+      <if test="rjhh != null">
+        and w.rjhh  = #{rjhh,jdbcType=VARCHAR}
+      </if>
+      <if test="sbztw != null">
+        and w.sbztw  = #{sbztw,jdbcType=VARCHAR}
+      </if>
+      <if test="zylx != null">
+        and w.zylx  like  concat('%',#{zylx,jdbcType=VARCHAR},'%')
+      </if>
+      <if test="zyrq != null">
+        and w.zyrq  like  concat('%',#{zyrq,jdbcType=VARCHAR},'%')
+      </if>
+      <if test="jhqssj != null">
+        and w.jhqssj  =  #{jhqssj,jdbcType=VARCHAR}
+      </if>
+      <if test="jhzzsj != null">
+        and w.jhzzsj  =  #{jhzzsj,jdbcType=VARCHAR}
+      </if>
+      <if test="zydj != null">
+        and w.zydj  like  concat('%',#{zydj,jdbcType=VARCHAR},'%')
+      </if>
+      <if test="xm != null">
+        and w.xm  like  concat('%',#{xm,jdbcType=VARCHAR},'%')
+      </if>
+      <if test="xb != null">
+        and w.xb  =  #{xb,jdbcType=VARCHAR}
+      </if>
+      <if test="zywz != null">
+        and w.zywz  like  concat('%',#{zywz,jdbcType=VARCHAR},'%')
+      </if>
+      <if test="qschzm != null">
+        and w.qschzm  = #{qschzm,jdbcType=VARCHAR}
+      </if>
+      <if test="zzchzm != null">
+        and w.zzchzm  =  #{zzchzm,jdbcType=VARCHAR}
+      </if>
+      <if test="zyqslc != null">
+        and w.zyqslc  =  #{zyqslc,jdbcType=VARCHAR}
+      </if>
+      <if test="zyzzlc != null">
+        and w.zyzzlc  =  #{zyzzlc,jdbcType=VARCHAR}
+      </if>
+      <if test="sgztdw != null">
+        and w.sgztdw  like  concat('%',#{sgztdw,jdbcType=VARCHAR},'%')
+      </if>
+      <if test="phdw != null">
+        and w.phdw  like  concat('%',#{phdw,jdbcType=VARCHAR},'%')
+      </if>
+      <if test="fzrname != null">
+        and w.fzrname  like  concat('%',#{fzrname,jdbcType=VARCHAR},'%')
+      </if>
+      <if test="xsjxcfs != null">
+        and w.xsjxcfs  like  concat('%',#{xsjxcfs,jdbcType=VARCHAR},'%')
+      </if>
+      <if test="lycxx != null">
+        and w.lycxx  like  concat('%',#{lycxx,jdbcType=VARCHAR},'%')
+      </if>
+      <if test="status != null">
+        and w.status  =   #{status,jdbcType=VARCHAR}
+      </if>
+      <if test="zyxm != null">
+        and w.zyxm  like  concat('%',#{zyxm,jdbcType=VARCHAR},'%')
+      </if>
+      <if test="sgnrjyxfw != null">
+        and w.sgnrjyxfw  like  concat('%',#{sgnrjyxfw,jdbcType=VARCHAR},'%')
+      </if>
+      <if test="fJwtdmids != null">
+        and w.fJwtdmids  =   #{fJwtdmids,jdbcType=LONGVARCHAR}
+      </if>
+      <if test="fJwtdmmcs != null">
+        and w.fJwtdmmcs  like  concat('%',#{fJwtdmmcs,jdbcType=VARCHAR},'%')
+      </if>
+      <if test="fZhjtdmids != null">
+        and w.fZhjtdmids  =#{fZhjtdmids,jdbcType=LONGVARCHAR}
+      </if>
+      <if test="fZhjtdmmcs != null">
+        and w.fZhjtdmmcs  like  concat('%',#{fZhjtdmmcs,jdbcType=VARCHAR},'%')
+      </if>
+      <if test="fChwtdmids != null">
+        and w.fChwtdmids  = #{fChwtdmids,jdbcType=LONGVARCHAR}
+      </if>
+      <if test="fChwtdmmcs != null">
+        and w.fChwtdmmcs  like  concat('%',#{fChwtdmmcs,jdbcType=VARCHAR},'%')
+      </if>
+    </where>
+  </select>
+
 </mapper>

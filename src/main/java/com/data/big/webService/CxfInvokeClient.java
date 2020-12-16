@@ -49,7 +49,7 @@ public class CxfInvokeClient {
 	        ArrayList<Object> listObjs=new ArrayList<Object>();
 	        User uu=new User();
 	        uu.setAge("2222222");
-	        
+
 	        User uu1=new User();
 	        uu1.setAge("33333333333333333333333333");
 	        listObj.add(uu);
@@ -60,15 +60,15 @@ public class CxfInvokeClient {
 	        listStr.add("333");
 	        listStr.add("222");
 	        listObjs.add(listStr);
-	        
+
 		//String res= dynamicCallWebServiceByCXF("http://localhost:8080/services/user?wsdl", "getStringList", "http://service.mu.example.com/", "service", listObjs);
 		String res= dynamicCallWebServiceByCXF("http://localhost:8080/services/user?wsdl", "getAlLUser", "http://service.mu.example.com/", "service", null);
 		  List<User> parseArray = JSONArray.parseArray(res,User.class);//json转集合
-		 
+
 		System.out.println(parseArray);
 		 ArrayList<Object> listO=new ArrayList<Object>();
 		 listO.add("411001");
-		
+
 		String resU= dynamicCallWebServiceByCXF("http://localhost:8080/services/user?wsdl", "getUser", "http://service.mu.example.com/", "service",listO);
 		//  List<User> parseArray = JSONArray.parseArray(res,User.class);
 		User parseObject = JSON.parseObject(resU,User.class);//json转对象

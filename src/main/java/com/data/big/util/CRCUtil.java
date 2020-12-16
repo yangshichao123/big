@@ -239,7 +239,6 @@ public class CRCUtil {
         System.out.println(bytes4.toString());
 
 
-
         byte[] bytes = hexToByteArray("3c4a494e475745495f4a494e475a48414e475849414e2c4a494e475745495f4a494e475a48414e475849414e3e");
         //byte[] bytes = hexToByteArray(test);
         for (byte aByte : bytes) {
@@ -266,8 +265,6 @@ public class CRCUtil {
 
        /* String s2 = strTo16(s1);
         System.out.println(s2);*/
-
-
 
 
     }
@@ -364,7 +361,6 @@ public class CRCUtil {
 
         return bytes;
     }
-
 
 
     /**

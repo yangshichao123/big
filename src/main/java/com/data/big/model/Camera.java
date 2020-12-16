@@ -135,7 +135,7 @@ public class Camera implements Serializable {
  9、救援疏散通道；
  10、车站；
  11、其它部位
- 
+
      */
     private String catalogue;
 

@@ -205,23 +205,23 @@ public class DateUtils {
      * @return long 日期间隔天数，正数表示给定日期在当前日期之前，负数表示在当前日期之后
      * @since 1.0
      */
-    public static long pastDays(Date date,Date ksiDate) {
+    public static long pastDays(Date date, Date ksiDate) {
         String date1 = DateUtils.getDate(date, "yyyy-MM-dd");
         // 将指定日期转换为yyyy-MM-dd格式
         date = DateUtils.parseDate(DateUtils.formatDate(date, DateUtils.DATE_FORMAT), DateUtils.DATE_FORMAT);
         // 当前日期转换为yyyy-MM-dd格式
         Date currentDate = DateUtils.parseDate(DateUtils.formatDate(ksiDate, DateUtils.DATE_FORMAT), DateUtils.DATE_FORMAT);
-        long t=0;
-        if(date!=null&&currentDate!=null){
+        long t = 0;
+        if (date != null && currentDate != null) {
             t = (date.getTime() - currentDate.getTime()) / DateUtils.MILLISECONDS_PER_DAY;
         }
         return t;
     }
 
-    private static Date parseDate(String formatDate,String format) {
-        Date date=null;
+    private static Date parseDate(String formatDate, String format) {
+        Date date = null;
         try {
-            date=new SimpleDateFormat(format).parse(formatDate);
+            date = new SimpleDateFormat(format).parse(formatDate);
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -248,7 +248,7 @@ public class DateUtils {
      * @return Date 日期
      * @since 1.0
      */
-    public static Date nextDayByDate(Date date,int num) {
+    public static Date nextDayByDate(Date date, int num) {
         Calendar curr = getCalendar(date);
         curr.set(Calendar.DAY_OF_MONTH, curr.get(Calendar.DAY_OF_MONTH) + num);
         return curr.getTime();
@@ -369,6 +369,7 @@ public class DateUtils {
         double result = r * 1.0 / DateUtils.MILLISECONDS_PER_HOUR;
         return df.format(result);
     }
+
     /**
      * 计算两个日期之前间隔的半小时数.
      *
@@ -377,9 +378,9 @@ public class DateUtils {
      * @return String 相差的小时数，保留一位小数
      * @since 1.0
      */
-    public static Double dateMinusHalf(String dateK, String  dateJ) {
-      Date  date1=parseDate(dateK, "yyyy-MM-dd HH:mm:ss");
-      Date  date2=parseDate(dateJ, "yyyy-MM-dd HH:mm:ss");
+    public static Double dateMinusHalf(String dateK, String dateJ) {
+        Date date1 = parseDate(dateK, "yyyy-MM-dd HH:mm:ss");
+        Date date2 = parseDate(dateJ, "yyyy-MM-dd HH:mm:ss");
         if (date1 == null || date2 == null) {
             return 0D;
         }

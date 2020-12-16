@@ -4,6 +4,7 @@ import lombok.Data;
 
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import java.io.Serializable;
 @Table(name = "sgjh")
 @Data
@@ -156,5 +157,14 @@ public class Sgjh implements Serializable {
      */
     private static final long serialVersionUID = 1L;
 
-
+    /**
+     * 第几页
+     */
+    @Transient
+    private String pageIndex;
+    /**
+     * 每页个数
+     */
+    @Transient
+    private String pageSize;
 }

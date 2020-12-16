@@ -26,6 +26,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import tk.mybatis.mapper.entity.Example;
 
 
+import javax.xml.crypto.Data;
 import javax.xml.ws.BindingProvider;
 import java.io.File;
 import java.io.IOException;
@@ -106,9 +107,13 @@ public class ServiceImpl implements Service {
     @Autowired
     private LogTaskFactory logTaskFactory;
     @Autowired
-    private VideoUploadMapper  videoUploadMapper;
+    private VideoUploadMapper videoUploadMapper;
     @Autowired
-    private ImgUploadMapper  imgUploadMapper;
+    private ImgUploadMapper imgUploadMapper;
+    @Autowired
+    private TaskDoorMapper taskDoorMapper;
+    @Autowired
+    private DooripcrelationMapper dooripcrelationMapper;
 
     // 日志记录器
     private static final Logger logger = LogManager.getLogger(ServiceImpl.class);
@@ -306,7 +311,7 @@ public class ServiceImpl implements Service {
 
     @Override
     public Message GetNodeInfo() {
-        Message message=new Message();
+        Message message = new Message();
         Map<String,Nodeinfo> camerMap = new HashMap<>();
         Map<String,Nodeinfo> deleteCamerMap = new HashMap<>();
         List<Nodeinfo> listCamer = new ArrayList<>();
@@ -349,10 +354,10 @@ public class ServiceImpl implements Service {
                         nodeinfoMapper.delete(camerainfo);
                     }
                 }
-                message.ok((String)dataMapList.get("result"),dataMapList.get("data"));
+                message.ok((String) dataMapList.get("result"), dataMapList.get("data"));
                 logger.error("查询节点信息信息 列表 查询时间：" + DateFormatHelper.date2String(new Date(), "yyyy-MM-dd HH:mm:ss") + "  data " + list.toString());
             } else {
-                message.error((String)dataMapList.get("result")+"  "+dataMapList.get("data"));
+                message.error((String) dataMapList.get("result") + "  " + dataMapList.get("data"));
                 logger.error("查询节点信息失败 错误码 result " + dataMapList.get("result") + " message " + dataMapList.get("message"));
             }
         }
@@ -425,7 +430,6 @@ public class ServiceImpl implements Service {
         }
         //插入日志
         LogExeManager.getInstance().executeLogTask(logTaskFactory.crezteLog("GetServerInfo", "1", snedUrl, "", data));
-
 
 
         return map;
@@ -631,7 +635,6 @@ public class ServiceImpl implements Service {
         LogExeManager.getInstance().executeLogTask(logTaskFactory.crezteLog("GetCameraStatus", "1", snedUrl, startTime + " " + endTime, data));
 
 
-
         return map;
     }
 
@@ -675,7 +678,6 @@ public class ServiceImpl implements Service {
         }
         //插入日志
         LogExeManager.getInstance().executeLogTask(logTaskFactory.crezteLog("GetServerStatus", "1", snedUrl, starttime + " " + endtime, data));
-
 
 
         return map;
@@ -1151,7 +1153,6 @@ public class ServiceImpl implements Service {
             LogExeManager.getInstance().executeLogTask(logTaskFactory.crezteLog("sendFile", "1", videoFile.getPath() + "/" + videoFile.getFilename(), "请求地址：" + sendFileUrl + "目录id：" + Properties.getFid() + " token:" + token, data));
 
 
-
             try {
                 Thread.sleep(2000);
             } catch (InterruptedException e) {
@@ -1164,7 +1165,7 @@ public class ServiceImpl implements Service {
 
     @Override
     public Message sendImgFile() {
-        Message message=new Message();
+        Message message = new Message();
         String sendFileUrl = Properties.getSendFileUrl();
         String token = Properties.getToken();
         List<Map<String,Object>> listMap = new ArrayList<>();
@@ -1187,7 +1188,7 @@ public class ServiceImpl implements Service {
             listMap.add(map);
             String data = HttpClientUt.sendFile(sendFileUrl, videoFile.getPath() + "/" + videoFile.getFilename(), token);
             if (data == null) {
-                message.error( "发送图片文件失败：" + videoFile.getId() + " 连接错误 返回值为null");
+                message.error("发送图片文件失败：" + videoFile.getId() + " 连接错误 返回值为null");
                 //插入日志
                 LogExeManager.getInstance().executeLogTask(logTaskFactory.crezteLog("sendImgFile", "1", videoFile.getPath() + "/" + videoFile.getFilename(), "请求地址：" + sendFileUrl + "目录id：" + Properties.getFid() + " token:" + token, "sendImgFile 发送图片文件失败：" + videoFile.getId() + " 连接错误 返回值为null"));
 
@@ -1220,12 +1221,12 @@ public class ServiceImpl implements Service {
                 Example.Criteria criteria1 = example1.createCriteria();
                 criteria1.andEqualTo("id", videoFile.getId());
                 imgUploadMapper.updateByExampleSelective(vf, example1);
-                message.ok("上传视频文件成功返回数据成功 statusCode"+ dataMapList.get("statusCode"),data);
+                message.ok("上传视频文件成功返回数据成功 statusCode" + dataMapList.get("statusCode"), data);
                 logger.error("上传视频文件成功返回数据为：" + data);
 
                 //  this.deleteFile(videoFile);
             } else {
-                message.error("上传失败　statusCode"+dataMapList.get("statusCode"));
+                message.error("上传失败　statusCode" + dataMapList.get("statusCode"));
                 logger.error("上传图片视频文件:失败 错误码 statusCode " + dataMapList.get("statusCode") + " message " + dataMapList.get("message"));
             }
             //插入日志
@@ -1258,8 +1259,6 @@ public class ServiceImpl implements Service {
         }
         //插入日志
         LogExeManager.getInstance().executeLogTask(logTaskFactory.crezteLog("deleteFile", "1", videoFile.getPath() + "/" + videoFile.getFilename(), "", "删除文件 文件id：" + videoFile.getId()));
-
-
 
 
         logger.error("删除文件： " + flag + " 文件id： " + videoFile.getId() + "文件路径：" + sPath);
@@ -1358,7 +1357,7 @@ public class ServiceImpl implements Service {
             map.put("message", "返回值为空或者null");
             map.put("stateCode", "1");
             //插入日志
-            LogExeManager.getInstance().executeLogTask(logTaskFactory.crezteLog("getANBAO3", "1", Properties.getAnbao3Url(), "beginTime："+beginTime+ " endTime:"+endTime+" xm"+ xm+" lj:"+lj, "获取安保3失败 返回值为空或者null"));
+            LogExeManager.getInstance().executeLogTask(logTaskFactory.crezteLog("getANBAO3", "1", Properties.getAnbao3Url(), "beginTime：" + beginTime + " endTime:" + endTime + " xm" + xm + " lj:" + lj, "获取安保3失败 返回值为空或者null"));
 
         } else {
 
@@ -1400,7 +1399,7 @@ public class ServiceImpl implements Service {
         }
 
         //插入日志
-        LogExeManager.getInstance().executeLogTask(logTaskFactory.crezteLog("getANBAO3", "1", Properties.getAnbao3Url(), "beginTime："+beginTime+ " endTime:"+endTime+" xm"+ xm+" lj:"+lj, "查询的个数："+anbao3s.length));
+        LogExeManager.getInstance().executeLogTask(logTaskFactory.crezteLog("getANBAO3", "1", Properties.getAnbao3Url(), "beginTime：" + beginTime + " endTime:" + endTime + " xm" + xm + " lj:" + lj, "查询的个数：" + anbao3s.length));
 
 
         map.put("message", "添加成功");
@@ -1575,7 +1574,7 @@ public class ServiceImpl implements Service {
             logger.info("添加失败");
         }
         //插入日志
-        LogExeManager.getInstance().executeLogTask(logTaskFactory.crezteLog("addTask", "1", Properties.getAnbao3Url(), "startTime："+startTime+ " endTime:"+endTime+" methodId"+ methodId, i<=0?"成功":"失败"));
+        LogExeManager.getInstance().executeLogTask(logTaskFactory.crezteLog("addTask", "1", Properties.getAnbao3Url(), "startTime：" + startTime + " endTime:" + endTime + " methodId" + methodId, i <= 0 ? "成功" : "失败"));
 
         return resurtMap;
     }
@@ -1645,7 +1644,7 @@ public class ServiceImpl implements Service {
             map.put("message", "连接成功");
             map.put("status", "0");
             //插入日志
-            LogExeManager.getInstance().executeLogTask(logTaskFactory.crezteLog("getportType", "1", "", "","连接公务成功"));
+            LogExeManager.getInstance().executeLogTask(logTaskFactory.crezteLog("getportType", "1", "", "", "连接公务成功"));
 
 
         }
@@ -1682,7 +1681,7 @@ public class ServiceImpl implements Service {
             map.put("message", "连接工务服务失败");
             map.put("status", "1");
             //插入日志
-            LogExeManager.getInstance().executeLogTask(logTaskFactory.crezteLog("getHcsj", "1", "", "","连接工务服务失败"));
+            LogExeManager.getInstance().executeLogTask(logTaskFactory.crezteLog("getHcsj", "1", "", "", "连接工务服务失败"));
 
             return map;
         }
@@ -1710,7 +1709,7 @@ public class ServiceImpl implements Service {
                 }
             }
             //插入日志
-            LogExeManager.getInstance().executeLogTask(logTaskFactory.crezteLog("getHcsj", "1", wsdlUrl, "公务晃车数据 查询开始时间：" + qsrq + " 线名:" + xm + " 结束时间：" + jsrq,resU));
+            LogExeManager.getInstance().executeLogTask(logTaskFactory.crezteLog("getHcsj", "1", wsdlUrl, "公务晃车数据 查询开始时间：" + qsrq + " 线名:" + xm + " 结束时间：" + jsrq, resU));
 
 
             hcsjMapper.insertCodeBatch(hcsjList);
@@ -1758,7 +1757,7 @@ public class ServiceImpl implements Service {
             map.put("status", "1");
             logger.info("参数错误");
             //插入日志
-            LogExeManager.getInstance().executeLogTask(logTaskFactory.crezteLog("getSgjh", "1", "", "jsrq:"+jsrq+"qsrq:" + qsrq + " 线名:" + xm + " 结束时间：" + jsrq,"参数错误"));
+            LogExeManager.getInstance().executeLogTask(logTaskFactory.crezteLog("getSgjh", "1", "", "jsrq:" + jsrq + "qsrq:" + qsrq + " 线名:" + xm + " 结束时间：" + jsrq, "参数错误"));
 
             return map;
         }
@@ -1785,7 +1784,7 @@ public class ServiceImpl implements Service {
             map.put("message", "连接工务服务失败");
             map.put("status", "1");
             //插入日志
-            LogExeManager.getInstance().executeLogTask(logTaskFactory.crezteLog("getSgjh", "1", "", "jsrq:"+jsrq+"qsrq:" + qsrq + " 线名:" + xm + " 结束时间：" + jsrq,"连接工务服务失败"));
+            LogExeManager.getInstance().executeLogTask(logTaskFactory.crezteLog("getSgjh", "1", "", "jsrq:" + jsrq + "qsrq:" + qsrq + " 线名:" + xm + " 结束时间：" + jsrq, "连接工务服务失败"));
 
             return map;
         }
@@ -1795,7 +1794,7 @@ public class ServiceImpl implements Service {
             map.put("data", "接收的数据为null");
             logger.info("请求错误 wsdlUrl " + wsdlUrl + " wsdlNamespace" + wsdlNamespace + " wsdlName" + wsdlName + " qsrq" + qsrq + " jsrq" + jsrq + " 线名:" + xm);
             //插入日志
-            LogExeManager.getInstance().executeLogTask(logTaskFactory.crezteLog("getSgjh", "1", "", "请求错误 wsdlUrl " + wsdlUrl + " wsdlNamespace" + wsdlNamespace + " wsdlName" + wsdlName + " qsrq" + qsrq + " jsrq" + jsrq + " 线名:" + xm,"接收的数据为null"));
+            LogExeManager.getInstance().executeLogTask(logTaskFactory.crezteLog("getSgjh", "1", "", "请求错误 wsdlUrl " + wsdlUrl + " wsdlNamespace" + wsdlNamespace + " wsdlName" + wsdlName + " qsrq" + qsrq + " jsrq" + jsrq + " 线名:" + xm, "接收的数据为null"));
 
             return map;
         }
@@ -1812,6 +1811,7 @@ public class ServiceImpl implements Service {
             }
         }
         sgjhMapper.insertCodeBatch(sgjhList);
+        this.addSGJHTaskDoor(sgjhList);
 
         map.put("message", "成功");
         map.put("status", "0");
@@ -1820,8 +1820,52 @@ public class ServiceImpl implements Service {
         map.put("size", sgjhList.size() + "");
 
         //插入日志
-        LogExeManager.getInstance().executeLogTask(logTaskFactory.crezteLog("getSgjh", "1", "", "请求错误 wsdlUrl " + wsdlUrl + " wsdlNamespace" + wsdlNamespace + " wsdlName" + wsdlName + " qsrq" + qsrq + " jsrq" + jsrq + " 线名:" + xm,resU));
+        LogExeManager.getInstance().executeLogTask(logTaskFactory.crezteLog("getSgjh", "1", "", "请求错误 wsdlUrl " + wsdlUrl + " wsdlNamespace" + wsdlNamespace + " wsdlName" + wsdlName + " qsrq" + qsrq + " jsrq" + jsrq + " 线名:" + xm, resU));
 
+        return map;
+    }
+
+    private void addSGJHTaskDoor(List<Sgjh> sgjhList) {
+        List<TaskDoor> taskDoors = new ArrayList<>();
+        for (Sgjh sgjh : sgjhList) {
+            if (!StringUtils.isEmpty(sgjh.getFJwtdmmcs())) {
+
+                String[] str = sgjh.getFJwtdmmcs().split(",");
+                for (String s : str) {
+                    TaskDoor taskDoor = new TaskDoor();
+                    taskDoor.setFJwtdmid(sgjh.getFJwtdmids() != null ? sgjh.getFJwtdmids() : "");
+                    taskDoor.setKssj(sgjh.getJhqssj().substring(0, sgjh.getJhqssj().indexOf(".")));
+                    taskDoor.setStatus("0");
+                    taskDoor.setTableId(sgjh.getId());
+                    taskDoor.setType("sgjh");
+                    taskDoor.setTdmname(s);
+                    taskDoors.add(taskDoor);
+                }
+            }
+        }
+        if (taskDoors.size() > 0) {
+            this.addTaskDoor(taskDoors);
+        }
+    }
+
+    private void addTaskDoor(List<TaskDoor> taskDoors) {
+        if (taskDoors.size() > 0) {
+            taskDoorMapper.saveAll(taskDoors);
+        }
+    }
+
+    @Override
+    public Map<String,Object> addTaskDoor() {
+        Map<String,Object> map = new HashMap<>();
+        map.put("data", "成功");
+        Sgjh sgjh = new Sgjh();
+        sgjh.setStatus("0");
+        List<Sgjh> select = sgjhMapper.select(sgjh);
+        this.addSGJHTaskDoor(select);
+        Wxjh wxjh = new Wxjh();
+        wxjh.setStatus("0");
+        List<Wxjh> select1 = wxjhMapper.select(wxjh);
+        this.addWXJHTaskDoor(select1);
         return map;
     }
 
@@ -1850,13 +1894,30 @@ public class ServiceImpl implements Service {
         sgjh.setFzrname((String) listDatum.get("ffzrname"));
         sgjh.setLycxx((String) listDatum.get("flycxx"));
         sgjh.setStatus("0");
-        sgjh.setFChwtdmids((String) listDatum.get("f_chwtdmids"));
-        sgjh.setFChwtdmmcs((String) listDatum.get("f_chwtdmmcs"));
-        sgjh.setFJwtdmids((String) listDatum.get("f_jwtdmids"));
-        sgjh.setFJwtdmmcs((String) listDatum.get("f_jwtdmmcs"));
-        sgjh.setFZhjtdmids((String) listDatum.get("f_zhjtdmids"));
-        sgjh.setFZhjtdmmcs((String) listDatum.get("f_zhjtdmmcs"));
+        sgjh.setFChwtdmids(this.clearData((String) listDatum.get("fchwtdmids")));
+        sgjh.setFChwtdmmcs(this.clearData((String) listDatum.get("fchwtdmmcs")));
+        sgjh.setFJwtdmids(this.clearData((String) listDatum.get("fjwtdmids")));
+        sgjh.setFJwtdmmcs(this.clearData((String) listDatum.get("fjwtdmmcs")));
+        sgjh.setFZhjtdmids(this.clearData((String) listDatum.get("fzhjtdmids")));
+        sgjh.setFZhjtdmmcs(this.clearData((String) listDatum.get("fzhjtdmmcs")));
         return sgjh;
+    }
+
+    private String clearData(String str) {
+        if (StringUtils.isEmpty(str)) {
+            return null;
+        }
+        String string = str;
+        if (string.contains("（")) {
+            string = string.replace("（", "(");
+        }
+        if (string.contains("）")) {
+            string = string.replace("）", ")");
+        }
+        if (string.contains(" ")) {
+            string = string.replace(" ", "");
+        }
+        return string;
     }
 
     @Override
@@ -1913,6 +1974,7 @@ public class ServiceImpl implements Service {
             }
         }
         wxjhMapper.insertCodeBatch(wxjhList);
+        this.addWXJHTaskDoor(wxjhList);
 
         map.put("message", "成功");
         map.put("status", "0");
@@ -1921,10 +1983,44 @@ public class ServiceImpl implements Service {
         map.put("size", wxjhList.size() + "");
 
         //插入日志
-        LogExeManager.getInstance().executeLogTask(logTaskFactory.crezteLog("getWxjh", "1", "", "公务维修计划 查询开始时间：" + qsrq + " 线名:" + xm + " 结束时间：" + jsrq,resU));
+        LogExeManager.getInstance().executeLogTask(logTaskFactory.crezteLog("getWxjh", "1", "", "公务维修计划 查询开始时间：" + qsrq + " 线名:" + xm + " 结束时间：" + jsrq, resU));
 
 
         return map;
+    }
+
+    private void addWXJHTaskDoor(List<Wxjh> wxjhList) {
+        List<TaskDoor> taskDoors = new ArrayList<>();
+        for (Wxjh wxjh : wxjhList) {
+            if (!StringUtils.isEmpty(wxjh.getFJwtdmmcs())) {
+                String[] str = wxjh.getFJwtdmmcs().split(",");
+                for (String s : str) {
+                    TaskDoor taskDoor = new TaskDoor();
+                    taskDoor.setFJwtdmid(wxjh.getFJwtdmids() != null ? wxjh.getFJwtdmids() : "");
+
+                    String zyrq = wxjh.getZyrq();
+                    String zysd = wxjh.getZysd();
+                    if (zysd.contains("(")) {
+                        zysd = zysd.substring(0, zysd.indexOf("("));
+                    }
+                    logger.error("zyrq 字符串：" + zyrq + "   zysd :" + zysd);
+                    if (!zyrq.contains(" ") || !zysd.contains("-")) {
+                        continue;
+                    }
+                    String kaishi = zyrq.substring(0, zyrq.indexOf(" ")) + " " + zysd.split("-")[0] + ":00";
+
+                    taskDoor.setKssj(kaishi);
+                    taskDoor.setStatus("0");
+                    taskDoor.setTableId(wxjh.getId());
+                    taskDoor.setType("wxjh");
+                    taskDoor.setTdmname(s);
+                    taskDoors.add(taskDoor);
+                }
+            }
+        }
+        if (taskDoors.size() > 0) {
+            this.addTaskDoor(taskDoors);
+        }
     }
 
     private Wxjh getWxjhToMap(Map listDatum) {
@@ -1948,12 +2044,12 @@ public class ServiceImpl implements Service {
         wxjh.setYffhr((String) listDatum.get("fyffhr"));
         wxjh.setDbr((String) listDatum.get("fdbr"));
         wxjh.setSbztw((String) listDatum.get("fsbztw"));
-        wxjh.setFChwtdmids((String) listDatum.get("f_chwtdmids"));
-        wxjh.setFChwtdmmcs((String) listDatum.get("f_chwtdmmcs"));
-        wxjh.setFJwtdmids((String) listDatum.get("f_jwtdmids"));
-        wxjh.setFJwtdmmcs((String) listDatum.get("f_jwtdmmcs"));
-        wxjh.setFZhjtdmids((String) listDatum.get("f_zhjtdmids"));
-        wxjh.setFZhjtdmmcs((String) listDatum.get("f_zhjtdmmcs"));
+        wxjh.setFChwtdmids(this.clearData((String) listDatum.get("fchwtdmids")));
+        wxjh.setFChwtdmmcs(this.clearData((String) listDatum.get("fchwtdmmcs")));
+        wxjh.setFJwtdmids(this.clearData((String) listDatum.get("fjwtdmids")));
+        wxjh.setFJwtdmmcs(this.clearData((String) listDatum.get("fjwtdmmcs")));
+        wxjh.setFZhjtdmids(this.clearData((String) listDatum.get("fzhjtdmids")));
+        wxjh.setFZhjtdmmcs(this.clearData((String) listDatum.get("fzhjtdmmcs")));
         wxjh.setStatus("0");
         return wxjh;
     }
@@ -2048,8 +2144,7 @@ public class ServiceImpl implements Service {
         logger.info("查询旅服 预警 查询开始时间；" + beginTime + "结束时间：" + endTime + " 返回内容：" + jsonData);
 
         //插入日志
-        LogExeManager.getInstance().executeLogTask(logTaskFactory.crezteLog("lf", "1", "", "查询旅服 预警 查询开始时间；" + beginTime + " 结束时间：" + endTime,jsonData));
-
+        LogExeManager.getInstance().executeLogTask(logTaskFactory.crezteLog("lf", "1", "", "查询旅服 预警 查询开始时间；" + beginTime + " 结束时间：" + endTime, jsonData));
 
 
         return map;
@@ -2123,7 +2218,7 @@ public class ServiceImpl implements Service {
                 videoFileList.add(videoFile);
             }
         }
-        for (VideoFile videoFile : videoFileList) {
+      /*  for (VideoFile videoFile : videoFileList) {
             Example example = new Example(VideoFile.class);
             Example.Criteria criteria = example.createCriteria();
             criteria.andEqualTo("ipcid", videoFile.getIpcid());
@@ -2136,6 +2231,9 @@ public class ServiceImpl implements Service {
                 continue;
             }
             int i1 = videoFileMapper.insertSelective(videoFile);//添加到任务表里
+        }*/
+        if (videoFileList.size() > 0) {
+            int i1 = videoFileMapper.saveAll(videoFileList);//添加到任务表里
         }
         return 1;
     }
@@ -2220,31 +2318,38 @@ public class ServiceImpl implements Service {
         map.put("message", "添加任务成功");
         map.put("status", "0");
         logger.info("添加查询任务模板 摄像机编码：" + videoCode + " 开始时间：" + benginTime + " 结束时间：" + endTime + " 每间隔 ：" + intervalTime + "天执行一次  执行到：" + timeRange);
-      */  return map;
+      */
+        return map;
+    }
+
+    @Override
+    public void addGWTaskDoor() {
+
     }
 
     @Override
     public void addGWTask() {
-        logger.info("333333333333333333333333333333333333333333333333333333333333333333333333");
         {
             try {
                 Example example = new Example(Wxjh.class);
                 Example.Criteria criteria = example.createCriteria();
                 criteria.andEqualTo("status", "0");
                 List<Wxjh> wxjhList = wxjhMapper.selectByExample(example);
+                logger.error("查到维修计划条数" + wxjhList.size());
                 List<Map<String,Object>> mapList = new ArrayList<>();
                 for (Wxjh wxjh : wxjhList) {
                     Map<String,Object> map = new HashMap<>();
                     map.put("id", wxjh.getId());
                     map.put("status", "1");
                     mapList.add(map);
+                    logger.error("进入维修计划循环" + mapList.size());
                     String zyrq = wxjh.getZyrq();
                     String zysd = wxjh.getZysd();
                     if (zysd.contains("(")) {
                         zysd = zysd.substring(0, zysd.indexOf("("));
                     }
-                    logger.error("zyrq 字符串：" + zyrq + "   zysd :" + zysd);
                     if (!zyrq.contains(" ") || !zysd.contains("-")) {
+                        logger.error("zyrq 字符串：" + zyrq + "   zysd :" + zysd);
                         wxjhList.remove(wxjh);
                         continue;
                     }
@@ -2256,11 +2361,13 @@ public class ServiceImpl implements Service {
                         jieshu = DateUtils.getDate(new Date(kdate.getTime() + 24 * 3600 * 1000), "yyyy-MM-dd") + " " + zysd.split("-")[1] + ":00";
                     }
                     if (wxjh != null && wxjh.getId() != null && wxjh.getZyzzlc() != null && wxjh.getZyqslc() != null) {
+                        logger.error("进入维修计划插入条件");
                         addVideoTask(wxjh.getId(), "wxjh", wxjh.getZyqslc().replace(".", ""), wxjh.getZyzzlc().replace(".", ""), kaishi, jieshu);
                     }
                 }
+                logger.error("跳出循环维修计划" + wxjhList.size() + "  maplist" + mapList.size());
                 if (wxjhList != null && wxjhList.size() > 0) {
-
+                    logger.error("进入维修计划修改状态条件");
                     wxjhMapper.updateChartParamByAccountAndChartid(mapList);
                 }
             } catch (Exception e) {
@@ -2272,9 +2379,9 @@ public class ServiceImpl implements Service {
         }
         {
             try {
-                int pageSize=1000;
-                int pageIndex=1;
-                int totalPageNum=1;
+                int pageSize = 1000;
+                int pageIndex = 1;
+                int totalPageNum = 1;
                 for (pageIndex = 1; pageIndex <= totalPageNum; pageIndex++) {
 
                     Example example = new Example(Hcsj.class);
@@ -2282,7 +2389,7 @@ public class ServiceImpl implements Service {
                     criteria.andEqualTo("status", "0");
                     PageHelper.startPage(pageIndex, pageSize);
                     PageInfo<Hcsj> pageInfo = new PageInfo<>(hcsjMapper.selectByExample(example));
-                    if (pageInfo != null && pageInfo.getSize()> 0 && pageIndex == 1) {
+                    if (pageInfo != null && pageInfo.getSize() > 0 && pageIndex == 1) {
                         totalPageNum = pageInfo.getPages();
                     }
 
@@ -2342,7 +2449,52 @@ public class ServiceImpl implements Service {
                 logger.error(e.getMessage(), e);
             }
         }
-        logger.info("44444444444444444444444444444444444444444444444444444444444444444");
+        {
+            TaskDoor taskD = new TaskDoor();
+            taskD.setStatus("0");
+            List<TaskDoor> taskDoors = taskDoorMapper.select(taskD);
+            List<Dooripcrelation> dooripcrelations = dooripcrelationMapper.selectAll();
+            for (Dooripcrelation dooripcrelation : dooripcrelations) {
+                for (TaskDoor taskDoor : taskDoors) {
+                    if (StringUtils.isNotEmpty(taskDoor.getTdmname()) && StringUtils.isNotEmpty(dooripcrelation.getBh()) && taskDoor.getTdmname().contains(dooripcrelation.getBh())) {
+                        taskDoor.setIpcid(dooripcrelation.getIpcid() == null ? "" : dooripcrelation.getIpcid());
+                    }
+                }
+            }
+            List<VideoFile> videoFileList = new ArrayList<>();
+            List<TaskDoor> taskDoors1 = new ArrayList<>();
+            for (TaskDoor taskDoor : taskDoors) {
+                taskDoors1.add(taskDoor);
+                if (!StringUtils.isEmpty(taskDoor.getIpcid())) {
+
+                    VideoFile videoFile = new VideoFile();
+                    videoFile.setId(UUIDHelper.getUUIDStr());
+                    videoFile.setIpcid(taskDoor.getIpcid());
+                    String kssj = taskDoor.getKssj();
+                    Date date = DateUtils.parseDate(kssj, "yyyy-MM-dd HH:mm:ss");
+
+                    videoFile.setKssj(DateUtils.getDate(new Date(date.getTime() - 1000 * 60 * 10), "yyyy-MM-dd HH:mm:ss"));
+                    videoFile.setJssj(DateUtils.getDate(new Date(date.getTime() + 1000 * 60 * 10), "yyyy-MM-dd HH:mm:ss"));
+                    videoFile.setStatus("0");
+                    videoFile.setVideoType("zydoor");
+                    videoFile.setAlarmId(taskDoor.getTableId());
+
+                    taskDoor.setStatus("1");
+
+
+                    videoFileList.add(videoFile);
+                } else {
+                    taskDoor.setStatus("2");
+                }
+
+            }
+            if (videoFileList.size() > 0) {
+                videoFileMapper.saveAll(videoFileList);
+            }
+            if (taskDoors1.size() > 0) {
+                taskDoorMapper.updateAllStatus(taskDoors1);
+            }
+        }
     }
 
     @Override
@@ -2503,7 +2655,7 @@ public class ServiceImpl implements Service {
 
 
         Map<String,Object> map = new HashMap<>();
-        try {
+        /*try {
             List<String> list = new ArrayList<>();
             List<VideoFile> videoFileList = videoFileMapper.getVideoRecord("", videoType, cameraType, cameraName, startTime, endTime, list);
             map.put("status", "0");
@@ -2513,7 +2665,7 @@ public class ServiceImpl implements Service {
             logger.error(e.getMessage(), e);
             map.put("status", "1");
             map.put("message", "查询失败");
-        }
+        }*/
         return map;
     }
 
@@ -2532,7 +2684,7 @@ public class ServiceImpl implements Service {
                 }
             }
             PageHelper.startPage(Integer.parseInt(pageIndex), Integer.parseInt(pageSize));
-            PageInfo<VideoFile> pageInfo = new PageInfo<>(videoFileMapper.getVideoRecord(videoTypeTag, videoType, cameraType, cameraName, startTime, endTime, list));
+            PageInfo<VideoFile> pageInfo = new PageInfo<>(videoFileMapper.getVideoRecord(videoTypeTag, videoType, cameraType, cameraName, startTime, endTime, list, pageIndex, pageSize));
             List<String> videoFileIds = new ArrayList<>();
             List<String> videoIPCId = new ArrayList<>();
             List<VideoFile> videoFileList = pageInfo.getList();
@@ -2872,5 +3024,50 @@ public class ServiceImpl implements Service {
         }
         logger.info("调用getIpcTag 查询摄像机标签");
         return map;
+    }
+
+
+    @Override
+    public Message findWxjh(Wxjh wxjh) {
+        Message message = new Message();
+        List<String> list = new ArrayList<>();
+        List<VideoType> videoTypes = null;
+        if (wxjh.getPageIndex() == null || wxjh.getPageSize() == null) {
+            wxjh.setPageIndex("1");
+            wxjh.setPageSize("1000");
+        }
+        try {
+            PageHelper.startPage(Integer.parseInt(wxjh.getPageIndex()), Integer.parseInt(wxjh.getPageSize()));
+            PageInfo<Wxjh> pageInfo = new PageInfo<>(wxjhMapper.findByExample(wxjh));
+
+            message.ok("查询成功", pageInfo);
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+            message.error("查询失败");
+            return message;
+        }
+        return message;
+    }
+
+    @Override
+    public Message findSgjh(Sgjh sgjh) {
+        Message message = new Message();
+        List<String> list = new ArrayList<>();
+        List<VideoType> videoTypes = null;
+        if (sgjh.getPageIndex() == null || sgjh.getPageSize() == null) {
+            sgjh.setPageIndex("1");
+            sgjh.setPageSize("1000");
+        }
+        try {
+            PageHelper.startPage(Integer.parseInt(sgjh.getPageIndex()), Integer.parseInt(sgjh.getPageSize()));
+            PageInfo<Sgjh> pageInfo = new PageInfo<>(sgjhMapper.findByExample(sgjh));
+
+            message.ok("查询成功", pageInfo);
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+            message.error("查询失败");
+            return message;
+        }
+        return message;
     }
 }

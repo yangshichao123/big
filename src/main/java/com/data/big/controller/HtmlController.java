@@ -14,7 +14,7 @@ import java.util.Map;
 @Controller
 public class HtmlController {
     @RequestMapping("/login")
-    public String index(Model model){
+    public String index(Model model) {
 
         Map map = new LinkedHashMap<>();
         for (int i = 0; i < 5; i++) {

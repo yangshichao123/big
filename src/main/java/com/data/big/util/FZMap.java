@@ -12,9 +12,10 @@ public class FZMap {
      *
      * @return
      */
-    public static final HashMap<String, String> loginToken = new HashMap<>();
+    public static final HashMap<String,String> loginToken = new HashMap<>();
     // 互斥锁
-    public static ReentrantReadWriteLock loginTokenLock = new ReentrantReadWriteLock(); /**
+    public static ReentrantReadWriteLock loginTokenLock = new ReentrantReadWriteLock();
+    /**
      * 登录用户信息 key 为会话编号cuId
      *
      * @return

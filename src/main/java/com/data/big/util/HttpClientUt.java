@@ -65,19 +65,19 @@ public class HttpClientUt {
                 System.out.println(o1.toString());
             }
         }*/
-        String url="http://127.0.0.1:10001/fdCon/addTbale1";
+        String url = "http://127.0.0.1:10001/fdCon/addTbale1";
 
-        Map<String,String> headers=new HashMap<>();
-        headers.put("Authorization","33333333333");
+        Map<String,String> headers = new HashMap<>();
+        headers.put("Authorization", "33333333333");
 
-        JSONObject body=new JSONObject();
-        body.put("data","3333333333333");
-        body.put("id","111111");
-        body.put("name","44444444444");
+        JSONObject body = new JSONObject();
+        body.put("data", "3333333333333");
+        body.put("id", "111111");
+        body.put("name", "44444444444");
 
-        String jsonstr="C:\\Users\\61471\\Pictures\\Saved Pictures\\timg.jpg";
+        String jsonstr = "C:\\Users\\61471\\Pictures\\Saved Pictures\\timg.jpg";
 
-        sendFilePost(url, headers, body.toJSONString(),jsonstr);
+        sendFilePost(url, headers, body.toJSONString(), jsonstr);
     }
 
     public static String sendFile(String url, String jsonstr, String Authorization) {
@@ -119,7 +119,7 @@ public class HttpClientUt {
                     System.out.println(resEntity);
                     logger.info("请求返回状态 " + result);
                 }
-                logger.error("向大数据上传视频返回直为："+EntityUtils.toString(resEntity, "utf-8"));
+                logger.error("向大数据上传视频返回直为：" + EntityUtils.toString(resEntity, "utf-8"));
             }
         } catch (ClientProtocolException ex) {
             logger.error(ex.getMessage(), ex);
@@ -138,7 +138,7 @@ public class HttpClientUt {
      * @param jsonstr json字符串
      * @return json字符串
      */
-    public static String doPost(String url, String jsonstr,String headerStr) {
+    public static String doPost(String url, String jsonstr, String headerStr) {
         HttpClient httpClient = null;
         HttpPost httpPost = null;
         String result = null;
@@ -179,7 +179,7 @@ public class HttpClientUt {
         }
         return result;
     }
- /**
+    /**
      * post http请求
      *
      * @param url     请求地址
@@ -188,13 +188,14 @@ public class HttpClientUt {
      */
     /**
      * 发送图片HttpPost请求
+     *
      * @param url
      * @param headers 头部参数
-     * @param body body参数，json字符串
+     * @param body    body参数，json字符串
      * @return
      */
-    public static String sendFilePost(String url, Map<String, String> headers, String body,String jsonstr) {
-        CloseableHttpClient httpclient =HttpClientBuilder.create().build();
+    public static String sendFilePost(String url, Map<String,String> headers, String body, String jsonstr) {
+        CloseableHttpClient httpclient = HttpClientBuilder.create().build();
         List<File> files = new ArrayList<>();
         File f1 = new File(jsonstr);
         files.add(f1);
@@ -213,13 +214,13 @@ public class HttpClientUt {
 		/*	StringBody stringBody = new StringBody("12", ContentType.MULTIPART_FORM_DATA);
 			builder.addPart("id", stringBody);*/
         //决中文乱码
-       // ContentType contentType = ContentType.create(HTTP.PLAIN_TEXT_TYPE,Consts.UTF_8);
+        // ContentType contentType = ContentType.create(HTTP.PLAIN_TEXT_TYPE,Consts.UTF_8);
         //ContentType contentType = ContentType.create("application/json",Consts.UTF_8);
         builder.addTextBody("jsonObject", body);
         HttpEntity entity = builder.build();
-        if (null!=headers&&headers.size()>0){
-            for (Map.Entry<String, String> entry : headers.entrySet()) {
-                httppost.addHeader(entry.getKey(),entry.getValue());
+        if (null != headers && headers.size() > 0) {
+            for (Map.Entry<String,String> entry : headers.entrySet()) {
+                httppost.addHeader(entry.getKey(), entry.getValue());
             }
         }
         RequestConfig requestConfig = RequestConfig.custom().setConnectTimeout(5000).setConnectionRequestTimeout(1000).setSocketTimeout(3000).build();
@@ -235,7 +236,7 @@ public class HttpClientUt {
         }
         String result = null;
         try {
-            if(response!=null){
+            if (response != null) {
                 int code = response.getStatusLine().getStatusCode();
                 //如果成功 则处理数据
                 if (code == 200) {
@@ -255,7 +256,7 @@ public class HttpClientUt {
             logger.error("请求出错:" + url, e);
         } finally {
             try {
-                if(response!=null){
+                if (response != null) {
                     response.close();
                 }
             } catch (IOException e) {
@@ -280,7 +281,7 @@ public class HttpClientUt {
             httpGet = new HttpGet(uriBuilder.build());
             httpGet.addHeader("user-agent", "Koala Admin");
 
-            RequestConfig requestConfig =  RequestConfig.custom().setSocketTimeout(10000).setConnectTimeout(10000).build();
+            RequestConfig requestConfig = RequestConfig.custom().setSocketTimeout(10000).setConnectTimeout(10000).build();
             httpGet.setConfig(requestConfig);
 
             HttpResponse response = httpClient.execute(httpGet);
@@ -741,7 +742,7 @@ public class HttpClientUt {
 
 
     //  静态方法，类名可直接调用
-    public static String doPostMap(String url, Map<String, Object> paramsMap) {
+    public static String doPostMap(String url, Map<String,Object> paramsMap) {
         CloseableHttpClient closeableHttpClient = HttpClients.createDefault();
         //配置连接超时时间
         RequestConfig requestConfig = RequestConfig.custom()
