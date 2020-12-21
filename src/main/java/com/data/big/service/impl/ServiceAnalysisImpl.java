@@ -14,6 +14,7 @@ import com.github.pagehelper.PageInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import tk.mybatis.mapper.entity.Example;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -171,5 +172,34 @@ public class ServiceAnalysisImpl implements ServiceAnalysis {
             return message;
         }
         return message;
+    }
+
+
+    @Override
+    public Message getAnalysiresultByIds(String ids) {
+        Message message = new Message();
+        List idList=new ArrayList();
+        String[] idStr=ids.split(";");
+        if(idStr.length<1){
+            return message.error("参数错误");
+        }
+        for (String s : idStr) {
+            idList.add(s);
+        }
+
+        try {
+            if(idList.size()>0){
+                Example example = new Example(Analysiresult.class);
+                Example.Criteria criteria = example.createCriteria();
+                criteria.andIn("id",idList);
+                List<Analysiresult> analysisvideos = analysiresultMapper.selectByExample(example);
+                message.ok("查询成功", analysisvideos);
+            }
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+            message.error("查询失败");
+            return message;
+        }
+        return  message;
     }
 }

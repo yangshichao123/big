@@ -60,6 +60,11 @@ logging:
   level:
     org.springframework.boot.autoconfigure: ERROR
 
+
+
+bootshiro:
+  enableEncryptPassword: false
+
 sendFileCron:
   "0 0/5 * * * ?"
 

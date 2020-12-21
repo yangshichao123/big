@@ -1,5 +1,7 @@
 package com.data.big.vo;
 
+import lombok.Data;
+
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.HashMap;
@@ -14,6 +16,7 @@ import java.util.Map;
  * @author tomsun28
  * @date 10:48 2018/2/14
  */
+@Data
 public class Message {
 
 
@@ -22,48 +25,11 @@ public class Message {
     private  Boolean success;
     private  String status;
     private  Object data;
+    private  Map<String,Object> dataMap =new HashMap<>();
+
     private  String message;
     private Timestamp timestamp;
 
-    public Boolean getSuccess() {
-        return success;
-    }
-
-    public void setSuccess(Boolean success) {
-        this.success = success;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public Object getData() {
-        return data;
-    }
-
-    public void setData(Object data) {
-        this.data = data;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    public Date getTimestamp() {
-        return timestamp;
-    }
-
-    public void setTimestamp(Timestamp timestamp) {
-        this.timestamp = timestamp;
-    }
 
     public Message ok(String msg, Object data) {
         this.setData(data);
@@ -71,6 +37,18 @@ public class Message {
         this.setSuccess(Boolean.TRUE);
         this.setMessage(msg);
         this.setTimestamp(new Timestamp(System.currentTimeMillis()));
+        return this;
+    }
+    public Message ok(String msg) {
+        this.setData("");
+        this.setStatus("0");
+        this.setSuccess(Boolean.TRUE);
+        this.setMessage(msg);
+        this.setTimestamp(new Timestamp(System.currentTimeMillis()));
+        return this;
+    }
+    public Message addData(String name,Object data) {
+        dataMap.put(name,data);
         return this;
     }
     public Message error( String msg) {

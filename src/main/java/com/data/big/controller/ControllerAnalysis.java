@@ -44,6 +44,17 @@ public class ControllerAnalysis {
         return serviceAnalysis.getAnalysiresult(analysiresult);
     }
 
+    /**
+     * 查询分析结果
+     * @param ids  多个id以;号隔开
+     * @return
+     */
+    @RequestMapping("/getAnalysiresultByIds")
+    public Message getAnalysiresultByIds(String ids) {
+
+        return serviceAnalysis.getAnalysiresultByIds(ids);
+    }
+
 
 
 

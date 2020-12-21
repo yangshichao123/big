@@ -27,4 +27,6 @@ public interface ServiceAnalysis {
     Message deleteAnalysisvideo(Analysisvideo analysisvideo);
 
     Message getAnalysisvideo(Analysisvideo analysisvideo);
+
+    Message getAnalysiresultByIds(String ids);
 }

@@ -19,86 +19,114 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d4c6381f-f796-46ff-8027-3573d595aeec" name="Default Changelist" comment="增加列车追踪 等功能">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/big.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/controller/ControllerAnalysis.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/controller/ControllerDoor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/service/ServiceAnalysis.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/service/ServiceDoor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/service/impl/ServiceAnalysisImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/service/impl/ServiceDoorImpl.java" afterDir="false" />
+    <list default="true" id="d4c6381f-f796-46ff-8027-3573d595aeec" name="Default Changelist" comment="整理Java格式">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/controller/AccountController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/controller/BaseAction.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/controller/LogController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/controller/ResourceController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/controller/RoleController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/controller/UserController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/mapper/AuthAccountLogMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/mapper/AuthOperationLogMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/model/AuthAccountLog.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/model/AuthOperationLog.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/service/AccountLogService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/service/AccountService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/service/OperationLogService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/service/ResourceService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/service/RoleService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/service/UserService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/service/impl/AccountLogServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/service/impl/AccountServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/service/impl/OperationLogServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/service/impl/ResourceServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/service/impl/RoleServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/service/impl/UserServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/shiro/config/RestPathMatchingFilterChainResolver.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/shiro/config/RestShiroFilterFactoryBean.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/shiro/config/ShiroConfiguration.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/shiro/filter/AbstractPathMatchingFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/shiro/filter/BonJwtFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/shiro/filter/PasswordFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/shiro/filter/ShiroFilterChainManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/shiro/filter/StatelessWebSubjectFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/shiro/matcher/JwtMatcher.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/shiro/matcher/PasswordMatcher.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/shiro/provider/AccountProvider.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/shiro/provider/ShiroFilterRulesProvider.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/shiro/provider/impl/AccountProviderImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/shiro/provider/impl/ShiroFilterRulesProviderImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/shiro/realm/AonModularRealmAuthenticator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/shiro/realm/JwtRealm.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/shiro/realm/PasswordRealm.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/shiro/realm/RealmManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/shiro/rule/RolePermRule.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/shiro/token/JwtToken.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/shiro/token/PasswordToken.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/support/GlobalExceptionHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/support/SpringContextHolder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/support/XssSqlFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/support/XssSqlHttpServletRequestWrapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/support/XssSqlStringJsonSerializer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/support/factory/LogFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/support/factory/LogTaskFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/support/manager/LogExeManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/util/AesUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/util/CommonUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/util/IpUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/util/JsonWebTokenUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/util/Md5Util.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/util/RequestResponseUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/util/TreeUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/util/XssUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/vo/Account.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/vo/BaseTreeNode.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/vo/JwtAccount.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/data/big/vo/MenuTreeNode.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/big.iml" beforeDir="false" afterPath="$PROJECT_DIR$/big.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/log/big_error.log" beforeDir="false" afterPath="$PROJECT_DIR$/log/big_error.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/log/big_info.log" beforeDir="false" afterPath="$PROJECT_DIR$/log/big_info.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/data/big/StartUp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/data/big/StartUp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/data/big/controller/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/data/big/controller/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/data/big/controller/ControllerMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/data/big/controller/ControllerMap.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/data/big/controller/ControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/data/big/controller/ControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/data/big/controller/ControllerTrain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/data/big/controller/ControllerTrain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/data/big/controller/ControllerUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/data/big/controller/ControllerUser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/data/big/controller/ControllerVideo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/data/big/controller/ControllerVideo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/data/big/controller/HtmlController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/data/big/controller/HtmlController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/data/big/controller/MqController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/data/big/controller/MqController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/data/big/mapper/SgjhMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/data/big/mapper/SgjhMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/data/big/mapper/TrainloactionMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/data/big/mapper/TrainloactionMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/data/big/mapper/VideoFileMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/data/big/mapper/VideoFileMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/data/big/mapper/WxjhMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/data/big/mapper/WxjhMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/data/big/model/Camera.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/data/big/model/Camera.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/data/big/model/Sgjh.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/data/big/model/Sgjh.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/data/big/model/Trainloaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/data/big/model/Trainloaction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/data/big/model/Wxjh.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/data/big/model/Wxjh.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/data/big/service/Service.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/data/big/service/Service.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/data/big/service/ServiceFZ.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/data/big/service/ServiceFZ.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/data/big/service/ServiceMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/data/big/service/ServiceMap.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/data/big/service/ServiceNetty.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/data/big/service/ServiceNetty.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/data/big/service/ServiceTrain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/data/big/service/ServiceTrain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/data/big/service/ServiceUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/data/big/service/ServiceUser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/data/big/service/ServiceVideo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/data/big/service/ServiceVideo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/data/big/service/impl/ServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/data/big/service/impl/ServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/data/big/service/impl/ServiceMapImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/data/big/service/impl/ServiceMapImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/data/big/service/impl/ServiceNettyImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/data/big/service/impl/ServiceNettyImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/data/big/service/impl/ServiceTrainImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/data/big/service/impl/ServiceTrainImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/data/big/service/impl/ServiceUserImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/data/big/service/impl/ServiceUserImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/data/big/service/impl/ServiceVideoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/data/big/service/impl/ServiceVideoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/data/big/task/KeepTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/data/big/task/KeepTask.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/data/big/task/TimingTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/data/big/task/TimingTask.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/data/big/task/taskThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/data/big/task/taskThread.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/data/big/webService/CxfInvokeClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/data/big/webService/CxfInvokeClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/data/big/controller/ControllerAnalysis.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/data/big/controller/ControllerAnalysis.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/data/big/service/ServiceAnalysis.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/data/big/service/ServiceAnalysis.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/data/big/service/impl/ServiceAnalysisImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/data/big/service/impl/ServiceAnalysisImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/data/big/vo/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/data/big/vo/Message.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application-dev.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application-dev.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application-pro.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application-pro.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapping/HcsjMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapping/HcsjMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapping/IpcseelocationMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapping/IpcseelocationMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapping/SgjhMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapping/SgjhMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapping/TrainloactionMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapping/TrainloactionMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapping/VideoFileMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapping/VideoFileMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapping/WxjhMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapping/WxjhMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/big.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/big.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/big.jar.original" beforeDir="false" afterPath="$PROJECT_DIR$/target/big.jar.original" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/generatorConfig/generator.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/generatorConfig/generator.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/application-dev.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application-dev.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/application-pro.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application-pro.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/data/big/StartUp.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/data/big/StartUp.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/data/big/controller/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/data/big/controller/Controller.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/data/big/mapper/SgjhMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/data/big/mapper/SgjhMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/data/big/mapper/VideoFileMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/data/big/mapper/VideoFileMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/data/big/mapper/WxjhMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/data/big/mapper/WxjhMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/data/big/model/Sgjh.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/data/big/model/Sgjh.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/data/big/model/Wxjh.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/data/big/model/Wxjh.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/data/big/service/Service.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/data/big/service/Service.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/data/big/controller/ControllerAnalysis.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/data/big/controller/ControllerAnalysis.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/data/big/controller/ControllerDoor.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/data/big/controller/ControllerDoor.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/data/big/controller/ControllerMap.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/data/big/controller/ControllerMap.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/data/big/controller/ControllerTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/data/big/controller/ControllerTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/data/big/controller/ControllerTrain.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/data/big/controller/ControllerTrain.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/data/big/controller/ControllerUser.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/data/big/controller/ControllerUser.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/data/big/controller/ControllerVideo.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/data/big/controller/ControllerVideo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/data/big/controller/MqController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/data/big/controller/MqController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/data/big/service/impl/ServiceDoorImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/data/big/service/impl/ServiceDoorImpl.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/data/big/service/impl/ServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/data/big/service/impl/ServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/data/big/service/impl/ServiceNettyImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/data/big/service/impl/ServiceNettyImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/data/big/task/TimingTask.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/data/big/task/TimingTask.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mapping/HcsjMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapping/HcsjMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mapping/IpcseelocationMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapping/IpcseelocationMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mapping/SgjhMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapping/SgjhMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/data/big/service/impl/ServiceTrainImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/data/big/service/impl/ServiceTrainImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/data/big/service/impl/ServiceUserImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/data/big/service/impl/ServiceUserImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/data/big/service/impl/ServiceVideoImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/data/big/service/impl/ServiceVideoImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/data/big/token/TokenProccessor.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/data/big/token/TokenProccessor.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/data/big/token/TokenTools.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/data/big/token/TokenTools.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/data/big/util/AsciiStringToHex.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/data/big/util/AsciiStringToHex.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/data/big/util/CRCUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/data/big/util/CRCUtil.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/data/big/util/DateFormatHelper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/data/big/util/DateFormatHelper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/data/big/util/DateUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/data/big/util/DateUtils.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/data/big/util/Dom.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/data/big/util/Dom.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/data/big/util/FZMap.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/data/big/util/FZMap.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/data/big/util/HttpClientUt.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/data/big/util/HttpClientUt.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/data/big/util/Properties.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/data/big/util/Properties.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/data/big/util/webServiceUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/data/big/util/webServiceUtils.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/data/big/vo/Message.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/data/big/vo/Message.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/generatorConfig/generator.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/generatorConfig/generator.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/mapping/VideoFileMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapping/VideoFileMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mapping/WxjhMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapping/WxjhMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -143,7 +171,7 @@
     <property name="ToolWindowFind.ShowToolbar" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../新建文件夹/big" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java/com/data/big/service/impl" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -160,30 +188,31 @@
     <option name="notificationShown" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="com.data.big.service" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\workspace\bigWorkspace\big\src\main\resources" />
+      <recent name="D:\workspace\bigWorkspace\big" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="com.data.big.util" />
       <recent name="com.data.big.fz" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\workspace\bigWorkspace\big\src\main\java\com\data\big" />
-      <recent name="D:\workspace\bigWorkspace\big\src\main\java\com\data\big\log" />
-      <recent name="D:\workspace\bigWorkspace\big\src\main\java\com\data\big\gw" />
-      <recent name="D:\workspace\bigWorkspace\big\src\main\java\com\data\big\mu" />
-      <recent name="D:\workspace\bigWorkspace\big\src\main\java\com\data\big\rsa" />
+      <recent name="D:\workspace\big_shiro_workspace\big\src\main\java\com\data\big\service\impl" />
+      <recent name="D:\workspace\big_shiro_workspace\big\src\main\java\com\data\big\service" />
+      <recent name="D:\workspace\big_shiro_workspace\big\src\main\java\com\data\big\controller" />
+      <recent name="D:\workspace\big_shiro_workspace\big\src\main\java\com\data\big\vo" />
+      <recent name="D:\workspace\big_shiro_workspace\big\src\main\java\com\data\big" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.data.big.util" />
+      <recent name="com.data.big.model" />
       <recent name="com.data.big.controller" />
       <recent name="com.data.big.service.impl" />
       <recent name="com.data.big.service" />
-      <recent name="com.data.big.util" />
-      <recent name="com.data.big.log" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\workspace\bigWorkspace\big\src\main\resources" />
-      <recent name="D:\workspace\bigWorkspace\big" />
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.data.big.mapper" />
+      <recent name="com.data.big.service" />
     </key>
   </component>
   <component name="RunManager" selected="Spring Boot.MuApplication">
@@ -342,7 +371,12 @@
       <workItem from="1607645912161" duration="13515000" />
       <workItem from="1607905615325" duration="12457000" />
       <workItem from="1607991902112" duration="12614000" />
-      <workItem from="1608078482905" duration="4268000" />
+      <workItem from="1608078482905" duration="7042000" />
+      <workItem from="1608165011270" duration="600000" />
+      <workItem from="1608166774404" duration="19626000" />
+      <workItem from="1608194770933" duration="2021000" />
+      <workItem from="1608251175650" duration="961000" />
+      <workItem from="1608510752472" duration="8914000" />
     </task>
     <task id="LOCAL-00001" summary="增加旅服接口  公务接口  消息队列">
       <created>1601192018408</created>
@@ -407,7 +441,14 @@
       <option name="project" value="LOCAL" />
       <updated>1607304072275</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="整理Java格式">
+      <created>1608087772615</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1608087772615</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -434,7 +475,8 @@
     <MESSAGE value="增加防灾 webservice接口 修改定时任务执行死的问题 新增前端访问接口 字典等" />
     <MESSAGE value="增加token认证 修改代码bug" />
     <MESSAGE value="增加列车追踪 等功能" />
-    <option name="LAST_COMMIT_MESSAGE" value="增加列车追踪 等功能" />
+    <MESSAGE value="整理Java格式" />
+    <option name="LAST_COMMIT_MESSAGE" value="整理Java格式" />
   </component>
   <component name="WindowStateProjectService">
     <state x="395" y="91" key="#Inspections" timestamp="1605166260454">
@@ -445,85 +487,89 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="179" y="254" key="#SQL_Dialects/0.0.1536.824@0.0.1536.824" timestamp="1607064487799" />
-    <state x="574" y="118" key="#com.intellij.ide.util.MemberChooser" timestamp="1607655377368">
+    <state x="574" y="118" key="#com.intellij.ide.util.MemberChooser" timestamp="1608521008443">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="574" y="118" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1607655377368" />
+    <state x="574" y="118" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1608521008443" />
+    <state x="499" y="188" key="#com.intellij.ide.util.PackageChooserDialog" timestamp="1608189075545">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="499" y="188" key="#com.intellij.ide.util.PackageChooserDialog/0.0.1536.824@0.0.1536.824" timestamp="1608189075545" />
     <state x="544" y="275" width="448" height="272" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1603941500596">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="544" y="275" width="448" height="272" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1536.824@0.0.1536.824" timestamp="1603941500596" />
-    <state x="499" y="159" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1605079982157">
+    <state x="499" y="159" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1608175914670">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="499" y="159" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824@0.0.1536.824" timestamp="1605079982157" />
-    <state width="896" height="466" key="DebuggerActiveHint" timestamp="1607416874413">
+    <state x="499" y="159" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824@0.0.1536.824" timestamp="1608175914670" />
+    <state width="896" height="466" key="DebuggerActiveHint" timestamp="1608196184052">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="896" height="466" key="DebuggerActiveHint/0.0.1536.824@0.0.1536.824" timestamp="1607416874413" />
+    <state width="896" height="466" key="DebuggerActiveHint/0.0.1536.824@0.0.1536.824" timestamp="1608196184052" />
     <state x="548" y="168" key="FileChooserDialogImpl" timestamp="1608084970398">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="548" y="168" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1608084970398" />
-    <state width="1493" height="153" key="GridCell.Tab.0.bottom" timestamp="1608014705610">
+    <state width="1493" height="262" key="GridCell.Tab.0.bottom" timestamp="1608534001470">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="153" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1608014705610" />
+    <state width="1493" height="262" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1608534001470" />
     <state width="1431" height="256" key="GridCell.Tab.0.bottom/62.0.1474.864@62.0.1474.864" timestamp="1608001500120" />
-    <state width="1493" height="153" key="GridCell.Tab.0.center" timestamp="1608014705610">
+    <state width="1493" height="262" key="GridCell.Tab.0.center" timestamp="1608534001469">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="153" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1608014705610" />
+    <state width="1493" height="262" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1608534001469" />
     <state width="1431" height="256" key="GridCell.Tab.0.center/62.0.1474.864@62.0.1474.864" timestamp="1608001500120" />
-    <state width="1493" height="153" key="GridCell.Tab.0.left" timestamp="1608014705610">
+    <state width="1493" height="262" key="GridCell.Tab.0.left" timestamp="1608534001469">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="153" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1608014705610" />
+    <state width="1493" height="262" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1608534001469" />
     <state width="1431" height="256" key="GridCell.Tab.0.left/62.0.1474.864@62.0.1474.864" timestamp="1608001500120" />
-    <state width="1493" height="153" key="GridCell.Tab.0.right" timestamp="1608014705610">
+    <state width="1493" height="262" key="GridCell.Tab.0.right" timestamp="1608534001469">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="153" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1608014705610" />
+    <state width="1493" height="262" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1608534001469" />
     <state width="1431" height="256" key="GridCell.Tab.0.right/62.0.1474.864@62.0.1474.864" timestamp="1608001500120" />
-    <state width="1493" height="262" key="GridCell.Tab.1.bottom" timestamp="1608014700510">
+    <state width="1493" height="262" key="GridCell.Tab.1.bottom" timestamp="1608534001290">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="262" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1608014700510" />
+    <state width="1493" height="262" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1608534001290" />
     <state width="1431" height="256" key="GridCell.Tab.1.bottom/62.0.1474.864@62.0.1474.864" timestamp="1608001499876" />
-    <state width="1493" height="262" key="GridCell.Tab.1.center" timestamp="1608014700510">
+    <state width="1493" height="262" key="GridCell.Tab.1.center" timestamp="1608534001290">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="262" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1608014700510" />
+    <state width="1493" height="262" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1608534001290" />
     <state width="1431" height="256" key="GridCell.Tab.1.center/62.0.1474.864@62.0.1474.864" timestamp="1608001499876" />
-    <state width="1493" height="262" key="GridCell.Tab.1.left" timestamp="1608014700510">
+    <state width="1493" height="262" key="GridCell.Tab.1.left" timestamp="1608534001290">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="262" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1608014700510" />
+    <state width="1493" height="262" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1608534001290" />
     <state width="1431" height="256" key="GridCell.Tab.1.left/62.0.1474.864@62.0.1474.864" timestamp="1608001499876" />
-    <state width="1493" height="262" key="GridCell.Tab.1.right" timestamp="1608014700510">
+    <state width="1493" height="262" key="GridCell.Tab.1.right" timestamp="1608534001290">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="262" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1608014700510" />
+    <state width="1493" height="262" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1608534001290" />
     <state width="1431" height="256" key="GridCell.Tab.1.right/62.0.1474.864@62.0.1474.864" timestamp="1608001499876" />
-    <state width="1493" height="262" key="GridCell.Tab.2.bottom" timestamp="1608014700510">
+    <state width="1493" height="262" key="GridCell.Tab.2.bottom" timestamp="1608534001291">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="262" key="GridCell.Tab.2.bottom/0.0.1536.824@0.0.1536.824" timestamp="1608014700510" />
+    <state width="1493" height="262" key="GridCell.Tab.2.bottom/0.0.1536.824@0.0.1536.824" timestamp="1608534001291" />
     <state width="1431" height="256" key="GridCell.Tab.2.bottom/62.0.1474.864@62.0.1474.864" timestamp="1608001499876" />
-    <state width="1493" height="262" key="GridCell.Tab.2.center" timestamp="1608014700510">
+    <state width="1493" height="262" key="GridCell.Tab.2.center" timestamp="1608534001291">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="262" key="GridCell.Tab.2.center/0.0.1536.824@0.0.1536.824" timestamp="1608014700510" />
+    <state width="1493" height="262" key="GridCell.Tab.2.center/0.0.1536.824@0.0.1536.824" timestamp="1608534001291" />
     <state width="1431" height="256" key="GridCell.Tab.2.center/62.0.1474.864@62.0.1474.864" timestamp="1608001499876" />
-    <state width="1493" height="262" key="GridCell.Tab.2.left" timestamp="1608014700510">
+    <state width="1493" height="262" key="GridCell.Tab.2.left" timestamp="1608534001290">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="262" key="GridCell.Tab.2.left/0.0.1536.824@0.0.1536.824" timestamp="1608014700510" />
+    <state width="1493" height="262" key="GridCell.Tab.2.left/0.0.1536.824@0.0.1536.824" timestamp="1608534001290" />
     <state width="1431" height="256" key="GridCell.Tab.2.left/62.0.1474.864@62.0.1474.864" timestamp="1608001499876" />
-    <state width="1493" height="262" key="GridCell.Tab.2.right" timestamp="1608014700510">
+    <state width="1493" height="262" key="GridCell.Tab.2.right" timestamp="1608534001291">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="262" key="GridCell.Tab.2.right/0.0.1536.824@0.0.1536.824" timestamp="1608014700510" />
+    <state width="1493" height="262" key="GridCell.Tab.2.right/0.0.1536.824@0.0.1536.824" timestamp="1608534001291" />
     <state width="1431" height="256" key="GridCell.Tab.2.right/62.0.1474.864@62.0.1474.864" timestamp="1608001499876" />
     <state x="299" y="67" key="Maven.ArtifactSearchDialog" timestamp="1605664622255">
       <screen x="0" y="0" width="1536" height="824" />
@@ -541,10 +587,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="249" y="0" width="996" height="792" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1607473426855" />
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1607304196029">
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1608168236925">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1607304196029" />
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1608168236925" />
     <state x="565" y="190" key="chooseDestDirectoryDialog" timestamp="1606697670213">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -553,10 +599,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="563" y="325" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1601191912749" />
-    <state x="540" y="191" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1600931389286">
+    <state x="540" y="191" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1608189057865">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="540" y="191" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.0.1536.824@0.0.1536.824" timestamp="1600931389286" />
+    <state x="540" y="191" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.0.1536.824@0.0.1536.824" timestamp="1608189057865" />
     <state x="468" y="115" width="600" height="594" key="find.popup" timestamp="1608087274249">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -598,7 +644,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/data/big/util/HttpClientUt.java</url>
-          <line>197</line>
+          <line>198</line>
           <option name="timeStamp" value="34" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -625,6 +671,11 @@
           <url>file://$PROJECT_DIR$/src/main/java/com/data/big/task/taskThread.java</url>
           <line>35</line>
           <option name="timeStamp" value="48" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/data/big/controller/ResourceController.java</url>
+          <line>36</line>
+          <option name="timeStamp" value="49" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -220,7 +220,7 @@
     from video_file vf
     left join video_tag vt on vf.id=vt.video_file_id
     left join   dictionary d on d.id=vt.tag
-    where vt.video_file_id in
+    where vf.id in
     <foreach collection="list" item="videoFileId" separator="," open="(" close=")">
       #{videoFileId,jdbcType=VARCHAR}
     </foreach>
