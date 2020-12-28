@@ -19,9 +19,8 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d4c6381f-f796-46ff-8027-3573d595aeec" name="Default Changelist" comment="修改排序">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapping/ImgTaskMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapping/ImgTaskMapper.xml" afterDir="false" />
+    <list default="true" id="d4c6381f-f796-46ff-8027-3573d595aeec" name="Default Changelist" comment="增加空白行">
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/data/big/StartUp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/data/big/StartUp.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -363,7 +362,14 @@
       <option name="project" value="LOCAL" />
       <updated>1608534939090</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="增加空白行">
+      <created>1609157651880</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1609157651880</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -422,7 +428,8 @@
     <MESSAGE value="增加列车追踪 等功能" />
     <MESSAGE value="整理Java格式" />
     <MESSAGE value="提交代码 增加shiro jwt token" />
-    <option name="LAST_COMMIT_MESSAGE" value="提交代码 增加shiro jwt token" />
+    <MESSAGE value="增加空白行" />
+    <option name="LAST_COMMIT_MESSAGE" value="增加空白行" />
   </component>
   <component name="WindowStateProjectService">
     <state x="395" y="91" key="#Inspections" timestamp="1605166260454">
@@ -533,10 +540,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="249" y="0" width="996" height="792" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1607473426855" />
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1608535011243">
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1609157703465">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1608535011243" />
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1609157703465" />
     <state x="565" y="190" key="chooseDestDirectoryDialog" timestamp="1606697670213">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

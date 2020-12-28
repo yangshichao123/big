@@ -62,6 +62,8 @@ public class StartUp {
 		} catch (XMLParserException e) {
 			e.printStackTrace();
 		}*/
+
+        System.out.println("StartUp.main");
     }
 
     /**
