@@ -20,9 +20,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d4c6381f-f796-46ff-8027-3573d595aeec" name="Default Changelist" comment="提交代码 增加shiro jwt token">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/log/big_error.log" beforeDir="false" afterPath="$PROJECT_DIR$/log/big_error.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/log/big_info.log" beforeDir="false" afterPath="$PROJECT_DIR$/log/big_info.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/data/big/StartUp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/data/big/StartUp.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/data/big/mapper/AnalysisvideoMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/data/big/mapper/AnalysisvideoMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/data/big/mapper/VideoFileMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/data/big/mapper/VideoFileMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/data/big/mapper/VideoUploadMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/data/big/mapper/VideoUploadMapper.java" afterDir="false" />
@@ -44,7 +44,6 @@
       <change beforePath="$PROJECT_DIR$/src/main/resources/generatorConfig/generator.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/generatorConfig/generator.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/mapping/AnalysiresultMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapping/AnalysiresultMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/mapping/AnalysisvideoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapping/AnalysisvideoMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapping/ImgTaskMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapping/ImgTaskMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/mapping/SgjhMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapping/SgjhMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/mapping/TaskDoorMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapping/TaskDoorMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/mapping/VideoFileMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapping/VideoFileMapper.xml" afterDir="false" />
@@ -143,9 +142,9 @@
     <option name="notificationShown" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="com.data.big.mapper" />
-      <recent name="com.data.big.service" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\workspace\bigWorkspace\big\src\main\resources" />
+      <recent name="D:\workspace\bigWorkspace\big" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="com.data.big.util" />
@@ -165,9 +164,9 @@
       <recent name="com.data.big.service.impl" />
       <recent name="com.data.big.service" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\workspace\bigWorkspace\big\src\main\resources" />
-      <recent name="D:\workspace\bigWorkspace\big" />
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.data.big.mapper" />
+      <recent name="com.data.big.service" />
     </key>
   </component>
   <component name="RunManager" selected="Spring Boot.MuApplication">

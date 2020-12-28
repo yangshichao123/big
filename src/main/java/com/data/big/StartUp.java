@@ -62,6 +62,7 @@ public class StartUp {
 		} catch (XMLParserException e) {
 			e.printStackTrace();
 		}*/
+        System.out.println("wo ye da yin ");
     }
 
     /**
