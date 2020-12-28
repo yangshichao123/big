@@ -212,7 +212,7 @@
        and  vt.tag  =  #{videoTypeTag,jdbcType=VARCHAR}
       </if>
     </where>
-    order by vf.kssj desc
+    order by vf.kssj desc,vf.id
   </select>
   <select id="selectByVideoFileId" parameterType="java.lang.String" resultMap="BaseResultMap">
     select  vf.id, vt.id video_fag,vt.ipcid ipcid_fag,d.DESCS tag ,vt.rktime,vt.video_file_id

@@ -359,7 +359,11 @@
       <if test="cameraName != null and cameraName !=''">
         and c.device_name  like concat('%',#{cameraName,jdbcType=VARCHAR},'%')
       </if>
+      <if test="bz != null and bz !=''">
+        and it.bz  like concat('%',#{bz,jdbcType=VARCHAR},'%')
+      </if>
     </where>
+    order by it.ksrq desc ,it.id
   </select>
 
 

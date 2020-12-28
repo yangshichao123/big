@@ -27,6 +27,8 @@
     <result property="fZhjtdmmcs" jdbcType="VARCHAR" column="f_zhjtdmmcs" />
     <result property="fChwtdmids" jdbcType="VARCHAR" column="f_chwtdmids" />
     <result property="fChwtdmmcs" jdbcType="VARCHAR" column="f_chwtdmmcs" />
+    <result property="fsbsj" jdbcType="VARCHAR" column="fsbsj" />
+    <result column="CreateTime" jdbcType="TIMESTAMP" property="createtime" />
   </resultMap>
   <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.data.big.model.Wxjh">
     <result column="zyxm" jdbcType="LONGVARCHAR" property="zyxm" />
@@ -34,7 +36,7 @@
   <sql id="Base_Column_List">
     id, bzdwmc, zylx, zydj, zyrq, zysd, xm, xb, qschzm, zzchzm, zyqslc, zyzzlc, banci, 
     zzfhr, gdfhr, yffhr, dbr, sbztw, `status`,f_jwtdmids,f_jwtdmmcs,f_zhjtdmids,f_zhjtdmmcs,f_chwtdmids
-    ,f_chwtdmmcs
+    ,f_chwtdmmcs,CreateTime,fsbsj
   </sql>
   <sql id="Blob_Column_List">
     zyxm
@@ -55,7 +57,7 @@
       zzfhr, gdfhr, yffhr, 
       dbr, sbztw, `status`, 
       zyxm ,f_jwtdmids,f_jwtdmmcs,f_zhjtdmids,f_zhjtdmmcs,f_chwtdmids
-    ,f_chwtdmmcs)
+    ,f_chwtdmmcs,CreateTime,fsbsj)
     values (#{id,jdbcType=VARCHAR}, #{bzdwmc,jdbcType=VARCHAR}, #{zylx,jdbcType=VARCHAR}, 
       #{zydj,jdbcType=VARCHAR}, #{zyrq,jdbcType=VARCHAR}, #{zysd,jdbcType=VARCHAR}, #{xm,jdbcType=VARCHAR}, 
       #{xb,jdbcType=VARCHAR}, #{qschzm,jdbcType=VARCHAR}, #{zzchzm,jdbcType=VARCHAR}, 
@@ -64,7 +66,8 @@
       #{dbr,jdbcType=VARCHAR}, #{sbztw,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
       #{zyxm,jdbcType=LONGVARCHAR}
       ,#{fJwtdmids,jdbcType=LONGVARCHAR},#{fJwtdmmcs,jdbcType=LONGVARCHAR},#{fZhjtdmids,jdbcType=LONGVARCHAR},
-      #{fZhjtdmmcs,jdbcType=LONGVARCHAR},#{fChwtdmids,jdbcType=LONGVARCHAR},#{fChwtdmmcs,jdbcType=LONGVARCHAR})
+      #{fZhjtdmmcs,jdbcType=LONGVARCHAR},#{fChwtdmids,jdbcType=LONGVARCHAR},#{fChwtdmmcs,jdbcType=LONGVARCHAR}
+      ,#{createtime,jdbcType=TIMESTAMP},#{fsbsj,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.data.big.model.Wxjh">
     insert into wxjh
@@ -147,6 +150,12 @@
       <if test="fChwtdmmcs != null">
         f_chwtdmmcs,
       </if>
+      <if test="createtime != null">
+        CreateTime,
+      </if>
+      <if test="fsbsj != null">
+        fsbsj,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -227,7 +236,14 @@
       <if test="fChwtdmmcs != null">
         #{fChwtdmmcs,jdbcType=LONGVARCHAR},
       </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fsbsj != null">
+        #{fsbsj,jdbcType=VARCHAR},
+      </if>
     </trim>
+
   </insert>
 
   <update id="updateAll" parameterType="com.data.big.model.Wxjh">
@@ -273,7 +289,7 @@
     dbr, sbztw, `status`,
     zyxm
     ,f_jwtdmids,f_jwtdmmcs,f_zhjtdmids,f_zhjtdmmcs,f_chwtdmids
-    ,f_chwtdmmcs)
+    ,f_chwtdmmcs,createtime,fsbsj)
     values
     <foreach collection ="list" item="reddemCode" index= "index" separator =",">
       (
@@ -287,8 +303,8 @@
        #{reddemCode.status},
        #{reddemCode.zyxm},
         #{reddemCode.fJwtdmids},#{reddemCode.fJwtdmmcs},#{reddemCode.fZhjtdmids},
-      #{reddemCode.fZhjtdmmcs},#{reddemCode.fChwtdmids},#{reddemCode.fChwtdmmcs}
-       )
+      #{reddemCode.fZhjtdmmcs},#{reddemCode.fChwtdmids},#{reddemCode.fChwtdmmcs},
+      #{reddemCode.createtime},#{reddemCode.fsbsj} )
     </foreach >
   </insert >
 

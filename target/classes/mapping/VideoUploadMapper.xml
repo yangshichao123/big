@@ -335,7 +335,7 @@
 
 
     <select id="selectVideoUpoadAll" parameterType="java.lang.String" resultMap="BaseResultMap">
-        select DISTINCT vf.*,ca.*
+        select  vf.*,ca.*
 
         from video_upload vf
         left join camera ca on vf.IPCID=ca.device_id
@@ -381,7 +381,7 @@
                 and  vt.tag  =  #{videoTypeTag,jdbcType=VARCHAR}
             </if>
         </where>
-        order by vf.bz desc
+        order by vf.kssj desc,vf.id
 
     </select>
 

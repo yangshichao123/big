@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.data.big.mapper.AlgorithmdataMapper">
+  <resultMap id="BaseResultMap" type="com.data.big.model.Algorithmdata">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="ipcid" jdbcType="VARCHAR" property="ipcid" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="Algorithm" jdbcType="VARCHAR" property="algorithm" />
+    <result column="param" jdbcType="VARCHAR" property="param" />
+    <result column="bz1" jdbcType="VARCHAR" property="bz1" />
+    <result column="bz2" jdbcType="VARCHAR" property="bz2" />
+    <result column="bz3" jdbcType="VARCHAR" property="bz3" />
+    <result column="bz4" jdbcType="VARCHAR" property="bz4" />
+    <result column="bz5" jdbcType="VARCHAR" property="bz5" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, ipcid, `type`, Algorithm, param, bz1, bz2, bz3, bz4, bz5
+  </sql>
+  <select id="selectByPrimaryId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from algorithmdata
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <insert id="insert" parameterType="com.data.big.model.Algorithmdata">
+    insert into algorithmdata (id, ipcid, `type`, 
+      Algorithm, param, bz1, 
+      bz2, bz3, bz4, bz5
+      )
+    values (#{id,jdbcType=VARCHAR}, #{ipcid,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, 
+      #{algorithm,jdbcType=VARCHAR}, #{param,jdbcType=VARCHAR}, #{bz1,jdbcType=VARCHAR}, 
+      #{bz2,jdbcType=VARCHAR}, #{bz3,jdbcType=VARCHAR}, #{bz4,jdbcType=VARCHAR}, #{bz5,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.data.big.model.Algorithmdata">
+    insert into algorithmdata
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="ipcid != null">
+        ipcid,
+      </if>
+      <if test="type != null">
+        `type`,
+      </if>
+      <if test="algorithm != null">
+        Algorithm,
+      </if>
+      <if test="param != null">
+        param,
+      </if>
+      <if test="bz1 != null">
+        bz1,
+      </if>
+      <if test="bz2 != null">
+        bz2,
+      </if>
+      <if test="bz3 != null">
+        bz3,
+      </if>
+      <if test="bz4 != null">
+        bz4,
+      </if>
+      <if test="bz5 != null">
+        bz5,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="ipcid != null">
+        #{ipcid,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="algorithm != null">
+        #{algorithm,jdbcType=VARCHAR},
+      </if>
+      <if test="param != null">
+        #{param,jdbcType=VARCHAR},
+      </if>
+      <if test="bz1 != null">
+        #{bz1,jdbcType=VARCHAR},
+      </if>
+      <if test="bz2 != null">
+        #{bz2,jdbcType=VARCHAR},
+      </if>
+      <if test="bz3 != null">
+        #{bz3,jdbcType=VARCHAR},
+      </if>
+      <if test="bz4 != null">
+        #{bz4,jdbcType=VARCHAR},
+      </if>
+      <if test="bz5 != null">
+        #{bz5,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

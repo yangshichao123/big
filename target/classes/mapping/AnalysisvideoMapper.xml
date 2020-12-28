@@ -10,15 +10,17 @@
     <result column="rksj" jdbcType="TIMESTAMP" property="rksj" />
     <result column="status" jdbcType="VARCHAR" property="status" />
     <result column="algorithm" jdbcType="VARCHAR" property="algorithm" />
+    <result column="gdid" jdbcType="VARCHAR" property="gdid" />
     <result column="bz1" jdbcType="VARCHAR" property="bz1" />
     <result column="bz2" jdbcType="VARCHAR" property="bz2" />
     <result column="bz3" jdbcType="VARCHAR" property="bz3" />
     <result column="bz4" jdbcType="VARCHAR" property="bz4" />
     <result column="bz5" jdbcType="VARCHAR" property="bz5" />
+    <result column="CreateTime" jdbcType="TIMESTAMP" property="createtime" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, `type`, kssj, jssj, targetid, rksj, `status`, algorithm, bz1, bz2, bz3, bz4, 
-    bz5
+    id, `type`, kssj, jssj, targetid, rksj, `status`, algorithm, gdid, bz1, bz2, bz3, 
+    bz4, bz5, CreateTime
   </sql>
   <select id="selectByPrimaryId" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
@@ -26,64 +28,35 @@
     from analysisvideo
     where id = #{id,jdbcType=VARCHAR}
   </select>
-  <select id="findByExample" parameterType="com.data.big.model.Analysisvideo" resultMap="BaseResultMap">
-    select
-    a.id, a.`type`, a.kssj, a.jssj, a.targetid, a.rksj, a.`status`, d.descs algorithm, a.bz1, a.bz2, a.bz3, a.bz4,
-    a.bz5
-    from analysisvideo a
-    left join dictionary d on a.algorithm=d.id
-    <where>
-      <if test="id != null and id !='' ">
-       and a.id = #{id,jdbcType=VARCHAR}
-      </if>
-      <if test="type != null and type !='' ">
-       and a.type =  #{type,jdbcType=VARCHAR}
-      </if>
-      <if test="kssj != null ">
-       and a.kssj >= #{kssj,jdbcType=TIMESTAMP}
-      </if>
-      <if test="jssj != null ">
-       and  #{jssj,jdbcType=TIMESTAMP} >= a.jssj
-      </if>
-      <if test="targetid != null and targetid !=''">
-       and a.targetid =  #{targetid,jdbcType=VARCHAR}
-      </if>
-      <if test="rksj != null  ">
-        and a.rksj = #{rksj,jdbcType=TIMESTAMP}
-      </if>
-      <if test="status != null and status !=''">
-        and a.status = #{status,jdbcType=VARCHAR}
-      </if>
-      <if test="algorithm != null and algorithm !=''">
-        and d.id = #{algorithm,jdbcType=VARCHAR}
-      </if>
-      <if test="bz1 != null and bz1 !=''">
-        and a.bz1 = #{bz1,jdbcType=VARCHAR}
-      </if>
-      <if test="bz2 != null and bz2 !=''">
-        and a.bz2  like concat('%',#{bz2,jdbcType=VARCHAR},'%')
-      </if>
-      <if test="bz3 != null and bz3 !=''">
-        and a.bz3 = #{bz3,jdbcType=VARCHAR}
-      </if>
-      <if test="bz4 != null and bz4 !=''">
-        and a.bz4 = #{bz4,jdbcType=VARCHAR}
-      </if>
-      <if test="bz5 != null and bz5 !=''">
-        and a.bz5 =  #{bz5,jdbcType=VARCHAR}
-      </if>
-    </where>
+  <insert id="insertAll" parameterType="com.data.big.model.Analysisvideo">
+    insert IGNORE into analysisvideo (id, `type`, kssj,
+    jssj, targetid, rksj,
+    `status`, algorithm, gdid,
+    bz1, bz2, bz3, bz4,
+    bz5, CreateTime)
+    values
+    <foreach collection="list" item="analysis" separator="," >
+      (
+      #{analysis.id,jdbcType=VARCHAR}, #{analysis.type,jdbcType=VARCHAR}, #{analysis.kssj,jdbcType=TIMESTAMP},
+      #{analysis.jssj,jdbcType=TIMESTAMP}, #{analysis.targetid,jdbcType=VARCHAR}, #{analysis.rksj,jdbcType=TIMESTAMP},
+      #{analysis.status,jdbcType=VARCHAR}, #{analysis.algorithm,jdbcType=VARCHAR}, #{analysis.gdid,jdbcType=VARCHAR},
+      #{analysis.bz1,jdbcType=VARCHAR}, #{analysis.bz2,jdbcType=VARCHAR}, #{analysis.bz3,jdbcType=VARCHAR}, #{analysis.bz4,jdbcType=VARCHAR},
+      #{analysis.bz5,jdbcType=VARCHAR}, #{analysis.createtime,jdbcType=TIMESTAMP}
+      )
+    </foreach>
+  </insert>
 
-  </select>
   <insert id="insert" parameterType="com.data.big.model.Analysisvideo">
     insert into analysisvideo (id, `type`, kssj, 
-      jssj, targetid, rksj, `status`, 
-      algorithm, bz1, bz2, 
-      bz3, bz4, bz5)
-    values (#{id,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{kssj,jdbcType=TIMESTAMP},
-      #{jssj,jdbcType=TIMESTAMP}, #{targetid,jdbcType=VARCHAR}, #{rksj,jdbcType=TIMESTAMP}, #{status,jdbcType=VARCHAR},
-      #{algorithm,jdbcType=VARCHAR}, #{bz1,jdbcType=VARCHAR}, #{bz2,jdbcType=VARCHAR}, 
-      #{bz3,jdbcType=VARCHAR}, #{bz4,jdbcType=VARCHAR}, #{bz5,jdbcType=VARCHAR})
+      jssj, targetid, rksj, 
+      `status`, algorithm, gdid, 
+      bz1, bz2, bz3, bz4, 
+      bz5, CreateTime)
+    values (#{id,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{kssj,jdbcType=TIMESTAMP}, 
+      #{jssj,jdbcType=TIMESTAMP}, #{targetid,jdbcType=VARCHAR}, #{rksj,jdbcType=TIMESTAMP}, 
+      #{status,jdbcType=VARCHAR}, #{algorithm,jdbcType=VARCHAR}, #{gdid,jdbcType=VARCHAR}, 
+      #{bz1,jdbcType=VARCHAR}, #{bz2,jdbcType=VARCHAR}, #{bz3,jdbcType=VARCHAR}, #{bz4,jdbcType=VARCHAR}, 
+      #{bz5,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.data.big.model.Analysisvideo">
     insert into analysisvideo
@@ -112,6 +85,9 @@
       <if test="algorithm != null">
         algorithm,
       </if>
+      <if test="gdid != null">
+        gdid,
+      </if>
       <if test="bz1 != null">
         bz1,
       </if>
@@ -126,6 +102,9 @@
       </if>
       <if test="bz5 != null">
         bz5,
+      </if>
+      <if test="createtime != null">
+        CreateTime,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -153,6 +132,9 @@
       <if test="algorithm != null">
         #{algorithm,jdbcType=VARCHAR},
       </if>
+      <if test="gdid != null">
+        #{gdid,jdbcType=VARCHAR},
+      </if>
       <if test="bz1 != null">
         #{bz1,jdbcType=VARCHAR},
       </if>
@@ -168,6 +150,64 @@
       <if test="bz5 != null">
         #{bz5,jdbcType=VARCHAR},
       </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
     </trim>
   </insert>
+
+  <select id="findByExample" parameterType="com.data.big.model.Analysisvideo" resultMap="BaseResultMap">
+    select
+    a.id, a.`type`, a.kssj, a.jssj, a.targetid, a.rksj, a.`status`, d.descs algorithm, a.bz1, a.bz2, a.bz3, a.bz4,
+    a.bz5,a.CreateTime,a.gdid
+    from analysisvideo a
+    left join dictionary d on a.algorithm=d.id
+    <where>
+      <if test="id != null and id !='' ">
+       and a.id = #{id,jdbcType=VARCHAR}
+      </if>
+      <if test="type != null and type !='' ">
+       and a.type =  #{type,jdbcType=VARCHAR}
+      </if>
+      <if test="kssj != null ">
+       and a.kssj &gt;= #{kssj,jdbcType=TIMESTAMP}
+      </if>
+      <if test="jssj != null ">
+       and  #{jssj,jdbcType=TIMESTAMP} &gt;= a.jssj
+      </if>
+      <if test="targetid != null and targetid !=''">
+       and a.targetid =  #{targetid,jdbcType=VARCHAR}
+      </if>
+      <if test="rksj != null  ">
+        and a.rksj = #{rksj,jdbcType=TIMESTAMP}
+      </if>
+      <if test="status != null and status !=''">
+        and a.status = #{status,jdbcType=VARCHAR}
+      </if>
+      <if test="algorithm != null and algorithm !=''">
+        and d.id = #{algorithm,jdbcType=VARCHAR}
+      </if>
+      <if test="bz1 != null and bz1 !=''">
+        and a.bz1 = #{bz1,jdbcType=VARCHAR}
+      </if>
+      <if test="bz2 != null and bz2 !=''">
+        and a.bz2  like concat('%',#{bz2,jdbcType=VARCHAR},'%')
+      </if>
+      <if test="bz3 != null and bz3 !=''">
+        and a.bz3 = #{bz3,jdbcType=VARCHAR}
+      </if>
+      <if test="bz4 != null and bz4 !=''">
+        and a.bz4 = #{bz4,jdbcType=VARCHAR}
+      </if>
+      <if test="bz5 != null and bz5 !=''">
+        and a.bz5 =  #{bz5,jdbcType=VARCHAR}
+      </if>
+      <if test="gdid != null and gdid !=''">
+        and a.gdid =  #{gdid,jdbcType=VARCHAR}
+      </if>
+    </where>
+    order by a.rksj,a.id
+  </select>
+
+
 </mapper>

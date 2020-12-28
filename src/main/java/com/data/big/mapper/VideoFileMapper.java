@@ -3,6 +3,7 @@ package com.data.big.mapper;
 import com.data.big.base.BaseMapper;
 import com.data.big.model.VideoFile;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public interface VideoFileMapper extends BaseMapper<VideoFile> {
@@ -21,7 +22,7 @@ public interface VideoFileMapper extends BaseMapper<VideoFile> {
      * @param endTime 结束时间
      * @return
      */
-    List<VideoFile> getVideoRecord(String videoTypeTag,String videoType, String cameraType, String cameraName, String startTime, String endTime,List<String > list,String pageIndex,String pageSize);
+    ArrayList<VideoFile> getVideoRecord(String videoTypeTag, String videoType, String cameraType, String cameraName, String startTime, String endTime, List<String > list, String pageIndex, String pageSize);
 
     List<VideoFile> selectByVideoFileId(List<String> videoFileIds);
 

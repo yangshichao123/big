@@ -9,6 +9,7 @@ import com.data.big.log.LogTaskFactory;
 import com.data.big.mapper.*;
 import com.data.big.model.Dictionary;
 import com.data.big.service.Service;
+import com.data.big.service.ServiceAnalysis;
 import com.data.big.service.ServiceNetty;
 import com.data.big.task.KeepTask;
 import com.data.big.util.*;
@@ -114,6 +115,8 @@ public class ServiceImpl implements Service {
     private TaskDoorMapper taskDoorMapper;
     @Autowired
     private DooripcrelationMapper dooripcrelationMapper;
+    @Autowired
+    private ServiceAnalysis serviceAnalysis;
 
     // 日志记录器
     private static final Logger logger = LogManager.getLogger(ServiceImpl.class);
@@ -1894,12 +1897,14 @@ public class ServiceImpl implements Service {
         sgjh.setFzrname((String) listDatum.get("ffzrname"));
         sgjh.setLycxx((String) listDatum.get("flycxx"));
         sgjh.setStatus("0");
+        sgjh.setCreatetime(new Date());
         sgjh.setFChwtdmids(this.clearData((String) listDatum.get("fchwtdmids")));
         sgjh.setFChwtdmmcs(this.clearData((String) listDatum.get("fchwtdmmcs")));
         sgjh.setFJwtdmids(this.clearData((String) listDatum.get("fjwtdmids")));
         sgjh.setFJwtdmmcs(this.clearData((String) listDatum.get("fjwtdmmcs")));
         sgjh.setFZhjtdmids(this.clearData((String) listDatum.get("fzhjtdmids")));
         sgjh.setFZhjtdmmcs(this.clearData((String) listDatum.get("fzhjtdmmcs")));
+        sgjh.setFsbsj( (String) listDatum.get("fsbsj"));
         return sgjh;
     }
 
@@ -2051,6 +2056,8 @@ public class ServiceImpl implements Service {
         wxjh.setFZhjtdmids(this.clearData((String) listDatum.get("fzhjtdmids")));
         wxjh.setFZhjtdmmcs(this.clearData((String) listDatum.get("fzhjtdmmcs")));
         wxjh.setStatus("0");
+        wxjh.setFsbsj( (String) listDatum.get("fsbsj"));
+        wxjh.setCreatetime(new Date());
         return wxjh;
     }
 
@@ -2328,7 +2335,57 @@ public class ServiceImpl implements Service {
     }
 
     @Override
-    public void addGWTask() {
+    public void getGWTaskHcsj() {
+        {
+            try {
+                int pageSize = 1000;
+                int pageIndex = 1;
+                int totalPageNum = 1;
+                for (pageIndex = 1; pageIndex <= totalPageNum; pageIndex++) {
+
+                    Example example = new Example(Hcsj.class);
+                    Example.Criteria criteria = example.createCriteria();
+                    criteria.andEqualTo("status", "0");
+                    PageHelper.startPage(pageIndex, pageSize);
+                    PageInfo<Hcsj> pageInfo = new PageInfo<>(hcsjMapper.selectByExample(example));
+                    if (pageInfo != null && pageInfo.getSize() > 0 && pageIndex == 1) {
+                        totalPageNum = pageInfo.getPages();
+                    }
+
+                    List<Hcsj> hcsjList = pageInfo.getList();
+                    List<Map<String,Object>> mapList = new ArrayList<>();
+                    for (Hcsj hcsj : hcsjList) {
+                        Map<String,Object> map = new HashMap<>();
+                        map.put("id", hcsj.getId());
+                        map.put("status", "1");
+                        mapList.add(map);
+                        String jcsj = hcsj.getJcsj();
+                        Date date = DateUtils.parseDate(jcsj.substring(0, jcsj.indexOf(".")), "yyyy-MM-dd HH:mm:ss");
+                        Long dateL = date.getTime();
+                        String kaishi = DateUtils.getDate(new Date(dateL - 10000), "yyyy-MM-dd HH:mm:ss");
+                        String jieshu = DateUtils.getDate(new Date(dateL + 10000), "yyyy-MM-dd HH:mm:ss");
+                        if (hcsj != null && hcsj.getId() != null && hcsj.getLc() != null) {
+
+                            serviceNetty.addVideoTask(hcsj.getId(), "hcsj", hcsj.getLc().replace(".", ""), kaishi, jieshu);
+                        }
+                        hcsj.setStatus("1");
+                    }
+                    if (hcsjList != null && hcsjList.size() > 0) {
+
+                        hcsjMapper.updateChartParamByAccountAndChartid(mapList);
+                    }
+                }
+
+            } catch (Exception e) {
+                logger.error("执行晃车定时插入视频任务失败");
+                logger.error(e.getMessage(), e);
+            }
+        }
+
+    }
+
+    @Override
+    public void getGWTaskWxjhSgjh() {
         {
             try {
                 Example example = new Example(Wxjh.class);
@@ -2377,51 +2434,7 @@ public class ServiceImpl implements Service {
 
 
         }
-        {
-            try {
-                int pageSize = 1000;
-                int pageIndex = 1;
-                int totalPageNum = 1;
-                for (pageIndex = 1; pageIndex <= totalPageNum; pageIndex++) {
 
-                    Example example = new Example(Hcsj.class);
-                    Example.Criteria criteria = example.createCriteria();
-                    criteria.andEqualTo("status", "0");
-                    PageHelper.startPage(pageIndex, pageSize);
-                    PageInfo<Hcsj> pageInfo = new PageInfo<>(hcsjMapper.selectByExample(example));
-                    if (pageInfo != null && pageInfo.getSize() > 0 && pageIndex == 1) {
-                        totalPageNum = pageInfo.getPages();
-                    }
-
-                    List<Hcsj> hcsjList = pageInfo.getList();
-                    List<Map<String,Object>> mapList = new ArrayList<>();
-                    for (Hcsj hcsj : hcsjList) {
-                        Map<String,Object> map = new HashMap<>();
-                        map.put("id", hcsj.getId());
-                        map.put("status", "1");
-                        mapList.add(map);
-                        String jcsj = hcsj.getJcsj();
-                        Date date = DateUtils.parseDate(jcsj.substring(0, jcsj.indexOf(".")), "yyyy-MM-dd HH:mm:ss");
-                        Long dateL = date.getTime();
-                        String kaishi = DateUtils.getDate(new Date(dateL - 10000), "yyyy-MM-dd HH:mm:ss");
-                        String jieshu = DateUtils.getDate(new Date(dateL + 10000), "yyyy-MM-dd HH:mm:ss");
-                        if (hcsj != null && hcsj.getId() != null && hcsj.getLc() != null) {
-
-                            serviceNetty.addVideoTask(hcsj.getId(), "hcsj", hcsj.getLc().replace(".", ""), kaishi, jieshu);
-                        }
-                        hcsj.setStatus("1");
-                    }
-                    if (hcsjList != null && hcsjList.size() > 0) {
-
-                        hcsjMapper.updateChartParamByAccountAndChartid(mapList);
-                    }
-                }
-
-            } catch (Exception e) {
-                logger.error("执行晃车定时插入视频任务失败");
-                logger.error(e.getMessage(), e);
-            }
-        }
         {
             try {
                 Example example = new Example(Sgjh.class);
@@ -2450,49 +2463,73 @@ public class ServiceImpl implements Service {
             }
         }
         {
-            TaskDoor taskD = new TaskDoor();
-            taskD.setStatus("0");
-            List<TaskDoor> taskDoors = taskDoorMapper.select(taskD);
-            List<Dooripcrelation> dooripcrelations = dooripcrelationMapper.selectAll();
-            for (Dooripcrelation dooripcrelation : dooripcrelations) {
-                for (TaskDoor taskDoor : taskDoors) {
-                    if (StringUtils.isNotEmpty(taskDoor.getTdmname()) && StringUtils.isNotEmpty(dooripcrelation.getBh()) && taskDoor.getTdmname().contains(dooripcrelation.getBh())) {
-                        taskDoor.setIpcid(dooripcrelation.getIpcid() == null ? "" : dooripcrelation.getIpcid());
+            try {
+                TaskDoor taskD = new TaskDoor();
+                taskD.setStatus("0");
+                List<TaskDoor> taskDoors = taskDoorMapper.select(taskD);
+                List<Dooripcrelation> dooripcrelations = dooripcrelationMapper.selectAll();
+                for (Dooripcrelation dooripcrelation : dooripcrelations) {
+                    for (TaskDoor taskDoor : taskDoors) {
+                        if (StringUtils.isNotEmpty(taskDoor.getTdmname()) && StringUtils.isNotEmpty(dooripcrelation.getBh()) && taskDoor.getTdmname().contains(dooripcrelation.getBh())) {
+                            taskDoor.setIpcid(dooripcrelation.getIpcid() == null ? "" : dooripcrelation.getIpcid());
+                        }
                     }
                 }
-            }
-            List<VideoFile> videoFileList = new ArrayList<>();
-            List<TaskDoor> taskDoors1 = new ArrayList<>();
-            for (TaskDoor taskDoor : taskDoors) {
-                taskDoors1.add(taskDoor);
-                if (!StringUtils.isEmpty(taskDoor.getIpcid())) {
+                List<VideoFile> videoFileList = new ArrayList<>();
+                List<Analysisvideo> analysisvideoArrayList = new ArrayList<>();
+                List<TaskDoor> taskDoors1 = new ArrayList<>();
+                for (TaskDoor taskDoor : taskDoors) {
+                    taskDoors1.add(taskDoor);
+                    if (!StringUtils.isEmpty(taskDoor.getIpcid())) {
 
-                    VideoFile videoFile = new VideoFile();
-                    videoFile.setId(UUIDHelper.getUUIDStr());
-                    videoFile.setIpcid(taskDoor.getIpcid());
-                    String kssj = taskDoor.getKssj();
-                    Date date = DateUtils.parseDate(kssj, "yyyy-MM-dd HH:mm:ss");
+                        VideoFile videoFile = new VideoFile();
+                        videoFile.setId(UUIDHelper.getUUIDStr());
+                        videoFile.setIpcid(taskDoor.getIpcid());
+                        String kssj = taskDoor.getKssj();
+                        Date date = DateUtils.parseDate(kssj, "yyyy-MM-dd HH:mm:ss");
 
-                    videoFile.setKssj(DateUtils.getDate(new Date(date.getTime() - 1000 * 60 * 10), "yyyy-MM-dd HH:mm:ss"));
-                    videoFile.setJssj(DateUtils.getDate(new Date(date.getTime() + 1000 * 60 * 10), "yyyy-MM-dd HH:mm:ss"));
-                    videoFile.setStatus("0");
-                    videoFile.setVideoType("zydoor");
-                    videoFile.setAlarmId(taskDoor.getTableId());
+                        videoFile.setKssj(DateUtils.getDate(new Date(date.getTime() - 1000 * 60 * 30), "yyyy-MM-dd HH:mm:ss"));
+                        videoFile.setJssj(DateUtils.getDate(new Date(date.getTime() + 1000 * 60 * 30), "yyyy-MM-dd HH:mm:ss"));
+                        videoFile.setStatus("0");
+                        videoFile.setVideoType("zydoor");
+                        videoFile.setAlarmId(taskDoor.getTableId());
 
-                    taskDoor.setStatus("1");
+                        taskDoor.setStatus("1");
 
+                        videoFileList.add(videoFile);
+                        String gwTime = Properties.getGwTime();
+                        int time=1000 * 60 * Integer.parseInt(gwTime);
+                        Analysisvideo analysisvideo=new Analysisvideo();
+                        analysisvideo.setId(UUIDHelper.getUUIDStr());
+                        analysisvideo.setCreatetime(new Date());
+                        analysisvideo.setBz5(taskDoor.getType());
+                        analysisvideo.setStatus("0");
+                        analysisvideo.setKssj(new Date(date.getTime() - time));
+                        analysisvideo.setJssj(new Date(date.getTime() + time));
+                        analysisvideo.setTargetid(taskDoor.getIpcid());
+                        analysisvideo.setRksj(new Date());
+                        analysisvideo.setType("0");
+                        analysisvideo.setAlgorithm("62");
+                        analysisvideo.setGdid(taskDoor.getTableId());
+                        analysisvideoArrayList.add(analysisvideo);
 
-                    videoFileList.add(videoFile);
-                } else {
-                    taskDoor.setStatus("2");
+                    } else {
+                        taskDoor.setStatus("2");
+                    }
+
                 }
-
-            }
-            if (videoFileList.size() > 0) {
-                videoFileMapper.saveAll(videoFileList);
-            }
-            if (taskDoors1.size() > 0) {
-                taskDoorMapper.updateAllStatus(taskDoors1);
+                if (videoFileList.size() > 0) {
+                    videoFileMapper.saveAll(videoFileList);
+                }
+                if (analysisvideoArrayList.size() > 0) {
+                    serviceAnalysis.addAnalysisvideoAll(analysisvideoArrayList);
+                }
+                if (taskDoors1.size() > 0) {
+                    taskDoorMapper.updateAllStatus(taskDoors1);
+                }
+            } catch (Exception e) {
+                logger.error("执行任务门定时插入视频任务失败");
+                logger.error(e.getMessage(), e);
             }
         }
     }

@@ -3,6 +3,7 @@ package com.data.big.mapper;
 import com.data.big.base.BaseMapper;
 import com.data.big.model.VideoUpload;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public interface VideoUploadMapper extends BaseMapper< VideoUpload> {
@@ -33,7 +34,7 @@ public interface VideoUploadMapper extends BaseMapper< VideoUpload> {
      * 根据添加查询
      * @return
      */
-    List<VideoUpload> selectVideoUpoadAll(String type,String videoTypeTag,String videoType, String cameraType, String cameraName, String startTime, String endTime,List<String > list);
+    ArrayList<VideoUpload> selectVideoUpoadAll(String type, String videoTypeTag, String videoType, String cameraType, String cameraName, String startTime, String endTime, List<String > list);
 
     List<VideoUpload> selectByVideoFileId(List<String> videoFileIds);
 

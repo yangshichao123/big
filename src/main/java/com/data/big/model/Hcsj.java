@@ -1,9 +1,16 @@
 package com.data.big.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.io.Serializable;
+import java.util.Date;
+
 @Table(name = "hcsj")
+@Data
 public class Hcsj implements Serializable {
     /**
      * id
@@ -99,167 +106,5 @@ public class Hcsj implements Serializable {
      */
     private static final long serialVersionUID = 1L;
 
-    public String getId() {
-        return id;
-    }
 
-    public void setId(String id) {
-        this.id = id == null ? null : id.trim();
-    }
-
-    public String getDwmc() {
-        return dwmc;
-    }
-
-    public void setDwmc(String dwmc) {
-        this.dwmc = dwmc == null ? null : dwmc.trim();
-    }
-
-    public String getXm() {
-        return xm;
-    }
-
-    public void setXm(String xm) {
-        this.xm = xm == null ? null : xm.trim();
-    }
-
-    public String getXbh() {
-        return xbh;
-    }
-
-    public void setXbh(String xbh) {
-        this.xbh = xbh == null ? null : xbh.trim();
-    }
-
-    public String getXb() {
-        return xb;
-    }
-
-    public void setXb(String xb) {
-        this.xb = xb == null ? null : xb.trim();
-    }
-
-    public String getLc() {
-        return lc;
-    }
-
-    public void setLc(String lc) {
-        this.lc = lc == null ? null : lc.trim();
-    }
-
-    public String getJcsj() {
-        return jcsj;
-    }
-
-    public void setJcsj(String jcsj) {
-        this.jcsj = jcsj == null ? null : jcsj.trim();
-    }
-
-    public String getJssj() {
-        return jssj;
-    }
-
-    public void setJssj(String jssj) {
-        this.jssj = jssj == null ? null : jssj.trim();
-    }
-
-    public String getCzjsd() {
-        return czjsd;
-    }
-
-    public void setCzjsd(String czjsd) {
-        this.czjsd = czjsd == null ? null : czjsd.trim();
-    }
-
-    public String getCzjsdjb() {
-        return czjsdjb;
-    }
-
-    public void setCzjsdjb(String czjsdjb) {
-        this.czjsdjb = czjsdjb == null ? null : czjsdjb.trim();
-    }
-
-    public String getSpjsd() {
-        return spjsd;
-    }
-
-    public void setSpjsd(String spjsd) {
-        this.spjsd = spjsd == null ? null : spjsd.trim();
-    }
-
-    public String getSpjsdjb() {
-        return spjsdjb;
-    }
-
-    public void setSpjsdjb(String spjsdjb) {
-        this.spjsdjb = spjsdjb == null ? null : spjsdjb.trim();
-    }
-
-    public String getSd() {
-        return sd;
-    }
-
-    public void setSd(String sd) {
-        this.sd = sd == null ? null : sd.trim();
-    }
-
-    public String getJcxh() {
-        return jcxh;
-    }
-
-    public void setJcxh(String jcxh) {
-        this.jcxh = jcxh == null ? null : jcxh.trim();
-    }
-
-    public String getJch() {
-        return jch;
-    }
-
-    public void setJch(String jch) {
-        this.jch = jch == null ? null : jch.trim();
-    }
-
-    public String getCc() {
-        return cc;
-    }
-
-    public void setCc(String cc) {
-        this.cc = cc == null ? null : cc.trim();
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status == null ? null : status.trim();
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(getClass().getSimpleName());
-        sb.append(" [");
-        sb.append("Hash = ").append(hashCode());
-        sb.append(", id=").append(id);
-        sb.append(", dwmc=").append(dwmc);
-        sb.append(", xm=").append(xm);
-        sb.append(", xbh=").append(xbh);
-        sb.append(", xb=").append(xb);
-        sb.append(", lc=").append(lc);
-        sb.append(", jcsj=").append(jcsj);
-        sb.append(", jssj=").append(jssj);
-        sb.append(", czjsd=").append(czjsd);
-        sb.append(", czjsdjb=").append(czjsdjb);
-        sb.append(", spjsd=").append(spjsd);
-        sb.append(", spjsdjb=").append(spjsdjb);
-        sb.append(", sd=").append(sd);
-        sb.append(", jcxh=").append(jcxh);
-        sb.append(", jch=").append(jch);
-        sb.append(", cc=").append(cc);
-        sb.append(", status=").append(status);
-        sb.append(", serialVersionUID=").append(serialVersionUID);
-        sb.append("]");
-        return sb.toString();
-    }
 }

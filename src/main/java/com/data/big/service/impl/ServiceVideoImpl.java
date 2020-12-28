@@ -155,6 +155,7 @@ public class ServiceVideoImpl implements ServiceVideo {
             List<String> videoFileIds = new ArrayList<>();
             List<String> videoIPCId = new ArrayList<>();
             List<VideoUpload> videoFileList = pageInfo.getList();
+
             for (VideoUpload videoFile : videoFileList) {
                 videoFileIds.add(videoFile.getId());
                 videoIPCId.add(videoFile.getIpcid());
@@ -190,6 +191,7 @@ public class ServiceVideoImpl implements ServiceVideo {
                     }
                 }
             }
+
             message.ok("查询成功", pageInfo);
         } catch (Exception e) {
             log.error(e.getMessage(), e);

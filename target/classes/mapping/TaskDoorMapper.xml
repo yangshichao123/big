@@ -63,7 +63,7 @@
       #{kssj,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{tdmname,jdbcType=VARCHAR})
   </insert>
   <insert id="saveAll" parameterType="com.data.big.model.TaskDoor">
-    replace into task_door ( f_jwtdmid, table_id,
+    insert  IGNORE into task_door ( f_jwtdmid, table_id,
       kssj, `status`, `type`,tdmname)
     values
     <foreach collection="list" item="taskDoor" separator=",">

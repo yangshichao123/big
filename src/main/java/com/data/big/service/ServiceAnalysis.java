@@ -21,6 +21,7 @@ public interface ServiceAnalysis {
     Message getAnalysiresult(Analysiresult analysiresult);
 
     Message addAnalysisvideo(Analysisvideo analysisvideo);
+    Message addAnalysisvideoAll(List<Analysisvideo> analysisvideo);
 
     Message updateAnalysisvideo(Analysisvideo analysisvideo);
 

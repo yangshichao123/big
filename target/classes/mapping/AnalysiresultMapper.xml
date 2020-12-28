@@ -12,7 +12,9 @@
     <result column="bz3" jdbcType="VARCHAR" property="bz3" />
     <result column="bz4" jdbcType="VARCHAR" property="bz4" />
     <result column="bz5" jdbcType="VARCHAR" property="bz5" />
-    <collection property="analysiresultList" ofType="com.data.big.model.Analysisvideo">
+    <result column="gdid" jdbcType="VARCHAR" property="gdid" />
+    <result column="CreateTime" jdbcType="TIMESTAMP" property="createtime" />
+    <collection ofType="com.data.big.model.Analysisvideo" property="analysiresultList">
       <id column="AnalysiresultId" jdbcType="VARCHAR" property="id" />
       <result column="AnalysiresultType" jdbcType="VARCHAR" property="type" />
       <result column="kssj" jdbcType="TIMESTAMP" property="kssj" />
@@ -26,11 +28,12 @@
       <result column="AnalysiresultBz3" jdbcType="VARCHAR" property="bz3" />
       <result column="AnalysiresultBz4" jdbcType="VARCHAR" property="bz4" />
       <result column="AnalysiresultBz5" jdbcType="VARCHAR" property="bz5" />
+      <result column="analysiresultGdid" jdbcType="VARCHAR" property="gdid" />
+      <result column="analysiresultCreateTime" jdbcType="TIMESTAMP" property="createtime" />
     </collection>
-
   </resultMap>
   <sql id="Base_Column_List">
-    id, analysiid, `result`, resulturl, `type`, bz1, bz2, bz3, bz4, bz5
+    id, analysiid, `result`, resulturl, `type`, bz1, bz2, bz3, bz4, bz5, gdid, CreateTime
   </sql>
   <select id="selectByPrimaryId" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
@@ -41,12 +44,12 @@
   <insert id="insert" parameterType="com.data.big.model.Analysiresult">
     insert into analysiresult (id, analysiid, `result`, 
       resulturl, `type`, bz1, 
-      bz2, bz3, bz4, bz5
-      )
+      bz2, bz3, bz4, bz5, 
+      gdid, CreateTime)
     values (#{id,jdbcType=VARCHAR}, #{analysiid,jdbcType=VARCHAR}, #{result,jdbcType=VARCHAR}, 
       #{resulturl,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{bz1,jdbcType=VARCHAR}, 
-      #{bz2,jdbcType=VARCHAR}, #{bz3,jdbcType=VARCHAR}, #{bz4,jdbcType=VARCHAR}, #{bz5,jdbcType=VARCHAR}
-      )
+      #{bz2,jdbcType=VARCHAR}, #{bz3,jdbcType=VARCHAR}, #{bz4,jdbcType=VARCHAR}, #{bz5,jdbcType=VARCHAR}, 
+      #{gdid,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.data.big.model.Analysiresult">
     insert into analysiresult
@@ -81,6 +84,12 @@
       <if test="bz5 != null">
         bz5,
       </if>
+      <if test="gdid != null">
+        gdid,
+      </if>
+      <if test="createtime != null">
+        CreateTime,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -113,18 +122,24 @@
       <if test="bz5 != null">
         #{bz5,jdbcType=VARCHAR},
       </if>
+      <if test="gdid != null">
+        #{gdid,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
     </trim>
   </insert>
 
   <select id="findScreenresolving" parameterType="java.lang.String" resultMap="BaseResultMap">
     select  a.*,aa.id AnalysiresultId,aa.type AnalysiresultType,aa.kssj,aa.jssj,aa.targetid,aa.rksj
     ,aa.status,aa.algorithm,aa.bz1 AnalysiresultBz1,aa.bz2 AnalysiresultBz2,aa.bz3 AnalysiresultBz3,
-    aa.bz4 AnalysiresultBz4,aa.bz5 AnalysiresultBz5
+    aa.bz4 AnalysiresultBz4,aa.bz5 AnalysiresultBz5,aa.gdid analysiresultGdid,aa.CreateTime analysiresultCreateTime
 
     from analysiresult a
     left join analysisvideo  aa on a.analysiid=aa.id
     where a.id in
-    <foreach collection="list" item="id" separator="," open="(" close=")">
+    <foreach close=")" collection="list" item="id" open="(" separator=",">
       #{id,jdbcType=VARCHAR}
     </foreach>
   </select>
@@ -132,7 +147,7 @@
   <select id="findByExample" parameterType="com.data.big.model.Analysiresult" resultMap="BaseResultMap">
     select  a.*,aa.id AnalysiresultId,aa.type AnalysiresultType,aa.kssj,aa.jssj,aa.targetid,aa.rksj
     ,aa.status,aa.algorithm,aa.bz1 AnalysiresultBz1,aa.bz2 AnalysiresultBz2,aa.bz3 AnalysiresultBz3,
-    aa.bz4 AnalysiresultBz4,aa.bz5 AnalysiresultBz5
+    aa.bz4 AnalysiresultBz4,aa.bz5 AnalysiresultBz5,aa.gdid analysiresultGdid,aa.CreateTime analysiresultCreateTime
 
     from analysiresult a
     left join analysisvideo  aa on a.analysiid=aa.id
@@ -143,10 +158,10 @@
         and aa.type =  #{type,jdbcType=VARCHAR}
       </if>
       <if test="kssj != null ">
-        and aa.kssj >= #{kssj,jdbcType=TIMESTAMP}
+        and aa.kssj &gt;= #{kssj,jdbcType=TIMESTAMP}
       </if>
       <if test="jssj != null ">
-        and  #{jssj,jdbcType=TIMESTAMP} >= aa.jssj
+        and  #{jssj,jdbcType=TIMESTAMP} &gt;= aa.jssj
       </if>
 
       <if test="algorithm != null and algorithm !=''">
@@ -156,7 +171,11 @@
       <if test="bz2 != null and bz2 !=''">
         and aa.bz2  like concat('%',#{bz2,jdbcType=VARCHAR},'%')
       </if>
+      <if test="gdid != null and gdid !=''">
+        and a.gdid =  #{gdid,jdbcType=VARCHAR}
+      </if>
 
     </where>
+    order by a.CreateTime desc
   </select>
 </mapper>

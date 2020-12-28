@@ -176,7 +176,8 @@ netty:
   nameAndPassword: "<JingWei_GongDianGong,JingWei_GongDianGong>"  #用户名密码
 #防灾webservice
 fz:
-  url: "http://10.3.97.162:11029/ws/bigdata?wsdl"
+  #url: "http://10.3.97.162:11029/ws/bigdata?wsdl"
+  url: "http://10.3.91.182:11021/scoket/ws/bigdata?wsdl"
   userName: "bigdata"
   passWord: "bigData@217"
   cron: "0 10 */2 * * ?"
@@ -187,7 +188,11 @@ gw:
   //wsdlNamespace: "http://webService.big.data.com/"
   wsdlNamespace: "http://services.itcmor.com/"
   wsdlName: "GwaqscJxglService"
-  cron: "0 30 */5 * * ?"
+  cron:
+    wxAndSg: "0 */30 * * * ?"
+    hc: "0 30 */5 * * ?"
+  time: "30"
+
 
 #旅服
 lf:

@@ -280,7 +280,11 @@ public interface Service {
     /**
      * 添加公务告警到视频下载任务表
      */
-    void addGWTask();
+    void getGWTaskHcsj();
+    /**
+     * 添加公务告警到视频下载任务表
+     */
+    void getGWTaskWxjhSgjh();
 
 
     /**

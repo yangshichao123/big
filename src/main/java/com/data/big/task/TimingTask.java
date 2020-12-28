@@ -56,13 +56,25 @@ public class TimingTask {
         System.out.println(DateFormatHelper.date2String(new Date(),"mm:ss")+" 44444444444444444444444");
     }*/
     @Scheduled(cron = "30 */5 * * * ?")
-    private void getGWTask() {
-        log.info("*************定时执行公务添加到视频任务*************************");
-        service.addGWTask();
+    private void getGWTaskHcsj() {
+        log.info("*************定时执行公务晃车添加到视频任务*************************");
+        service.getGWTaskHcsj();
         LogRest log = new LogRest();
-        log.setFunname("getGWTask");
+        log.setFunname("getGWTaskHcsj");
         log.setLrsj(new Date());
-        log.setParamin("定时执行公务添加到视频任务");
+        log.setParamin("定时执行公务晃车添加到视频任务");
+
+        log.setType(0 + "");
+        logRestMapper.insert(log);
+    }
+    @Scheduled(cron = "30 */1 * * * ?")
+    private void getGWTaskWxjhSgjh() {
+        log.info("*************定时执行公务维修计划和施工计划添加到视频任务*************************");
+        service.getGWTaskWxjhSgjh();
+        LogRest log = new LogRest();
+        log.setFunname("getGWTaskWxjhSgjh");
+        log.setLrsj(new Date());
+        log.setParamin("定时执行公务维修计划和施工计划添加到视频任务");
 
         log.setType(0 + "");
         logRestMapper.insert(log);
@@ -162,13 +174,13 @@ public class TimingTask {
 
 
     // @Scheduled(cron="* * 0/1 * * ?")
-    @Scheduled(cron = "${gw.cron}")
-    private void sendGW() {
+    @Scheduled(cron = "${gw.cron.hc}")
+    private void sendGWHcjh() {
         String data = "";
         LogRest log1 = new LogRest();
-        log1.setFunname("sendGW");
+        log1.setFunname("sendGWHcjh");
         log1.setLrsj(new Date());
-        log1.setParamin("定时执行查询公务任务");
+        log1.setParamin("定时执行查询公务任务晃车数据");
 
         log1.setType(0 + "");
 
@@ -185,6 +197,27 @@ public class TimingTask {
             log.error("开始定时执行查询公务任务______getHcsj______---失败");
             log.error(e.getMessage(), e);
         }
+
+        log1.setRedata(data);
+        logRestMapper.insert(log1);
+        log.info("*************结束定时执行查询公务任务*************************");
+    }
+// @Scheduled(cron="* * 0/1 * * ?")
+    @Scheduled(cron = "${gw.cron.wxAndSg}")
+    private void sendGWGetWxjhSgjh() {
+        String data = "";
+        LogRest log1 = new LogRest();
+        log1.setFunname("sendGWGetWxjhSgjh");
+        log1.setLrsj(new Date());
+        log1.setParamin("定时执行查询公务任务查询维修和施工");
+
+        log1.setType(0 + "");
+
+
+        log.info("*************开始定时执行查询公务任务*************************");
+        String beginTime = DateUtils.getBeforeDate(0, "yyyy-MM-dd");
+        String endTime = DateUtils.getBeforeDate(0, "yyyy-MM-dd");
+
         try {
 
             Map<String,String> sgjh = service.getSgjh(beginTime, endTime, "京包客专");

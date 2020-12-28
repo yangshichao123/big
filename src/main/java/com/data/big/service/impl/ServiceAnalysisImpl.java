@@ -36,6 +36,7 @@ public class ServiceAnalysisImpl implements ServiceAnalysis {
         Message message = new Message();
         try {
             analysiresult.setId(UUIDHelper.getUUID());
+            analysiresult.setCreatetime(new Date());
             analysiresultMapper.insertSelective(analysiresult);
         } catch (Exception e) {
             log.error(e.getMessage(), e);
@@ -112,10 +113,25 @@ public class ServiceAnalysisImpl implements ServiceAnalysis {
     public Message addAnalysisvideo(Analysisvideo analysisvideo) {
         Message message = new Message();
         try {
-            analysisvideo.setId(UUIDHelper.getUUID());
+            analysisvideo.setId(UUIDHelper.getUUIDStr());
             analysisvideo.setRksj(new Date());
             analysisvideo.setStatus("0");
+            analysisvideo.setCreatetime(new Date());
+            analysisvideo.setBz5("手动添加");
             analysisvideoMapper.insertSelective(analysisvideo);
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+            message.error("保存失败");
+            return message;
+        }
+        message.ok("保存成功", "");
+        return message;
+    }
+    @Override
+    public Message addAnalysisvideoAll(List<Analysisvideo> analysisvideo) {
+        Message message = new Message();
+        try {
+            analysisvideoMapper.insertAll(analysisvideo);
         } catch (Exception e) {
             log.error(e.getMessage(), e);
             message.error("保存失败");
@@ -191,7 +207,7 @@ public class ServiceAnalysisImpl implements ServiceAnalysis {
             if(idList.size()>0){
                 Example example = new Example(Analysiresult.class);
                 Example.Criteria criteria = example.createCriteria();
-                criteria.andIn("id",idList);
+                criteria.andIn("gdid",idList);
                 List<Analysiresult> analysisvideos = analysiresultMapper.selectByExample(example);
                 message.ok("查询成功", analysisvideos);
             }

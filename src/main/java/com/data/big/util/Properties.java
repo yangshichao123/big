@@ -246,6 +246,20 @@ public class Properties {
      */
     private static String userTokenEnable;
 
+    /**
+     * 是否启用token认证机制
+     */
+    private static String   gwTime;
+
+
+    public static String getGwTime() {
+        return gwTime;
+    }
+    @Value("${gw.time}")
+    public  void setGwTime(String gwTime) {
+        Properties.gwTime = gwTime;
+    }
+
     public static String getUserTokenEnable() {
         return userTokenEnable;
     }

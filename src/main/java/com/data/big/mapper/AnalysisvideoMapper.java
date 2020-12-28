@@ -11,6 +11,7 @@ public interface AnalysisvideoMapper extends BaseMapper<Analysisvideo> {
     int insertSelective(Analysisvideo record);
 
     Analysisvideo selectByPrimaryId(String id);
-
     List<Analysisvideo> findByExample(Analysisvideo analysisvideo);
+
+    void insertAll(List<Analysisvideo> analysisvideo);
 }
